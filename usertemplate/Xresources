@@ -1,0 +1,76 @@
+!##########################################################
+!                             URxvt
+URxvt.termName:               rxvt-unicode-256color
+!URxvt.termName:               xterm-256color
+URxvt.foreground:             #D0D0D0
+!! if you use compiz or xcompmgr give true transparency
+URxvt.depth:                  32
+!! black background
+URxvt.background:             rgba:0000/0000/0000/EEEE
+!! white background
+!urxvt*background:rgba:cccc/cccc/cccc/ccdd
+!
+URxvt.saveLines:              16384
+URxvt.scrollBar:              true
+URxvt.scrollBar_right:        true
+URxvt.scrollstyle:            plain
+!URxvt.secondaryScroll:        true
+!URxvt.scrollTtyOutput:        true
+!URxvt.scrollTtyKeypress:      true
+URxvt.loginShell:             true
+URxvt.internalBorder:         0
+
+URxvt.shading:                60
+URxvt.fading:                 30
+URxvt.fadeColor:              #808080
+
+URxvt.font:                   xft:DejaVu Sans Mono:pixelsize=14:autohint=true
+! Bind C-0, C-+ and C-= to activate medium, big and small font size respectively.
+URxvt.keysym.C-minus:         command:\033]710;xft:DejaVu Sans Mono:pixelsize=14,xft:DejaVu Sans Mono:autohint=true\007
+URxvt.keysym.C-0:             command:\033]710;xft:DejaVu Sans Mono:pixelsize=16,xft:DejaVu Sans Mono:autohint=true\007
+URxvt.keysym.C-plus:          command:\033]710;xft:DejaVu Sans Mono:pixelsize=17,xft:DejaVu Sans Mono:autohint=true\007
+URxvt.keysym.C-equal:         command:\033]710;xft:DejaVu Sans Mono:pixelsize=18,xft:DejaVu Sans Mono:autohint=true\007
+
+!################################################
+!                             xterm
+XTerm*faceName:               "DejaVu sans mono"
+XTerm*faceSize:               10
+XTerm*reverseVideo:           on
+XTerm.VT100*color0:           black
+XTerm.VT100*color1:           red3
+XTerm.VT100*color2:           green3
+XTerm.VT100*color3:           yellow3
+XTerm.VT100*color4:           blue3
+XTerm.VT100*color5:           magenta3
+XTerm.VT100*color6:           cyan3
+XTerm.VT100*color7:           gray90
+XTerm.VT100*color8:           gray30
+XTerm.VT100*color9:           red
+XTerm.VT100*color10:          green
+XTerm.VT100*color11:          yellow
+XTerm.VT100*color12:          blue
+XTerm.VT100*color13:          magenta
+XTerm.VT100*color14:          cyan
+XTerm.VT100*color15:          white
+XTerm.VT100*colorUL:          yellow
+XTerm.VT100*colorBD:          white
+
+XTerm*background:             #000000
+XTerm*foreground:             #ffffff
+XTerm*color0:                   0   0   0
+XTerm*color1:                 168   0   0
+XTerm*color2:                   0 168   0
+XTerm*color3:                 168  84   0
+XTerm*color4:                   0   0 168
+XTerm*color5:                 168   0 168
+XTerm*color6:                   0 168 168
+XTerm*color7:                 168 168 168
+XTerm*color8:                  84  80  84
+XTerm*color9:                 248  84  80
+XTerm*color10:                 80 252  80
+XTerm*color11:                242 252  80
+XTerm*color12:                 80  84 248
+XTerm*color13:                248  84 248
+XTerm*color14:                 80 252 248
+XTerm*color15:                248 252 248
+
