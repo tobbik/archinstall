@@ -18,4 +18,4 @@ cp /etc/vconsole.conf /mnt/etc/vconsole.conf
 
 # copy over files into chroot
 mkdir /mnt/root/installer
-cp -avpr ../archinstall/* /mnt/root/installer
+cp -avpr ../archinstall/.* /mnt/root/installer

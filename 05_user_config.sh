@@ -35,15 +35,19 @@ echo "hardstatus alwayslastline '%{= G}%-Lw%{= R}%n*%f %t]%{= G}%+Lw%=]'" >> \
   /home/${USERNAME}/.screenrc
 
 # set vim
-cp -avrp ./usertemplate/vim/* /home/${USERNAME}/.vim
-cp       ./usertemplate/.vimrc /home/${USERNAME}/.vimrc
+mkdir /home/${USERNAME}/.vim
+cp -avrp ./usertemplate/vim/.* /home/${USERNAME}/.vim/
+cp       ./usertemplate/vimrc /home/${USERNAME}/.vimrc
 
 #set git
 git config --global user.name "Tobias Kieslich"
 git config --global user.email "tobias.kieslich@gmail.com"
 
+mv /root/.gitconfig /home/${USERNAME}/
+chown ${USERNAME}:users /home/${USERNAME}/.gitconfig
 
 # start urxvtd at startup
+mkdir -p "/home/${USERNAME}/.config/autostart"
 cat > "/home/${USERNAME}/.config/autostart/URxvt daemon.desktop" << EOURXVTD
 [Desktop Entry]
 Encoding=UTF-8

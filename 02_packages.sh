@@ -16,6 +16,8 @@ pacman -S --needed --noconfirm \
   nginx fcgiwrap \
   lua lua-socket luajit ipython python3 figlet nodejs \
   p7zip zip unzip unrar rox \
-  geany geany-plugins gvim scite \
+  geany geany-plugins scite \
   chromium firefox ttf-dejavu gftp file-roller epdfview \
   xf86-video-vmware xf86-input-vmmouse mesa open-vm-tools gtkmm
+
+yes | pacman -S --needed --noconfirm gvim
