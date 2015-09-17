@@ -1,6 +1,5 @@
 #!/bin/bash
 
-
 # ----------- CONFIG Variables
 HOSTNAME=tkarch
 USERNAME=arch

@@ -2,11 +2,11 @@
 echo $HOSTNAME > /etc/hostname
 
 # set up locale stuff, keyboard, time etc
-localectl set-locale LANG=${LOCALELC}
-locale > /etc/locale.conf
-
-# set the keyboard layout
-localectl set-keymap --no-convert ${KEYBOARD}
+cat > /etc/locale.conf << EOLOCALE
+LANG=${LOCALELC}
+LC_TIME="${LOCALELC}"
+LC_COLLATE="C"
+EOLOCALE
 
 # set the timezone and make sure system uses UTC
 ln -sf /usr/share/zoneinfo/${TIMEZONE} /etc/localtime

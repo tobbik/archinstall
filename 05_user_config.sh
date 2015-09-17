@@ -38,6 +38,10 @@ echo "hardstatus alwayslastline '%{= G}%-Lw%{= R}%n*%f %t]%{= G}%+Lw%=]'" >> \
 cp -avrp ./usertemplate/vim/* /home/${USERNAME}/.vim
 cp       ./usertemplate/.vimrc /home/${USERNAME}/.vimrc
 
+#set git
+git config --global user.name "Tobias Kieslich"
+git config --global user.email "tobias.kieslich@gmail.com"
+
 
 # start urxvtd at startup
 cat > "/home/${USERNAME}/.config/autostart/URxvt daemon.desktop" << EOURXVTD

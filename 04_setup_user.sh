@@ -10,4 +10,3 @@ echo -e "${USERPASS}\n${USERPASS}" | (passwd -q arch)
 
 # set root password
 echo -e "${ROOTPASS}\n${ROOTPASS}" | (passwd -q root)
-
