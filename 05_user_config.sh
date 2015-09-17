@@ -36,7 +36,7 @@ echo "hardstatus alwayslastline '%{= G}%-Lw%{= R}%n*%f %t]%{= G}%+Lw%=]'" >> \
 
 # set vim
 mkdir /home/${USERNAME}/.vim
-cp -avrp ./usertemplate/vim/.* /home/${USERNAME}/.vim/
+cp -avrp ./usertemplate/vim /home/${USERNAME}/.vim
 cp       ./usertemplate/vimrc /home/${USERNAME}/.vimrc
 
 #set git

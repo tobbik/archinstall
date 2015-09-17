@@ -2,7 +2,7 @@ useradd --gid users \
   --groups wheel,http,postgres,network,video,audio,storage,power,wireshark,git \
   --create-home \
   --password $USERPASS \
-  --shell /bib/bash \
+  --shell /bin/bash \
   $USERNAME
 
 # reset the password to be sure
