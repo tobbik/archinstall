@@ -1,7 +1,7 @@
 # package installation
 pacman -S --needed --noconfirm \
   $BOOTMNGR archlinux-keyring netctl sudo openssh \
-  abs git vim postgresql sqlite wireshark-cli mongodb screen
+  abs git postgresql sqlite wireshark-cli mongodb screen
 
 # network
 pacman -S --needed --noconfirm \
@@ -16,8 +16,7 @@ pacman -S --needed --noconfirm \
   nginx fcgiwrap \
   lua lua-socket luajit ipython python3 figlet nodejs \
   p7zip zip unzip unrar rox \
-  geany geany-plugins scite \
+  gvim geany geany-plugins scite \
   chromium firefox ttf-dejavu gftp file-roller epdfview \
   xf86-video-vmware xf86-input-vmmouse mesa open-vm-tools gtkmm
 
-yes | pacman -S --needed --noconfirm gvim
