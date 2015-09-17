@@ -6,7 +6,7 @@ useradd --gid users \
   $USERNAME
 
 # reset the password to be sure
-echo -e "${USERPASS}\n${USERPASS}" | (passwd -q arch)
+echo -e "${USERPASS}\n${USERPASS}" | (passwd -q ${USERNAME})
 
 # set root password
 echo -e "${ROOTPASS}\n${ROOTPASS}" | (passwd -q root)
