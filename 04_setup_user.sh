@@ -5,6 +5,8 @@ useradd --gid users \
   --shell /bin/bash \
   $USERNAME
 
+sed -i "s/^\(root .*\)$/\1\n${USERNAME} ALL=(ALL) ALL/" /etc/sudoers
+
 # reset the password to be sure
 echo -e "${USERPASS}\n${USERPASS}" | (passwd -q ${USERNAME})
 

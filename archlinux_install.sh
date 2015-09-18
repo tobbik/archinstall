@@ -26,3 +26,6 @@ source 06_x2go.sh
 systemctl enable sshd
 
 grub-install --recheck /dev/sda
+#hack for misnamed devices -> grub bug?
+grub-mkconfig -o /boot/grub/grub.cfg.mkc
+mv /boot/grub/grub.cfg.mkc /boot/grub/grub.cfg

@@ -61,3 +61,6 @@ StartupNotify=false
 Terminal=false
 Hidden=false
 EOURXVTD
+
+# flatten all permissions
+chown -R ${USERNAME}:users /home/${USERNAME}
