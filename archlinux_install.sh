@@ -4,7 +4,7 @@
 HOSTNAME=tkarch
 USERNAME=arch
 USERPASS=arch
-ROOTPASS=DEhu8624
+ROOTPASS=rootpass
 KEYBOARD=us
 LOCALELC="en_CA.UTF-8"
 TIMEZONE="America/Vancouver"
