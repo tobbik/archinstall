@@ -13,9 +13,6 @@ after running the ISO do the following steps:
  - wget https://github.com/tobbik/archinstall/archive/master.zip
  - unzip master.zip
  - cd archinstall-master
- - cfdisk /dev/sda # make two partitions for / and /home
- - ./archlinux__setup.sh
- - arch-chroot /mnt /bin/bash
- - cd /root/installer
- - bash archlinux_install.sh
+ - review partions.txt
+ - run install.sh
  - reboot

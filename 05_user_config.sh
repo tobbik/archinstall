@@ -3,7 +3,6 @@ cp /etc/X11/xinit/xinitrc                /home/${USERNAME}/.xinitrc
 sed  -i "/twm/d;/xclock/d;/xterm/d"      /home/${USERNAME}/.xinitrc
 echo -e "\nxset -b\nexec startxfce4" >>  /home/${USERNAME}/.xinitrc
 
-
 # set up rox symlinks
 OLDDIR=$(pwd)
 cd /home/${USERNAME}
@@ -27,22 +26,16 @@ alias la='ls --color=auto -a'
 alias lla='ls --color=auto -l -a'
 EOBASHRC
 
-# set up urxvtc appearance
-cat ./usertemplate/Xresources > /home/${USERNAME}/.Xresources
+# copy all .files (vim,terminal stuff etc.)
+cp -r ./usertemplate/* ./usertemplate/. /home/${USERNAME}
 
 # set a hardstatus for .screenrc
 echo "hardstatus alwayslastline '%{= G}%-Lw%{= R}%n*%f %t]%{= G}%+Lw%=]'" >> \
   /home/${USERNAME}/.screenrc
 
-# set vim
-mkdir /home/${USERNAME}/.vim
-cp -avrp ./usertemplate/vim /home/${USERNAME}/.vim
-cp       ./usertemplate/vimrc /home/${USERNAME}/.vimrc
-
 #set git
 git config --global user.name "Tobias Kieslich"
 git config --global user.email "tobias.kieslich@gmail.com"
-
 mv /root/.gitconfig /home/${USERNAME}/
 chown ${USERNAME}:users /home/${USERNAME}/.gitconfig
 

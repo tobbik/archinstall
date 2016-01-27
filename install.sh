@@ -2,12 +2,7 @@
 
 KEYBOARD=us
 
-mkfs.ext4 /dev/sda1
-mkfs.ext4 /dev/sda2
-
-mount /dev/sda1 /mnt
-mkdir /mnt/home
-mount /dev/sda2 /mnt/home
+source partitions.sh
 
 pacstrap /mnt base base-devel
 genfstab -p /mnt >> /mnt/etc/fstab
@@ -19,3 +14,6 @@ cp /etc/vconsole.conf /mnt/etc/vconsole.conf
 # copy over files into chroot
 mkdir /mnt/root/installer
 cp -avr ./* ./.* /mnt/root/installer
+
+arch-chroot /mnt/root /mnt/chroot/setup-chroot.sh
+
