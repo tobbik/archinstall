@@ -25,7 +25,8 @@ source 02_packages.sh && \
 source 03_network_dhcp.sh && \
 source 04_setup_user.sh && \
 source 05_user_config.sh && \
-source 06_x2go.sh
+source 06_x2go.sh && \
+source 07_docker.sh && \
 
 systemctl enable sshd
 
