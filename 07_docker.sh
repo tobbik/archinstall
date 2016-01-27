@@ -1,3 +1,6 @@
+pacman -S --needed --noconfirm \
+   docker arch-install-scripts lxc haveged bridge-utils lua-alt-getopt
+
 mkdir -p /home/${USERNAME}/docker
 chown -R ${USERNAME}:users /home/${USERNAME}/docker
 

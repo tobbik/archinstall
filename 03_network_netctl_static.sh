@@ -1,9 +1,9 @@
 pacman -S --needed --noconfirm netctl
-DEVNAME=$(ip link | cut -d " " -f2 | tr -d ":\n" | sed "s/..//")
+INTERFACE=$(ip link | cut -d " " -f2 | tr -d ":\n" | sed "s/..//")
 
-cat > /etc/netctl/${DEVNAME}_dhcp << EONETCTL
+cat > /etc/netctl/${INTERFACE}_dhcp << EONETCTL
 Description='A basic dhcp ethernet connection'
-Interface=${DEVNAME}
+Interface=${INTERFACE}
 Connection=ethernet
 IP=dhcp
 #DHCPClient=dhcpcd
@@ -15,4 +15,4 @@ IP=dhcp
 #IP6=stateless
 EONETCTL
 
-netctl enable ${DEVNAME}_dhcp
+netctl enable ${INTERFACE}_dhcp

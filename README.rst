@@ -15,6 +15,6 @@ after running the ISO do the following steps:
  - wget https://github.com/tobbik/archinstall/archive/master.zip
  - unzip master.zip
  - cd archinstall-master
- - review partions.txt
+ - review partions.sh
  - run install.sh
  - reboot

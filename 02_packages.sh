@@ -7,16 +7,16 @@ pacman -S --needed --noconfirm \
 pacman -S --needed --noconfirm \
   dialog wpa_supplicant wpa_actiond wireless_tools net-tools
 
+# everything else for XFCE4 and development support
 pacman -S --needed --noconfirm \
   xfce4 xfce4-goodies xorg-server xorg-server-utils xorg-apps xorg-xinit xterm \
   rxvt-unicode rxvt-unicode-terminfo rsync abs htop \
-  clang clang-analyzer make tig gdb valgrind pkg-config \
-  docker arch-install-scripts lxc haveged bridge-utils linux-headers \
+  clang clang-analyzer make tig gdb valgrind pkg-config linux-headers \
   whois nmap wireshark-gtk wget curl traceroute iperf \
   nginx fcgiwrap \
   lua lua-socket lua-filesystem luajit ipython python3 figlet nodejs \
   p7zip zip unzip unrar rox \
   gvim geany geany-plugins scite \
   chromium firefox ttf-dejavu ttf-hack gftp file-roller epdfview \
-  xf86-video-vmware xf86-input-vmmouse mesa open-vm-tools gtkmm
+  mesa gtkmm
 
