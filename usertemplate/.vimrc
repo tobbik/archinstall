@@ -70,17 +70,6 @@ endif
 """"""""""""""""""""""""""""""""""""""""""
 "" Eye candy and geometry
 """"""""""""""""""""""""""""""""""""""""""
-" Take care of the colors rxvt-unicode can display, note the also mrxvt honours
-" these settings and maybe othe rxvt clones as well!
-" if $COLORTERM =~ 'rxvt' && $COLORFGBG  =~ 'default;0'
-"   set t_Co=88
-"   "set t_Sf=[3%dm
-"   "set t_Sb=[4%dm
-" elseif $COLORTERM =~ 'rxvt' && $COLORFGBG  =~ 'default;default'
-"   set t_Co=88
-"   "set t_Sf=[3%dm
-"   "set t_Sb=[4%dm
-" elseif $COLORTERM =~ 'rxvt-xpm' 
 if $TERM == 'rxvt-unicode-256color'
   set t_Co=256
 elseif $TERM == 'screen-256color'
@@ -162,16 +151,6 @@ set scs
 "set gdefault
 
 
-"""""""""""""""""""""""""""""""""""""""""""""""""
-" map tabpages -terminal style
-"""""""""""""""""""""""""""""""""""""""""""""""""
-if ! has('gui_running')
-	map n  :tabnext<CR>
-	map p  :tabprev<CR>
-elseif ! has('gui_running') && &t_Co==256
-	map [1;3C  :tabnext<CR>
-	map [1;3D  :tabprev<CR>
-endif
 
 """""""""""""""""""""""""""""""""""""""""""""""""
 "" set visible whitespaces
@@ -194,16 +173,16 @@ set number
 " exclude filetypes from browse listings
 let g:netrw_list_hide='\.pyc$,\.swp$'
 
-" GUI options
 function! ToggleGUICruft( )
   if &guioptions=='i'
     exec( 'set guioptions=imrL' )
   else
     exec( 'set guioptions=i' )
-  end
+  endif
 endfunction
 if has( 'gui_running' )
-  set guifont=DejaVu\ Sans\ Mono\ 13
+" GUI options
+  set guifont=DejaVu\ Sans\ Mono\ 12
   set guitablabel=%N\ %t\ %m
   set background=dark
   map <S-Insert> <MiddleMouse>
@@ -212,7 +191,7 @@ if has( 'gui_running' )
   set co=90
   set lines=46
   map <F11> <Esc>:call ToggleGUICruft()<cr>
-  set guioptions=i            "minimal gui
+  set guioptions=i            "minimal gui, no toolbar
 endif
 
 " execute a local .vimrc file within a pwd where vim is started

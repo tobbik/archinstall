@@ -14,9 +14,9 @@ pacman -S --needed --noconfirm \
   docker arch-install-scripts lxc haveged bridge-utils linux-headers \
   whois nmap wireshark-gtk wget curl traceroute iperf \
   nginx fcgiwrap \
-  lua lua-socket luajit ipython python3 figlet nodejs \
+  lua lua-socket lua-filesystem luajit ipython python3 figlet nodejs \
   p7zip zip unzip unrar rox \
   gvim geany geany-plugins scite \
-  chromium firefox ttf-dejavu gftp file-roller epdfview \
+  chromium firefox ttf-dejavu ttf-hack gftp file-roller epdfview \
   xf86-video-vmware xf86-input-vmmouse mesa open-vm-tools gtkmm
 

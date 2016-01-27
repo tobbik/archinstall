@@ -1,9 +1,13 @@
 #!/bin/bash
 
+cd "$(dirname "$0")"
+
 # ----------- CONFIG Variables
 HOSTNAME=tkarch
 USERNAME=arch
 USERPASS=arch
+GITNAME="Tobias Kieslich"
+GITEMAIL="tobias.kieslich@gmail.com"
 ROOTPASS=rootpass
 KEYBOARD=us
 LOCALELC="en_CA.UTF-8"

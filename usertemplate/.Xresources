@@ -9,7 +9,6 @@ URxvt.depth:                  32
 URxvt.background:             rgba:0000/0000/0000/EEEE
 !! white background
 !urxvt*background:rgba:cccc/cccc/cccc/ccdd
-!
 URxvt.saveLines:              16384
 URxvt.scrollBar:              true
 URxvt.scrollBar_right:        true
@@ -19,12 +18,17 @@ URxvt.scrollstyle:            plain
 !URxvt.scrollTtyKeypress:      true
 URxvt.loginShell:             true
 URxvt.internalBorder:         0
+!URxvt.termName:               rxvt-unicode
 
 URxvt.shading:                60
+!URxvt.tintColor:              #F0F0F0
 URxvt.fading:                 30
 URxvt.fadeColor:              #808080
+!URxvt.transparent:            false
 
 URxvt.font:                   xft:DejaVu Sans Mono:pixelsize=14:autohint=true
+URxvt.font:                   xft:DejaVu Sans Mono:pixelsize=14:autohint=true
+URxvt.boldFont:               xft:DejaVu Sans Mono:bold:pixelsize=14:autohint=true
 ! Bind C-0, C-+ and C-= to activate medium, big and small font size respectively.
 URxvt.keysym.C-minus:         command:\033]710;xft:DejaVu Sans Mono:pixelsize=14,xft:DejaVu Sans Mono:autohint=true\007
 URxvt.keysym.C-0:             command:\033]710;xft:DejaVu Sans Mono:pixelsize=16,xft:DejaVu Sans Mono:autohint=true\007

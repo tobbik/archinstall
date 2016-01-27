@@ -13,7 +13,7 @@ cp /etc/vconsole.conf /mnt/etc/vconsole.conf
 
 # copy over files into chroot
 mkdir /mnt/root/installer
-cp -avr ./* ./.* /mnt/root/installer
+cp -vr ./. /mnt/root/installer/
 
-arch-chroot /mnt/root /mnt/chroot/setup-chroot.sh
+arch-chroot /mnt/root /mnt/chroot/installer/setup-chroot.sh
 
