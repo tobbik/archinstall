@@ -4,6 +4,8 @@ pacman -S --needed --noconfirm \
 mkdir -p /home/${USERNAME}/docker
 chown -R ${USERNAME}:users /home/${USERNAME}/docker
 
+usermod -a -G docker ${USERNAME}
+
 mkdir -p /etc/systemd/system/docker.service.d
 cat > /etc/systemd/system/docker.service.d/my_config.conf << EODOCKERCONF
 [Service]

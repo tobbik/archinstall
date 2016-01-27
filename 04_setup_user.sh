@@ -1,5 +1,5 @@
 useradd --gid users \
-  --groups wheel,http,postgres,network,video,audio,storage,power,wireshark,git,docker \
+  --groups wheel,http,postgres,network,video,audio,storage,power,wireshark,git \
   --create-home \
   --password $USERPASS \
   --shell /bin/bash \
