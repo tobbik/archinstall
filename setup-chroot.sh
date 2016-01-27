@@ -27,7 +27,8 @@ source 01_config.sh \
 && source 05_user_config.sh \
 && source 06_x2go.sh \
 && source 07_docker.sh \
-&& source 08_vmware.sh
+&& source 08_vmware.sh \
+&& source 09_devtools.sh
 
 systemctl enable sshd
 

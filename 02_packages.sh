@@ -11,12 +11,8 @@ pacman -S --needed --noconfirm \
 pacman -S --needed --noconfirm \
   xfce4 xfce4-goodies xorg-server xorg-server-utils xorg-apps xorg-xinit xterm \
   rxvt-unicode rxvt-unicode-terminfo rsync abs htop \
-  clang clang-analyzer make tig gdb valgrind pkg-config linux-headers \
   whois nmap wireshark-gtk wget curl traceroute iperf \
-  nginx fcgiwrap \
-  lua lua-socket lua-filesystem luajit ipython python3 figlet nodejs \
   p7zip zip unzip unrar rox \
-  gvim geany geany-plugins scite \
   chromium firefox ttf-dejavu ttf-hack gftp file-roller epdfview \
   mesa gtkmm
 
