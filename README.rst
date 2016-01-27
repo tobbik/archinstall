@@ -6,15 +6,18 @@ A custom installation script for Archlinux
 How to use
 ----------
 
-after running the ISO do the following steps:
+First download the current archlinux iso file from on of the mirrors listed
+here:
+https://www.archlinux.org/download/
+The file needed is called `archlinux-<YEAR>.<MONTH>.<DATE>-dual.iso`.
 
- - make sure you have a network connection and reach the interwebs
+After booting the ISO follow these steps:
+
+ - make sure you have a network connection and can reach the interwebs
  - consider editing /etc/pacman.d/mirrorlist to put a fast mirror
-   on top, it'll speed up the entire process considerably
- - pacman -Sy unzip
- - wget https://github.com/tobbik/archinstall/archive/master.zip
- - unzip master.zip
- - cd archinstall-master
+   on top;` it'll speed up the entire process considerably
+ - wget  https://github.com/tobbik/archinstall/tarball/master -O - | tar xz -C installer --strip-components 1
+ - cd installer
  - review partions.sh
  - run install.sh
  - reboot
