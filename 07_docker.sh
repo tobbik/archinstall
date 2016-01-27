@@ -1,8 +1,8 @@
 mkdir -p /home/${USERNAME}/docker
 chown -R ${USERNAME}:users /home/${USERNAME}/docker
 
-touch /etc/systemd/system/docker.d/my_config.conf
-cat > /etc/systemd/system/docker.d/my_config.conf << EODOCKERCONF
+mkdir -p /etc/systemd/system/docker.service.d
+cat > /etc/systemd/system/docker.service.d/my_config.conf << EODOCKERCONF
 [Service]
 ExecStart=
 ExecStart=/usr/bin/docker daemon -H fd:// \
@@ -11,6 +11,6 @@ ExecStart=/usr/bin/docker daemon -H fd:// \
          --storage-driver overlay
 EODOCKERCONF
 
-systemctl daemon-reload
-systemctl enable docker
+#systemctl daemon-reload
+systemctl enable docker.service
 
