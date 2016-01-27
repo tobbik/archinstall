@@ -15,5 +15,5 @@ cp /etc/vconsole.conf /mnt/etc/vconsole.conf
 mkdir /mnt/root/installer
 cp -vr ./. /mnt/root/installer/
 
-arch-chroot /mnt/root /mnt/chroot/installer/setup-chroot.sh
+arch-chroot /mnt /mnt/root/installer/setup-chroot.sh
 
