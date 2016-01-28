@@ -19,6 +19,7 @@ BOOTMNGR=grub                  # use refind for UEFI system
 ROXLINKS=(SciTE file-roller epdfview geany)
 
 # ----------- END of CONFIG
+# && source 11_aurstuff.sh \
 
 source 01_config.sh \
 && source 02_packages.sh \
@@ -30,7 +31,6 @@ source 01_config.sh \
 && source 08_devtools.sh \
 && source 09_graphics.sh \
 && source 10_office.sh \
-&& source 11_aurstuff.sh \
 && source 20_user_config.sh
 
 systemctl enable sshd

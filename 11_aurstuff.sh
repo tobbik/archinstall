@@ -12,7 +12,7 @@ rm -rf src pkg
 cd /home/${USERNAME}/packages
 
 #MS visual code
-pacman -S gconf
+pacman -S --needed --noconfirm gconf
 wget https://aur.archlinux.org/cgit/aur.git/snapshot/visual-studio-code.tar.gz -O - | tar xz
 cd visual-studio-code
 makepkg
