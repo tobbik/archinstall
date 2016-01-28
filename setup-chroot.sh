@@ -24,11 +24,11 @@ source 01_config.sh \
 && source 02_packages.sh \
 && source 03_network_dhcp.sh \
 && source 04_setup_user.sh \
-&& source 05_user_config.sh \
-&& source 06_x2go.sh \
-&& source 07_docker.sh \
-&& source 08_vmware.sh \
-&& source 09_devtools.sh
+&& source 05_x2go.sh \
+&& source 06_docker.sh \
+&& source 07_vmware.sh \
+&& source 08_devtools.sh \
+&& source 20_user_config.sh
 
 systemctl enable sshd
 
