@@ -32,7 +32,9 @@ source 01_config.sh \
 
 systemctl enable sshd
 
-grub-install --recheck /dev/sda
-#hack for misnamed devices -> grub bug?
-grub-mkconfig -o /boot/grub/grub.cfg.mkc
-mv /boot/grub/grub.cfg.mkc /boot/grub/grub.cfg
+if [ "${BOOTMNGR}" == "grub" ]; then
+	grub-install --recheck /dev/sda
+	#hack for misnamed devices -> grub bug?
+	grub-mkconfig -o /boot/grub/grub.cfg.mkc
+	mv /boot/grub/grub.cfg.mkc /boot/grub/grub.cfg
+fi
