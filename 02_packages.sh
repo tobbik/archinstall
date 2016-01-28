@@ -1,7 +1,7 @@
 # package installation
 pacman -S --needed --noconfirm \
   $BOOTMNGR archlinux-keyring netctl sudo openssh \
-  abs git postgresql sqlite wireshark-cli mongodb screen
+  abs  screen
 
 # network
 pacman -S --needed --noconfirm \
