@@ -30,6 +30,7 @@ source 01_config.sh \
 && source 08_devtools.sh \
 && source 09_graphics.sh \
 && source 10_office.sh \
+&& source 11_aurstuff.sh \
 && source 20_user_config.sh
 
 systemctl enable sshd
