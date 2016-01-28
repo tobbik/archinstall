@@ -28,6 +28,8 @@ source 01_config.sh \
 && source 06_docker.sh \
 && source 07_vmware.sh \
 && source 08_devtools.sh \
+&& source 09_graphics.sh \
+&& source 10_office.sh \
 && source 20_user_config.sh
 
 systemctl enable sshd

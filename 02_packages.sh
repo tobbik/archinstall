@@ -14,5 +14,5 @@ pacman -S --needed --noconfirm \
   whois nmap wireshark-gtk wget curl traceroute iperf \
   p7zip zip unzip unrar rox \
   chromium firefox ttf-dejavu ttf-hack gftp file-roller epdfview \
-  mesa gtkmm
+  mesa gtkmm xdiskusage
 
