@@ -27,6 +27,7 @@ alias s='sudo'
 alias ll='ls --color=auto -l'
 alias la='ls --color=auto -a'
 alias lla='ls --color=auto -l -a'
+
 EOBASHRC
 
 # set a hardstatus for .screenrc
@@ -37,6 +38,8 @@ echo -e "\nterm screen-256color\n" >> /home/${USERNAME}/.screenrc
 #set up git
 git config --global user.name "${GITNAME}"
 git config --global user.email "${GITEMAIL}"
+git config --global core.editor "/usr/bin/vim"
+git config --global merge.tool "/usr/bin/vimdiff"
 mv /root/.gitconfig /home/${USERNAME}/
 chown ${USERNAME}:users /home/${USERNAME}/.gitconfig
 

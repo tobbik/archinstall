@@ -1,7 +1,7 @@
 # package installation
 pacman -S --needed --noconfirm \
   $BOOTMNGR archlinux-keyring netctl sudo openssh \
-  abs  screen
+  abs screen
 
 # network
 pacman -S --needed --noconfirm \
@@ -16,3 +16,4 @@ pacman -S --needed --noconfirm \
   chromium firefox ttf-dejavu ttf-hack gftp file-roller epdfview \
   mesa gtkmm xdiskusage
 
+systemctl enable sshd

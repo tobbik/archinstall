@@ -14,6 +14,8 @@ hwclock --systohc --utc
 
 # set up avalaible system locales
 sed -i 's/^#\(en_CA.UTF-8 UTF-8\)/\1/' /etc/locale.gen
+sed -i 's/^#\(fr_CA.UTF-8 UTF-8\)/\1/' /etc/locale.gen
+sed -i 's/^#\(de_DE.UTF-8 UTF-8\)/\1/' /etc/locale.gen
 sed -i 's/^#\(en_US.UTF-8 UTF-8\)/\1/' /etc/locale.gen
 locale-gen
 
