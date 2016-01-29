@@ -19,6 +19,6 @@ After booting the ISO follow these steps:
    on top; it'll speed up the entire process considerably
  - ``wget https://github.com/tobbik/archinstall/tarball/master -O - | tar xz --strip-components 1``
  - review partions.sh
- - review the config section in setup-chroot.sh for passwords etc.
+ - review config.sh for names, passswords and modules to install
  - run install.sh
  - reboot

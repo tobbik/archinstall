@@ -1,7 +1,9 @@
 #!/bin/bash
 
-#   11_aurstuff.sh   # doesn't work becuase it runs as root
+#   11_aurstuff.sh   # doesn't work because it runs as root
 #installation modules
+# just delete modules you don't like
+# eg. remove 09_graphics and 10_office for a developer VM
 MODULES=(
    01_config.sh
    02_packages.sh
