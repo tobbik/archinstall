@@ -2,7 +2,7 @@
 # the first is /  9GB big
 # the second is filling up the remainder and mounts as /home
 
-fdisk -u /dev/sda << EOF
+fdisk -u /dev/sda << EOFDISK
 n
 p
 
@@ -14,7 +14,7 @@ p
 
 
 w
-EOF
+EOFDISK
 
 mkfs.ext4 /dev/sda1
 mkfs.ext4 /dev/sda2

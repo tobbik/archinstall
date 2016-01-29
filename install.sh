@@ -1,7 +1,6 @@
 #!/bin/bash
 
-KEYBOARD=us
-
+source config.sh
 source partitions.sh
 
 pacstrap /mnt base base-devel
