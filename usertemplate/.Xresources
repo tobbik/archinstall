@@ -1,3 +1,4 @@
+
 !##########################################################
 !                             URxvt
 URxvt.termName:               rxvt-unicode-256color
@@ -26,13 +27,15 @@ URxvt.fading:                 30
 URxvt.fadeColor:              #808080
 !URxvt.transparent:            false
 
-URxvt.font:                   xft:DejaVu Sans Mono:pixelsize=16:autohint=true
-URxvt.boldFont:               xft:DejaVu Sans Mono:bold:pixelsize=16:autohint=true
+URxvt.font:                   xft:DejaVu Sans Mono:size=12:antialias=true:hinting:true
+URxvt.boldFont:               xft:DejaVu Sans Mono:style=bold:size=12:antialias=true:hinting=true
+URxvt.italicFont:             xft:DejaVu Sans Mono:style=italic:size=12:antialias=true:hinting:true
+URxvt.boldItalicFont:         xft:DejaVu Sans Mono:style=bolditalic:size=12:antialias=true:hinting=true
 ! Bind C-0, C-+ and C-= to activate medium, big and small font size respectively.
-URxvt.keysym.C-minus:         command:\033]710;xft:DejaVu Sans Mono:pixelsize=14:autohint=true\007
-URxvt.keysym.C-0:             command:\033]710;xft:DejaVu Sans Mono:pixelsize=16:autohint=true\007
-URxvt.keysym.C-plus:          command:\033]710;xft:DejaVu Sans Mono:pixelsize=17:autohint=true\007
-URxvt.keysym.C-equal:         command:\033]710;xft:DejaVu Sans Mono:pixelsize=19:autohint=true\007
+URxvt.keysym.C-minus:         command:\033]710;xft:DejaVu Sans Mono:size=10:antialias=true:hinting=true\007
+URxvt.keysym.C-0:             command:\033]710;xft:DejaVu Sans Mono:size=12:antialias=true:hinting=true\007
+URxvt.keysym.C-plus:          command:\033]710;xft:DejaVu Sans Mono:size=14:antialias=true:hinting=true\007
+URxvt.keysym.C-equal:         command:\033]710;xft:DejaVu Sans Mono:size=15:antialias=true:hinting=true\007
 URxvt.letterSpace:            -1
 !################################################
 !                             xterm
