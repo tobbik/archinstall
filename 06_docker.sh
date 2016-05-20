@@ -1,5 +1,6 @@
 pacman -S --needed --noconfirm \
-   docker arch-install-scripts lxc haveged bridge-utils lua-alt-getopt
+   docker arch-install-scripts lxc haveged \
+   bridge-utils lua-alt-getopt ca-certificates
 
 mkdir -p /home/${USERNAME}/docker
 chown -R ${USERNAME}:users /home/${USERNAME}/docker
@@ -19,3 +20,4 @@ EODOCKERCONF
 #systemctl daemon-reload
 systemctl enable docker.service
 
+update-ca-trust
