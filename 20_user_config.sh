@@ -31,7 +31,7 @@ alias lla='ls --color=auto -l -a'
 EOBASHRC
 
 # set a hardstatus for .screenrc
-echo "hardstatus alwayslastline '%{= G}%-Lw%{= R}%n*%f %t]%{= G}%+Lw%=]'" >> \
+echo "hardstatus alwayslastline '%{= G}%-Lw%{= R}[%n*%f %t]%{= G}%+Lw%='" >> \
   /home/${USERNAME}/.screenrc
 echo -e "\nterm screen-256color\n" >> /home/${USERNAME}/.screenrc
 
