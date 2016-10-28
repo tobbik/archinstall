@@ -43,6 +43,10 @@ git config --global merge.tool "/usr/bin/vimdiff"
 mv /root/.gitconfig /home/${USERNAME}/
 chown ${USERNAME}:users /home/${USERNAME}/.gitconfig
 
+# docker container directory - if you choose the docker package and not set
+# DOCKERSTORAGEPATH the installer will create /home/${USERNAMME}/docker instead
+#DOCKERSTORAGEPATH=/mnt/whatever
+
 # start urxvtd at startup
 mkdir -p "/home/${USERNAME}/.config/autostart"
 cat > "/home/${USERNAME}/.config/autostart/URxvt daemon.desktop" << EOURXVTD

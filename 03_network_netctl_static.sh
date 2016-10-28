@@ -1,5 +1,5 @@
 pacman -S --needed --noconfirm netctl
-INTERFACE=$(ip link | cut -d " " -f2 | tr -d ":\n" | sed "s/..//")
+INTERFACE=$(ip link | grep 'state UP' | cut -d " " -f2 | tr -d ":\n" | sed "s/..//")
 
 cat > /etc/netctl/${INTERFACE}_dhcp << EONETCTL
 Description='A basic dhcp ethernet connection'
