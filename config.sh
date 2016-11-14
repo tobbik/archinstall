@@ -12,6 +12,7 @@ MODULES=(
    05_x2go.sh
    06_docker.sh
    #07_vmware.sh
+   071_virtualbox.sh
    08_devtools.sh
    #09_graphics.sh
    #10_office.sh
