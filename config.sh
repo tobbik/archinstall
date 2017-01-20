@@ -6,18 +6,27 @@
 # eg. exclude 09_graphics and 10_office for a developer VM
 MODULES=(
    01_config.sh
-   02_packages.sh
+   02_base.sh
    03_network_dhcp.sh
    04_setup_user.sh
-   05_x2go.sh
-   06_docker.sh
-   #07_vmware.sh
-   071_virtualbox.sh
-   08_devtools.sh
-   #09_graphics.sh
-   #10_office.sh
-   12_datatools.sh
-   20_user_config.sh
+
+   10_xorg.sh
+   11_xfce4.sh
+   12_lightdm.sh
+   #13_vmware.sh
+   #14_virtualbox.sh
+   15_x2go.sh
+
+   20_devtools.sh
+   21_datatools.sh
+   22_docker.sh
+   #25_aurstuff.sh
+   26_jdk.sh
+
+   30_graphics.sh
+   31_office.sh
+
+   100_user_config.sh
 )
 
 # ----------- CONFIG Variables

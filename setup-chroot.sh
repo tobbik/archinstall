@@ -11,6 +11,9 @@ for moduleName in ${MODULES[@]}; do
 	source "${moduleName}"
 done
 
+# flatten all permissions
+chown -R ${USERNAME}:users /home/${USERNAME}
+
 if [ "${BOOTMNGR}" == "grub" ]; then
 	grub-install --recheck /dev/sda
 	# hack for misnamed devices -> grub bug?

@@ -1,7 +1,7 @@
 pacman -S --needed --noconfirm --asdeps \
-	jre8-openjdk-headless
+  jre8-openjdk-headless
 pacman -S --needed --noconfirm \
-  postgresql sqlite mongodb elasticsearch
+  postgresql sqlite mongodb elasticsearch rabbitmq
 
 usermod -a -G postgres ${USERNAME}
 usermod -a -G rabbitmq ${USERNAME}
