@@ -8,18 +8,18 @@ chown -R ${USERNAME}:users /home/${USERNAME}/docker
 usermod -a -G docker ${USERNAME}
 
 if [ -z ${DOCKERSTORAGEPATH+x} ]; then
-	DOCKERSTORAGEPATH = /home/${USERNAME}/docker
-	mkdir -p DOCKERSTORAGEPATH
+	DOCKERSTORAGEPATH=/home/${USERNAME}/docker
+	mkdir -p ${DOCKERSTORAGEPATH}
 fi
 
 mkdir -p /etc/systemd/system/docker.service.d
 cat > /etc/systemd/system/docker.service.d/my_config.conf << EODOCKERCONF
+cat > /home/arch/my_docker_config.conf << EODOCKERCONF
 [Service]
 ExecStart=
-ExecStart=/usr/bin/docker daemon -H fd:// \
-         --exec-opt native.cgroupdriver=cgroupfs \
-         --graph ${DOCKERSTORAGEPATH} \
-         --storage-driver overlay
+ExecStart=/usr/bin/docker daemon -H fd:// \\
+         --exec-opt native.cgroupdriver=cgroupfs \\
+         --graph ${DOCKERSTORAGEPATH}
 EODOCKERCONF
 
 #systemctl daemon-reload

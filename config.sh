@@ -31,8 +31,14 @@ KEYBOARD=us
 LOCALELC="en_CA.UTF-8"
 TIMEZONE="America/Vancouver"
 BOOTMNGR=refind-efi                  # use "refind-efi" for UEFI system
+                                     # use "grub" for Legacy systems or VM-Ware
 
 # user configs
 #ROXLINKS=(SciTE file-roller epdfview geany geeqie gimp-2.8 inkscape vlc)
 ROXLINKS=(SciTE file-roller epdfview geany)
 # ----------- END of CONFIG
+
+# docker container directory - if you choose the docker package and not set
+# DOCKERSTORAGEPATH the installer will create /home/${USERNAMME}/docker instead
+#DOCKERSTORAGEPATH=/mnt/whatever
+
