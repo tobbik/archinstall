@@ -8,7 +8,7 @@ pacman -S --needed --noconfirm \
 
 # packers, helpers etc ...
 pacman -S --needed --noconfirm \
-  rsync abs whois nmap wireshark-gtk wget curl traceroute iperf \
+  rsync abs whois nmap wireshark-cli wget curl traceroute iperf \
   htop p7zip zip unzip unrar cifs-utils
 
 systemctl enable sshd

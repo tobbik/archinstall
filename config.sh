@@ -23,10 +23,8 @@ MODULES=(
    #25_aurstuff.sh
    26_jdk.sh
 
-   30_graphics.sh
-   31_office.sh
-
-   100_user_config.sh
+   #30_graphics.sh
+   #31_office.sh
 )
 
 # ----------- CONFIG Variables

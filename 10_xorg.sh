@@ -3,7 +3,8 @@ pacman -S --needed --noconfirm \
   xorg-server xorg-server-utils xorg-apps xorg-xinit mesa \
   xterm rxvt-unicode rxvt-unicode-terminfo \
   ttf-dejavu ttf-hack gftp file-roller epdfview xdiskusage \
-  wireshark-gtk chromium firefox rox
+  wireshark-gtk chromium firefox rox \
+  gvfs-smb
 
 
 # set up rox symlinks
