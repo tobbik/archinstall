@@ -2,6 +2,7 @@ pacman -S --needed --noconfirm \
   clang clang-analyzer make tig gdb valgrind pkg-config linux-headers \
   nginx fcgiwrap git wireshark-gtk \
   lua lua-socket lua-filesystem luajit ipython python3 python2 figlet \
+  jre8-openjdk-headless mono go rust \
   nodejs npm \
   gvim geany geany-plugins scite
 

@@ -2,7 +2,8 @@
 pacman -S --needed --noconfirm \
   xorg-server xorg-server-utils xorg-apps xorg-xinit mesa \
   xterm rxvt-unicode rxvt-unicode-terminfo \
-  ttf-dejavu ttf-hack gftp file-roller epdfview xdiskusage \
+  ttf-bitstream-vera ttf-dejavu ttf-droid ttf-hack ttf-inconsolata ttf-roboto ttf-ubuntu-font-family \
+  gftp file-roller epdfview xdiskusage \
   wireshark-gtk chromium firefox rox \
   gvfs-smb
 

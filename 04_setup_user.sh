@@ -8,6 +8,7 @@ useradd --gid users \
   --shell /bin/bash \
   $USERNAME
 
+# user sudo access
 sed -i "s/^\(root .*\)$/\1\n${USERNAME} ALL=(ALL) ALL/" /etc/sudoers
 
 # reset the password to be sure
@@ -21,13 +22,19 @@ cp -r ./usertemplate/* ./usertemplate/. /home/${USERNAME}
 
 # set up .bashrc with some aliases
 cat >> /home/${USERNAME}/.bashrc << EOBASHRC
-# to make sure terminals remain quiet
+# to make sure terminals remains silent (no beeps)
 xset -b
 
 alias s='sudo'
 alias ll='ls --color=auto -l'
 alias la='ls --color=auto -a'
 alias lla='ls --color=auto -l -a'
+alias dockerps='docker ps --format "table {{.Names}}\\t{{.Image}}\\t{{.Ports}}\\t{{.Status}}"'
+
+# initialize node version manager if present
+if [ -f  /usr/share/nvm/init-nvm.sh ]; then
+	source /usr/share/nvm/init-nvm.sh
+fi
 
 EOBASHRC
 
