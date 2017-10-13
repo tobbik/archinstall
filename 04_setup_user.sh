@@ -1,5 +1,5 @@
 pacman -S --needed --noconfirm \
-  sudo screen abs
+  sudo screen
 
 useradd --gid users \
   --groups wheel,network,video,audio,storage,power \
