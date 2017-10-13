@@ -17,8 +17,10 @@ cat > /etc/systemd/system/docker.service.d/my_config.conf << EODOCKERCONF
 cat > /home/arch/my_docker_config.conf << EODOCKERCONF
 [Service]
 ExecStart=
-ExecStart=/usr/bin/docker daemon -H fd:// \\
+ExecStart=/usr/bin/dockerd \\
+         -H fd:// \\
          --exec-opt native.cgroupdriver=cgroupfs \\
+         --storage-driver overlay \\
          --graph ${DOCKERSTORAGEPATH}
 EODOCKERCONF
 
