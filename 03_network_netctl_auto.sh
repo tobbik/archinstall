@@ -1,10 +1,11 @@
 pacman -S --needed --noconfirm netctl dhcpcd
 INTERFACE=$(ip link | grep 'state UP' | cut -d " " -f2 | tr -d ":\n" | sed "s/://")
+ESSID=$(iwconfig | grep '${INTERFACE}' | cut -d '"' -f2)
 
-cat > /etc/netctl/${INTERFACE}_dhcp << EONETCTL
-Description='A basic dhcp ethernet connection'
+cat > /etc/netctl/${INTERFACE}_${ESSID} << EONETCTL
+Description='A dhcp wireless ethernet connection'
 Interface=${INTERFACE}
-Connection=ethernet
+Connection=wireless
 IP=dhcp
 #DHCPClient=dhcpcd
 #DHCPReleaseOnStop=no
@@ -13,6 +14,10 @@ IP=dhcp
 #DHCP6Client=dhclient
 ## for IPv6 autoconfiguration
 #IP6=stateless
+Security=wpa
+ESSID=${ESSID}
+Key=${WL_KEY}
+Priority=4
 EONETCTL
 
-netctl enable ${INTERFACE}_dhcp
+systemctl enable netctl-auto@{$INTERFACE}.service

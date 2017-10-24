@@ -8,7 +8,11 @@ MODULES=(
    01_config.sh
    02_base.sh
    03_network_dhcp.sh
-   04_setup_user.sh
+   #03_network_wlan.sh
+   #03_network_netctl_static.sh
+   03_network_netctl_auto.sh
+
+   09_setup_user.sh
 
    10_xorg.sh
    11_xfce4.sh
@@ -32,11 +36,13 @@ HOSTNAME=tkarch
 USERNAME=arch
 USERPASS=arch
 GITNAME="Tobias Kieslich"
-GITEMAIL="tobias.kieslich@gmail.com"
+GITEMAIL="email address for git commits"
 ROOTPASS=rootpass
 KEYBOARD=us
 LOCALELC="en_CA.UTF-8"
 TIMEZONE="America/Vancouver"
+WL_ESSID="accesspoint ID"
+WL_KEY="wireless_password"
 BOOTMNGR=refind-efi                  # use "refind-efi" for UEFI system
                                      # use "grub" for Legacy systems or VM-Ware
 

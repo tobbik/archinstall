@@ -9,6 +9,10 @@ pacman -S --needed --noconfirm \
 # packers, helpers etc ...
 pacman -S --needed --noconfirm \
   rsync whois nmap wireshark-cli wget curl traceroute iperf \
-  htop p7zip zip unzip unrar cifs-utils
+  htop p7zip zip unzip unrar cifs-utils \
+  powertop acpi tlp acpi_call tp_smapi smartmontools \
+  wol openntpd \
+  pavucontrol alsamixer pulseudio pulseudio-alsa aumix pamixer alsa-tools alsa-utils \
+  vsftpd
 
 systemctl enable sshd

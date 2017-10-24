@@ -1,9 +1,10 @@
 pacman -S --needed --noconfirm \
   clang clang-analyzer make tig gdb valgrind pkg-config linux-headers \
-  nginx fcgiwrap git wireshark-gtk \
-  lua lua-socket lua-filesystem luajit ipython python3 python2 figlet \
+  nginx fcgiwrap git wireshark-gtk apache figlet \
+  lua lua-socket lua-filesystem luajit \
   jre8-openjdk-headless mono go rust \
-  nodejs npm \
+  pypy pypy3 shedskin python3 python2 ipython python-lxml python2-lxml \
+  nodejs npm js24 \
   gvim geany geany-plugins scite
 
 usermod -a -G git ${USERNAME}

@@ -1,10 +1,10 @@
 # everything Xorg and Terminals and command line
 pacman -S --needed --noconfirm \
-  xorg-server xorg-apps xorg-xinit mesa \
+  xorg-server xorg-apps xorg-xinit mesa mesa-demos \
   xterm rxvt-unicode rxvt-unicode-terminfo \
   ttf-bitstream-vera ttf-dejavu ttf-droid ttf-hack ttf-inconsolata ttf-roboto ttf-ubuntu-font-family \
   gftp file-roller epdfview xdiskusage \
-  wireshark-gtk chromium firefox rox \
+  wireshark-gtk chromium firefox rox flashplugin \
   gvfs-smb
 
 
