@@ -10,6 +10,11 @@ genfstab -p /mnt >> /mnt/etc/fstab
 localectl set-keymap --no-convert ${KEYBOARD}
 cp /etc/vconsole.conf /mnt/etc/vconsole.conf
 
+# copying over the netctl profile created by wifi-menu
+INTERFACE=$(ip link | grep 'state UP' | cut -d " " -f2 | tr -d ":\n" | sed "s/://")
+mkdir -p /mnt/etc/netctl
+cp /etc/netctl/${INTERFACE}* /mnt/etc/netctl/
+
 # copy over files into chroot
 mkdir /mnt/root/installer
 cp -vr ./. /mnt/root/installer/
