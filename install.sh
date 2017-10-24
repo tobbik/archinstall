@@ -1,7 +1,7 @@
 #!/bin/bash
 
+#source partitions.sh
 source config.sh
-source partitions.sh
 
 pacstrap /mnt base base-devel
 genfstab -p /mnt >> /mnt/etc/fstab
