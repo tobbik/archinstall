@@ -1,5 +1,6 @@
 # everything Xorg and Terminals and command line
 pacman -S --needed --noconfirm \
+  mesa libva-mesa-driver mesa-vdpau \
   xorg-server xorg-apps xorg-xinit mesa mesa-demos \
   xterm rxvt-unicode rxvt-unicode-terminfo \
   ttf-bitstream-vera ttf-dejavu ttf-droid ttf-hack ttf-inconsolata ttf-roboto ttf-ubuntu-font-family \

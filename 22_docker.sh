@@ -14,7 +14,6 @@ fi
 
 mkdir -p /etc/systemd/system/docker.service.d
 cat > /etc/systemd/system/docker.service.d/my_config.conf << EODOCKERCONF
-cat > /home/arch/my_docker_config.conf << EODOCKERCONF
 [Service]
 ExecStart=
 ExecStart=/usr/bin/dockerd \\

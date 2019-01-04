@@ -1,3 +1,3 @@
 pacman -S --needed --noconfirm \
-  libreoffice-fresh libreoffice-fresh-en-GB libreoffice-fresh-de
+  libreoffice-fresh libreoffice-fresh-en-gb libreoffice-fresh-de
 

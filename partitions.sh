@@ -29,9 +29,9 @@ w
 EOFDISK
 
 mkfs.vfat -F32 /dev/sda1
-mkfs.ext4      /dev/sda2
-mkfs.ext4      /dev/sda3
-mkswap         /dev/sda4
+mkfs.ext4 -L ARCHROOT /dev/sda2
+mkfs.ext4 -L ARCHHOME /dev/sda3
+mkswap    -L ARCHSWAP /dev/sda4
 
 mount  /dev/sda2 /mnt
 mkdir  /mnt/boot

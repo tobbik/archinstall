@@ -12,7 +12,7 @@ pacman -S --needed --noconfirm \
   htop p7zip zip unzip unrar cifs-utils \
   powertop acpi tlp acpi_call tp_smapi smartmontools \
   wol openntpd \
-  pavucontrol pulseaudio pulseaudio-alsa aumix pamixer alsa-tools alsa-utils \
-  vsftpd
+  pavucontrol pulseaudio pulseaudio-alsa pamixer alsa-tools alsa-utils \
+  vsftpd vbetool
 
 systemctl enable sshd

@@ -8,7 +8,6 @@ MODULES=(
    01_config.sh
    02_base.sh
    03_network_dhcp.sh
-   #03_network_wlan.sh
    #03_network_netctl_static.sh
    03_network_netctl_auto.sh
 
@@ -29,6 +28,7 @@ MODULES=(
 
    #30_graphics.sh
    #31_office.sh
+   #32_media.sh
 )
 
 # ----------- CONFIG Variables
@@ -41,14 +41,15 @@ ROOTPASS=rootpass
 KEYBOARD=us
 LOCALELC="en_CA.UTF-8"
 TIMEZONE="America/Vancouver"
-WL_ESSID="accesspoint ID"
+WL_ESSID="accesspointID"
 WL_KEY="wireless_password"
+INTERFACE=$(ip link | grep 'state UP' | cut -d " " -f2 | sed "s/://")
 BOOTMNGR=refind-efi                  # use "refind-efi" for UEFI system
                                      # use "grub" for Legacy systems or VM-Ware
 
 # user configs
 #ROXLINKS=(SciTE file-roller epdfview geany geeqie gimp-2.8 inkscape vlc)
-ROXLINKS=(SciTE file-roller epdfview geany)
+ROXLINKS=(file-roller epdfview geany)
 # ----------- END of CONFIG
 
 # docker container directory - if you choose the docker package and not set

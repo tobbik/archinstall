@@ -1,11 +1,11 @@
 pacman -S --needed --noconfirm \
   clang clang-analyzer make tig gdb valgrind pkg-config linux-headers \
-  nginx fcgiwrap git wireshark-gtk apache figlet \
+  nginx fcgiwrap git git-lfs wireshark-gtk apache figlet \
   lua lua-socket lua-filesystem luajit \
-  jre8-openjdk-headless mono go rust \
+  mono go rust \
   pypy pypy3 shedskin python3 python2 ipython python-lxml python2-lxml \
-  nodejs npm js24 \
-  gvim geany geany-plugins scite
+  nodejs npm js24 php graphicsmagick \
+  gvim geany geany-plugins
 
 usermod -a -G git ${USERNAME}
 usermod -a -G postgres ${USERNAME}
@@ -17,5 +17,6 @@ git config --global user.name "${GITNAME}"
 git config --global user.email "${GITEMAIL}"
 git config --global core.editor "/usr/bin/vim"
 git config --global merge.tool "/usr/bin/vimdiff"
+git lfs install
 mv /root/.gitconfig /home/${USERNAME}/
 chown ${USERNAME}:users /home/${USERNAME}/.gitconfig
