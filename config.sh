@@ -19,6 +19,7 @@ MODULES=(
    #13_vmware.sh
    #14_virtualbox.sh
    15_x2go.sh
+   #16_amd.sh
 
    20_devtools.sh
    21_datatools.sh
@@ -48,7 +49,7 @@ BOOTMNGR=refind-efi                  # use "refind-efi" for UEFI system
                                      # use "grub" for Legacy systems or VM-Ware
 
 # user configs
-#ROXLINKS=(SciTE file-roller epdfview geany geeqie gimp-2.8 inkscape vlc)
+#ROXLINKS=(file-roller epdfview geany geeqie gimp-2.10 inkscape vlc)
 ROXLINKS=(file-roller epdfview geany)
 # ----------- END of CONFIG
 

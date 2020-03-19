@@ -4,7 +4,7 @@ pacman -S --needed --noconfirm \
 
 # network
 pacman -S --needed --noconfirm \
-  dialog wpa_supplicant wpa_actiond wireless_tools net-tools
+  dialog wpa_supplicant wireless_tools net-tools
 
 # packers, helpers etc ...
 pacman -S --needed --noconfirm \

@@ -1,11 +1,12 @@
 pacman -S --needed --noconfirm \
   clang clang-analyzer make tig gdb valgrind pkg-config linux-headers \
-  nginx fcgiwrap git git-lfs wireshark-gtk apache figlet \
+  nginx fcgiwrap git git-lfs wireshark-qt apache figlet \
   lua lua-socket lua-filesystem luajit \
-  mono go rust \
-  pypy pypy3 shedskin python3 python2 ipython python-lxml python2-lxml \
-  nodejs npm js24 php graphicsmagick \
-  gvim geany geany-plugins
+  dotnet-host dotnet-runtime dotnet-sdk aspnet-runtime go rust \
+  pypy pypy3 python3 python2 ipython python-lxml python2-lxml \
+  nodejs npm js52 js60 php graphicsmagick \
+  gvim geany geany-plugins \
+  openconnect openvpn
 
 usermod -a -G git ${USERNAME}
 usermod -a -G postgres ${USERNAME}

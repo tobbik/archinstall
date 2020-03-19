@@ -5,8 +5,7 @@ pacman -S --needed --noconfirm \
   xterm rxvt-unicode rxvt-unicode-terminfo \
   ttf-bitstream-vera ttf-dejavu ttf-droid ttf-hack ttf-inconsolata ttf-roboto ttf-ubuntu-font-family \
   gftp file-roller epdfview xdiskusage \
-  wireshark-gtk chromium firefox rox flashplugin \
-  gvfs-smb
+  chromium firefox rox flashplugin
 
 
 # set up rox symlinks
