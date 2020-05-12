@@ -1,10 +1,11 @@
 pacman -S --needed --noconfirm \
-  clang clang-analyzer make tig gdb valgrind pkg-config linux-headers \
+  clang clang-analyzer make tig gdb valgrind pkg-config cmake \
+  linux-headers ocl-icd \
   nginx fcgiwrap git git-lfs wireshark-qt apache figlet \
   lua lua-socket lua-filesystem luajit \
   dotnet-host dotnet-runtime dotnet-sdk aspnet-runtime go rust \
   pypy pypy3 python3 python2 ipython python-lxml python2-lxml \
-  nodejs npm js52 js60 php graphicsmagick \
+  nodejs npm js52 js60 php graphicsmagick imagemagick ghostscript \
   gvim geany geany-plugins \
   openconnect openvpn
 

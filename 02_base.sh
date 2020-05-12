@@ -1,6 +1,6 @@
 # package installation
 pacman -S --needed --noconfirm \
-  $BOOTMNGR archlinux-keyring netctl openssh
+  $BOOTMNGR archlinux-keyring pacman-contrib netctl openssh
 
 # network
 pacman -S --needed --noconfirm \
@@ -9,7 +9,7 @@ pacman -S --needed --noconfirm \
 # packers, helpers etc ...
 pacman -S --needed --noconfirm \
   rsync whois nmap wireshark-cli wget curl traceroute iperf \
-  htop p7zip zip unzip unrar cifs-utils \
+  htop p7zip zip unzip unrar cifs-utils man-pages man-db \
   powertop acpi tlp acpi_call tp_smapi smartmontools \
   wol openntpd \
   pavucontrol pulseaudio pulseaudio-alsa pamixer alsa-tools alsa-utils \

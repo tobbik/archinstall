@@ -1,15 +1,16 @@
 pacman -S --needed --noconfirm \
    docker arch-install-scripts lxc haveged \
-   bridge-utils lua-alt-getopt ca-certificates
-
-mkdir -p /home/${USERNAME}/docker
-chown -R ${USERNAME}:users /home/${USERNAME}/docker
+   bridge-utils lua-alt-getopt ca-certificates \
+   docker-compose
 
 usermod -a -G docker ${USERNAME}
 
 if [ -z ${DOCKERSTORAGEPATH+x} ]; then
-	DOCKERSTORAGEPATH=/home/${USERNAME}/docker
-	mkdir -p ${DOCKERSTORAGEPATH}
+  DOCKERSTORAGEPATH=/home/${USERNAME}/docker
+  mkdir -p ${DOCKERSTORAGEPATH}
+  chown -R ${USERNAME}:users ${DOCKERSTORAGEPATH}
+else
+  
 fi
 
 mkdir -p /etc/systemd/system/docker.service.d
@@ -19,7 +20,7 @@ ExecStart=
 ExecStart=/usr/bin/dockerd \\
          -H fd:// \\
          --exec-opt native.cgroupdriver=cgroupfs \\
-         --storage-driver overlay \\
+         --storage-driver overlay2 \\
          --graph ${DOCKERSTORAGEPATH}
 EODOCKERCONF
 
