@@ -18,6 +18,7 @@ After booting the ISO follow these steps:
  - consider editing /etc/pacman.d/mirrorlist to put a fast mirror
    on top; it'll speed up the entire process considerably
  - ``wget https://github.com/tobbik/archinstall/tarball/master -O - | tar xz --strip-components 1``
+ - ``curl https://codeload.github.com/tobbik/archinstall/tar.gz/master --output - | tar xz --strip-components 1``
  - review partions.sh
  - review config.sh for names, passswords and modules to install
  - run install.sh

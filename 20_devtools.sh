@@ -5,7 +5,7 @@ pacman -S --needed --noconfirm \
   lua lua-socket lua-filesystem luajit \
   dotnet-host dotnet-runtime dotnet-sdk aspnet-runtime go rust \
   pypy pypy3 python3 python2 ipython python-lxml python2-lxml \
-  nodejs npm js52 js60 php graphicsmagick imagemagick ghostscript \
+  nodejs npm js78 php graphicsmagick imagemagick ghostscript \
   gvim geany geany-plugins \
   openconnect openvpn
 
