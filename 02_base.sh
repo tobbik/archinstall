@@ -1,3 +1,5 @@
+source config.sh
+
 # package installation
 pacman -S --needed --noconfirm \
   $BOOTMNGR archlinux-keyring pacman-contrib netctl openssh

@@ -1,5 +1,7 @@
+source config.sh
+
 pacman -S --needed --noconfirm \
-  sudo screen
+  sudo screen tmux
 
 useradd --gid users \
   --groups wheel,network,video,audio,storage,power \
@@ -29,13 +31,6 @@ alias s='sudo'
 alias ll='ls --color=auto -l'
 alias la='ls --color=auto -a'
 alias lla='ls --color=auto -l -a'
-alias dockerps='docker ps --format "table {{.Names}}\\t{{.Image}}\\t{{.Ports}}\\t{{.Status}}"'
-
-# initialize node version manager if present
-if [ -f  /usr/share/nvm/init-nvm.sh ]; then
-	source /usr/share/nvm/init-nvm.sh
-fi
-
 EOBASHRC
 
 # set a hardstatus for .screenrc

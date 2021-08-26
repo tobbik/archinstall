@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#source partitions.sh
+source partitions.sh
 source config.sh
 
 pacstrap /mnt base base-devel
@@ -11,8 +11,8 @@ localectl set-keymap --no-convert ${KEYBOARD}
 cp /etc/vconsole.conf /mnt/etc/vconsole.conf
 
 # copying over the netctl profile created by wifi-menu
-mkdir -p /mnt/etc/netctl
-cp /etc/netctl/${INTERFACE}* /mnt/etc/netctl/
+#mkdir -p /mnt/etc/netctl
+#cp /etc/netctl/${INTERFACE}* /mnt/etc/netctl/
 
 # copy over files into chroot
 mkdir /mnt/root/installer

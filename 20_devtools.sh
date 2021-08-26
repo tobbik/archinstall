@@ -1,10 +1,12 @@
+source config.sh
+
 pacman -S --needed --noconfirm \
-  clang clang-analyzer make tig gdb valgrind pkg-config cmake \
+  clang clang-analyzer tcc make gdb valgrind pkg-config cmake \
   linux-headers ocl-icd \
-  nginx fcgiwrap git git-lfs wireshark-qt apache figlet \
+  nginx fcgiwrap git git-lfs tig wireshark-qt apache figlet \
   lua lua-socket lua-filesystem luajit \
-  dotnet-host dotnet-runtime dotnet-sdk aspnet-runtime go rust \
-  pypy pypy3 python3 python2 ipython python-lxml python2-lxml \
+  go rust \
+  pypy pypy3 python3 ipython python-lxml \
   nodejs npm js78 php graphicsmagick imagemagick ghostscript \
   gvim geany geany-plugins \
   openconnect openvpn
@@ -22,3 +24,12 @@ git config --global merge.tool "/usr/bin/vimdiff"
 git lfs install
 mv /root/.gitconfig /home/${USERNAME}/
 chown ${USERNAME}:users /home/${USERNAME}/.gitconfig
+
+# set up .bashrc with some aliases
+cat >> /home/${USERNAME}/.bashrc << EOBASHRC
+
+# initialize node version manager if present
+if [ -f  /usr/share/nvm/init-nvm.sh ]; then
+	source /usr/share/nvm/init-nvm.sh
+fi
+EOBASHRC

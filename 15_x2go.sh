@@ -1,3 +1,5 @@
+source config.sh
+
 pacman -S --needed --noconfirm \
    x2goserver x2goclient \
    xorg-xauth xorg-xhost

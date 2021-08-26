@@ -1,3 +1,5 @@
+source config.sh
+
 OLDDIR=$(pwd)
 mkdir -p /home/${USERNAME}/packages
 cd /home/${USERNAME}/packages

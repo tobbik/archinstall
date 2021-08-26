@@ -155,8 +155,9 @@ set scs
 """""""""""""""""""""""""""""""""""""""""""""""""
 "" set visible whitespaces
 """""""""""""""""""""""""""""""""""""""""""""""""
-set listchars=tab:≻―,trail:◇
-set nolist
+"set listchars=tab:└─,trail:•∙▪•◇○●◯
+set listchars=tab:└─,trail:•
+set list
 nnoremap \tl :set invlist list?<CR>
 nmap <F2> \tl
 
@@ -174,10 +175,10 @@ set number
 let g:netrw_list_hide='\.pyc$,\.swp$'
 
 function! ToggleGUICruft( )
-  if &guioptions=='i'
-    exec( 'set guioptions=imrL' )
+  if &guioptions=='ai'
+    exec( 'set guioptions=aimrL' )
   else
-    exec( 'set guioptions=i' )
+    exec( 'set guioptions=ai' )
   endif
 endfunction
 if has( 'gui_running' )
@@ -190,8 +191,8 @@ if has( 'gui_running' )
   map <M-p> :tabprev<CR>
   set co=90
   set lines=46
-  map <F11> <Esc>:call ToggleGUICruft()<cr>
-  set guioptions=i            "minimal gui, no toolbar
+  map <F4> <Esc>:call ToggleGUICruft()<cr>
+  set guioptions=ai            "minimal gui, no toolbar
 endif
 
 " execute a local .vimrc file within a pwd where vim is started

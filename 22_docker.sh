@@ -1,7 +1,9 @@
+source config.sh
+
 pacman -S --needed --noconfirm \
    docker arch-install-scripts lxc haveged \
-   bridge-utils lua-alt-getopt ca-certificates \
-   docker-compose
+   docker-compose \
+   bridge-utils lua-alt-getopt ca-certificates
 
 usermod -a -G docker ${USERNAME}
 
@@ -9,8 +11,6 @@ if [ -z ${DOCKERSTORAGEPATH+x} ]; then
   DOCKERSTORAGEPATH=/home/${USERNAME}/docker
   mkdir -p ${DOCKERSTORAGEPATH}
   chown -R ${USERNAME}:users ${DOCKERSTORAGEPATH}
-else
-  
 fi
 
 mkdir -p /etc/systemd/system/docker.service.d
@@ -28,3 +28,9 @@ EODOCKERCONF
 systemctl enable docker.service
 
 update-ca-trust
+
+# set up .bashrc with some aliases
+cat >> /home/${USERNAME}/.bashrc << EOBASHRC
+
+alias dockerps='docker ps --format "table {{.Names}}\\t{{.Image}}\\t{{.Ports}}\\t{{.Status}}"'
+EOBASHRC

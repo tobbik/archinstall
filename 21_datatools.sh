@@ -1,3 +1,5 @@
+source config.sh
+
 #pacman -S --needed --noconfirm --asdeps \
 #  jre8-openjdk-headless
 pacman -S --needed --noconfirm \

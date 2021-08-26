@@ -26,6 +26,7 @@ MODULES=(
    22_docker.sh
    #25_aurstuff.sh
    26_jdk.sh
+   27_dotnet.sh
 
    #30_graphics.sh
    #31_office.sh
@@ -35,23 +36,22 @@ MODULES=(
 # ----------- CONFIG Variables
 HOSTNAME=tkarch
 USERNAME=arch
-USERPASS=arch
+USERPASS="arch"
 GITNAME="Tobias Kieslich"
 GITEMAIL="email address for git commits"
-ROOTPASS=rootpass
+ROOTPASS="rootpass"
 KEYBOARD=us
 LOCALELC="en_CA.UTF-8"
 TIMEZONE="America/Vancouver"
 WL_ESSID="accesspointID"
 WL_KEY="wireless_password"
 INTERFACE=$(ip link | grep 'state UP' | cut -d " " -f2 | sed "s/://")
-BOOTMNGR=refind-efi                  # use "refind-efi" for UEFI system
+BOOTMNGR=refind                      # use "refind" for UEFI system
                                      # use "grub" for Legacy systems or VM-Ware
 
 # user configs
 #ROXLINKS=(file-roller epdfview geany geeqie gimp-2.10 inkscape vlc)
 ROXLINKS=(file-roller epdfview geany)
-# ----------- END of CONFIG
 
 # docker container directory - if you choose the docker package and not set
 # DOCKERSTORAGEPATH the installer will create /home/${USERNAMME}/docker instead

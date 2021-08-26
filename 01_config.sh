@@ -1,3 +1,5 @@
+source config.sh
+
 # set up Hostname
 echo $HOSTNAME > /etc/hostname
 

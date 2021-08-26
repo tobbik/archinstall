@@ -1,3 +1,5 @@
+source config.sh
+
 # everything else for XFCE4 and development support
 pacman -S --needed --noconfirm \
   xfce4 xfce4-goodies \

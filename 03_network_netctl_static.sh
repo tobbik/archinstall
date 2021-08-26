@@ -1,3 +1,5 @@
+source config.sh
+
 pacman -S --needed --noconfirm netctl dhcpcd
 
 # configure dhcpcd to report hostname to dns server

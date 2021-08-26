@@ -21,6 +21,6 @@ if [ "${BOOTMNGR}" == "grub" ]; then
 	mv /boot/grub/grub.cfg.mkc /boot/grub/grub.cfg
 fi
 
-if [ "${BOOTMNGR}" == "refind-efi" ]; then
+if [ "${BOOTMNGR}" == "refind" ]; then
 	refind-install
 fi

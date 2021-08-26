@@ -1,3 +1,5 @@
+source config.sh
+
 pacman -S --needed --noconfirm \
   gimp  \
   inkscape hugin enblend-enfuse geeqie blender darktable
