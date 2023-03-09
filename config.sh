@@ -3,13 +3,13 @@
 #   11_aurstuff.sh   # doesn't work because it runs as root
 #installation modules
 # just comment out modules you don't want
-# eg. exclude 09_graphics and 10_office for a developer VM
+# eg. exclude 30_graphics and 31_office etc for a developer VM
 MODULES=(
    01_config.sh
    02_base.sh
    03_network_dhcp.sh
    #03_network_netctl_static.sh
-   03_network_netctl_auto.sh
+   #03_network_netctl_auto.sh
 
    09_setup_user.sh
 
@@ -28,9 +28,9 @@ MODULES=(
    26_jdk.sh
    27_dotnet.sh
 
-   #30_graphics.sh
-   #31_office.sh
-   #32_media.sh
+   30_graphics.sh
+   31_office.sh
+   32_media.sh
 )
 
 # ----------- CONFIG Variables
@@ -50,7 +50,7 @@ BOOTMNGR=refind                      # use "refind" for UEFI system
                                      # use "grub" for Legacy systems or VM-Ware
 
 # user configs
-#ROXLINKS=(file-roller epdfview geany geeqie gimp-2.10 inkscape vlc)
+#ROXLINKS=(file-roller epdfview geany geeqie gimp-2.10 inkscape vlc scite)
 ROXLINKS=(file-roller epdfview geany)
 
 # docker container directory - if you choose the docker package and not set

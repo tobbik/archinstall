@@ -6,13 +6,12 @@ pacman -S --needed --noconfirm \
   nginx fcgiwrap git git-lfs tig wireshark-qt apache figlet \
   lua lua-socket lua-filesystem luajit \
   go rust \
-  pypy pypy3 python3 ipython python-lxml \
-  nodejs npm js78 php graphicsmagick imagemagick ghostscript \
-  gvim geany geany-plugins \
+  pypy pypy3 python3 ipython \
+  nodejs npm js102 php graphicsmagick imagemagick ghostscript \
+  gvim geany geany-plugins scite \
   openconnect openvpn
 
 usermod -a -G git ${USERNAME}
-usermod -a -G postgres ${USERNAME}
 usermod -a -G http ${USERNAME}
 usermod -a -G wireshark ${USERNAME}
 

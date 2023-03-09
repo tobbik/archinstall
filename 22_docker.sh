@@ -1,9 +1,9 @@
 source config.sh
 
 pacman -S --needed --noconfirm \
-   docker arch-install-scripts lxc haveged \
-   docker-compose \
-   bridge-utils lua-alt-getopt ca-certificates
+docker arch-install-scripts lxc haveged \
+docker-compose \
+bridge-utils lua-alt-getopt ca-certificates
 
 usermod -a -G docker ${USERNAME}
 
@@ -21,7 +21,7 @@ ExecStart=/usr/bin/dockerd \\
          -H fd:// \\
          --exec-opt native.cgroupdriver=cgroupfs \\
          --storage-driver overlay2 \\
-         --graph ${DOCKERSTORAGEPATH}
+         --data-root ${DOCKERSTORAGEPATH}
 EODOCKERCONF
 
 #systemctl daemon-reload
