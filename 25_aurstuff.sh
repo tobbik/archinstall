@@ -8,9 +8,11 @@ cd ${PKGSDIR}
 
 pacman -S --needed --noconfirm \
   qt5-webengine \
-  intltool
+  intltool \
+  patchelf
 
 PACKAGES=(
+  masterpdfeditor
   osmconvert
   splitter
   mkgmap
