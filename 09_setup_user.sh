@@ -22,6 +22,9 @@ echo -e "${ROOTPASS}\n${ROOTPASS}" | (passwd -q root)
 # copy all .files (vim,terminal stuff etc.)
 cp -r ./usertemplate/* ./usertemplate/. /home/${USERNAME}
 
+# setupuser audio
+cp -avr /usr/share/pipewire /home/${USERNAME}/.config/
+
 # set up .bashrc with some aliases
 cat >> /home/${USERNAME}/.bashrc << EOBASHRC
 # to make sure terminals remains silent (no beeps)
