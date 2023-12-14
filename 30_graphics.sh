@@ -1,7 +1,9 @@
 source config.sh
 
 pacman -S --needed --noconfirm \
-  gimp  \
-  inkscape hugin enblend-enfuse geeqie blender darktable
+  gimp graphviz \
+  inkscape hugin enblend-enfuse geeqie \
+  blender glfw-x11 \
+  darktable
   #gimp gimp-refocus gimp-dbp gimp-plugin-fblur gimp-plugin-lqr
 

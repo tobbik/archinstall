@@ -2,11 +2,11 @@ source config.sh
 
 pacman -S --needed --noconfirm \
   clang clang-analyzer tcc make gdb valgrind pkg-config cmake \
-  linux-headers ocl-icd \
+  linux-headers ocl-icd bc elfutils \
   nginx fcgiwrap git git-lfs tig wireshark-qt apache figlet \
   lua lua-socket lua-filesystem luajit \
   go rust \
-  pypy pypy3 python3 ipython \
+  pypy pypy3 python3 ipython cython \
   nodejs npm js115 php graphicsmagick imagemagick ghostscript \
   gvim geany geany-plugins scite neovim neovide \
   openconnect openvpn
