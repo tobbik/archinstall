@@ -7,8 +7,8 @@ pacman -S --needed --noconfirm \
   lua lua-socket lua-filesystem luajit \
   go rust \
   pypy pypy3 python3 ipython \
-  nodejs npm js102 php graphicsmagick imagemagick ghostscript \
-  gvim geany geany-plugins scite \
+  nodejs npm js115 php graphicsmagick imagemagick ghostscript \
+  gvim geany geany-plugins scite neovim neovide \
   openconnect openvpn
 
 usermod -a -G git ${USERNAME}

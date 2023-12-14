@@ -1,26 +1,37 @@
 source config.sh
 
+PKGSDIR="/home/${USERNAME}/pkgs"
 OLDDIR=$(pwd)
-mkdir -p /home/${USERNAME}/packages
-cd /home/${USERNAME}/packages
+BASEURL="https://aur.archlinux.org/cgit/aur.git/snapshot"
+sudo --user ${USERNAME} mkdir -p ${PKGSDIR}
+cd ${PKGSDIR}
 
-# pycharm
-pacman -S --needed --noconfirm jdk8-openjdk
-wget https://aur.archlinux.org/cgit/aur.git/snapshot/pycharm-community.tar.gz -O - | tar xz
-cd pycharm-community
-makepkg
-pacman -U --needed --noconfirm pycharm-community-*-any.pkg.tar.xz
-rm -rf src pkg
-cd /home/${USERNAME}/packages
+pacman -S --needed --noconfirm \
+  qt5-webengine \
+  intltool
 
-#MS visual code
-pacman -S --needed --noconfirm gconf
-wget https://aur.archlinux.org/cgit/aur.git/snapshot/visual-studio-code.tar.gz -O - | tar xz
-cd visual-studio-code
-makepkg
-pacman -U --needed --noconfirm visual-studio-code-*.pkg.tar.xz
-rm -rf src pkg
-cd /home/${USERNAME}/packages
+PACKAGES=(
+  osmconvert
+  splitter
+  mkgmap
+  nvm
+  wrk
+  visual-studio-code-bin
+  xdiskusage
+  zoom
+  slack-desktop
+  redshift-minimal
+)
 
+for PKG in ${PACKAGES[@]}; do
+  echo "Creating ${PKG}"
+  cd ${PKGSDIR}
+  curl ${BASEURL}/${PKG}.tar.gz --output - | tar xz
+  chown -R ${USERNAME}:users ${PKG}
+  cd ${PKGSDIR}/${PKG}
+  sudo --user ${USERNAME} makepkg
+  pacman -U --needed --noconfirm ${PKG}-*.pkg.tar.zst
+  rm -rf src pkg
+done
 
 cd ${OLDDIR}

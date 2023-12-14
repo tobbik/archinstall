@@ -6,21 +6,9 @@ pacman -S --needed --noconfirm \
   xorg-server xorg-apps xorg-xinit mesa mesa-demos \
   xterm rxvt-unicode rxvt-unicode-terminfo \
   ttf-bitstream-vera ttf-dejavu ttf-droid ttf-hack ttf-inconsolata ttf-roboto ttf-ubuntu-font-family \
-  gftp file-roller epdfview xdiskusage \
-  chromium firefox rox
+  file-roller mupdf \
+  chromium firefox
 
-
-# set up rox symlinks
-OLDDIR=$(pwd)
-cd /home/${USERNAME}
-mkdir -p .config/rox.sourceforge.net/SendTo
-cd .config/rox.sourceforge.net/SendTo
-ln -s ../../../../../usr/bin/vim gvim
-for linkName in ${ROXLINKS[@]}; do
-	echo "Create Symlink for ${linkName}"
-	ln -s ../../../../../usr/bin/${linkName} ${linkName}
-done
-cd ${OLDDIR}
 
 # start urxvtd at startup
 mkdir -p "/home/${USERNAME}/.config/autostart"

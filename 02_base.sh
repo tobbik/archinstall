@@ -11,10 +11,11 @@ pacman -S --needed --noconfirm \
 # packers, helpers etc ...
 pacman -S --needed --noconfirm \
   rsync whois nmap wireshark-cli wget curl traceroute iperf \
-  htop p7zip zip unzip unrar cifs-utils man-pages man-db \
+  htop p7zip zip unzip unrar cifs-utils man-pages man-db lsof \
   powertop acpi tlp acpi_call tp_smapi smartmontools \
   wol openntpd \
-  pavucontrol pulseaudio pulseaudio-alsa pamixer alsa-tools alsa-utils \
+  alsa-tools alsa-utils \
+  pipewire wireplumber helvum pipewire-audio pipewire-alsa pavucontrol \
   vsftpd vbetool
 
 systemctl enable sshd
