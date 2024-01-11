@@ -11,7 +11,7 @@ useradd --gid users \
   $USERNAME
 
 # user sudo access
-sed -i "s/^\(root .*\)$/\1\n${USERNAME} ALL=(ALL) ALL/" /etc/sudoers
+echo -e "${USERNAME} ALL=(ALL:ALL) ALL/" /etc/sudoers.d/${USERNAME}
 
 # reset the password to be sure
 echo -e "${USERPASS}\n${USERPASS}" | (passwd -q ${USERNAME})

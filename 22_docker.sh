@@ -1,9 +1,9 @@
 source config.sh
 
 pacman -S --needed --noconfirm \
-docker arch-install-scripts lxc haveged \
-docker-compose \
-bridge-utils lua-alt-getopt ca-certificates
+  docker arch-install-scripts lxc haveged \
+  docker-compose \
+  bridge-utils lua-alt-getopt ca-certificates
 
 usermod -a -G docker ${USERNAME}
 

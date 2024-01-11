@@ -10,27 +10,29 @@ MODULES=(
    03_network_dhcp.sh
    #03_network_netctl_static.sh
    #03_network_netctl_auto.sh
+   03_network_nwmngr.sh
+   04_bluetooth.sh
 
    09_setup_user.sh
 
-   10_xorg.sh
-   11_xfce4.sh
-   12_lightdm.sh
+   #10_display_xorg.sh
+   10_display_wayland.sh
+   12_gui.sh
    #13_vmware.sh
    #14_virtualbox.sh
-   15_x2go.sh
    #16_amd.sh
 
    20_devtools.sh
    21_datatools.sh
    22_docker.sh
+   23_kvm.sh
    #25_aurstuff.sh
    26_jdk.sh
    27_dotnet.sh
 
    30_graphics.sh
-   31_office.sh
    32_media.sh
+   33_audio.sh
 )
 
 # ----------- CONFIG Variables

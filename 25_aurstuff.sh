@@ -9,7 +9,8 @@ cd ${PKGSDIR}
 pacman -S --needed --noconfirm \
   qt5-webengine \
   intltool \
-  patchelf
+  patchelf \
+  fltk
 
 PACKAGES=(
   masterpdfeditor

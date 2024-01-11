@@ -4,7 +4,7 @@ source config.sh
 #  jre8-openjdk-headless
 pacman -S --needed --noconfirm \
   postgresql sqlite redis minio-client
-#  mongodb elasticsearch rabbitmq redis
+#  mongodb elasticsearch rabbitmq
 
 usermod -a -G postgres ${USERNAME}
 #usermod -a -G rabbitmq ${USERNAME}
