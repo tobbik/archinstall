@@ -3,42 +3,80 @@
 # the second is     /      30GB big
 # the third is      /home  772GB big
 #the reminder is swap
+#
+DISKNAME=/dev/sda
 
-fdisk -u /dev/sda << EOFDISK
+#fdisk -u ${DISKNAME} << EOFDISK
+#n
+#p
+#
+#
+#+512M
+#n
+#p
+#
+#
+#+20G
+#n
+#p
+#
+#
+#+430G
+#n
+#p
+#
+#
+#
+#w
+#EOFDISK
+
+gdisk ${DISKNAME} << EOGDISK
 n
-p
-
+1
 
 +512M
+EF00
 n
-p
+2
 
-
-+20G
++28G
+8304
 n
-p
+3
 
-
-+430G
++445G
+8302
 n
-p
+4
 
 
-
+8200
+c
+1
+EFI
+c
+2
+ARCHROOT
+c
+3
+ARCHHOME
+c
+4
+ARCHSWAP
 w
-EOFDISK
+EOGDISK
 
-mkfs.vfat -F32 /dev/nvme0n1p1
-mkfs.ext4 -L ARCHROOT /dev/nvme0n1p2
-mkfs.ext4 -L ARCHHOME /dev/nvme0n1p3
-mkswap    -L ARCHSWAP /dev/nvme0n1p4
+mkfs.vfat -F32 "${DISKNAME}1"
+mkfs.ext4 -L ARCHROOT "${DISKNAME}2"
+mkfs.ext4 -L ARCHHOME "${DISKNAME}3"
+mkswap    -L ARCHSWAP "${DISKNAME}4"
 
-#mount  /dev/nvme0n1p2 /mnt
+#mount  "${DISKNAME}2" /mnt
 #mkdir  /mnt/boot
-#mount  /dev/nvme0n1p1 /mnt/boot
+#mount  "${DISKNAME}1" /mnt/boot
 #mkdir  /mnt/home
-#mount  /dev/nvme0n1p3 /mnt/home
-#swapon /dev/nvme0n1p4
+#mount  "${DISKNAME}3" /mnt/home
+#swapon "${DISKNAME}4"
 
 #mkdir /mnt/mnt
 #mkdir /mnt/mnt/data1
