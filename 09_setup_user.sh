@@ -10,6 +10,9 @@ useradd --gid users \
   --shell /bin/bash \
   $USERNAME
 
+# copy all .files (vim,terminal stuff etc.)
+cp -ar ./usertemplate/* ./usertemplate/. /home/${USERNAME}/
+
 # user sudo access
 echo -e "${USERNAME} ALL=(ALL:ALL) ALL/" /etc/sudoers.d/${USERNAME}
 
@@ -18,9 +21,6 @@ echo -e "${USERPASS}\n${USERPASS}" | (passwd -q ${USERNAME})
 
 # set root password
 echo -e "${ROOTPASS}\n${ROOTPASS}" | (passwd -q root)
-
-# copy all .files (vim,terminal stuff etc.)
-cp -ar /root/installer/usertemplate/* /root/installer/usertemplate/. /home/${USERNAME}/
 
 # setupuser audio
 cp -avr /usr/share/pipewire /home/${USERNAME}/.config/

@@ -17,7 +17,8 @@ After booting the ISO follow these steps:
  - make sure you have a network connection and can reach the interwebs
  - consider editing /etc/pacman.d/mirrorlist to put a fast mirror
    on top; it'll speed up the entire process considerably
- - ``curl https://codeload.github.com/tobbik/archinstall/tar.gz/master --output - | tar xz --strip-components 1``
+ - ``curl https://codeload.github.com/tobbik/archinstall/tar.gz/master --output - | tar xz``
+ - cd archinstall
  - review partions.sh
  - review config.sh for names, passswords and modules to install
  - run install.sh

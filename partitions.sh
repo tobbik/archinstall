@@ -30,6 +30,13 @@ DISKNAME=/dev/sda
 #w
 #EOFDISK
 
+# wipe entire disk
+#gdisk ${DISKNAME} << EOGWIPE
+#x
+#z
+#w
+#EOGWIPE
+
 gdisk ${DISKNAME} << EOGDISK
 n
 1
