@@ -10,13 +10,13 @@ cd ${PKGSDIR}
 # everything Xorg and Terminals and command line
 pacman -S --needed --noconfirm \
   wayland greetd wl-clipboard dunst mako jq \
-  wf-recorder wayvnc grim slurp \
+  wf-recorder wayvnc grim slurp xdg-utils \
   swaylock swayidle polkit-gnome \
   fuzzel bemenu-wayland \
   foot foot-terminfo \
   mpv \
-  xorg-xwayland wlroots seatd \
-  meson scdoc \
+  xorg-xwayland wlroots wayland-protocols gtk-layer-shell \
+  seatd meson scdoc rust tllist xcb-util xcb-util-cursor git \
   awesome-terminal-fonts ttf-font-awesome
 
 

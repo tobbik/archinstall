@@ -8,7 +8,7 @@ source config.sh
 for moduleName in ${MODULES[@]}; do
 	echo "Executing ${moduleName}"
 	cd ${RUNDIR}
-	source "${moduleName}"
+	source "${moduleName}" 2>&1 | tee "/root/installer/logs/${moduleName}.log"
 done
 
 # flatten all permissions

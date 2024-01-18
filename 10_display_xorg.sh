@@ -6,7 +6,7 @@ source config.sh
 pacman -S --needed --noconfirm \
   mesa libva-mesa-driver mesa-vdpau \
   xorg-server xorg-apps xorg-xinit mesa mesa-demos \
-  xorg-xclipboard xclip xsel \
+  xorg-xclipboard xclip xsel xdg-utils \
   xterm rxvt-unicode rxvt-unicode-terminfo \
   xfce4 xfce4-goodies \
   lightdm lightdm-gtk-greeter light-locker

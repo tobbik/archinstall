@@ -20,7 +20,7 @@ echo -e "${USERPASS}\n${USERPASS}" | (passwd -q ${USERNAME})
 echo -e "${ROOTPASS}\n${ROOTPASS}" | (passwd -q root)
 
 # copy all .files (vim,terminal stuff etc.)
-cp -r ./usertemplate/* ./usertemplate/. /home/${USERNAME}
+cp -ar /root/installer/usertemplate/* /root/installer/usertemplate/. /home/${USERNAME}/
 
 # setupuser audio
 cp -avr /usr/share/pipewire /home/${USERNAME}/.config/
@@ -41,3 +41,4 @@ echo "hardstatus alwayslastline '%{= G}%-Lw%{= R}[%n*%f %t]%{= G}%+Lw%='" >> \
   /home/${USERNAME}/.screenrc
 echo -e "\nterm screen-256color\n" >> /home/${USERNAME}/.screenrc
 
+chown -R ${USERNAME}:users /home/${USERNAME}
