@@ -23,12 +23,12 @@ MODULES=(
    #16_amd.sh
 
    20_devtools.sh
-   21_datatools.sh
-   22_docker.sh
+   21_dotnet.sh
+   22_jdk.sh
    23_kvm.sh
-   #25_aurstuff.sh
-   26_jdk.sh
-   27_dotnet.sh
+   24_docker.sh
+   25_datatools.sh
+   29_aurstuff.sh
 
    30_graphics.sh
    32_media.sh
@@ -50,10 +50,6 @@ WL_KEY="wireless_password"
 INTERFACE=$(ip link | grep 'state UP' | cut -d " " -f2 | sed "s/://")
 BOOTMNGR=refind                      # use "refind" for UEFI system
                                      # use "grub" for Legacy systems or VM-Ware
-
-# user configs
-#ROXLINKS=(file-roller epdfview geany geeqie gimp-2.10 inkscape vlc scite)
-ROXLINKS=(file-roller epdfview geany)
 
 # docker container directory - if you choose the docker package and not set
 # DOCKERSTORAGEPATH the installer will create /home/${USERNAMME}/docker instead

@@ -16,7 +16,7 @@ pacman -S --needed --noconfirm \
   powertop acpi tlp acpi_call smartmontools nfs-utils \
   wol dmidecode \
   alsa-tools alsa-utils alsa-plugins \
-  pipewire wireplumber pipewire-audio pipewire-alsa pavucontrol pipewire-pulse \
+  pipewire wireplumber pipewire-audio pipewire-alsa pipewire-pulse \
   vbetool hyperfine pwgen mlocate
 
 systemctl enable sshd
