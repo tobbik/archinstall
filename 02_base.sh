@@ -7,7 +7,7 @@ pacman -S --needed --noconfirm \
 
 # network
 pacman -S --needed --noconfirm \
-  dialog wpa_supplicant wireless_tools net-tools
+  dialog wpa_supplicant wireless_tools net-tools iwd
 
 # packers, helpers etc ...
 pacman -S --needed --noconfirm \
@@ -16,7 +16,8 @@ pacman -S --needed --noconfirm \
   powertop acpi tlp acpi_call smartmontools nfs-utils \
   wol dmidecode \
   alsa-tools alsa-utils alsa-plugins \
-  pipewire wireplumber pipewire-audio pipewire-alsa pipewire-pulse \
+  pipewire wireplumber pipewire-audio \
+  pipewire-alsa pipewire-pulse pipewire-jack \
   vbetool hyperfine pwgen mlocate
 
 systemctl enable sshd

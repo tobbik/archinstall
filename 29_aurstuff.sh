@@ -27,7 +27,7 @@ PACKAGES=(
 )
 
 for PKG in ${PACKAGES[@]}; do
-  echo "Creating ${PKG}"
+  echo "_______________################# Creating ${PKG} #######################"
   cd ${PKGSDIR}
   curl ${BASEURL}/${PKG}.tar.gz --output - | tar xz
   chown -R ${USERNAME}:users ${PKG}

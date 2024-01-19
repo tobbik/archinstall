@@ -10,9 +10,6 @@ useradd --gid users \
   --shell /bin/bash \
   $USERNAME
 
-# copy all .files (vim,terminal stuff etc.)
-cp -ar ./usertemplate/* ./usertemplate/. /home/${USERNAME}/
-
 # user sudo access
 echo -e "${USERNAME} ALL=(ALL:ALL) ALL/" /etc/sudoers.d/${USERNAME}
 
@@ -40,5 +37,8 @@ EOBASHRC
 echo "hardstatus alwayslastline '%{= G}%-Lw%{= R}[%n*%f %t]%{= G}%+Lw%='" >> \
   /home/${USERNAME}/.screenrc
 echo -e "\nterm screen-256color\n" >> /home/${USERNAME}/.screenrc
+
+# copy all .files (vim,terminal stuff etc.)
+cp -ar ./usertemplate/* ./usertemplate/. /home/${USERNAME}/
 
 chown -R ${USERNAME}:users /home/${USERNAME}

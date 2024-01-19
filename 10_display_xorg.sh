@@ -9,7 +9,8 @@ pacman -S --needed --noconfirm \
   xorg-xclipboard xclip xsel xdg-utils \
   xterm rxvt-unicode rxvt-unicode-terminfo \
   xfce4 xfce4-goodies \
-  lightdm lightdm-gtk-greeter light-locker
+  lightdm lightdm-gtk-greeter light-locker \
+  glfw-x11
 
 # set xfce4 as standard X desktop for non graphical login
 cp /etc/X11/xinit/xinitrc                /home/${USERNAME}/.xinitrc

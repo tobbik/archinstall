@@ -79,8 +79,8 @@ mkfs.ext4 -L ARCHHOME "${DISKNAME}3"
 mkswap    -L ARCHSWAP "${DISKNAME}4"
 
 #mount  "${DISKNAME}2" /mnt
-#mkdir  /mnt/boot
-#mount  "${DISKNAME}1" /mnt/boot
+#mkdir  /mnt/efi
+#mount  "${DISKNAME}1" /mnt/efi
 #mkdir  /mnt/home
 #mount  "${DISKNAME}3" /mnt/home
 #swapon "${DISKNAME}4"

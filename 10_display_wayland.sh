@@ -14,10 +14,11 @@ pacman -S --needed --noconfirm \
   swaylock swayidle polkit-gnome \
   fuzzel bemenu-wayland \
   foot foot-terminfo \
-  mpv \
+  mpv libmpdclient \
   xorg-xwayland wlroots wayland-protocols gtk-layer-shell \
   seatd meson scdoc rust tllist xcb-util xcb-util-cursor git \
-  awesome-terminal-fonts ttf-font-awesome
+  awesome-terminal-fonts ttf-font-awesome \
+  glfw-wayland
 
 
 systemctl enable greetd.service
@@ -40,7 +41,7 @@ sudo --user ${USERNAME} gpg --keyserver keys.gnupg.net --recv-keys 5BBD4992C1165
 sudo --user ${USERNAME} gpg --keyserver keys.gnupg.net --recv-keys 0FDE7BE0E88F5E48
 
 for PKG in ${PACKAGES[@]}; do
-  echo "Creating ${PKG}"
+  echo "_______________################# Creating ${PKG} #######################"
   cd ${PKGSDIR}
   curl ${BASEURL}/${PKG}.tar.gz --output - | tar xz
   chown -R ${USERNAME}:users ${PKG}
@@ -54,7 +55,7 @@ cd ${OLDDIR}
 
 # use the labwc compositor for wlgreet
 sed \
-  -e 's:^command.*:command = "labwc --config-dir /etc/greetd/labwc:' \
+  -e 's:^command.*:command = "labwc --config-dir /etc/greetd/labwc":' \
   -e "s:^user.*:user = ${USERNAME}:" \
   -i /etc/greetd/config.toml
 
