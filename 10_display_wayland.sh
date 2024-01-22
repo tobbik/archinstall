@@ -6,12 +6,11 @@ BASEURL="https://aur.archlinux.org/cgit/aur.git/snapshot"
 sudo --user ${USERNAME} mkdir -p ${PKGSDIR}
 cd ${PKGSDIR}
 
-
 # everything Xorg and Terminals and command line
 pacman -S --needed --noconfirm \
   wayland greetd wl-clipboard dunst mako jq \
   wf-recorder wayvnc grim slurp xdg-utils \
-  swaylock swayidle polkit-gnome \
+  swaylock swayidle polkit-gnome brightnessctl \
   fuzzel bemenu-wayland \
   foot foot-terminfo \
   mpv libmpdclient \
@@ -19,7 +18,6 @@ pacman -S --needed --noconfirm \
   seatd meson scdoc rust tllist xcb-util xcb-util-cursor git \
   awesome-terminal-fonts ttf-font-awesome \
   glfw-wayland
-
 
 systemctl enable greetd.service
 

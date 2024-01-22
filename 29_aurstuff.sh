@@ -10,7 +10,8 @@ pacman -S --needed --noconfirm \
   qt5-webengine \
   intltool \
   patchelf \
-  fltk
+  fltk \
+  meson scdocs gtk4 qrencode
 
 PACKAGES=(
   masterpdfeditor
@@ -23,6 +24,7 @@ PACKAGES=(
   xdiskusage
   zoom
   slack-desktop
+  iwgtk
   redshift-minimal
 )
 

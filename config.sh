@@ -7,20 +7,23 @@
 MODULES=(
    01_config.sh
    02_base.sh
-   03_network_dhcp.sh
-   #03_network_netctl_static.sh
-   #03_network_netctl_auto.sh
-   03_network_nwmngr.sh
+   # 03_network_dhcp.sh
+   # 03_network_netctl_static.sh
+   # 03_network_netctl_auto.sh
+   # 03_network_nwmngr.sh
+   03_network_iwd.sh
    04_bluetooth.sh
 
    09_setup_user.sh
 
-   #10_display_xorg.sh
    10_display_wayland.sh
+   #10_display_xorg.sh
    12_gui.sh
    #13_vmware.sh
    #14_virtualbox.sh
+
    #16_amd.sh
+   #16_intel.sh
 
    20_devtools.sh
    21_dotnet.sh
@@ -48,8 +51,10 @@ TIMEZONE="America/Vancouver"
 WL_ESSID="accesspointID"
 WL_KEY="wireless_password"
 INTERFACE=$(ip link | grep 'state UP' | cut -d " " -f2 | sed "s/://")
-BOOTMNGR=refind                      # use "refind" for UEFI system
-                                     # use "grub" for Legacy systems or VM-Ware
+# this needs intervention; refind and grub work proper
+# systemd and efistub need work; see setup-chroot.sh 
+BOOTMNGR=systemd
+
 
 # docker container directory - if you choose the docker package and not set
 # DOCKERSTORAGEPATH the installer will create /home/${USERNAMME}/docker instead

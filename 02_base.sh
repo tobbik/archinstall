@@ -2,7 +2,7 @@ source config.sh
 
 # package installation
 pacman -S --needed --noconfirm \
-  $BOOTMNGR archlinux-keyring pacman-contrib \
+  archlinux-keyring pacman-contrib \
   openssh iptables rng-tools mkinitcpio
 
 # network
@@ -18,6 +18,17 @@ pacman -S --needed --noconfirm \
   alsa-tools alsa-utils alsa-plugins \
   pipewire wireplumber pipewire-audio \
   pipewire-alsa pipewire-pulse pipewire-jack \
-  vbetool hyperfine pwgen mlocate
+  vbetool hyperfine pwgen mlocate \
+  linux-firmware
 
 systemctl enable sshd
+
+cat > /etc/iwd/main.conf << EOIWDCONF
+[General]
+EnableNetworkConfiguration=True
+
+[Network]
+EnableIPv6=True
+NameResolvingService=systemd
+
+EOIWDCONF
