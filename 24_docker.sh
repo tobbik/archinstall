@@ -1,16 +1,21 @@
 source config.sh
 
+# this allows to substitute in iptables-nft. Needed for kubectl and friends
+if pacman -Q iptables ; then
+  pacman -Rdd --noconfirm iptables
+fi
+
 pacman -S --needed --noconfirm \
   docker arch-install-scripts lxc haveged \
   docker-compose \
-  bridge-utils lua-alt-getopt ca-certificates
+  bridge-utils lua-alt-getopt ca-certificates \
+  iptables-nft kubeadm kubelet kubectl
 
 usermod -a -G docker ${USERNAME}
 
 if [ -z ${DOCKERSTORAGEPATH+x} ]; then
   DOCKERSTORAGEPATH=/home/${USERNAME}/docker
-  mkdir -p ${DOCKERSTORAGEPATH}
-  chown -R ${USERNAME}:users ${DOCKERSTORAGEPATH}
+  sudo --user ${USERNAME} mkdir -p ${DOCKERSTORAGEPATH}
 fi
 
 mkdir -p /etc/systemd/system/docker.service.d

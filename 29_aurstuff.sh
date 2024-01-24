@@ -11,7 +11,7 @@ pacman -S --needed --noconfirm \
   intltool \
   patchelf \
   fltk \
-  meson scdocs gtk4 qrencode
+  meson scdoc gtk4 qrencode
 
 PACKAGES=(
   masterpdfeditor
@@ -25,18 +25,34 @@ PACKAGES=(
   zoom
   slack-desktop
   iwgtk
-  redshift-minimal
+  #redshift-minimal
 )
 
 for PKG in ${PACKAGES[@]}; do
   echo "_______________################# Creating ${PKG} #######################"
   cd ${PKGSDIR}
-  curl ${BASEURL}/${PKG}.tar.gz --output - | tar xz
-  chown -R ${USERNAME}:users ${PKG}
-  cd ${PKGSDIR}/${PKG}
+  curl ${BASEURL}/${PKG}.tar.gz -O && sudo --user ${USERNAME} tar xzf ${PKG}.tar.gz
+  rm ${PKG}.tar.gz && cd ${PKG}
+  if ! grep -q '^arch.*any' PKGBUILD ; then
+    sed -i "s:^\(arch=.*\)):\1 'aarch64'):" PKGBUILD
+  fi
   sudo --user ${USERNAME} makepkg
-  pacman -U --needed --noconfirm ${PKG}-*.pkg.tar.zst
+  if grep -q '^arch.*any' PKGBUILD ; then
+    pacman -U --needed --noconfirm ${PKG}-*any.pkg.tar.*
+  else
+    pacman -U --needed --noconfirm ${PKG}-*$(uname -m).pkg.tar.*
+  fi
   rm -rf src pkg
 done
 
 cd ${OLDDIR}
+
+
+# set up .bashrc to invoke nvm properly
+cat >> /home/${USERNAME}/.bashrc << EOBASHRC
+
+# initialize node version manager if present
+if [ -f  /usr/share/nvm/init-nvm.sh ]; then
+  source /usr/share/nvm/init-nvm.sh
+fi
+EOBASHRC

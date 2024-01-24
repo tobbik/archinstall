@@ -10,9 +10,12 @@ LC_TIME="${LOCALELC}"
 LC_COLLATE="C"
 EOLOCALE
 
-# set the timezone and make sure system uses UTC
-ln -sf /usr/share/zoneinfo/${TIMEZONE} /etc/localtime
-hwclock --systohc --utc
+# DON'T do that on RaspberryPi or other SoC deivces
+if [ ! -f /boot/boot.src ]; then
+  # set the timezone and make sure system uses UTC
+  ln -sf /usr/share/zoneinfo/${TIMEZONE} /etc/localtime
+  hwclock --systohc --utc
+fi
 
 # set up avalaible system locales
 sed -i 's/^#\(en_CA.UTF-8 UTF-8\)/\1/' /etc/locale.gen

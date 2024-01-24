@@ -14,6 +14,8 @@ MODULES=(
    03_network_iwd.sh
    04_bluetooth.sh
 
+   07_dev_base.sh
+   08_bootmgr.sh
    09_setup_user.sh
 
    10_display_wayland.sh
@@ -51,6 +53,7 @@ TIMEZONE="America/Vancouver"
 WL_ESSID="accesspointID"
 WL_KEY="wireless_password"
 INTERFACE=$(ip link | grep 'state UP' | cut -d " " -f2 | sed "s/://")
+
 # this needs intervention; refind and grub work proper
 # systemd and efistub need work; see setup-chroot.sh 
 BOOTMNGR=systemd

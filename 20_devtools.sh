@@ -1,35 +1,16 @@
 source config.sh
 
-pacman -S --needed --noconfirm \
-  clang clang-analyzer tcc make gdb valgrind pkg-config pkgconf cmake \
-  linux-headers ocl-icd bc elfutils \
-  nginx fcgiwrap git git-lfs tig wireshark-cli wireshark-qt apache figlet \
-  lua lua-socket lua-filesystem luajit \
-  go rust \
-  pypy pypy3 python3 ipython cython \
-  nodejs npm js115 php graphicsmagick imagemagick ghostscript \
-  gvim geany geany-plugins scite neovim neovide scite \
-  openconnect openvpn \
-  qt6-multimedia-ffmpeg
-
-usermod -a -G git ${USERNAME}
-usermod -a -G http ${USERNAME}
-usermod -a -G wireshark ${USERNAME}
-
-#set up git
-git config --global user.name "${GITNAME}"
-git config --global user.email "${GITEMAIL}"
-git config --global core.editor "/usr/bin/vim"
-git config --global merge.tool "/usr/bin/vimdiff"
-git lfs install
-mv /root/.gitconfig /home/${USERNAME}/
-chown ${USERNAME}:users /home/${USERNAME}/.gitconfig
-
-# set up .bashrc with some aliases
-cat >> /home/${USERNAME}/.bashrc << EOBASHRC
-
-# initialize node version manager if present
-if [ -f  /usr/share/nvm/init-nvm.sh ]; then
-	source /usr/share/nvm/init-nvm.sh
+if pacman -Q vim ; then
+  pacman -Rdd vim --noconfirm
 fi
-EOBASHRC
+
+pacman -S --needed --noconfirm \
+  wireshark-qt qt6-multimedia-ffmpeg \
+  neovim-qt gvim \
+  graphicsmagick imagemagick ghostscript \
+  gvim geany geany-plugins scite \
+  openconnect openvpn \
+
+if [ $(uname -m) = 'x86_64' ]; then
+  pacman -S --noconfirm neovide
+fi

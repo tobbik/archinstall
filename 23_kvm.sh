@@ -1,9 +1,14 @@
 source config.sh
 
 pacman -S --needed --noconfirm \
- virtualbox qemu virt-manager qemu-guest-agent libguestfs \
- virt-viewer libvirt edk2-ovmf \
- dnsmasq qemu-desktop qemu-tools
+  qemu-base virt-manager qemu-guest-agent \
+  virt-viewer libvirt \
+  dnsmasq qemu-desktop qemu-tools
+
+if [ $(uname -m) = 'x86_64' ]; then
+  pacman -S --needed --noconfirm \
+    virtualbox libguestfs edk2-ovmf
+fi
 
 systemctl enable libvirtd
 usermod -a -G kvm ${USERNAME}

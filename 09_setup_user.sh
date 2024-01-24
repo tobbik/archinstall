@@ -11,16 +11,13 @@ useradd --gid users \
   $USERNAME
 
 # user sudo access
-echo -e "${USERNAME} ALL=(ALL:ALL) ALL/" /etc/sudoers.d/${USERNAME}
+printf "${USERNAME} ALL=(ALL:ALL) ALL\n" > /etc/sudoers.d/${USERNAME}
 
 # reset the password to be sure
 echo -e "${USERPASS}\n${USERPASS}" | (passwd -q ${USERNAME})
 
 # set root password
 echo -e "${ROOTPASS}\n${ROOTPASS}" | (passwd -q root)
-
-# setupuser audio
-cp -avr /usr/share/pipewire /home/${USERNAME}/.config/
 
 # set up .bashrc with some aliases
 cat >> /home/${USERNAME}/.bashrc << EOBASHRC

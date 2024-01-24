@@ -1,40 +1,17 @@
 # this creates 3 partitions on /dev/sda
 # the first is UEFI /boot  512MB big
-# the second is     /      30GB big
-# the third is      /home  772GB big
+# the second is     /      28GB big
+# the third is      /home  445GB big
 #the reminder is swap
 #
 DISKNAME=/dev/sda
-
-#fdisk -u ${DISKNAME} << EOFDISK
-#n
-#p
-#
-#
-#+512M
-#n
-#p
-#
-#
-#+20G
-#n
-#p
-#
-#
-#+430G
-#n
-#p
-#
-#
-#
-#w
-#EOFDISK
 
 # wipe entire disk
 #gdisk ${DISKNAME} << EOGWIPE
 #x
 #z
-#w
+#Y
+#Y
 #EOGWIPE
 
 gdisk ${DISKNAME} << EOGDISK
@@ -74,8 +51,8 @@ w
 EOGDISK
 
 mkfs.vfat -F32 "${DISKNAME}1"
-mkfs.ext4 -L ARCHROOT "${DISKNAME}2"
-mkfs.ext4 -L ARCHHOME "${DISKNAME}3"
+y | mkfs.ext4 -L ARCHROOT "${DISKNAME}2"
+y | mkfs.ext4 -L ARCHHOME "${DISKNAME}3"
 mkswap    -L ARCHSWAP "${DISKNAME}4"
 
 #mount  "${DISKNAME}2" /mnt
