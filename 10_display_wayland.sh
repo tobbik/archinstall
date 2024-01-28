@@ -15,8 +15,8 @@ pacman -S --needed --noconfirm \
   foot foot-terminfo \
   mpv libmpdclient \
   xorg-xwayland wlroots wayland-protocols gtk-layer-shell \
-  seatd scdoc tllist xcb-util xcb-util-cursor \
-  rust meson pipewire pipewire-jack xdgutils \
+  seatd scdoc tllist xcb-util xcb-util-cursor ddcutil \
+  rust meson pipewire pipewire-jack xdg-utils \
   awesome-terminal-fonts ttf-font-awesome \
   glfw-wayland
 
@@ -27,6 +27,7 @@ PACKAGES=(
   labwc
   labwc-menu-generator-git
   labwc-tweaks-git
+  luminance
   sfwbar
   yambar
   wlopm

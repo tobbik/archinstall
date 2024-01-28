@@ -13,10 +13,10 @@ MODULES=(
    # 03_network_nwmngr.sh
    03_network_iwd.sh
    04_bluetooth.sh
+   05_setup_user.sh
 
    07_dev_base.sh
    08_bootmgr.sh
-   09_setup_user.sh
 
    10_display_wayland.sh
    #10_display_xorg.sh

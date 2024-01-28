@@ -1,7 +1,51 @@
 source config.sh
 
+# ----------------------------------------------- BOOLDRX (systemd-boot based)
+if [ x"${BOOTMNGR}" == x"bootldrx" ]; then
+  pacman -S --needed --noconfirm efibootmgr
+  UUIDROOT=$(blkid -s UUID -o value /dev/sda2)
+  KERNEL_FS_PATH="/boot"
+
+  cp /etc/mkinitcpio.d/linux.preset /root/installer/logs/linux.preset.bak
+
+  # sed \
+  #   -e "s:^\(ALL_kver=.*\):ALL_kver=\"${KERNEL_FS_PATH}/vmlinuz-linux\":" \
+  #   -e "s:^\(default_image=.*\):default_image=\"${KERNEL_FS_PATH}/initramfs-linux.img\":" \
+  #   -e "s:^\(fallback_image=.*\):fallback_image=\"${KERNEL_FS_PATH}/initramfs-linux-fallback.img\":" \
+  #   -i /etc/mkinitcpio.d/linux.preset
+
+  mkdir -p /boot/loader/entries /efi/loader
+  cat > /efi/loader/loader.conf << EOUBOOTLOAD
+default       arch
+timeout       8
+console-mode  max
+editor        no
+EOUBOOTLOAD
+
+cat > /boot/loader/entries/arch.conf << EOARCHCONF
+title   Arch Linux
+linux   vmlinuz-linux
+initrd  intel-ucode.img
+initrd  initramfs-linux.img
+options root=UUID=${UUIDROOT} ro
+EOARCHCONF
+
+cat > /boot/loader/entries/arch-fallback.conf << EOARCHFBCONF
+title   Arch Linux (fallback initramfs)
+linux   vmlinuz-linux
+initrd  intel-ucode.img
+initrd  initramfs-linux-fallback.img
+options root=UUID=${UUIDROOT} single ro
+EOARCHFBCONF
+
+fi
+
+#----------------------------------------------------------------
+
+
+
 # ---------------------------------------------------------------       systemd-boot
-if [ "x${BOOTMNGR}" == "xsystemd" ]; then
+if [ x"${BOOTMNGR}" == x"systemd" ]; then
   pacman -S --needed --noconfirm efibootmgr
   UUIDROOT=$(blkid -s UUID -o value /dev/sda2)
   ESP_PATH=/EFI/Linux
@@ -62,18 +106,18 @@ fi
 
 
 # ---------------------------------------------------------------       grub
-if [ "x${BOOTMNGR}" == "xgrub" ]; then
+if [ x"${BOOTMNGR}" == x"grub" ]; then
   pacman -S --needed --noconfirm grub
 fi
 
 # ---------------------------------------------------------------       refind
-if [ "x${BOOTMNGR}" == "xrefind" ]; then
+if [ x"${BOOTMNGR}" == x"refind" ]; then
   pacman -S --needed --noconfirm refind
 fi
 
 
 # ---------------------------------------------------------------       efistub
-if [ "x${BOOTMNGR}" == "xefistub" ]; then
+if [ x"${BOOTMNGR}" == x"efistub" ]; then
   pacman -S --needed --noconfirm efibootmgr
   UUIDROOT=$(blkid -s UUID -o value /dev/sda2)
   ESPPATH=/efi/EFI/Arch

@@ -11,7 +11,7 @@ pacman -S --needed --noconfirm \
   intltool \
   patchelf \
   fltk \
-  meson scdoc gtk4 qrencode
+  meson scdoc gtk4 qrencode vte3
 
 PACKAGES=(
   masterpdfeditor
@@ -25,6 +25,7 @@ PACKAGES=(
   zoom
   slack-desktop
   iwgtk
+  neovim-gtk
   #redshift-minimal
 )
 
