@@ -1,8 +1,9 @@
 source config.sh
 
+MOVEKERNEL="NO"
+
 # ----------------------------------------------- BOOLDRX (systemd-boot based)
-if [ x"${BOOTMNGR}" == x"bootldrx" ]; then
-  pacman -S --needed --noconfirm efibootmgr
+if [ x"${BOOTMNGR}" == x"xbootldr" ]; then
   UUIDROOT=$(blkid -s UUID -o value /dev/sda2)
   KERNEL_FS_PATH="/boot"
 
@@ -46,7 +47,7 @@ fi
 
 # ---------------------------------------------------------------       systemd-boot
 if [ x"${BOOTMNGR}" == x"systemd" ]; then
-  pacman -S --needed --noconfirm efibootmgr
+  MOVEKERNEL="YES"
   UUIDROOT=$(blkid -s UUID -o value /dev/sda2)
   ESP_PATH=/EFI/Linux
   FULL_PATH="/efi${ESP_PATH}"
@@ -118,7 +119,7 @@ fi
 
 # ---------------------------------------------------------------       efistub
 if [ x"${BOOTMNGR}" == x"efistub" ]; then
-  pacman -S --needed --noconfirm efibootmgr
+  MOVEKERNEL="YES"
   UUIDROOT=$(blkid -s UUID -o value /dev/sda2)
   ESPPATH=/efi/EFI/Arch
   echo -e "ro root=UUID=${UUIDROOT}" > /etc/kernel/cmdline
@@ -149,7 +150,8 @@ EOLPRESET
 
 fi
 
-
-# UGLY-HACK remove and re-install linux kernel to have it pickup the vmlinuz location
-pacman -Rdd --noconfirm linux
-pacman -S   --noconfirm linux
+if [ x"${MOVEKERNEL}" = x"YES" ]; then
+  # UGLY-HACK remove and re-install linux kernel to have it pickup the vmlinuz location
+  pacman -Rdd --noconfirm linux
+  pacman -S   --noconfirm linux
+fi

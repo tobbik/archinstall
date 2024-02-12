@@ -18,9 +18,9 @@ if [ ! -f /boot/boot.src ]; then
 fi
 
 # set up avalaible system locales
-sed -i 's/^#\(en_CA.UTF-8 UTF-8\)/\1/' /etc/locale.gen
-sed -i 's/^#\(fr_CA.UTF-8 UTF-8\)/\1/' /etc/locale.gen
-sed -i 's/^#\(de_DE.UTF-8 UTF-8\)/\1/' /etc/locale.gen
-sed -i 's/^#\(en_US.UTF-8 UTF-8\)/\1/' /etc/locale.gen
+sed -e 's/^#\(en_CA.UTF-8 UTF-8\)/\1/' \
+    -e 's/^#\(fr_CA.UTF-8 UTF-8\)/\1/' \
+    -e 's/^#\(de_DE.UTF-8 UTF-8\)/\1/' \
+    -e 's/^#\(en_US.UTF-8 UTF-8\)/\1/' -i /etc/locale.gen
 locale-gen
 

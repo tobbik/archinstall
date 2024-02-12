@@ -50,16 +50,15 @@ ROOTPASS="rootpass"
 KEYBOARD=us
 LOCALELC="en_CA.UTF-8"
 TIMEZONE="America/Vancouver"
-WL_ESSID="accesspointID"
-WL_KEY="wireless_password"
-INTERFACE=$(ip link | grep 'state UP' | cut -d " " -f2 | sed "s/://")
+TIMESTAMP=$(date -Iseconds)
 
 # this needs intervention; refind and grub work proper
-# systemd and efistub need work; see setup-chroot.sh 
+# systemd, xbootldr and efistub need work; see setup-chroot.sh 
 BOOTMNGR=systemd
 
-
 # docker container directory - if you choose the docker package and not set
-# DOCKERSTORAGEPATH the installer will create /home/${USERNAMME}/docker instead
+# DOCKERSTORAGEPATH the installer will create /home/${USERNAME}/docker instead
 #DOCKERSTORAGEPATH=/mnt/whatever
+#
+AURBUILDDIR="/home/${USERNAME}/pkgs"
 

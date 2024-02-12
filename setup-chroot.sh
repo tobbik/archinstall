@@ -5,6 +5,10 @@ RUNDIR=$(pwd)
 
 source config.sh
 
+if [ -n "$SETTIMESTAMP" ]; then
+  date -s "$SETTIMESTAMP"
+fi
+
 for moduleName in ${MODULES[@]}; do
   echo "Executing ${moduleName}"
   cd ${RUNDIR}

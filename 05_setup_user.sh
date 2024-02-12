@@ -3,9 +3,12 @@ source config.sh
 pacman -S --needed --noconfirm \
   sudo screen tmux
 
+# copy all .files (vim,terminal stuff etc.)
+cp -R  ./usertemplate /home/${USERNAME}
+cp -av  /etc/skel/.*  /home/${USERNAME}/
+
 useradd --gid users \
   --groups wheel,network,video,audio,storage,power \
-  --create-home \
   --password $USERPASS \
   --shell /bin/bash \
   $USERNAME
@@ -34,8 +37,5 @@ EOBASHRC
 echo "hardstatus alwayslastline '%{= G}%-Lw%{= R}[%n*%f %t]%{= G}%+Lw%='" >> \
   /home/${USERNAME}/.screenrc
 echo -e "\nterm screen-256color\n" >> /home/${USERNAME}/.screenrc
-
-# copy all .files (vim,terminal stuff etc.)
-cp -ar ./usertemplate/* ./usertemplate/. /home/${USERNAME}/
 
 chown -R ${USERNAME}:users /home/${USERNAME}

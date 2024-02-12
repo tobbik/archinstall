@@ -7,7 +7,7 @@ fi
 
 pacman -S --needed --noconfirm \
   docker arch-install-scripts lxc haveged \
-  docker-compose \
+  "bind" docker-compose \
   bridge-utils lua-alt-getopt ca-certificates \
   iptables-nft kubeadm kubelet kubectl
 
