@@ -7,22 +7,20 @@ cd ${AURBUILDDIR}
 
 # everything Xorg and Terminals and command line
 pacman -S --needed --noconfirm \
+  mesa libva-mesa-driver mesa-vdpau mesa-demos \
   wayland greetd greetd-tuigreet wl-clipboard dunst mako jq \
   wf-recorder wayvnc grim slurp \
-  swaylock swayidle polkit-gnome brightnessctl kanshi \
+  swaylock swayidle swaybg polkit-gnome brightnessctl kanshi \
   fuzzel bemenu-wayland wlsunset \
   foot foot-terminfo \
   mpv libmpdclient pipewire-jack scdoc \
   xorg-xwayland wlroots wayland-protocols gtk-layer-shell \
   glfw-wayland
 
-systemctl enable greetd.service
-
 # this depends heavily on having 07_dev_base.sh executed before hand
 PACKAGES=(
   labwc
 )
-
 
 for PKG in ${PACKAGES[@]}; do
   echo "_______________################# Creating ${PKG} #######################"
@@ -45,9 +43,6 @@ sed \
   -e "s:^user.*:user = ${USERNAME}:" \
   -i /etc/greetd/config.toml
 
-# set up a kiosk style labwc compositor for use with wlroots based greeters
-mkdir -p /etc/greetd/labwc
-echo -e "gtkgreet --command labwc\n\nexit\n" > /etc/greetd/labwc/autostart
-echo -e "XCURSOR_THEME=Adwaita\nXCURSOR_SIZE=24\nXKB_DEFAULT_LAYOUT=us\n" > /etc/greetd/labwc/environment
-echo -e "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<openbox_menu>\n <menu id=\"root-menu\" label=\"root-menu\"> </menu>\n</openbox_menu>" > /etc/greetd/labwc/menu.xml
-echo -e "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<labwc_config>\n</labwc_config>" > /etc/greetd/labwc/rc.xml
+systemctl enable greetd.service
+sudo --user ${USERNAME} systemctl --user enable foot-server.service
+

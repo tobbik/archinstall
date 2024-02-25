@@ -1,0 +1,15 @@
+[Match]
+Type=${NW_TYPE}
+
+[Network]
+DHCP=yes
+DNSSEC=false
+IgnoreCarrierLoss=${NW_IGN_CARR_LOSS}
+
+[DHCPv4]
+UseDomains=true
+RouteMetric=${NW_ROUTEMETRIC}
+
+[IPv6AcceptRA]
+UseDomains=true
+RouteMetric=${NW_ROUTEMETRIC}

@@ -26,7 +26,7 @@
 ## Force firefox to use wayland backend.
 ##
 
-# MOZ_ENABLE_WAYLAND=1
+MOZ_ENABLE_WAYLAND=1
 
 ##
 ## Set cursor theme and size. Find system icons themes with:
@@ -66,3 +66,7 @@
 
 # XDG_CURRENT_DESKTOP=wlroots
 
+XCURSOR_THEME=Adwaita
+XCURSOR_SIZE=25
+
+SSH_AUTH_SOCK=${XDG_RUNTIME_DIR}/ssh-agent.socket

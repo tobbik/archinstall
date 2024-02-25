@@ -11,5 +11,4 @@ if [ $(uname -m) = 'x86_64' ]; then
 fi
 
 systemctl enable libvirtd
-usermod -a -G kvm ${USERNAME}
-usermod -a -G libvirt ${USERNAME}
+usermod -a -G kvm,libvirtd ${USERNAME}

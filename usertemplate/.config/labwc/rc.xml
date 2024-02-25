@@ -8,20 +8,56 @@
 <labwc_config>
 
   <core>
-    <gap>10</gap>
+    <gap>4</gap>
   </core>
 
   <theme>
     <name></name>
-    <cornerRadius>8</cornerRadius>
-    <font name="sans" size="10" />
+    <cornerRadius>6</cornerRadius>
+    <font name="sans" size="11" />
   </theme>
+
+  <focus>
+    <followMouse>yes</followMouse>
+    <followMouseRequiresMovement>yes</followMouseRequiresMovement>
+    <raiseOnFocus>no</raiseOnFocus>
+  </focus>
+
+  <resistance>
+    <screenEdgeStrength>35</screenEdgeStrength>
+  </resistance>
+
+  <desktops>
+    <popupTime>1000</popupTime>
+    <names>
+      <name>Workspace 1</name>
+      <name>Workspace 2</name>
+      <name>Workspace 3</name>
+      <name>Workspace 4</name>
+    </names>
+  </desktops>
 
   <keyboard>
     <default />
     <!-- Use a different terminal emulator -->
     <keybind key="W-Return">
-      <action name="Execute" command="foot" />
+      <action name="Execute" command="footclient" />
+    </keybind>
+    <keybind key="W-Space">
+      <action name="Execute" command="fuzzel" />
+    </keybind>
+
+    <keybind key="C-W-Right">
+      <action name="GoToDesktop" to="right" wrap="yes" />
+    </keybind>
+    <keybind key="C-W-Left">
+      <action name="GoToDesktop" to="left" wrap="yes" />
+    </keybind>
+    <keybind key="C-S-W-Right">
+      <action name="SendToDesktop" to="right" wrap="yes" />
+    </keybind>
+    <keybind key="C-S-W-Left">
+      <action name="SendToDesktop" to="left" wrap="yes" />
     </keybind>
     <!--
       Remove a previously defined keybind
@@ -30,6 +66,7 @@
     <keybind key="W-F4">
       <action name="None" />
     </keybind>
+
   </keyboard>
 
   <mouse>
@@ -37,9 +74,14 @@
     <!-- Show a custom menu on desktop right click -->
     <context name="Root">
       <mousebind button="Right" action="Press">
-        <action name="ShowMenu" menu="some-custom-menu" />
+        <action name="ShowMenu" menu="right-click-menu" />
       </mousebind>
     </context>
   </mouse>
+  <libinput>
+    <device>
+      <naturalScroll>yes</naturalScroll>
+    </device>
+  </libinput>
 
 </labwc_config>

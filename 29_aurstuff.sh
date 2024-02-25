@@ -24,7 +24,6 @@ PACKAGES=(
   xdiskusage
   iwgtk
   neovim-gtk
-  #redshift-minimal
 )
 
 # wayland related
@@ -55,7 +54,7 @@ PACKAGES+=(
 fi
 
 # .. used on the Thinkpad X13s
-if [ x$(uname -m) = x"x86_64" ]; then
+if [ x$(uname -m) = x"aarch64" ] && [ ! -f /boot/config.txt ] ; then
 PACKAGES+=(
   qmic-git
   qrtr-git
@@ -85,10 +84,12 @@ cd ${OLDDIR}
 
 
 # set up .bashrc to invoke nvm properly
-cat >> /home/${USERNAME}/.bashrc << EOBASHRC
+if ! grep -q 'init-nvm' /home/${USERNAME}/.bashrc ; then
+  cat >> /home/${USERNAME}/.bashrc << EOBASHRC
 
 # initialize node version manager if present
 if [ -f  /usr/share/nvm/init-nvm.sh ]; then
   source /usr/share/nvm/init-nvm.sh
 fi
 EOBASHRC
+fi

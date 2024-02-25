@@ -1,8 +1,9 @@
 source config.sh
 
+# base-devel covers automake autoconf flex bison make sudo etc.
 pacman -S --needed --noconfirm \
-  clang clang-analyzer tcc make gdb valgrind pkg-config pkgconf cmake \
-  bc elfutils flex bison lldb \
+  base-devel bc elfutils gdb \
+  clang clang-analyzer lldb tcc valgrind pkg-config cmake \
   ocl-icd hyperfine \
   nginx fcgiwrap git git-lfs tig wireshark-cli apache figlet \
   lua lua-socket lua-filesystem luajit \
@@ -12,14 +13,10 @@ pacman -S --needed --noconfirm \
   neovim vim
 
 if [ $(uname -m) = 'x86_64' ]; then
-  pacman -S --noconfirm linux-headers pypy pypy3
-elif [ $(uname -m) = 'aarch64' ]; then
-  pacman -S --noconfirm linux-aarch64-headers
+  pacman -S --noconfirm --needed pypy pypy3
 fi
 
-usermod -a -G git       ${USERNAME}
-usermod -a -G http      ${USERNAME}
-usermod -a -G wireshark ${USERNAME}
+usermod -a -G git,http,wireshark       ${USERNAME}
 
 #set up git
 sudo --user ${USERNAME} git config --global user.name   "${GITNAME}"

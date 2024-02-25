@@ -30,7 +30,6 @@ if [ x"${BOOTMNGR}" == x"refind" ]; then
   refind-install
 fi
 
-
 if [ x"${BOOTMNGR}" == x"efistub" ]; then
   # generate unified kernels
   mkinitcpio -p linux
@@ -40,13 +39,12 @@ if [ x"${BOOTMNGR}" == x"efistub" ]; then
     --label "Arch Linux" --loader '\EFI\Arch\arch-linux.efi'
 fi
 
-
 if [ x"${BOOTMNGR}" == x"systemd" ]; then
   bootctl install
 fi
-
 
 if [ x"${BOOTMNGR}" == x"xbootldr" ]; then
   echo 'Installing bootloader for XBOOTLDR: `bootctl --esp-path=/efi --boot-path=/boot install`'
   bootctl --esp-path=/efi --boot-path=/boot install
 fi
+

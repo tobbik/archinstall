@@ -1,44 +1,25 @@
 source config.sh
 
+if pacman -Q openresolv ; then
+  pacman -Rdd openresolv
+fi
+
 pacman -S --needed --noconfirm \
   iwd systemd-resolvconf wireless-regdb
 
-cat >> "/etc/systemd/network/wlan.network" << EONETCFG
-[Match]
-Type=wlan
+if test x${NETWORK_TYPE} = x"WLAN" || test x${NETWORK_TYPE} = x"BOTH"; then
+  NW_TYPE=wlan NW_IGN_CARR_LOSS=5s NW_ROUTEMETRIC=600 envsubst \
+    < template.network \
+    > "/etc/systemd/network/wlan.network"
+fi
 
-[Network]
-DHCP=yes
-IgnoreCarrierLoss=3s
-DNSSEC=false
+if test x${NETWORK_TYPE} = x"ETHER" || test x${NETWORK_TYPE} = x"BOTH"; then
+  NW_TYPE=ether NW_IGN_CARR_LOSS=5s NW_ROUTEMETRIC=100 envsubst \
+    < template.network  \
+    > "/etc/systemd/network/ether.network"
+fi
 
-[DHCPv4]
-UseDomains=true
-RouteMetric=600
-
-[IPv6AcceptRA]
-UseDomains=true
-RouteMetric=600
-EONETCFG
-
-cat >> "/etc/systemd/network/ether.network" << EONETCFG
-[Match]
-Type=ether
-
-[Network]
-DHCP=yes
-DNSSEC=false
-
-[DHCPv4]
-UseDomains=true
-RouteMetric=100
-
-[IPv6AcceptRA]
-UseDomains=true
-RouteMetric=100
-EONETCFG
-
-mkdir /etc/iwd  &&  cat > /etc/iwd/main.conf << EOIWDCONF
+mkdir /etc/iwd && cat > /etc/iwd/main.conf << EOIWDCONF
 [General]
 EnableNetworkConfiguration=True
 
@@ -47,8 +28,10 @@ EnableIPv6=True
 NameResolvingService=systemd
 EOIWDCONF
 
-rm -f /etc/resolv.conf
-ln -s /run/systemd/resolve/stub-resolv.conf /etc/resolv.conf
+if [ ! -L /etc/resolv.conf ]; then
+  rm -f /etc/resolv.conf
+  ln -s /run/systemd/resolve/stub-resolv.conf /etc/resolv.conf
+fi
 
 systemctl enable iwd
 systemctl enable systemd-networkd.service

@@ -17,4 +17,4 @@ pacman-key  --lsign 9FD0B48BBBD974B80A3310AB6462EE0B8E382F3F
 
 pacman -Sy
 pacman -Rdd --noconfirm linux-firmware linux-aarch64
-pacman -S --noconfirm linux-x13s
+pacman -S --noconfirm x13s-firmware linux-x13s linux-x13-headers

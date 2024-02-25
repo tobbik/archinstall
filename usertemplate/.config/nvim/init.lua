@@ -10,6 +10,7 @@ vim.cmd( 'set list!' )
 
 --vim.cmd [[ map <S-Insert> <MiddleMouse> ]]
 vim.cmd [[ map! <S-Insert> <C-R>+ ]]
+--vim.g.colors_name = "wombat256mod"
 vim.cmd [[ colorscheme wombat256mod ]]
 --vim.opt.guifont = { "Ubuntu Mono", ":h14" }
 vim.opt.guifont = { "Ubuntu Mono:h12" }
@@ -47,3 +48,9 @@ vim.api.nvim_set_keymap('', '<D-v>', '+p<CR>',  { noremap = true, silent = true}
 vim.api.nvim_set_keymap('!', '<D-v>', '<C-R>+', { noremap = true, silent = true})
 vim.api.nvim_set_keymap('t', '<D-v>', '<C-R>+', { noremap = true, silent = true})
 vim.api.nvim_set_keymap('v', '<D-v>', '<C-R>+', { noremap = true, silent = true})
+
+
+-- Disable zig auto-format
+vim.g.zig_fmt_autosave = 0
+
+

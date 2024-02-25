@@ -7,10 +7,6 @@
 MODULES=(
    01_config.sh
    02_base.sh
-   # 03_network_dhcp.sh
-   # 03_network_netctl_static.sh
-   # 03_network_netctl_auto.sh
-   # 03_network_nwmngr.sh
    03_network_iwd.sh
    04_bluetooth.sh
    05_setup_user.sh
@@ -51,9 +47,10 @@ KEYBOARD=us
 LOCALELC="en_CA.UTF-8"
 TIMEZONE="America/Vancouver"
 TIMESTAMP=$(date -Iseconds)
+NETWORKTYPE="wlan"        # wlan|ether|both
 
 # this needs intervention; refind and grub work proper
-# systemd, xbootldr and efistub need work; see setup-chroot.sh 
+# systemd, xbootldr and efistub need work; see setup-chroot.sh
 BOOTMNGR=systemd
 
 # docker container directory - if you choose the docker package and not set

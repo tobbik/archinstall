@@ -9,8 +9,8 @@ pacman -S --needed --noconfirm \
   neovim-qt gvim \
   graphicsmagick imagemagick ghostscript \
   gvim geany geany-plugins scite \
-  openconnect openvpn \
+  openconnect openvpn
 
 if [ $(uname -m) = 'x86_64' ]; then
-  pacman -S --noconfirm neovide
+  pacman -S --needed --noconfirm neovide
 fi

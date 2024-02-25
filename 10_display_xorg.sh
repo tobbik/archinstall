@@ -4,13 +4,13 @@ source config.sh
 # XFCE Desktop
 # lightdm Display Manager
 pacman -S --needed --noconfirm \
-  mesa libva-mesa-driver mesa-vdpau \
-  xorg-server xorg-apps xorg-xinit mesa mesa-demos \
+  mesa libva-mesa-driver mesa-vdpau mesa-demos \
+  xorg-server xorg-apps xorg-xinit \
   xorg-xclipboard xclip xsel xdg-utils \
   xterm rxvt-unicode rxvt-unicode-terminfo \
   xfce4 xfce4-goodies \
   lightdm lightdm-gtk-greeter light-locker \
-  glfw-x11
+  glfw-x11 gammastep
 
 # set xfce4 as standard X desktop for non graphical login
 cp /etc/X11/xinit/xinitrc                /home/${USERNAME}/.xinitrc
@@ -48,4 +48,19 @@ polkit.addRule(function(action, subject) {
 });
 EORULES
 
+cat > "/home/${USERNAME}/.config/gammastep/config.ini" << EOGAMMACONFIG
+[general]
+temp-day=5700
+temp-night=3600
+fade=1
+gamma=0.8
+adjustment-method=randr
+location-provider=manual
+
+[manual]
+lat=55.7
+lon=12.6
+EOGAMMACONFIG
+
+sudo --user ${USERNAME} systemctl --user enable gammastep.service
 

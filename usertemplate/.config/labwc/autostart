@@ -10,11 +10,11 @@ swaybg -c '#113344' >/dev/null 2>&1 &
 #     output HDMI-A-1 position 1366,0
 #     output eDP-1 position 0,0
 #   }
-kanshi >/dev/null 2>&1 &
+kanshi > /dev/null 2>&1 &
 
 # Launch a panel such as yambar or waybar.
-sfwbar >/dev/null 2>&1 &
-#yambar >/dev/null 2>&1 &
+sfwbar > /dev/null 2>&1 &
+#yambar > /dev/null 2>&1 &
 
 # Enable notifications. Typically GNOME/KDE application notifications go
 # through the org.freedesktop.Notifications D-Bus API and require a client such
@@ -35,13 +35,20 @@ wlsunset -l 48.48 -L -123.53 -t 3500 -T 5700 &
 swayidle -w \
 	timeout 300  'swaylock -f -c 000000' \
 	timeout 305  'wlopm --off \*' \
+	timeout 320  'systemctl suspend' \
 	resume       'wlopm --on \*' \
 	before-sleep 'swaylock -f -c 000000' >/dev/null 2>&1 &
 
 # desktop services
-/usr/bin/foot --server &
+
+# use the service might be more reliable and has better logging
+# systemctl --user enable foot-server.service
+systemctl --user start foot-server.service
+# /usr/bin/foot --server &
 
 /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 
-/usr/bin/thunar --daemon &
+# file manager service. pcmanfm should be sufficient and more lightweight than thunar
+# /usr/bin/thunar --daemon &
+/usr/bin/pcmanfm --daemon-mode &
 
