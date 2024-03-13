@@ -1,4 +1,5 @@
 source config.sh
+source helper.sh
 
 # Everyday GUI tools
 pacman -S --needed --noconfirm \
@@ -17,3 +18,6 @@ pacman -S --needed --noconfirm \
 
 # setupuser audio
 cp -avr /usr/share/pipewire /home/${USERNAME}/.config/
+
+enable_service( pipewire-pulse.service, ${USERNAME} )
+enable_service( wireplumber.service, ${USERNAME} )

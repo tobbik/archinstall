@@ -1,6 +1,7 @@
 source config.sh
+source helper.sh
 
 pacman -S --needed --noconfirm \
   bluez-tools bluez-utils
 
-systemctl enable bluetooth.service
+enable_service( bluetooth.service )

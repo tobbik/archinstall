@@ -19,3 +19,12 @@ cp -av /var/lib/iwd/*.psk /mnt/var/lib/iwd/
 
 arch-chroot /mnt /root/installer/setup-chroot.sh
 
+# must be dun after the arch-chroot installation because this will release
+# the bind-mount of /etc/resolv.conf
+if [ ! -L /mnt/etc/resolv.conf ]; then
+  OLDPWD=$(pwd)
+  cd /mnt/etc
+  rm ./resolv.conf
+  ln -s /run/systemd/resolve/resolv.conf ./resolv.conf
+  cd ${OLDPWD}
+fi

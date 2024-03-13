@@ -1,4 +1,5 @@
 source config.sh
+source helper.sh
 
 # everything Xorg and Terminals
 # XFCE Desktop
@@ -10,7 +11,7 @@ pacman -S --needed --noconfirm \
   xterm rxvt-unicode rxvt-unicode-terminfo \
   xfce4 xfce4-goodies \
   lightdm lightdm-gtk-greeter light-locker \
-  glfw-x11 gammastep
+  glfw gammastep
 
 # set xfce4 as standard X desktop for non graphical login
 cp /etc/X11/xinit/xinitrc                /home/${USERNAME}/.xinitrc
@@ -37,7 +38,7 @@ EOURXVTD
 sed -i "s/#pam-service/pam-service/" /etc/lightdm/lightdm.conf
 sed -i "s/#session-wrapper/session-wrapper/" /etc/lightdm/lightdm.conf
 
-systemctl enable lightdm.service
+systemctl is-enabled lightdm.service >/dev/null || systemctl enable lightdm.service
 
 cat >> /etc/polkit-1/rules.d/85-suspend.rules << EORULES
 polkit.addRule(function(action, subject) {
@@ -58,9 +59,12 @@ adjustment-method=randr
 location-provider=manual
 
 [manual]
-lat=55.7
-lon=12.6
+lat=48.48
+lon=-123.53
 EOGAMMACONFIG
 
-sudo --user ${USERNAME} systemctl --user enable gammastep.service
+enable_service( gammastep.service, ${USERNAME} )
 
+if ! grep -q 'xset -b' /home/${USERNAME}/.bashrc ; then
+  printf "# keep term silent (no beeps)\nxset -b\n" > /home/${USERNAME}/.bashrc
+fi

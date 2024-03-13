@@ -1,4 +1,5 @@
 source config.sh
+source helper.sh
 
 pacman -S --needed --noconfirm \
   qemu-base virt-manager qemu-guest-agent \
@@ -10,5 +11,5 @@ if [ $(uname -m) = 'x86_64' ]; then
     virtualbox libguestfs edk2-ovmf
 fi
 
-systemctl enable libvirtd
+enable_service( libvirtd )
 usermod -a -G kvm,libvirtd ${USERNAME}

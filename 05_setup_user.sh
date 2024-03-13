@@ -1,7 +1,7 @@
 source config.sh
 
 if ! grep -q ${USERNAME} /etc/passwd ; then
-  # copy all .files (vim,terminal stuff etc.)
+  # copy all .files (vim, terminal stuff etc.)
   cp -R  ./usertemplate /home/${USERNAME}
   cp -av  /etc/skel/.*  /home/${USERNAME}/
 
@@ -10,9 +10,9 @@ if ! grep -q ${USERNAME} /etc/passwd ; then
     --password ${USERPASS} \
     --shell /bin/bash \
     ${USERNAME}
-else
-  usermod -a -G  wheel,network,video,audio,storage,power,locate ${USERNAME}
 fi
+
+usermod -a -G  wheel,network,video,audio,storage,power,locate ${USERNAME}
 
 if [ ! -f /etc/sudoers.d/${USERNAME} ]; then
   # user sudo access
@@ -28,8 +28,6 @@ echo -e "${ROOTPASS}\n${ROOTPASS}" | (passwd -q root)
 # set up .bashrc with some aliases
 if ! grep -q 'alias lla=' /home/${USERNAME}/.bashrc ; then
   cat >> /home/${USERNAME}/.bashrc << EOBASHRC
-# to make sure terminals remains silent (no beeps)
-xset -b
 
 alias s='sudo'
 alias ll='ls --color=auto -l'

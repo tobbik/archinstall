@@ -36,7 +36,7 @@ if [ x"${BOOTMNGR}" == x"efistub" ]; then
 
   efibootmgr --create --unicode \
     --disk /dev/sda --part 1 \
-    --label "Arch Linux" --loader '\EFI\Arch\arch-linux.efi'
+    --label "Arch Linux" --loader '\EFI\Linux\arch-linux.efi'
 fi
 
 if [ x"${BOOTMNGR}" == x"systemd" ]; then

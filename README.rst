@@ -12,6 +12,9 @@ https://www.archlinux.org/download/.
 
 The file needed is called *archlinux-<YEAR>.<MONTH>.<DATE>_x86_64.iso*.
 
+copoy on USB stick:
+``dd bs=4M if=path/to/archlinux-version-x86_64.iso of=/dev/disk/by-id/usb-My_flash_drive conv=fsync oflag=direct status=progress``
+
 After booting the ISO follow these steps:
 
  - make sure you have a network connection and can reach the interwebs

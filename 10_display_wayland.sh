@@ -1,9 +1,9 @@
 source config.sh
+source helper.sh
 
 OLDDIR=$(pwd)
 BASEURL="https://aur.archlinux.org/cgit/aur.git/snapshot"
 sudo --user ${USERNAME} mkdir -p ${AURBUILDDIR}
-cd ${AURBUILDDIR}
 
 # everything Xorg and Terminals and command line
 pacman -S --needed --noconfirm \
@@ -15,34 +15,21 @@ pacman -S --needed --noconfirm \
   foot foot-terminfo \
   mpv libmpdclient pipewire-jack scdoc \
   xorg-xwayland wlroots wayland-protocols gtk-layer-shell \
-  glfw-wayland
+  glfw
 
-# this depends heavily on having 07_dev_base.sh executed before hand
-PACKAGES=(
-  labwc
-)
-
-for PKG in ${PACKAGES[@]}; do
-  echo "_______________################# Creating ${PKG} #######################"
-  cd ${AURBUILDDIR}
-  curl ${BASEURL}/${PKG}.tar.gz -O && sudo --user ${USERNAME} tar xzf ${PKG}.tar.gz
-  rm ${PKG}.tar.gz && cd ${PKG}
-  sed -i "s:^\(arch=.*\)):\1 'aarch64'):" PKGBUILD
-  sudo --user ${USERNAME} makepkg
-  pacman -U --needed --noconfirm ${PKG}-*$(uname -m).pkg.tar.*
-  rm -rf src pkg
-done
+# this depends heavily on 07_dev_base.sh having been executed
+handle_aur_pkg ${USERNAME} ${AURBUILDDIR} labwc
 
 cd ${OLDDIR}
 
-GREETER_CMD="tuigreet --time --issue --user-menu --user-menu-min-uid 1000 --remember --remember-user-session --asterisks --cmd labwc"
+GREETER_CMD="tuigreet --time --issue --user-menu --user-menu-min-uid 1000 --remember --remember-user-session --asterisks"
 
 # use the labwc compositor for wlgreet
-sed \
+sed -i /etc/greetd/config.toml \
   -e "s:^command.*:command = \"${GREETER_CMD}\":" \
-  -e "s:^user.*:user = ${USERNAME}:" \
-  -i /etc/greetd/config.toml
+  -e "s:^user.*:user = ${USERNAME}:"
 
-systemctl enable greetd.service
-sudo --user ${USERNAME} systemctl --user enable foot-server.service
+enable_service( greetd.service )
+enable_service( foot-server.service, ${USERNAME} )
+enable_service( ssh-agent.service, ${USERNAME} )
 

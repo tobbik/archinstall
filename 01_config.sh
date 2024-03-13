@@ -1,7 +1,7 @@
 source config.sh
 
 # set up Hostname
-if ! grep -q ${HOSTNAME} /etc/hostname ; then
+if [ ! -f /etc/hostname ]; then
   echo ${HOSTNAME} > /etc/hostname
 fi
 
@@ -15,10 +15,12 @@ LC_COLLATE="C"
 EOLOCALE
 
   # set up avalaible system locales
-  sed -e 's/^#\(en_CA.UTF-8 UTF-8\)/\1/' \
+  sed -i /etc/locale.gen \
+    -e 's/^#\(C.UTF-8 UTF-8\)/\1/' \
+    -e 's/^#\(en_CA.UTF-8 UTF-8\)/\1/' \
     -e 's/^#\(fr_CA.UTF-8 UTF-8\)/\1/' \
     -e 's/^#\(de_DE.UTF-8 UTF-8\)/\1/' \
-    -e 's/^#\(en_US.UTF-8 UTF-8\)/\1/' -i /etc/locale.gen
+    -e 's/^#\(en_US.UTF-8 UTF-8\)/\1/'
   locale-gen
 fi
 

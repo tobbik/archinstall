@@ -1,4 +1,5 @@
 source config.sh
+source helper.sh
 
 # this allows to substitute in iptables-nft. Needed for kubectl and friends
 if pacman -Q iptables ; then
@@ -30,16 +31,15 @@ ExecStart=/usr/bin/dockerd \\
 EODOCKERCONF
 
 #systemctl daemon-reload
-systemctl enable docker.service
+enable_service( docker.service )
 
 update-ca-trust
 
 # set up .bashrc with some aliases
 if ! grep -q 'alias dockerps=' /home/${USERNAME}/.bashrc ; then
-  cat >> /home/${USERNAME}/.bashrc << EOBASHRC
-
-alias dockerps='docker ps --format "table {{.Names}}\\t{{.Image}}\\t{{.Ports}}\\t{{.Status}}"'
-EOBASHRC
+  printf \
+    "alias dockerps='docker ps --format \"table {{.Names}}\\t{{.Image}}\\t{{.Ports}}\\t{{.Status}}\"\n\n'" \
+    >> /home/${USERNAME}/.bashrc
 fi
 
 # IP4 forwarding for kubernetes

@@ -8,7 +8,7 @@
 <labwc_config>
 
   <core>
-    <gap>4</gap>
+    <gap>3</gap>
   </core>
 
   <theme>
@@ -58,6 +58,12 @@
     </keybind>
     <keybind key="C-S-W-Left">
       <action name="SendToDesktop" to="left" wrap="yes" />
+    </keybind>
+    <keybind key="XF86_MonBrightnessUp">
+      <action name="Execute" command="brightnessctl set +5%" />
+    </keybind>
+    <keybind key="XF86_MonBrightnessDown">
+      <action name="Execute" command="brightnessctl set 5%-" />
     </keybind>
     <!--
       Remove a previously defined keybind

@@ -1,6 +1,5 @@
 #!/bin/bash
 
-#   11_aurstuff.sh   # doesn't work because it runs as root
 #installation modules
 # just comment out modules you don't want
 # eg. exclude 30_graphics and 31_office etc for a developer VM
@@ -15,6 +14,7 @@ MODULES=(
    08_bootmgr.sh
 
    10_display_wayland.sh
+   10_display_wayland_aur.sh
    #10_display_xorg.sh
    12_gui.sh
    #13_vmware.sh
@@ -22,6 +22,8 @@ MODULES=(
 
    #16_amd.sh
    #16_intel.sh
+   #16_x13s.sh
+   #16_rpi4.sh
 
    20_devtools.sh
    21_dotnet.sh

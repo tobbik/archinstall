@@ -1,8 +1,11 @@
 source config.sh
 
 UUIDROOT=$(blkid -s UUID -o value /dev/sda2)
-# backup the linux.preset for mkinitcpio
-cp /etc/mkinitcpio.d/linux.preset /root/installer/logs/linux.preset.bak
+
+if [ ! -f /root/installer/logs/linux.preset.bak ]; then
+  # backup the linux.preset for mkinitcpio
+  cp /etc/mkinitcpio.d/linux.preset /root/installer/logs/linux.preset.bak
+fi
 
 # ----------------------------------------------- BOOTLDRX (systemd-boot based)
 if [ x"${BOOTMNGR}" == x"xbootldr" ]; then
@@ -69,7 +72,6 @@ EOARCHFBCONF
 
 fi
 
-
 # ---------------------------------------------------------------       grub
 if [ x"${BOOTMNGR}" == x"grub" ]; then
   pacman -S --needed --noconfirm grub
@@ -80,25 +82,23 @@ if [ x"${BOOTMNGR}" == x"refind" ]; then
   pacman -S --needed --noconfirm refind
 fi
 
-
 # ---------------------------------------------------------------       efistub
 if [ x"${BOOTMNGR}" == x"efistub" ]; then
-  ESP_PATH=/boot/EFI/Arch
+  ESP_PATH=/boot/EFI/Linux
   mkdir -p ${ESP_PATH}
   echo -e "ro root=UUID=${UUIDROOT}"        > /etc/kernel/cmdline
   echo -e "ro root=UUID=${UUIDROOT} single" > /etc/kernel/fallback_cmdline
 
   sed \
-    -e "s:^\(default_image=.*\):#\1:" \
-    -e "s:^\(default_uki\).*:\1=\"${ESP_PATH}/arch-linux.efi\":" \
-    -e "s:^\(default_options\).*:\1=\"--cmdline /etc/kernel/cmdline\":" \
-    -e "s:^\(fallback_image=.*\):#\1:" \
-    -e "s:^\(fallback_uki\).*:\1=\"${ESP_PATH}/arch-linux-fallback.efi\":" \
-    -e "s:^\(fallback_options\).*:\1=\"-S autodetect --cmdline /etc/kernel/fallback_cmdline\":" \
+    -e "s:.*\(default_image=.*\):#\1:" \
+    -e "s:.*\(default_uki\).*:\1=\"${ESP_PATH}/arch-linux.efi\":" \
+    -e "s:.*\(default_options\).*:\1=\"--cmdline /etc/kernel/cmdline\":" \
+    -e "s:.*\(fallback_image=.*\):#\1:" \
+    -e "s:.*\(fallback_uki\).*:\1=\"${ESP_PATH}/arch-linux-fallback.efi\":" \
+    -e "s:.*\(fallback_options\).*:\1=\"-S autodetect --cmdline /etc/kernel/fallback_cmdline\":" \
     -i /etc/mkinitcpio.d/linux.preset
 
   # UGLY-HACK remove and re-install linux kernel to have it pickup the vmlinuz location
   pacman -Rdd --noconfirm linux
   pacman -S   --noconfirm linux
-
 fi

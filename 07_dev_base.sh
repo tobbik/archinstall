@@ -23,5 +23,5 @@ sudo --user ${USERNAME} git config --global user.name   "${GITNAME}"
 sudo --user ${USERNAME} git config --global user.email  "${GITEMAIL}"
 sudo --user ${USERNAME} git config --global core.editor "/usr/bin/nvim"
 sudo --user ${USERNAME} git config --global merge.tool  "/usr/bin/nvim -d"
-git lfs install
+sudo --user ${USERNAME} git lfs install
 
