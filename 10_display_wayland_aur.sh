@@ -9,7 +9,7 @@ if [x"${AURBUILDDIR}" == "x" ]; then
 fi
 
 pacman -S --needed --noconfirm \
-  wlroots extra-cmake-modules \
+  wlroots extra-cmake-modules qt6-tools \
   doctest doxygen iio-sensor-proxy libdbusmenu-gtk3 \
   nlohmann-json glm gobject-introspection libliftoff
 
@@ -63,7 +63,6 @@ PACKAGES=(
 )
 
 for PACKAGE in ${PACKAGES[@]}; do
-  echo "_______________################# Creating ${PKG} #######################"
-  handle ${USERNAME} ${AURBUILDDIR} ${PACKAGE}
+  handle_aur_pkg ${USERNAME} ${AURBUILDDIR} ${PACKAGE}
 done
 

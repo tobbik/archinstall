@@ -5,7 +5,7 @@ OLDDIR=$(pwd)
 BASEURL="https://aur.archlinux.org/cgit/aur.git/snapshot"
 
 pacman -S --needed --noconfirm \
-  qt5-webengine \
+  qt5-webengine qt5-remoteobjects \
   intltool \
   patchelf \
   fltk \
@@ -44,8 +44,7 @@ PACKAGES+=(
 fi
 
 for PACKAGE in ${PACKAGES[@]}; do
-  echo "_______________################# Creating ${PKG} #######################"
-  handle ${USERNAME} ${AURBUILDDIR} ${PACKAGE}
+  handle_aur_pkg ${USERNAME} ${AURBUILDDIR} ${PACKAGE}
 done
 
 # set up .bashrc to invoke nvm properly

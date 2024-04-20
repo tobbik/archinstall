@@ -5,7 +5,7 @@ source helper.sh
 pacman -S --needed --noconfirm \
   file-roller guvcview fbset pcmanfm-gtk3 \
   thunar thunar-archive-plugin thunar-media-tags-plugin thunar-volman tumbler \
-  chromium firefox \
+  chromium firefox glfw \
   gvfs-smb gvfs-nfs gvfs-mtp \
   libreoffice-fresh libreoffice-fresh-en-gb libreoffice-fresh-de \
   ttf-bitstream-vera ttf-dejavu ttf-droid ttf-hack ttf-inconsolata ttf-roboto \

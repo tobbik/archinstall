@@ -1,6 +1,9 @@
 ARCH=$(uname -m)
 BASEURL="https://aur.archlinux.org/cgit/aur.git/snapshot"
 
+sed -i /etc/makepkg.conf \
+  -e "s/purge debug lto/purge !debug lto/"
+
 function prepare_aur_pkg () {
   local ASUSER="$1"
   local OLDDIR=$(pwd)
@@ -32,7 +35,7 @@ function create_aur_pkg () {
     pacman -U --needed --noconfirm ${PKG}-*${ARCH}.pkg.tar.*
   fi
   rm -rf src pkg
-  echo "..........PACKAGE INSTALLED >>>>>>>>>>>>>>>>>>>>>>"
+  echo "..........PACKAGE '${PKG}' INSTALLED >>>>>>>>>>>>>>>>>>>>>>"
   cd ${OLDDIR}
 }
 
@@ -40,6 +43,7 @@ function handle_aur_pkg() {
   local ASUSER="${1}"
   local BUILDDIR="${2}"
   local PKG="$3"
+  echo "_______________################# Creating ${PKG} #######################"
   if [ ! -d ${BUILDDIR} ]; then sudo --user ${ASUSER} mkdir -p ${BUILDDIR}; fi
   if [ ! -d ${BUILDDIR}/${PKG} ]; then
     prepare_aur_pkg ${ASUSER} ${BUILDDIR} ${PKG}
