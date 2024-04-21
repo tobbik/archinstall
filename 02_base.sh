@@ -25,10 +25,10 @@ if [ x$(uname -m) = x"x86_64" ]; then
   pacman -S --needed --noconfirm vbetool
 fi
 
-enable_service( sshd )
-enable_service( systemd-timesyncd )
+enable_service sshd
+enable_service systemd-timesyncd
 
 echo "Setup hardware random number generator"
 sed -i 's:^.*\(RNGD_OPTS=\).*:\1"-o /dev/random -r /dev/hwrng":' /etc/conf.d/rngd
-enable_service( rngd )
+enable_service rngd
 

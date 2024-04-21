@@ -23,7 +23,7 @@ handle_aur_pkg ${USERNAME} ${AURBUILDDIR} labwc
 sed -i /etc/ly/config.ini \
   -e "s:.*save.*true.*:save = true:"
 
-enable_service( ly.service )
-enable_service( foot-server.service, ${USERNAME} )
-enable_service( ssh-agent.service, ${USERNAME} )
+enable_service ly.service
+enable_service foot-server.service, ${USERNAME}
+enable_service ssh-agent.service, ${USERNAME}
 

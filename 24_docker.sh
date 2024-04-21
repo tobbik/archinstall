@@ -31,7 +31,7 @@ ExecStart=/usr/bin/dockerd \\
 EODOCKERCONF
 
 #systemctl daemon-reload
-enable_service( docker.service )
+enable_service docker.service
 
 update-ca-trust
 

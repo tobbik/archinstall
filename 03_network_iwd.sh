@@ -41,7 +41,7 @@ if [ ! -L /etc/resolv.conf ]; then
   ln -s /run/systemd/resolve/stub-resolv.conf /etc/resolv.conf
 fi
 
-enable_service( iwd )
-enable_service( systemd-networkd )
-enable_service( systemd-resolved )
+enable_service iwd
+enable_service systemd-networkd
+enable_service systemd-resolved
 

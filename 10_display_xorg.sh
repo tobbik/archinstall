@@ -63,7 +63,7 @@ lat=48.48
 lon=-123.53
 EOGAMMACONFIG
 
-enable_service( gammastep.service, ${USERNAME} )
+enable_service gammastep.service, ${USERNAME}
 
 if ! grep -q 'xset -b' /home/${USERNAME}/.bashrc ; then
   echo -e "# keep term silent (no beeps)\nxset -b" > /home/${USERNAME}/.bashrc

@@ -11,5 +11,5 @@ if [ $(uname -m) = 'x86_64' ]; then
     virtualbox libguestfs edk2-ovmf
 fi
 
-enable_service( libvirtd )
+enable_service libvirtd
 usermod -a -G kvm,libvirtd ${USERNAME}
