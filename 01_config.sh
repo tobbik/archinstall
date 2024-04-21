@@ -5,7 +5,6 @@ if [ ! -f /etc/hostname ]; then
   echo ${HOSTNAME} > /etc/hostname
 fi
 
-
 # set up locale stuff, keyboard, time etc
 if [ ! -f /etc/locale.conf ]; then
   cat > /etc/locale.conf << EOLOCALE
@@ -16,11 +15,11 @@ EOLOCALE
 
   # set up avalaible system locales
   sed -i /etc/locale.gen \
-    -e 's/^#\(C.UTF-8 UTF-8\)/\1/' \
     -e 's/^#\(en_CA.UTF-8 UTF-8\)/\1/' \
     -e 's/^#\(fr_CA.UTF-8 UTF-8\)/\1/' \
     -e 's/^#\(de_DE.UTF-8 UTF-8\)/\1/' \
     -e 's/^#\(en_US.UTF-8 UTF-8\)/\1/'
+  echo -e "C.UTF-8 UTF-8" >> /etc/locale.gen
   locale-gen
 fi
 

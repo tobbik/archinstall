@@ -66,5 +66,5 @@ EOGAMMACONFIG
 enable_service( gammastep.service, ${USERNAME} )
 
 if ! grep -q 'xset -b' /home/${USERNAME}/.bashrc ; then
-  printf "# keep term silent (no beeps)\nxset -b\n" > /home/${USERNAME}/.bashrc
+  echo -e "# keep term silent (no beeps)\nxset -b" > /home/${USERNAME}/.bashrc
 fi

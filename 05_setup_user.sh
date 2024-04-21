@@ -16,7 +16,7 @@ usermod -a -G  wheel,network,video,audio,storage,power,locate ${USERNAME}
 
 if [ ! -f /etc/sudoers.d/${USERNAME} ]; then
   # user sudo access
-  printf "${USERNAME} ALL=(ALL:ALL) ALL\n" > /etc/sudoers.d/${USERNAME}
+  echo "${USERNAME} ALL=(ALL:ALL) ALL" > /etc/sudoers.d/${USERNAME}
 fi
 
 # reset the password to be sure
@@ -40,7 +40,7 @@ fi
 if ! grep -q 'hardstatus alwayslastline' /home/${USERNAME}/.screenrc; then
   echo "hardstatus alwayslastline '%{= G}%-Lw%{= R}[%n*%f %t]%{= G}%+Lw%='" >> \
     /home/${USERNAME}/.screenrc
-  echo -e "\nterm screen-256color\n" >> /home/${USERNAME}/.screenrc
+  echo -e "\nterm screen-256color" >> /home/${USERNAME}/.screenrc
 fi
 
 chown -R ${USERNAME}:users /home/${USERNAME}

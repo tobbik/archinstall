@@ -9,33 +9,41 @@ function prepare_aur_pkg () {
   local OLDDIR=$(pwd)
   cd "$2"
   local PKG="$3"
+  echo "     ..... PREPARING '${PKG}' >>>>>>>>>>>"
   curl ${BASEURL}/${PKG}.tar.gz -O && sudo --user ${ASUSER} tar xzf ${PKG}.tar.gz
   rm ${PKG}.tar.gz && cd ${PKG}
   if grep '^arch=' PKGBUILD | grep -q -i 'any' ; then
     echo "FOUND 'any' architecture. Do nothing."
-    return
+  else
+    if ! grep '^arch=' PKGBUILD | grep -q -i ${ARCH} ; then
+      echo "     ..... ADDING ${ARCH} to buildable architectures"
+      sed -i "s:^\(arch=.*\)):\1 '${ARCH}'):" PKGBUILD
+    fi
   fi
-  if ! grep '^arch=' PKGBUILD | grep -q -i ${ARCH} ; then
-    echo "Adding ${ARCH} to buildable architectures"
-    sed -i "s:^\(arch=.*\)):\1 '${ARCH}'):" PKGBUILD
-  fi
-  echo "..........ARCHITECTURE ADJUSTED >>>>>>>>>>>>>>>>>>"
   cd ${OLDDIR}
 }
 
 function create_aur_pkg () {
   local ASUSER="$1"
   local OLDDIR=$(pwd)
-  cd "$2"
+  cd "$2/$3"
   local PKG="$3"
+  echo "     ..... BUILDING '${PKG}' >>>>>>>>>>>"
   sudo --user ${ASUSER} makepkg
   if grep -q '^arch.*any' PKGBUILD ; then
-    pacman -U --needed --noconfirm ${PKG}-*any.pkg.tar.*
+    if pacman -U --needed --noconfirm ${PKG}-*any.pkg.tar.* ; then
+      echo "     ..... PACKAGE '${PKG}' INSTALLED >>>>>>>>>>>>"
+    else
+      echo "     ..... PACKAGE INSTALLATION FAILED '${PKG}' >>>>>>>>>>>>"
+    fi
   else
-    pacman -U --needed --noconfirm ${PKG}-*${ARCH}.pkg.tar.*
+    if pacman -U --needed --noconfirm ${PKG}-*${ARCH}.pkg.tar.* ; then
+      echo "     ..... PACKAGE '${PKG}' INSTALLED >>>>>>>>>>>>"
+    else
+      echo "     ..... PACKAGE INSTALLATION FAILED '${PKG}' >>>>>>>>>>>>"
+    fi
   fi
   rm -rf src pkg
-  echo "..........PACKAGE '${PKG}' INSTALLED >>>>>>>>>>>>>>>>>>>>>>"
   cd ${OLDDIR}
 }
 
@@ -43,9 +51,9 @@ function handle_aur_pkg() {
   local ASUSER="${1}"
   local BUILDDIR="${2}"
   local PKG="$3"
-  echo "_______________################# Creating ${PKG} #######################"
   if [ ! -d ${BUILDDIR} ]; then sudo --user ${ASUSER} mkdir -p ${BUILDDIR}; fi
   if [ ! -d ${BUILDDIR}/${PKG} ]; then
+    echo "################# Creating ${PKG} #######################"
     prepare_aur_pkg ${ASUSER} ${BUILDDIR} ${PKG}
     create_aur_pkg  ${ASUSER} ${BUILDDIR} ${PKG}
   fi

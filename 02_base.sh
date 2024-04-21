@@ -1,14 +1,12 @@
 source config.sh
 source helper.sh
 
-$KEYRING=archlinux-keyring
 if [ x$(uname -m) = x"aarch64" ]; then
-  KEYRING=archlinuxarm-keyring
+  pacman -S --needed --noconfirm archlinuxarm-keyring mkinitcpio
 fi
-
-# package installation
-pacman -S --needed --noconfirm \
-  $KEYRING mkinitcpio
+if [ x$(uname -m) = x"x86_64" ]; then
+  pacman -S --needed --noconfirm archlinux-keyring mkinitcpio
+fi
 
 # packers, helpers etc ...
 pacman -S --needed --noconfirm \

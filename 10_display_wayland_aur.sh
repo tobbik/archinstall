@@ -1,17 +1,18 @@
 source config.sh
 source build_aur_pkg.sh
 
-if [x"${USERNAME}" == "x" ]; then
+if [ x"${USERNAME}" == "x" ]; then
   USERNAME=tobias
 fi
-if [x"${AURBUILDDIR}" == "x" ]; then
+if [ x"${AURBUILDDIR}" == "x" ]; then
   AURBUILDDIR=/home/tobias/aur_pks
 fi
 
 pacman -S --needed --noconfirm \
-  wlroots extra-cmake-modules qt6-tools \
+  wlroots extra-cmake-modules qt6-tools glibmm gtkmm3 \
   doctest doxygen iio-sensor-proxy libdbusmenu-gtk3 \
-  nlohmann-json glm gobject-introspection libliftoff
+  nlohmann-json glm gobject-introspection libliftoff \
+  pipewire-pulse scour ddcutil tllist
 
 # needed to build yambar
 sudo --user ${USERNAME} gpg --keyserver keys.gnupg.net --recv-keys 5BBD4992C116573F

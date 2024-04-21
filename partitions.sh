@@ -50,17 +50,16 @@ ARCHSWAP
 w
 EOGDISK
 
-mkfs.vfat     -F32 -n XBOOTLDR "${DISKNAME}5"
-y | mkfs.ext4      -L ARCHROOT "${DISKNAME}6"
-y | mkfs.ext4      -L ARCHHOME "${DISKNAME}7"
-mkswap             -L ARCHSWAP "${DISKNAME}8"
+mkfs.vfat     -F32 -n EFI      "${DISKNAME}1"
+y | mkfs.ext4      -L ARCHROOT "${DISKNAME}2"
+y | mkfs.ext4      -L ARCHHOME "${DISKNAME}3"
+mkswap             -L ARCHSWAP "${DISKNAME}4"
 
-mount  "${DISKNAME}6" /mnt
-mkdir  /mnt/{efi,boot,home}
-mount  "${DISKNAME}1" /mnt/efi
-mount  "${DISKNAME}5" /mnt/boot
-mount  "${DISKNAME}7" /mnt/home
-swapon "${DISKNAME}8"
+mount  "${DISKNAME}2" /mnt
+mkdir  /mnt/{boot,home}
+mount  "${DISKNAME}1" /mnt/boot
+mount  "${DISKNAME}3" /mnt/home
+swapon "${DISKNAME}4"
 
 #mkdir /mnt/mnt
 #mkdir /mnt/mnt/data1

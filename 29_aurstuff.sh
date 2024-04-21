@@ -11,7 +11,7 @@ pacman -S --needed --noconfirm \
   fltk \
   meson scdoc gtk4 qrencode vte3 \
   seatd tllist xcb-util xcb-util-cursor ddcutil \
-  rust xdg-utils
+  rust xdg-utils libnotify jdk-openjdk
 
 PACKAGES=(
   osmconvert
