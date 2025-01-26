@@ -10,7 +10,3 @@ pacman -S --needed --noconfirm \
   python-websockets python-brotli python-brotlicffi \
   python-xattr python-pyxattr python-secretstorage
 
-if [ $(uname -m) = 'x86_64' ]; then
-  pacman -S --needed --noconfirm \
-    phantomjs
-fi

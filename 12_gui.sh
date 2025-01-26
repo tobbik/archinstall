@@ -14,7 +14,8 @@ pacman -S --needed --noconfirm \
   alsa-tools alsa-utils alsa-plugins \
   pipewire wireplumber pipewire-audio \
   pipewire-alsa pipewire-pulse pipewire-jack \
-  helvum pavucontrol
+  helvum pavucontrol \
+  alacritty
 
 # setupuser audio
 cp -avr /usr/share/pipewire /home/${USERNAME}/.config/

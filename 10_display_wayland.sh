@@ -1,10 +1,6 @@
 source config.sh
 source helper.sh
 
-OLDDIR=$(pwd)
-BASEURL="https://aur.archlinux.org/cgit/aur.git/snapshot"
-sudo --user ${USERNAME} mkdir -p ${AURBUILDDIR}
-
 # everything Xorg and Terminals and command line
 pacman -S --needed --noconfirm \
   mesa libva-mesa-driver mesa-vdpau mesa-demos \
@@ -15,13 +11,16 @@ pacman -S --needed --noconfirm \
   fuzzel bemenu-wayland \
   foot foot-terminfo \
   mpv libmpdclient pipewire-jack scdoc \
-  xorg-xwayland wlroots wayland-protocols gtk-layer-shell
-
-# this depends heavily on 07_dev_base.sh having been executed
-handle_aur_pkg ${USERNAME} ${AURBUILDDIR} labwc
+  xorg-xwayland wlroots wayland-protocols gtk-layer-shell \
+  labwc
 
 sed -i /etc/ly/config.ini \
-  -e "s:.*save.*true.*:save = true:"
+  -e "s:.*save.*true.*:save = true:" \
+  -e "s:.*clear_password.*:clear_password = true:" \
+  -e "s:.*clock = .*:clock = %c:" \
+  -e "s:.*big_clock = .*:big_clock = true:" \
+  -e "s:.*border_fg = .*:border_fg = 3:" \
+  -e "s:.*vi_mode = .*:vi_mode = true:"
 
 enable_service ly.service
 enable_service foot-server.service, ${USERNAME}

@@ -42,7 +42,3 @@ if ! grep -q 'alias dockerps=' /home/${USERNAME}/.bashrc ; then
     >> /home/${USERNAME}/.bashrc
 fi
 
-# IP4 forwarding for kubernetes
-if ! grep -q 'ip_forward=' /etc/sysctl.d/10-net.conf ; then
-  echo "net.ipv4.ip_forward=1" >> /etc/sysctl.d/10-net.conf
-fi

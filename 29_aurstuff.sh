@@ -22,7 +22,7 @@ PACKAGES=(
   visual-studio-code-bin
   xdiskusage
   iwgtk
-  neovim-gtk
+  #neovim-gtk           # currently broken
 )
 
 # ... no ARM packages :-(

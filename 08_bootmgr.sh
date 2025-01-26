@@ -73,17 +73,17 @@ EOARCHFBCONF
 fi
 
 # ---------------------------------------------------------------       grub
-if [ x"${BOOTMNGR}" == x"grub" ]; then
+if [ x"${BOOTMNGR}" = x"grub" ]; then
   pacman -S --needed --noconfirm grub
 fi
 
 # ---------------------------------------------------------------       refind
-if [ x"${BOOTMNGR}" == x"refind" ]; then
+if [ x"${BOOTMNGR}" = x"refind" ]; then
   pacman -S --needed --noconfirm refind
 fi
 
 # ---------------------------------------------------------------       efistub
-if [ x"${BOOTMNGR}" == x"efistub" ]; then
+if [ x"${BOOTMNGR}" = x"efistub" ]; then
   ESP_PATH=/boot/EFI/Linux
   mkdir -p ${ESP_PATH}
   echo -e "ro root=UUID=${UUIDROOT}"        > /etc/kernel/cmdline

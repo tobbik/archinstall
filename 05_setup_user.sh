@@ -44,3 +44,5 @@ if ! grep -q 'hardstatus alwayslastline' /home/${USERNAME}/.screenrc; then
 fi
 
 chown -R ${USERNAME}:users /home/${USERNAME}
+
+chown -R ${USERNAME}:users /mnt/root/installer

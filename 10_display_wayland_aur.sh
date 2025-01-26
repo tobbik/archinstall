@@ -12,7 +12,8 @@ pacman -S --needed --noconfirm \
   wlroots extra-cmake-modules qt6-tools glibmm gtkmm3 \
   doctest doxygen iio-sensor-proxy libdbusmenu-gtk3 \
   nlohmann-json glm gobject-introspection libliftoff \
-  pipewire-pulse scour ddcutil tllist
+  pipewire-pulse scour ddcutil tllist glib2-devel boost \
+  ttf-font gtk4 libadwaita libyaml
 
 # needed to build yambar
 sudo --user ${USERNAME} gpg --keyserver keys.gnupg.net --recv-keys 5BBD4992C116573F
@@ -52,7 +53,8 @@ PACKAGES=(
   #wf-shell-git
   wayfire-plugins-extra-git
   wcm-git
-  labwc
+  #libsfdo                    # moved to extra
+  #labwc                      # moved to extra
   #labwc-menu-generator-git
   labwc-tweaks-git
   luminance

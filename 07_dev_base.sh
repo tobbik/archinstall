@@ -25,3 +25,8 @@ sudo --user ${USERNAME} git config --global core.editor "/usr/bin/nvim"
 sudo --user ${USERNAME} git config --global merge.tool  "/usr/bin/nvim -d"
 sudo --user ${USERNAME} git lfs install
 
+if ! grep -q 'alias nv=' /home/${USERNAME}/.bashrc ; then
+  echo "alias nv='nvim'"         >> /home/${USERNAME}/.bashrc
+  echo "alias nvd='nvim -d'"     >> /home/${USERNAME}/.bashrc
+  echo "alias nvdiff='nvim -d'"  >> /home/${USERNAME}/.bashrc
+fi

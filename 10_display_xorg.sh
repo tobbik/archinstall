@@ -3,14 +3,12 @@ source helper.sh
 
 # everything Xorg and Terminals
 # XFCE Desktop
-# lightdm Display Manager
 pacman -S --needed --noconfirm \
   mesa libva-mesa-driver mesa-vdpau mesa-demos \
   xorg-server xorg-apps xorg-xinit \
   xorg-xclipboard xclip xsel xdg-utils \
   xterm rxvt-unicode rxvt-unicode-terminfo \
   xfce4 xfce4-goodies \
-  lightdm lightdm-gtk-greeter light-locker \
   gammastep
 
 # set xfce4 as standard X desktop for non graphical login
@@ -34,11 +32,6 @@ Terminal=false
 Hidden=false
 EOURXVTD
 
-# LightDM settings
-sed -i "s/#pam-service/pam-service/" /etc/lightdm/lightdm.conf
-sed -i "s/#session-wrapper/session-wrapper/" /etc/lightdm/lightdm.conf
-
-enable-service( lightdm.service )
 
 cat >> /etc/polkit-1/rules.d/85-suspend.rules << EORULES
 polkit.addRule(function(action, subject) {
@@ -49,6 +42,7 @@ polkit.addRule(function(action, subject) {
 });
 EORULES
 
+mkdir -p "/home/${USERNAME}/.config/gammastep"
 cat > "/home/${USERNAME}/.config/gammastep/config.ini" << EOGAMMACONFIG
 [general]
 temp-day=5700
@@ -66,5 +60,5 @@ EOGAMMACONFIG
 enable_service gammastep.service, ${USERNAME}
 
 if ! grep -q 'xset -b' /home/${USERNAME}/.bashrc ; then
-  echo -e "# keep term silent (no beeps)\nxset -b" > /home/${USERNAME}/.bashrc
+  echo -e "# keep term silent (no beeps)\nxset -b" >> /home/${USERNAME}/.bashrc
 fi
