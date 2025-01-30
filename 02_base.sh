@@ -14,7 +14,7 @@ pacman -S --needed --noconfirm \
   dosfstools exfatprogs e2fsprogs ntfs-3g \
   rsync whois nmap wget curl traceroute iperf \
   htop btop p7zip zip unzip unrar man-pages man-db lsof \
-  powertop acpi tlp acpi_call \
+  cpupower powertop acpi tlp acpi_call \
   smartmontools nfs-utils cifs-utils \
   wol dmidecode rng-tools mc bmon \
   pwgen mlocate linux-firmware \

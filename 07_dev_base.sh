@@ -2,15 +2,17 @@ source config.sh
 
 # base-devel covers automake autoconf flex bison make sudo etc.
 pacman -S --needed --noconfirm \
-  base-devel bc elfutils gdb \
-  clang clang-analyzer lldb tcc valgrind pkg-config cmake \
+  base-devel bc elfutils gdb valgrind \
+  clang clang-analyzer lldb lld \
+  tcc pkg-config cmake \
   ocl-icd hyperfine \
   nginx fcgiwrap git git-lfs tig wireshark-cli apache figlet \
   lua lua-socket lua-filesystem luajit \
   go rust meson \
   python3 ipython cython \
   nodejs npm js115 php \
-  neovim vim
+  neovim vim \
+  tree-sitter-bash tree-sitter-python tree-sitter-javascript tree-sitter-rust tree-sitter-query
 
 if [ $(uname -m) = 'x86_64' ]; then
   pacman -S --noconfirm --needed pypy pypy3

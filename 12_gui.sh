@@ -3,19 +3,23 @@ source helper.sh
 
 # Everyday GUI tools
 pacman -S --needed --noconfirm \
-  file-roller guvcview fbset pcmanfm-gtk3 \
+  file-roller guvcview fbset pcmanfm-gtk3 alacritty cups \
   thunar thunar-archive-plugin thunar-media-tags-plugin thunar-volman tumbler \
   chromium firefox glfw \
   gvfs-smb gvfs-nfs gvfs-mtp \
   libreoffice-fresh libreoffice-fresh-en-gb libreoffice-fresh-de \
+  hunspell-en_ca hunspell-en_us hunspell-de \
   ttf-bitstream-vera ttf-dejavu ttf-droid ttf-hack ttf-inconsolata ttf-roboto \
   ttf-ubuntu-font-family ttf-liberation awesome-terminal-fonts ttf-font-awesome \
-  zathura-pdf-mupdf tesseract-data-eng \
-  alsa-tools alsa-utils alsa-plugins \
+  zathura-pdf-mupdf tesseract-data-eng mupdf-gl \
+  alsa-tools alsa-utils alsa-plugins pamixer \
   pipewire wireplumber pipewire-audio \
   pipewire-alsa pipewire-pulse pipewire-jack \
-  helvum pavucontrol \
-  alacritty
+  helvum pavucontrol
+
+if [ $(uname -m) = 'x86_64' ]; then
+  pacman -S --noconfirm --needed signal-desktop
+fi
 
 # setupuser audio
 cp -avr /usr/share/pipewire /home/${USERNAME}/.config/

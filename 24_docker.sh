@@ -8,9 +8,9 @@ fi
 
 pacman -S --needed --noconfirm \
   docker arch-install-scripts lxc haveged \
-  "bind" docker-compose \
+  "bind" docker-compose docker-buildx \
   bridge-utils lua-alt-getopt ca-certificates \
-  iptables-nft kubeadm kubelet kubectl
+  iptables-nft kubeadm kubelet kubectl helm
 
 usermod -a -G docker ${USERNAME}
 

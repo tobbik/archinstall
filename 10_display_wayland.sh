@@ -15,12 +15,12 @@ pacman -S --needed --noconfirm \
   labwc
 
 sed -i /etc/ly/config.ini \
-  -e "s:.*save.*true.*:save = true:" \
-  -e "s:.*clear_password.*:clear_password = true:" \
-  -e "s:.*clock = .*:clock = %c:" \
-  -e "s:.*big_clock = .*:big_clock = true:" \
-  -e "s:.*border_fg = .*:border_fg = 3:" \
-  -e "s:.*vi_mode = .*:vi_mode = true:"
+  -e "s:^save.*true.*:save = true:" \
+  -e "s:^clear_password.*:clear_password = true:" \
+  -e "s:^clock = .*:clock = %c:" \
+  -e "s:^big_clock = .*:big_clock = true:" \
+  -e "s:^border_fg = .*:border_fg = 3:" \
+  -e "s:^vi_mode = .*:vi_mode = true:"
 
 enable_service ly.service
 enable_service foot-server.service, ${USERNAME}
