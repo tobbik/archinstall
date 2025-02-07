@@ -62,6 +62,8 @@ PACKAGES=(
   yambar
   wlopm
   wlr-randr
+  wlr-which-key
+  wlrctl
   #wdisplays
 )
 

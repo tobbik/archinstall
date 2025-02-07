@@ -32,7 +32,6 @@ Terminal=false
 Hidden=false
 EOURXVTD
 
-
 cat >> /etc/polkit-1/rules.d/85-suspend.rules << EORULES
 polkit.addRule(function(action, subject) {
     if (action.id == "org.freedesktop.login1.suspend" &&

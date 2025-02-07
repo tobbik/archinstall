@@ -52,6 +52,9 @@ swayidle -w \
 systemctl --user is-active foot-server.service || \
   systemctl --user start foot-server.service
 
+systemctl --user is-active ssh-agent.service || \
+  systemctl --user start ssh-agent.service
+
 /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 
 # file manager service. pcmanfm should be sufficient and more lightweight than thunar

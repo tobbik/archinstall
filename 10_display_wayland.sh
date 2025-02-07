@@ -8,15 +8,15 @@ pacman -S --needed --noconfirm \
   wf-recorder wayvnc grim slurp \
   swaylock swayidle swaybg wlsunset \
   polkit-gnome brightnessctl kanshi \
-  fuzzel bemenu-wayland \
+  fuzzel tofi bemenu-wayland \
   foot foot-terminfo \
-  mpv libmpdclient pipewire-jack scdoc \
+  mpv libmpdclient pipewire-jack scdoc playerctl \
   xorg-xwayland wlroots wayland-protocols gtk-layer-shell \
   labwc
 
 sed -i /etc/ly/config.ini \
-  -e "s:^save.*true.*:save = true:" \
-  -e "s:^clear_password.*:clear_password = true:" \
+  -e "s:^save =.*:save = true:" \
+  -e "s:^clear_password =.*:clear_password = true:" \
   -e "s:^clock = .*:clock = %c:" \
   -e "s:^big_clock = .*:big_clock = true:" \
   -e "s:^border_fg = .*:border_fg = 3:" \
