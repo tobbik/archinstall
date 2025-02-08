@@ -15,4 +15,4 @@ enable_service libvirtd
 
 # wait until it shows up in /etc/group
 sleep 3
-usermod -a -G kvm,libvirtd ${USERNAME}
+usermod -a -G kvm,libvirt ${USERNAME}

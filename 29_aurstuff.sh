@@ -22,7 +22,6 @@ PACKAGES=(
   visual-studio-code-bin
   xdiskusage
   iwgtk
-  gftp
   #neovim-gtk           # currently broken
 )
 

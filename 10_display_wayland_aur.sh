@@ -58,6 +58,7 @@ PACKAGES=(
   #labwc-menu-generator-git
   labwc-tweaks-git
   luminance
+  tofi
   sfwbar
   yambar
   wlopm

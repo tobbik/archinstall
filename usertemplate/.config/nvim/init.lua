@@ -13,7 +13,7 @@ vim.cmd [[ map! <S-Insert> <C-R>+ ]]
 --vim.g.colors_name = "wombat256mod"
 vim.cmd [[ colorscheme wombat256mod ]]
 --vim.opt.guifont = { "Ubuntu Mono", ":h14" }
-vim.opt.guifont = { "Ubuntu Mono:h12" }
+vim.opt.guifont = { "Ubuntu Mono:h14" }
 
 vim.opt.expandtab = true
 vim.opt.smarttab = true

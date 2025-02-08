@@ -8,11 +8,10 @@ pacman -S --needed --noconfirm \
   wf-recorder wayvnc grim slurp \
   swaylock swayidle swaybg wlsunset \
   polkit-gnome brightnessctl kanshi \
-  fuzzel tofi bemenu-wayland \
   foot foot-terminfo \
   mpv libmpdclient pipewire-jack scdoc playerctl \
   xorg-xwayland wlroots wayland-protocols gtk-layer-shell \
-  labwc
+  labwc fuzzel
 
 sed -i /etc/ly/config.ini \
   -e "s:^save =.*:save = true:" \
