@@ -25,3 +25,6 @@ enable_service ly.service
 enable_service foot-server.service, ${USERNAME}
 enable_service ssh-agent.service, ${USERNAME}
 
+
+# seatd is installed as a dependency of labwc
+usermod -a -G seat ${USERNAME}

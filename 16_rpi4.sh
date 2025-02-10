@@ -20,7 +20,9 @@ fi
 
 sed -i 's: rw : ro :' /boot/cmdline.txt
 if ! grep -q 'cgroup_' /boot/cmdline.txt ; then
-  sed -i 's:^\(root.*\)$:\1 cgroup_enable=cpuset cgroup_memory=1 cgroup_enable=memory swapaccount=1 :' /boot/cmdline.txt
+  sed \
+    -e 's:^\(root.*\)$:\1 cgroup_enable=cpuset cgroup_memory=1 cgroup_enable=memory swapaccount=1 :' \
+    -i /boot/cmdline.txt
 fi
 
 sed -e 's/mmcblk1/mmcblk0/g' -i /etc/fstab

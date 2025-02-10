@@ -1,8 +1,7 @@
 source config.sh
 
 pacman -S --needed --noconfirm \
-  xmlto docbook-xsl inetutils uboot-tools vboot-utils dtc \
-  rmtfs
+  xmlto docbook-xsl inetutils uboot-tools vboot-utils dtc rmtfs
 
 cat >> /etc/pacman.conf << EOF
 

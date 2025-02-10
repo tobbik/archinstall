@@ -1,5 +1,6 @@
 source config.sh
 
-pacman -S --needed --noconfirm \
-  linux-firmware xf86-video-amdgpu xf86-video-vesa vulkan-radeon amdvlk \
-  libva-mesa-driver mesa-vdpau amd-ucode linux-headers
+pacman -s --needed --noconfirm \
+  linux-firmware linux-headers \
+  xf86-video-vesa libva-mesa-driver mesa-vdpau \
+  xf86-video-amdgpu vulkan-radeon amdvlk amd-ucode

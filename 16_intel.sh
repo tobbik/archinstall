@@ -1,5 +1,6 @@
 source config.sh
 
 pacman -S --needed --noconfirm \
-  linux-firmware xf86-video-intel xf86-video-vesa vulkan-intel \
-  libva-mesa-driver mesa-vdpau intel-ucode linux-headers
+  linux-firmware linux-headers \
+  xf86-video-vesa libva-mesa-driver mesa-vdpau \
+  xf86-video-intel vulkan-intel intel-ucode

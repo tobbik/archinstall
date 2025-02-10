@@ -39,21 +39,24 @@ MODULES=(
 )
 
 # ----------- CONFIG Variables
-HOSTNAME=tkarch
+HOSTNAME=machinename
 USERNAME=arch
 USERPASS="arch"
 GITNAME="Your Fullname"
-GITEMAIL="email address for git commits"
-ROOTPASS="rootpass"
+GITEMAIL="email.address@for.git.commits"
+ROOTPASS="PassForRoot"
 KEYBOARD=us
 LOCALELC="en_CA.UTF-8"
 TIMEZONE="America/Vancouver"
 TIMESTAMP=$(date -Iseconds)
-NETWORKTYPE="wlan"        # wlan|ether|both
+NETWORKTYPE="wlan"   # wlan | ether | both
+
+# microcode selection
+MICROCODE="intel"    # amd | intel
 
 # this needs intervention; refind and grub work proper
 # systemd, xbootldr and efistub need work; see setup-chroot.sh
-BOOTMNGR=systemd
+BOOTMNGR=systemd     # systemd | xbootldr | efistub | refind | grub
 
 # docker container directory - if you choose the docker package and not set
 # DOCKERSTORAGEPATH the installer will create /home/${USERNAME}/docker instead

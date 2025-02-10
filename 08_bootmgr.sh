@@ -1,39 +1,46 @@
 source config.sh
 
-UUIDROOT=$(blkid -s UUID -o value /dev/sda2)
+UUIDROOT=$(blkid -s UUID -o value /dev/sda1)
+BOOTPATH="/boot"
+ESPPATH="/efi"
 
 if [ ! -f /root/installer/logs/linux.preset.bak ]; then
   # backup the linux.preset for mkinitcpio
   cp /etc/mkinitcpio.d/linux.preset /root/installer/logs/linux.preset.bak
 fi
 
-# ----------------------------------------------- BOOTLDRX (systemd-boot based)
-if [ x"${BOOTMNGR}" == x"xbootldr" ]; then
+if [ x"${BOOTMNGR}" == x"systemd" ]; then
+  BOOTPATH="/boot"
+  ESPPATH=${BOOTPATH}
+fi
+
+# ------- BOOTLDRX or gummiboot (systemd-boot based)
+if [ x"${BOOTMNGR}" == x"xbootldr" || x"${BOOTMNGR}" == x"systemd" ]; then
 
 # for xbootldr to work:
 # loader.conf MUST be on the ESP (the same where the systemd.efi lives)
 # loader/entries/*.conf MUST live on the XBOOTLDR partition
 
-  mkdir -p /boot/loader/entries /efi/loader
-  cat > /efi/loader/loader.conf << EOUBOOTLOAD
+  mkdir -p ${ESPPATH}/loader ${BOOTPATH}/loader/entries
+  cat > ${ESPPATH}/loader/loader.conf << EOUBOOTLOAD
 default       arch
 timeout       8
 console-mode  max
 editor        no
 EOUBOOTLOAD
 
-  cat > /boot/loader/entries/arch.conf << EOARCHCONF
+  cat > ${BOOTPATH}/loader/entries/arch.conf << EOARCHCONF
 title   Arch Linux
 linux   /vmlinuz-linux
-initrd  /intel-ucode.img
+initrd  /{MICROCODE}-ucode.img
 initrd  /initramfs-linux.img
 options root=UUID=${UUIDROOT} ro
 EOARCHCONF
 
-  cat > /boot/loader/entries/arch-fallback.conf << EOARCHFBCONF
+  cat > ${BOOTPATH}/loader/entries/arch-fallback.conf << EOARCHFBCONF
 title   Arch Linux (fallback initramfs)
 linux   /vmlinuz-linux
-initrd  /intel-ucode.img
+initrd  /{MICROCODE}-ucode.img
 initrd  /initramfs-linux-fallback.img
 options root=UUID=${UUIDROOT} single ro
 EOARCHFBCONF
@@ -41,50 +48,19 @@ EOARCHFBCONF
 fi
 #----------------------------------------------------------------
 
-
-
-# ---------------------------------------------------------------       systemd-boot
-if [ x"${BOOTMNGR}" == x"systemd" ]; then
-  mkdir -p /boot/loader/entries
-
-  cat > /boot/loader/loader.conf << EOUBOOTLOAD
-default       arch
-timeout       6
-console-mode  max
-editor        no
-EOUBOOTLOAD
-
-  cat > /boot/loader/entries/arch.conf << EOARCHCONF
-title   Arch Linux
-linux   /vmlinuz-linux
-initrd  /intel-ucode.img
-initrd  /initramfs-linux.img
-options root=UUID=${UUIDROOT} ro
-EOARCHCONF
-
-  cat > /boot/loader/entries/arch-fallback.conf << EOARCHFBCONF
-title   Arch Linux (fallback initramfs)
-linux   /vmlinuz-linux
-initrd  /intel-ucode.img
-initrd  /initramfs-linux-fallback.img
-options root=UUID=${UUIDROOT} single ro
-EOARCHFBCONF
-
-fi
-
-# ---------------------------------------------------------------       grub
-if [ x"${BOOTMNGR}" = x"grub" ]; then
+# ------------------------------------------------ grub
+if [ x"${BOOTMNGR}" == x"grub" ]; then
   pacman -S --needed --noconfirm grub
 fi
 
-# ---------------------------------------------------------------       refind
-if [ x"${BOOTMNGR}" = x"refind" ]; then
+# ------------------------------------------------ refind
+if [ x"${BOOTMNGR}" == x"refind" ]; then
   pacman -S --needed --noconfirm refind
 fi
 
-# ---------------------------------------------------------------       efistub
-if [ x"${BOOTMNGR}" = x"efistub" ]; then
-  ESP_PATH=/boot/EFI/Linux
+# ------------------------------------------------ efistub
+if [ x"${BOOTMNGR}" == x"efistub" ]; then
+  ESP_PATH=${BOOTPATH}/EFI/Linux
   mkdir -p ${ESP_PATH}
   echo -e "ro root=UUID=${UUIDROOT}"        > /etc/kernel/cmdline
   echo -e "ro root=UUID=${UUIDROOT} single" > /etc/kernel/fallback_cmdline

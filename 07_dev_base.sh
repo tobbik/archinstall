@@ -14,6 +14,7 @@ pacman -S --needed --noconfirm \
   neovim vim \
   tree-sitter-bash tree-sitter-python tree-sitter-javascript tree-sitter-rust tree-sitter-query
 
+
 if [ $(uname -m) = 'x86_64' ]; then
   pacman -S --noconfirm --needed pypy pypy3
 fi
