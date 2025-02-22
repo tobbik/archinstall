@@ -3,9 +3,8 @@ source helper.sh
 
 # Everyday GUI tools
 pacman -S --needed --noconfirm \
-  file-roller guvcview fbset pcmanfm-gtk3 alacritty cups \
-  thunar thunar-archive-plugin thunar-media-tags-plugin thunar-volman tumbler \
-  chromium firefox glfw \
+  file-roller guvcview fbset pcmanfm-gtk3 alacritty \
+  chromium firefox glfw cups \
   gvfs-smb gvfs-nfs gvfs-mtp \
   libreoffice-fresh libreoffice-fresh-en-gb libreoffice-fresh-de \
   hunspell-en_ca hunspell-en_us hunspell-de \
@@ -18,11 +17,11 @@ pacman -S --needed --noconfirm \
   helvum pavucontrol
 
 if [ $(uname -m) = 'x86_64' ]; then
-  pacman -S --noconfirm --needed signal-desktop
+  pacman -S --noconfirm --needed signal-desktop ghostty
 fi
 
 # setupuser audio
 cp -avr /usr/share/pipewire /home/${USERNAME}/.config/
 
-enable_service pipewire-pulse.service, ${USERNAME}
-enable_service wireplumber.service, ${USERNAME}
+enable_service pipewire-pulse.service ${USERNAME}
+enable_service wireplumber.service ${USERNAME}

@@ -13,7 +13,7 @@ pacman -S --needed --noconfirm \
   wpa_supplicant wireless_tools net-tools openssh \
   dosfstools exfatprogs e2fsprogs ntfs-3g \
   rsync whois nmap wget curl traceroute iperf \
-  htop btop p7zip zip unzip unrar man-pages man-db lsof \
+  htop btop zip unzip unrar man-pages man-db lsof \
   cpupower powertop acpi tlp acpi_call \
   smartmontools nfs-utils cifs-utils \
   wol dmidecode rng-tools mc bmon \
@@ -22,7 +22,7 @@ pacman -S --needed --noconfirm \
   efibootmgr efivar pacman-contrib
 
 if [ x$(uname -m) = x"x86_64" ]; then
-  pacman -S --needed --noconfirm vbetool
+  pacman -S --needed --noconfirm vbetool 7zip
 fi
 
 enable_service sshd

@@ -9,12 +9,25 @@ pacman -S --needed --noconfirm \
   intltool \
   patchelf \
   fltk \
-  meson scdoc gtk4 qrencode vte3 \
+  meson scdoc qrencode vte4 \
   seatd tllist xcb-util xcb-util-cursor ddcutil \
   rust xdg-utils libnotify jdk-openjdk
 
+
+if [ ! -d ${AURBUILDDIR}/osmconvert ]; then
+  prepare_aur_pkg       ${USERNAME} ${AURBUILDDIR} osmconvert
+  local OLDDIR=$(pwd)
+  cd ${AURBUILDDIR}/osmconvert
+  OSMCONVSHASUM=$(makepkg -g)
+  cd ${OLDDIR}
+  sed -i ${AURBUILDDIR}/OSMCONVSHASUM/PKGBUILD \
+      -e "s|^sha256sum.*$|${OSMCONVSHASUM}|"
+  create_aur_pkg        ${USERNAME} ${AURBUILDDIR} osmconvert
+fi
+
+
 PACKAGES=(
-  osmconvert
+  #osmconvert
   splitter
   mkgmap
   nvm
@@ -22,7 +35,7 @@ PACKAGES=(
   visual-studio-code-bin
   xdiskusage
   iwgtk
-  #neovim-gtk           # currently broken
+  neovim-gtk-git           # non-git currently broken
 )
 
 # ... no ARM packages :-(

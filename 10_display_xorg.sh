@@ -4,11 +4,12 @@ source helper.sh
 # everything Xorg and Terminals
 # XFCE Desktop
 pacman -S --needed --noconfirm \
-  mesa libva-mesa-driver mesa-vdpau mesa-demos \
+  mesa libva-mesa-driver mesa-vdpau mesa-demos libvdpau-va-gl \
   xorg-server xorg-apps xorg-xinit \
   xorg-xclipboard xclip xsel xdg-utils \
   xterm rxvt-unicode rxvt-unicode-terminfo \
   xfce4 xfce4-goodies \
+  thunar thunar-archive-plugin thunar-media-tags-plugin thunar-volman tumbler \
   gammastep
 
 # set xfce4 as standard X desktop for non graphical login
@@ -18,7 +19,7 @@ echo -e "\nxset -b\nexec startxfce4" >>  /home/${USERNAME}/.xinitrc
 
 # start urxvtd at startup
 mkdir -p "/home/${USERNAME}/.config/autostart"
-cat > "/home/${USERNAME}/.config/autostart/URxvt daemon.desktop" << EOURXVTD
+cat >    "/home/${USERNAME}/.config/autostart/URxvt daemon.desktop" << EOURXVTD
 [Desktop Entry]
 Encoding=UTF-8
 Version=0.9.4
@@ -47,7 +48,7 @@ cat > "/home/${USERNAME}/.config/gammastep/config.ini" << EOGAMMACONFIG
 temp-day=5700
 temp-night=3600
 fade=1
-gamma=0.8
+gamma=1.0
 adjustment-method=randr
 location-provider=manual
 
@@ -56,7 +57,7 @@ lat=48.48
 lon=-123.53
 EOGAMMACONFIG
 
-enable_service gammastep.service, ${USERNAME}
+enable_service gammastep.service ${USERNAME}
 
 if ! grep -q 'xset -b' /home/${USERNAME}/.bashrc ; then
   echo -e "# keep term silent (no beeps)\nxset -b" >> /home/${USERNAME}/.bashrc

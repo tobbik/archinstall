@@ -5,8 +5,18 @@ if [ x"${USERNAME}" == "x" ]; then
   USERNAME=tobias
 fi
 if [ x"${AURBUILDDIR}" == "x" ]; then
-  AURBUILDDIR=/home/tobias/aur_pks
+  AURBUILDDIR=/home/${USERNAME}/pkgs
 fi
+
+REMOVABLES=(
+  wdisplays       # part of wcm-git
+)
+
+for PACKAGE in ${REMOVABLES[@]}; do
+  yes | pacman -Rc ${PACKAGE}
+  rm -rf ${AURBUILDDIR}/${PACKAGE}
+done
+
 
 pacman -S --needed --noconfirm \
   wlroots extra-cmake-modules qt6-tools glibmm gtkmm3 \
@@ -41,31 +51,12 @@ if [ ! -d ${AURBUILDDIR}/wf-shell-git ]; then
   create_aur_pkg        ${USERNAME} ${AURBUILDDIR} wf-shell-git
 fi
 
-if [ ! -d ${AURBUILDDIR}/labwc-menu-generator-git ]; then
-  prepare_aur_pkg       ${USERNAME} ${AURBUILDDIR} labwc-menu-generator-git
-  sed -i ${AURBUILDDIR}/labwc-menu-generator-git/PKGBUILD -e "/^check/,+3 d"
-  create_aur_pkg        ${USERNAME} ${AURBUILDDIR} labwc-menu-generator-git
-fi
-
 PACKAGES=(
-  #wf-config-git
-  #wayfire-git
-  #wf-shell-git
+  wf-config-git
+  wayfire-git
+  wf-shell-git
   wayfire-plugins-extra-git
   wcm-git
-  #libsfdo                    # moved to extra
-  #labwc                      # moved to extra
-  #labwc-menu-generator-git
-  labwc-tweaks-git
-  luminance
-  tofi
-  sfwbar
-  yambar
-  wlopm
-  wlr-randr
-  wlr-which-key
-  wlrctl
-  #wdisplays
 )
 
 for PACKAGE in ${PACKAGES[@]}; do

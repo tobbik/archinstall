@@ -4,7 +4,7 @@ source config.sh
 pacman -S --needed --noconfirm \
   base-devel bc elfutils gdb valgrind \
   clang clang-analyzer lldb lld \
-  tcc pkg-config cmake \
+  tcc pkg-config cmake uasm \
   ocl-icd hyperfine \
   nginx fcgiwrap git git-lfs tig wireshark-cli apache figlet \
   lua lua-socket lua-filesystem luajit \
