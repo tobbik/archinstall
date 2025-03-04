@@ -17,6 +17,7 @@ sudo --user ${USERNAME} gpg --keyserver keys.gnupg.net --recv-keys 5BBD4992C1165
 # needed for wlr-randr ?
 sudo --user ${USERNAME} gpg --keyserver keys.gnupg.net --recv-keys 0FDE7BE0E88F5E48
 #
+sudo --user ${USERNAME} gpg --keyserver keyserver.ubuntu.com  --recv-keys F4FDB18A9937358364B276E9E25D679AF73C6D2F
 
 PACKAGES=(
   labwc-menu-generator-git
@@ -25,10 +26,11 @@ PACKAGES=(
   tofi
   sfwbar
   yambar
+  wdisplays
   wlopm
+  wlogout
   wlr-which-key
   wlrctl
-  wdisplays
 )
 
 for PACKAGE in ${PACKAGES[@]}; do

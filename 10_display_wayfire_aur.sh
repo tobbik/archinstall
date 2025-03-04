@@ -25,12 +25,6 @@ pacman -S --needed --noconfirm \
   pipewire-pulse scour ddcutil tllist glib2-devel boost \
   ttf-font gtk4 libadwaita libyaml
 
-# needed to build yambar
-sudo --user ${USERNAME} gpg --keyserver keys.gnupg.net --recv-keys 5BBD4992C116573F
-# needed for wlr-randr ?
-sudo --user ${USERNAME} gpg --keyserver keys.gnupg.net --recv-keys 0FDE7BE0E88F5E48
-#
-
 handle_aur_pkg        ${USERNAME} ${AURBUILDDIR} wf-config-git
 
 if [ ! -d ${AURBUILDDIR}/wayfire-git ]; then
