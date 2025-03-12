@@ -8,6 +8,13 @@ fi
 pacman -S --needed --noconfirm \
   iwd systemd-resolvconf wireless-regdb
 
+if test x${NETWORKTYPE} = x"ether" || test x${NETWORKTYPE} = x"both"; then
+  if [ ! -f /etc/systemd/network/ether.network ]; then
+    NW_TYPE=ether NW_IGN_CARR_LOSS=5s NW_ROUTEMETRIC=100 envsubst \
+      < template.network  \
+      > "/etc/systemd/network/ether.network"
+  fi
+fi
 
 if test x${NETWORKTYPE} = x"wlan" || test x${NETWORKTYPE} = x"both"; then
   if [ ! -f /etc/systemd/network/wlan.network ]; then
@@ -17,16 +24,9 @@ if test x${NETWORKTYPE} = x"wlan" || test x${NETWORKTYPE} = x"both"; then
   fi
 fi
 
-if test x${NETWORKTYPE} = x"ether" || test x${NETWORKTYPE} = x"both"; then
-  if [ ! -f /etc/systemd/network/ether.network ]; then
-    NW_TYPE=ether NW_IGN_CARR_LOSS=5s NW_ROUTEMETRIC=100 envsubst \
-      < template.network  \
-      > "/etc/systemd/network/ether.network"
-  fi
-fi
-
 if [ ! -f /etc/iwd/main.conf ]; then
-  mkdir /etc/iwd && cat > /etc/iwd/main.conf << EOIWDCONF
+  [ ! -d /etc/iwd ] && mkdir /etc/iwd
+  cat > /etc/iwd/main.conf << EOIWDCONF
 [General]
 EnableNetworkConfiguration=True
 

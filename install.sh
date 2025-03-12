@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source partitions.sh
+# source partitions.sh
 source config.sh
 
 pacstrap /mnt base base-devel
@@ -11,7 +11,6 @@ localectl set-keymap --no-convert ${KEYBOARD}
 cp /etc/vconsole.conf /mnt/etc/vconsole.conf
 
 # copy over files into chroot
-mkdir -p /mnt/root/installer/logs
 cp -vr ./. /mnt/root/installer/
 
 mkdir -p /mnt/var/lib/iwd
@@ -19,7 +18,7 @@ cp -av /var/lib/iwd/*.psk /mnt/var/lib/iwd/
 
 arch-chroot /mnt /root/installer/setup-chroot.sh
 
-# must be dun after the arch-chroot installation because this will release
+# must be done after the arch-chroot installation because this will release
 # the bind-mount of /etc/resolv.conf
 if [ ! -L /mnt/etc/resolv.conf ]; then
   OLDPWD=$(pwd)

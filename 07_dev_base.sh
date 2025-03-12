@@ -22,17 +22,26 @@ fi
 usermod -a -G git,http,wireshark       ${USERNAME}
 
 #set up git
-OWD=$(pwd)
+INSTALLERDIR=$(pwd)
 cd /home/${USERNAME}
 sudo --user ${USERNAME} git config --global user.name   "${GITNAME}"
 sudo --user ${USERNAME} git config --global user.email  "${GITEMAIL}"
 sudo --user ${USERNAME} git config --global core.editor "/usr/bin/nvim"
 sudo --user ${USERNAME} git config --global merge.tool  "/usr/bin/nvim -d"
 sudo --user ${USERNAME} git lfs install
-cd ${OWD}
+cd ${INSTALLERDIR}
 
 if ! grep -q 'alias nv=' /home/${USERNAME}/.bashrc ; then
   echo "alias nv='nvim'"         >> /home/${USERNAME}/.bashrc
+fi
+if ! grep -q 'alias nvd=' /home/${USERNAME}/.bashrc ; then
   echo "alias nvd='nvim -d'"     >> /home/${USERNAME}/.bashrc
+fi
+if ! grep -q 'alias nvdiff=' /home/${USERNAME}/.bashrc ; then
   echo "alias nvdiff='nvim -d'"  >> /home/${USERNAME}/.bashrc
+fi
+
+if ! test -f /home/${USERNAME}/.config/nvim/init.lua ; then
+  cp -avr usertemplate/.vim* /home/${USERNAME}/
+  cp -avr usertemplate/.config/nvim /home/${USERNAME}/.config/
 fi

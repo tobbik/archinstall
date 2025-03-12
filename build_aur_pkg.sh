@@ -2,7 +2,7 @@ ARCH=$(uname -m)
 BASEURL="https://aur.archlinux.org/cgit/aur.git/snapshot"
 
 sed -i /etc/makepkg.conf \
-  -e "s/purge debug lto/purge !debug lto/"
+  -e "s:purge debug lto:purge !debug lto:"
 
 function prepare_aur_pkg () {
   local ASUSER="$1"

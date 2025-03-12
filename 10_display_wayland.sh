@@ -8,7 +8,7 @@ pacman -S --needed --noconfirm \
   wf-recorder wayvnc grim slurp \
   swaylock swayidle swaybg wlsunset gammastep \
   polkit-gnome brightnessctl kanshi \
-  foot foot-terminfo \
+  foot foot-terminfo libadwaita \
   mpv libmpdclient pipewire-jack scdoc playerctl \
   xorg-xwayland wlroots wayland-protocols gtk-layer-shell \
   labwc fuzzel \
@@ -38,9 +38,18 @@ EOGAMMACONFIG
 
 enable_service ly.service
 enable_service foot-server.service ${USERNAME}
-enable_service ssh-agent.service ${USERNAME}
 enable_service gammastep.service ${USERNAME}
-
 
 # seatd is installed as a dependency of labwc
 usermod -a -G seat ${USERNAME}
+
+if ! test -f /home/${USERNAME}/.config/labwc/autostart ; then
+  # copy all relevant .dot files (labwc, foot, fuzzel)
+  for CFGS in usertemplate/.config/{labwc,foot,fuzzel,dunst,waybar}; do
+    cp -avr ${CFGS} /home/${USERNAME}/.config/
+  done
+fi
+
+if ! grep -q 'GTK_THEME=' /home/${USERNAME}/.bash_profile; then
+  echo "export GTK_THEME=Adwaita:dark" >> /home/${USERNAME}/.bash_profile
+fi

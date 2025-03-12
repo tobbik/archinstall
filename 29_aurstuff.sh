@@ -25,7 +25,6 @@ if [ ! -d ${AURBUILDDIR}/osmconvert ]; then
   create_aur_pkg        ${USERNAME} ${AURBUILDDIR} osmconvert
 fi
 
-
 PACKAGES=(
   #osmconvert
   splitter

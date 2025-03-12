@@ -8,7 +8,7 @@ How to use
 
 First download the current archlinux iso file from on of the mirrors listed
 here:
-https://www.archlinux.org/download/.
+https://www.archlinux.org/download/
 
 The file needed is called *archlinux-<YEAR>.<MONTH>.<DATE>_x86_64.iso*.
 
@@ -22,7 +22,7 @@ After booting the ISO follow these steps:
    on top; it'll speed up the entire process considerably
  - ``curl https://codeload.github.com/tobbik/archinstall/tar.gz/master --output - | tar xz``
  - cd archinstall-master
- - review partions.sh
+ - review partions.sh, then execute it. It should create partitions and mount a full system into /mnt
  - review config.sh for names, passswords and modules to install
  - run install.sh
  - reboot

@@ -1,5 +1,4 @@
-<?xml version="1.0"?>
-
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
   This is a very simple config file with many options missing. For a complete
   set of options with comments, see docs/rc.xml.all
@@ -7,25 +6,33 @@
 <labwc_config>
   <core>
     <gap>3</gap>
+    <decoration>client</decoration>
   </core>
+  <!-- theme  -->
   <theme>
     <name>Adwaita</name>
     <cornerRadius>8</cornerRadius>
-    <font name="sans" size="11" />
+    <font name="sans" size="11"/>
     <dropShadows>yes</dropShadows>
   </theme>
-
+  <!-- window-switcher  -->
+  <windowSwitcher show="yes" preview="yes" outlines="yes" allWorkspaces="no">
+    <fields>
+      <field content="type" width="25%" />
+      <field content="trimmed_identifier" width="25%" />
+      <!-- <field content="identifier" width="25%" /> -->
+      <field content="title" width="50%" />
+    </fields>
+  </windowSwitcher>
   <!-- mouse  -->
   <focus>
     <followMouse>yes</followMouse>
     <followMouseRequiresMovement>yes</followMouseRequiresMovement>
     <raiseOnFocus>no</raiseOnFocus>
   </focus>
-
   <resistance>
     <screenEdgeStrength>35</screenEdgeStrength>
   </resistance>
-
   <!-- desktop -->
   <desktops>
     <popupTime>1000</popupTime>
@@ -38,74 +45,68 @@
       <name>Workspace 6</name>
     </names>
   </desktops>
-
   <keyboard>
-    <default />
+    <default/>
     <!-- Use a different terminal emulator -->
     <keybind key="W-Return">
-      <action name="Execute" command="footclient" />
+      <action name="Execute" command="footclient"/>
     </keybind>
     <keybind key="W-Space">
-      <action name="Execute" command="fuzzel" />
+      <action name="Execute" command="fuzzel"/>
     </keybind>
-
     <keybind key="C-W-Right">
-      <action name="GoToDesktop" to="right" wrap="yes" />
+      <action name="GoToDesktop" to="right" wrap="yes"/>
     </keybind>
     <keybind key="C-W-Left">
-      <action name="GoToDesktop" to="left" wrap="yes" />
+      <action name="GoToDesktop" to="left" wrap="yes"/>
     </keybind>
     <keybind key="C-S-W-Right">
-      <action name="SendToDesktop" to="right" wrap="yes" />
+      <action name="SendToDesktop" to="right" wrap="yes"/>
     </keybind>
     <keybind key="C-S-W-Left">
-      <action name="SendToDesktop" to="left" wrap="yes" />
+      <action name="SendToDesktop" to="left" wrap="yes"/>
     </keybind>
     <keybind key="XF86_MonBrightnessUp">
-      <action name="Execute" command="brightnessctl set +5%" />
+      <action name="Execute" command="brightnessctl set +5%"/>
     </keybind>
     <keybind key="XF86_MonBrightnessDown">
-      <action name="Execute" command="brightnessctl set 5%-" />
+      <action name="Execute" command="brightnessctl set 5%-"/>
     </keybind>
     <!--
       Remove a previously defined keybind
       A shorter alternative is <keybind key="W-F4" />
     -->
     <keybind key="W-F4">
-      <action name="None" />
+      <action name="None"/>
     </keybind>
     <!-- Windows behaviour -->
     <keybind key="W-b">
-      <action name="ToggleDecorations" />
+      <action name="ToggleDecorations"/>
     </keybind>
-
   </keyboard>
-
   <mouse>
-    <default />
+    <default/>
     <!-- Show a custom menu on desktop right click -->
     <context name="Root">
       <mousebind button="Right" action="Press">
-        <action name="ShowMenu" menu="right-click-menu" />
+        <action name="ShowMenu" menu="right-click-menu"/>
       </mousebind>
     </context>
     <context name="Frame">
       <mousebind button="W-Left" action="Drag">
-        <action name="Move" />
+        <action name="Move"/>
       </mousebind>
       <mousebind button="W-Right" action="Drag">
-        <action name="Resize" />
+        <action name="Resize"/>
       </mousebind>
     </context>
   </mouse>
-
   <!-- reverse scrolling ? -->
   <libinput>
     <device>
       <naturalScroll>no</naturalScroll>
     </device>
   </libinput>
-
   <placement>
     <policy>Cursor</policy>
   </placement>

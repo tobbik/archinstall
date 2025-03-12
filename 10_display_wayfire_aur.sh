@@ -19,9 +19,9 @@ done
 
 
 pacman -S --needed --noconfirm \
-  wlroots extra-cmake-modules qt6-tools glibmm gtkmm3 \
-  doctest doxygen iio-sensor-proxy libdbusmenu-gtk3 \
-  nlohmann-json glm gobject-introspection libliftoff \
+  wlroots extra-cmake-modules glibmm gtkmm3 \
+  doctest doxygen iio-sensor-proxy \
+  libdbusmenu-gtk3 nlohmann-json glm \
   pipewire-pulse scour ddcutil tllist glib2-devel boost \
   ttf-font gtk4 libadwaita libyaml
 
@@ -56,4 +56,8 @@ PACKAGES=(
 for PACKAGE in ${PACKAGES[@]}; do
   handle_aur_pkg ${USERNAME} ${AURBUILDDIR} ${PACKAGE}
 done
+
+if ! test -f /home/${USERNAME}/.config/wayfire.ini ; then
+  cp -avr usertemplate/.config/{wayfire.ini,wf-shell.ini} /home/${USERNAME}/.config/
+fi
 

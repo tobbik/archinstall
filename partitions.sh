@@ -5,6 +5,8 @@
 #the reminder is swap
 #
 DISKNAME=/dev/sda
+PARTNAME=""         # if diskname=/dev/nvme0n1 or /dev/mmcblk0 then PARTNAME will be "p"
+                    # to complete to /dev/mmcblk0p3 or something similar
 
 # wipe entire disk
 #gdisk ${DISKNAME} << EOGWIPE
@@ -50,16 +52,16 @@ ARCHSWAP
 w
 EOGDISK
 
-mkfs.vfat     -F32 -n EFI      "${DISKNAME}1"
-y | mkfs.ext4      -L ARCHROOT "${DISKNAME}2"
-y | mkfs.ext4      -L ARCHHOME "${DISKNAME}3"
-mkswap             -L ARCHSWAP "${DISKNAME}4"
+mkfs.vfat     -F32 -n EFI      "${DISKNAME}${PARTNAME}1"
+y | mkfs.ext4      -L ARCHROOT "${DISKNAME}${PARTNAME}2"
+y | mkfs.ext4      -L ARCHHOME "${DISKNAME}${PARTNAME}3"
+mkswap             -L ARCHSWAP "${DISKNAME}${PARTNAME}4"
 
-mount  "${DISKNAME}2" /mnt
+mount  "${DISKNAME}${PARTNAME}2" /mnt
 mkdir  /mnt/{boot,home}
-mount  "${DISKNAME}1" /mnt/boot
-mount  "${DISKNAME}3" /mnt/home
-swapon "${DISKNAME}4"
+mount  "${DISKNAME}${PARTNAME}1" /mnt/boot
+mount  "${DISKNAME}${PARTNAME}3" /mnt/home
+swapon "${DISKNAME}${PARTNAME}4"
 
 #mkdir /mnt/mnt
 #mkdir /mnt/mnt/data1

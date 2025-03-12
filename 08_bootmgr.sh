@@ -4,22 +4,15 @@ UUIDROOT=$(blkid -s UUID -o value /dev/sda1)
 BOOTPATH="/boot"
 ESPPATH="/efi"
 
-if [ ! -f /root/installer/logs/linux.preset.bak ]; then
-  # backup the linux.preset for mkinitcpio
-  cp /etc/mkinitcpio.d/linux.preset /root/installer/logs/linux.preset.bak
-fi
-
-if [ x"${BOOTMNGR}" == x"systemd" ]; then
-  BOOTPATH="/boot"
-  ESPPATH=${BOOTPATH}
-fi
-
 # ------- BOOTLDRX or gummiboot (systemd-boot based)
 if [ x"${BOOTMNGR}" == x"xbootldr" || x"${BOOTMNGR}" == x"systemd" ]; then
-
 # for xbootldr to work:
-# loader.conf MUST be on the ESP (the same where the systemd.efi lives)
+# loader.conf MUST be on the ESP (the same where the /EFI/systemd/systemd-bootx64.efi lives)
 # loader/entries/*.conf MUST live on the XBOOTLDR partition
+  if [ x"${BOOTMNGR}" == x"systemd" ]; then
+    BOOTPATH="/boot"
+    ESPPATH=${BOOTPATH}
+  fi
 
   mkdir -p ${ESPPATH}/loader ${BOOTPATH}/loader/entries
   cat > ${ESPPATH}/loader/loader.conf << EOUBOOTLOAD
@@ -60,17 +53,22 @@ fi
 
 # ------------------------------------------------ efistub
 if [ x"${BOOTMNGR}" == x"efistub" ]; then
-  ESP_PATH=${BOOTPATH}/EFI/Linux
-  mkdir -p ${ESP_PATH}
+  if [ ! -f /root/installer/logs/linux.preset.bak ]; then
+    # backup the linux.preset for mkinitcpio
+    cp /etc/mkinitcpio.d/linux.preset /root/installer/logs/linux.preset.bak
+  fi
+
+  EFI_PATH=${BOOTPATH}/EFI/Linux
+  mkdir -p ${EFI_PATH}
   echo -e "ro root=UUID=${UUIDROOT}"        > /etc/kernel/cmdline
   echo -e "ro root=UUID=${UUIDROOT} single" > /etc/kernel/fallback_cmdline
 
   sed \
     -e "s:.*\(default_image=.*\):#\1:" \
-    -e "s:.*\(default_uki\).*:\1=\"${ESP_PATH}/arch-linux.efi\":" \
+    -e "s:.*\(default_uki\).*:\1=\"${EFI_PATH}/arch-linux.efi\":" \
     -e "s:.*\(default_options\).*:\1=\"--cmdline /etc/kernel/cmdline\":" \
     -e "s:.*\(fallback_image=.*\):#\1:" \
-    -e "s:.*\(fallback_uki\).*:\1=\"${ESP_PATH}/arch-linux-fallback.efi\":" \
+    -e "s:.*\(fallback_uki\).*:\1=\"${EFI_PATH}/arch-linux-fallback.efi\":" \
     -e "s:.*\(fallback_options\).*:\1=\"-S autodetect --cmdline /etc/kernel/fallback_cmdline\":" \
     -i /etc/mkinitcpio.d/linux.preset
 
