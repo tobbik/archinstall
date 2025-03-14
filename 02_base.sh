@@ -31,7 +31,7 @@ sed -i 's:^.*\(RNGD_OPTS=\).*:\1"-o /dev/random -r /dev/hwrng":' /etc/conf.d/rng
 enable_service rngd
 
 if ! grep -q 'SSH_AUTH_SOCK=' /home/${USERNAME}/.bash_profile; then
-  echo "export SSH_AUTH_SOCK=\${XDG_RUNTIME_DIR}ssh-agent.socket" >> /home/${USERNAME}/.bash_profile
+  echo "export SSH_AUTH_SOCK=\${XDG_RUNTIME_DIR}/ssh-agent.socket" >> /home/${USERNAME}/.bash_profile
 fi
 enable_service ssh-agent.service ${USERNAME}
 

@@ -1,4 +1,5 @@
 source config.sh
+source helper.sh
 source build_aur_pkg.sh
 
 if [ x"${USERNAME}" == "x" ]; then

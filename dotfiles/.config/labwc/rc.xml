@@ -108,11 +108,14 @@
     <keybind key="Print">
       <action name="Execute" command="wayland-screen-shooter"/>
     </keybind>
-    <keybind key="C-`">
+    <keybind key="C-S-`">
       <action name="Execute" command="dunstctl history-pop"/>
     </keybind>
-    <keybind key="C-S-`">
+    <keybind key="C-`">
       <action name="Execute" command="dunstctl context"/>
+    </keybind>
+    <keybind key="W-w">
+      <action name="Execute" command="wlr-which-key"/>
     </keybind>
   </keyboard>
   <mouse>

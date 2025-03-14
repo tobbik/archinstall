@@ -1,4 +1,5 @@
 source config.sh
+source helper.sh
 
 # set up Hostname
 if [ ! -f /etc/hostname ]; then
@@ -44,7 +45,11 @@ if ! grep -q ${USERNAME} /etc/passwd ; then
     --shell /bin/bash \
     ${USERNAME}
 fi
-mkdir -p /home/${USERNAME}/{.config,.local,.cache}
+
+mkdir -p /home/${USERNAME}/{.config,.local/bin,.cache}
+if ! grep -q 'PATH=' /home/${USERNAME}/.bash_profile; then
+  echo "export PATH=\${PATH}:\${HOME}/.local/bin" >> /home/${USERNAME}/.bash_profile
+fi
 
 # reset the password to be sure
 echo -e "${USERPASS}\n${USERPASS}" | (passwd -q ${USERNAME})
