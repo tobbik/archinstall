@@ -42,10 +42,12 @@ MODULES=(
 )
 
 # installer variables
-DISKNAME=/dev/nvme0n1
-PARTNAME="p"                       # so it composes /dev/nvme0n1p2; for /dev/sda2 set PARTNAME=""
-DISKROOT=${DISKNAME}${PARTNAME}2   # used to tell the boot loader; NOT used for partitions
-                                   # see partition.sh instead
+DISKBASEDEVPATH=/dev/nvme0n1
+DISKPARTNAME="p"                       # so it composes /dev/nvme0n1p2; for /dev/sda2 set PARTNAME=""
+DISKBOOTDEVPATH=${DISKBASEDEVPATH}${DISKPARTNAME}1
+DISKROOTDEVPATH=${DISKBASEDEVPATH}${DISKPARTNAME}2
+DISKHOMEDEVPATH=${DISKBASEDEVPATH}${DISKPARTNAME}3
+DISKSWAPDEVPATH=${DISKBASEDEVPATH}${DISKPARTNAME}4
 
 # ----------- CONFIG Variables
 HOSTNAME=machinename
@@ -54,7 +56,7 @@ USERPASS="arch"
 GITNAME="Your Fullname"
 GITEMAIL="email.address@for.git.commits"
 ROOTPASS="PassForRoot"
-KEYBOARD=us
+KEYMAP=us
 LOCALELC="en_CA.UTF-8"
 LOCALECOLLATE="C.UTF-8"
 LOCALEFALLBACK="en_CA:en_GB:en"

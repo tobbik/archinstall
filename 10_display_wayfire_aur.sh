@@ -4,6 +4,7 @@ source build_aur_pkg.sh
 if [ x"${USERNAME}" == "x" ]; then
   USERNAME=tobias
 fi
+
 if [ x"${AURBUILDDIR}" == "x" ]; then
   AURBUILDDIR=/home/${USERNAME}/pkgs
 fi
@@ -16,7 +17,6 @@ for PACKAGE in ${REMOVABLES[@]}; do
   yes | pacman -Rc ${PACKAGE}
   rm -rf ${AURBUILDDIR}/${PACKAGE}
 done
-
 
 pacman -S --needed --noconfirm \
   wlroots extra-cmake-modules glibmm gtkmm3 \
@@ -57,7 +57,5 @@ for PACKAGE in ${PACKAGES[@]}; do
   handle_aur_pkg ${USERNAME} ${AURBUILDDIR} ${PACKAGE}
 done
 
-if ! test -f /home/${USERNAME}/.config/wayfire.ini ; then
-  cp -avr usertemplate/.config/{wayfire.ini,wf-shell.ini} /home/${USERNAME}/.config/
-fi
+add_dotfile ".config/wayfire.ini" ".config/wf-shell.ini"
 

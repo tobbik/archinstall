@@ -1,0 +1,47 @@
+# Theming
+font: Ubuntu Mono 12
+background: "#282828d0"
+color: "#fbf1c7"
+border: "#8ec07c"
+separator: " ➜ "
+border_width: 2
+corner_r: 10
+padding: 15 # Defaults to corner_r
+
+# Anchor and margin
+anchor: center # One of center, left, right, top, bottom, bottom-left, top-left, etc.
+# Only relevant when anchor is not center
+margin_right: 0
+margin_bottom: 0
+margin_left: 0
+margin_top: 0
+
+menu:
+  "w":
+    desc: WiFi
+    submenu:
+      "t": { desc: Toggle, cmd: wifi_toggle.sh }
+      "c": { desc: Connections, cmd: kitty --class nmtui-connect nmtui-connect }
+  "p":
+    desc: Power
+    submenu:
+      "s": { desc: Sleep, cmd: systemctl suspend }
+      "r": { desc: Reboot, cmd: reboot }
+      "o": { desc: Off, cmd: poweroff }
+  "t":
+    desc: Theme
+    submenu:
+      "d": { desc: Dark, cmd: dark-theme on }
+      "l": { desc: Light, cmd: dark-theme off }
+      "t": { desc: Toggle, cmd: dark-theme toggle, keep_open: true }
+  "l":
+    desc: Laptop Screen
+    submenu:
+      "t": { desc: Toggle On/Off, cmd: toggle-laptop-display.sh }
+      "s":
+        desc: Scale
+        submenu:
+          "1": { desc: Set Scale to 1.0, cmd: wlr-randr --output eDP-1 --scale 1 }
+          "2": { desc: Set Scale to 1.1, cmd: wlr-randr --output eDP-1 --scale 1.1 }
+          "3": { desc: Set Scale to 1.2, cmd: wlr-randr --output eDP-1 --scale 1.2 }
+          "4": { desc: Set Scale to 1.3, cmd: wlr-randr --output eDP-1 --scale 1.3 }

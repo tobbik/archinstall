@@ -1,4 +1,5 @@
 source config.sh
+source helper.sh
 
 # base-devel covers automake autoconf flex bison make sudo etc.
 pacman -S --needed --noconfirm \
@@ -31,17 +32,8 @@ sudo --user ${USERNAME} git config --global merge.tool  "/usr/bin/nvim -d"
 sudo --user ${USERNAME} git lfs install
 cd ${INSTALLERDIR}
 
-if ! grep -q 'alias nv=' /home/${USERNAME}/.bashrc ; then
-  echo "alias nv='nvim'"         >> /home/${USERNAME}/.bashrc
-fi
-if ! grep -q 'alias nvd=' /home/${USERNAME}/.bashrc ; then
-  echo "alias nvd='nvim -d'"     >> /home/${USERNAME}/.bashrc
-fi
-if ! grep -q 'alias nvdiff=' /home/${USERNAME}/.bashrc ; then
-  echo "alias nvdiff='nvim -d'"  >> /home/${USERNAME}/.bashrc
-fi
+add_alias "nv"     "nvim"
+add_alias "nvd"    "nvim -d"
+add_alias "nvdiff" "nvim -d"
 
-if ! test -f /home/${USERNAME}/.config/nvim/init.lua ; then
-  cp -avr usertemplate/.vim* /home/${USERNAME}/
-  cp -avr usertemplate/.config/nvim /home/${USERNAME}/.config/
-fi
+add_dotfiles ".config/nvim" ".vim" ".vimrc"

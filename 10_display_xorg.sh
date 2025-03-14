@@ -63,6 +63,4 @@ if ! grep -q 'xset -b' /home/${USERNAME}/.bashrc ; then
   echo -e "# keep term silent (no beeps)\nxset -b" >> /home/${USERNAME}/.bashrc
 fi
 
-if ! test -f /home/${USERNAME}/.Xresources ; then
-  cp -avr usertemplate/.Xresources /home/${USERNAME}/
-fi
+add_dotfile ".Xresources"

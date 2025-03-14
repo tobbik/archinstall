@@ -66,6 +66,24 @@
     <keybind key="C-S-W-Left">
       <action name="SendToDesktop" to="left" wrap="yes"/>
     </keybind>
+    <keybind key="XF86_AudioLowerVolume">
+      <action name="Execute" command="wayland-volume-adjust down" />
+    </keybind>
+    <keybind key="XF86_AudioRaiseVolume">
+      <action name="Execute" command="wayland-volume-adjust up" />
+    </keybind>
+    <keybind key="XF86_AudioMute">
+      <action name="Execute" command="wayland-volume-adjust toggle" />
+    </keybind>
+    <keybind key="XF86_AudioPrev">
+      <action name="Execute" command="mpd-control prev" />
+    </keybind>
+    <keybind key="XF86_AudioNext">
+      <action name="Execute" command="mpd-control next" />
+    </keybind>
+    <keybind key="XF86_AudioPlay">
+      <action name="Execute" command="mpd-control toggle" />
+    </keybind>
     <keybind key="XF86_MonBrightnessUp">
       <action name="Execute" command="brightnessctl set +5%"/>
     </keybind>
@@ -82,6 +100,19 @@
     <!-- Windows behaviour -->
     <keybind key="W-b">
       <action name="ToggleDecorations"/>
+    </keybind>
+    <!--  Helper scripts and shortcuts -->
+    <keybind key="W-Tab">
+      <action name="Execute" command="wayland-window-switcher"/>
+    </keybind>
+    <keybind key="Print">
+      <action name="Execute" command="wayland-screen-shooter"/>
+    </keybind>
+    <keybind key="C-`">
+      <action name="Execute" command="dunstctl history-pop"/>
+    </keybind>
+    <keybind key="C-S-`">
+      <action name="Execute" command="dunstctl context"/>
     </keybind>
   </keyboard>
   <mouse>

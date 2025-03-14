@@ -40,13 +40,5 @@ if [ ! -f /etc/sudoers.d/${USERNAME} ]; then
   echo "${USERNAME} ALL=(ALL:ALL) ALL" > /etc/sudoers.d/${USERNAME}
 fi
 
-if ! grep -q 'alias s=' /home/${USERNAME}/.bashrc ; then
-  echo "alias s='sudo'"         >> /home/${USERNAME}/.bashrc
-fi
+add_alias "s" "sudo"
 
-# set a hardstatus for .screenrc
-if ! grep -q 'hardstatus alwayslastline' /home/${USERNAME}/.screenrc; then
-  echo "hardstatus alwayslastline '%{= G}%-Lw%{= R}[%n*%f %t]%{= G}%+Lw%='" >> \
-    /home/${USERNAME}/.screenrc
-  echo -e "\nterm screen-256color" >> /home/${USERNAME}/.screenrc
-fi

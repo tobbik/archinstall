@@ -4,14 +4,14 @@ source helper.sh
 # everything Xorg and Terminals and command line
 pacman -S --needed --noconfirm \
   mesa libva-mesa-driver mesa-vdpau mesa-demos libvdpau-va-gl \
-  wayland ly wl-clipboard dunst mako jq wlr-randr \
-  wf-recorder wayvnc grim slurp \
+  wayland ly wl-clipboard dunst jq wlr-randr \
+  wf-recorder wayvnc grim slurp satty \
   swaylock swayidle swaybg wlsunset gammastep \
   polkit-gnome brightnessctl kanshi \
   foot foot-terminfo libadwaita \
   mpv libmpdclient pipewire-jack scdoc playerctl \
   xorg-xwayland wlroots wayland-protocols gtk-layer-shell \
-  labwc fuzzel \
+  labwc fuzzel waybar \
   gnu-free-fonts
 
 sed -i /etc/ly/config.ini \
@@ -43,12 +43,10 @@ enable_service gammastep.service ${USERNAME}
 # seatd is installed as a dependency of labwc
 usermod -a -G seat ${USERNAME}
 
-if ! test -f /home/${USERNAME}/.config/labwc/autostart ; then
-  # copy all relevant .dot files (labwc, foot, fuzzel)
-  for CFGS in usertemplate/.config/{labwc,foot,fuzzel,dunst,waybar}; do
-    cp -avr ${CFGS} /home/${USERNAME}/.config/
-  done
-fi
+add_dotfiles ".config/labwc" ".config/foot" ".config/dunst" ".config/waybar" ".config/fuzzel" \
+            ".local/bin/mpd-control" ".local/bin/wayland-screen-shooter" \
+            ".local/bin/wayland-volume-adjust" ".local/bin/wayland-window-switcher"
+
 
 if ! grep -q 'GTK_THEME=' /home/${USERNAME}/.bash_profile; then
   echo "export GTK_THEME=Adwaita:dark" >> /home/${USERNAME}/.bash_profile

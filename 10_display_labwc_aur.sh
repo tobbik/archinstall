@@ -12,8 +12,6 @@ pacman -S --needed --noconfirm \
   pipewire-pulse scour ddcutil tllist glib2-devel boost \
   ttf-font gtk4 libyaml qt6-base qt6-tools gobject-introspection
 
-# needed to build yambar
-sudo --user ${USERNAME} gpg --keyserver keys.gnupg.net --recv-keys 5BBD4992C116573F
 # needed for wlr-randr
 sudo --user ${USERNAME} gpg --keyserver keys.gnupg.net --recv-keys 0FDE7BE0E88F5E48
 # wlogout
@@ -23,9 +21,7 @@ PACKAGES=(
   labwc-menu-generator-git
   labwc-tweaks-git
   luminance
-  tofi
   sfwbar
-  yambar
   wdisplays
   wlopm
   wlogout
@@ -37,9 +33,4 @@ for PACKAGE in ${PACKAGES[@]}; do
   handle_aur_pkg ${USERNAME} ${AURBUILDDIR} ${PACKAGE}
 done
 
-if ! test -f /home/${USERNAME}/.config/sfwbar/sfwbar.config ; then
-  cp -avr usertemplate/.config/sfwbar /home/${USERNAME}/.config/
-fi
-if ! test -f /home/${USERNAME}/.config/yambar/config.yml ; then
-  cp -avr usertemplate/.config/yambar /home/${USERNAME}/.config/
-fi
+add_dotfile ".config/sfwbar" ".config/wlr-which-key"

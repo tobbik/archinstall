@@ -17,10 +17,8 @@ pacman -S --needed --noconfirm \
 # setup user audio
 cp -avr /usr/share/pipewire /home/${USERNAME}/.config/
 
-if ! test -f /home/${USERNAME}/.config/mpd/mpd.conf ; then
-  mkdir -p /home/${USERNAME}/.config/mpd/playlists
-  cp -avr usertemplate/.config/mpd/mpd.conf /home/${USERNAME}/.config/mpd/
-fi
+add_dotfile ".config/mpd"
+mkdir -p /home/${USERNAME}/.config/mpd/playlists
 
 enable_service pipewire-pulse.service ${USERNAME}
 enable_service wireplumber.service ${USERNAME}

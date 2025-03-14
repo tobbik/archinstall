@@ -15,9 +15,14 @@ chown -R ${USERNAME}:users /root/installer
 for moduleName in ${MODULES[@]}; do
   echo "Executing ${moduleName}"
   cd ${RUNDIR}
+  START_SECS=${SECONDS}
   source "${moduleName}" 2>&1 | tee "/root/installer/logs/${moduleName}.log"
-  echo -e "\n\n\nLatest diskusage afeter installing module:"
-  df -h | grep ${DISKNAME} >> "/root/installer/logs/${moduleName}.log"
+  ELAPSED_SECS=$((${SECONDS} - ${START_SECS}))
+  TIME_PASSED=$(date -u -d @"${ELAPSED_SECS}" +'%-Mm %Ss')
+  echo -e "\n\n\nLatest diskusage after installing module:\n\t\t$(df -h | grep ${DISKBASEDEVPATH})"
+  echo "${moduleName}         ${TIME_PASSED}" >> "/root/installer/logs/progress.log"
+  df -h | grep ${DISKROOTDEVPATH} >> "/root/installer/logs/progress.log"
+  df -h | grep ${DISKBOOTDEVPATH} >> "/root/installer/logs/progress.log"
 done
 
 # flatten all permissions
@@ -25,7 +30,7 @@ chown -R ${USERNAME}:users /home/${USERNAME}
 
 # boot managers
 if [ x"${BOOTMNGR}" == x"grub" ]; then
-  grub-install --recheck ${DISKNAME}
+  grub-install --recheck ${DISKBASEDEVPATH}
   # hack for misnamed devices -> grub bug?
   grub-mkconfig -o /boot/grub/grub.cfg.mkc
   mv /boot/grub/grub.cfg.mkc /boot/grub/grub.cfg
@@ -40,12 +45,12 @@ if [ x"${BOOTMNGR}" == x"efistub" ]; then
   mkinitcpio -p linux
 
   efibootmgr --create --unicode \
-    --disk ${DISKNAME} --part 1 \
+    --disk ${DISKBASEDEVPATH} --part 1 \
     --label 'Arch Linux' \
     --loader '\EFI\Linux\arch-linux.efi'
 fi
 
-if [ x"${BOOTMNGR}" == x"xbootldr" || x"${BOOTMNGR}" == x"systemd" ]; then
+if [ x"${BOOTMNGR}" == x"xbootldr" ] || [ x"${BOOTMNGR}" == x"systemd" ]; then
   echo "Installing systemd bootloader:"
   if [ x"${BOOTMNGR}" == x"xbootldr" ]; then
     echo '  `bootctl --esp-path=/efi --boot-path=/boot install`'
@@ -55,7 +60,7 @@ if [ x"${BOOTMNGR}" == x"xbootldr" || x"${BOOTMNGR}" == x"systemd" ]; then
     bootctl install
   fi
   efibootmgr --create --unicode \
-    --disk   ${DISKNAME} --part 1 \
+    --disk   ${DISKBASEDEVPATH} --part 1 \
     --label  'Systemd Boot Manager' \
     --loader '\EFI\systemd\systemd-bootx64.efi'
 fi

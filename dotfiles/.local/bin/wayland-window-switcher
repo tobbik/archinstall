@@ -1,0 +1,4 @@
+#!/bin/bash
+
+INPUT=$(wlrctl toplevel list | awk -F': ' '{print $2}' | fuzzel --dmenu --width 60)
+wlrctl toplevel activate title:"${INPUT}"

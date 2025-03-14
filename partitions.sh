@@ -1,22 +1,20 @@
-# this creates 3 partitions on /dev/sda
-# the first is UEFI /boot  512MB big
-# the second is     /      28GB big
-# the third is      /home  445GB big
-#the reminder is swap
-#
-DISKNAME=/dev/sda
-PARTNAME=""         # if diskname=/dev/nvme0n1 or /dev/mmcblk0 then PARTNAME will be "p"
-                    # to complete to /dev/mmcblk0p3 or something similar
+# this creates 4 partitions on ${DISKBASEDEVPATH}
+# #1. is ESP    /boot   512MB
+# #2. is ROOT   /       32GB
+# #3. is HOME   /home   444GB
+# #4. is SWAP   <swap>  remainder
+
+source config.sh
 
 # wipe entire disk
-#gdisk ${DISKNAME} << EOGWIPE
+#gdisk ${DISKBASEDEVPATH} << EOGWIPE
 #x
 #z
 #Y
 #Y
 #EOGWIPE
 
-gdisk ${DISKNAME} << EOGDISK
+gdisk ${DISKBASEDEVPATH} << EOGDISK
 n
 1
 
@@ -25,12 +23,12 @@ EF00
 n
 2
 
-+40G
++32G
 8304
 n
 3
 
-+445G
++444G
 8302
 n
 4
@@ -49,19 +47,20 @@ ARCHHOME
 c
 4
 ARCHSWAP
+p
 w
 EOGDISK
 
-mkfs.vfat     -F32 -n EFI      "${DISKNAME}${PARTNAME}1"
-y | mkfs.ext4      -L ARCHROOT "${DISKNAME}${PARTNAME}2"
-y | mkfs.ext4      -L ARCHHOME "${DISKNAME}${PARTNAME}3"
-mkswap             -L ARCHSWAP "${DISKNAME}${PARTNAME}4"
+mkfs.vfat     -F32 -n EFI      "${DISKBOOTDEVPATH}"
+y | mkfs.ext4      -L ARCHROOT "${DISKROOTDEVPATH}"
+y | mkfs.ext4      -L ARCHHOME "${DISKHOMEDEVPATH}"
+mkswap             -L ARCHSWAP "${DISKSWAPDEVPATH}"
 
-mount  "${DISKNAME}${PARTNAME}2" /mnt
+mount  "${DISKROOTDEVPATH}" /mnt
 mkdir  /mnt/{boot,home}
-mount  "${DISKNAME}${PARTNAME}1" /mnt/boot
-mount  "${DISKNAME}${PARTNAME}3" /mnt/home
-swapon "${DISKNAME}${PARTNAME}4"
+mount  "${DISKBOOTDEVPATH}" /mnt/boot
+mount  "${DISKHOMEDEVPATH}" /mnt/home
+swapon "${DISKSWAPDEVPATH}"
 
 #mkdir /mnt/mnt
 #mkdir /mnt/mnt/data1

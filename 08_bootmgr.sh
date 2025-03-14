@@ -1,11 +1,11 @@
 source config.sh
 
-UUIDROOT=$(blkid -s UUID -o value /dev/sda1)
+UUIDROOT=$(blkid -s UUID -o value ${DISKROOTDEVPATH})
 BOOTPATH="/boot"
 ESPPATH="/efi"
 
 # ------- BOOTLDRX or gummiboot (systemd-boot based)
-if [ x"${BOOTMNGR}" == x"xbootldr" || x"${BOOTMNGR}" == x"systemd" ]; then
+if [ x"${BOOTMNGR}" == x"xbootldr" ] || [ x"${BOOTMNGR}" == x"systemd" ]; then
 # for xbootldr to work:
 # loader.conf MUST be on the ESP (the same where the /EFI/systemd/systemd-bootx64.efi lives)
 # loader/entries/*.conf MUST live on the XBOOTLDR partition

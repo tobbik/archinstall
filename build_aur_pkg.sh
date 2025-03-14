@@ -1,5 +1,10 @@
-ARCH=$(uname -m)
 BASEURL="https://aur.archlinux.org/cgit/aur.git/snapshot"
+
+ARCH=$(uname -m)
+SUFFIX=pkg.tar.zst
+if [ x"$ARCH" == x"aarch64" ]; then
+  SUFFIX=pkg.tar.xz
+fi
 
 sed -i /etc/makepkg.conf \
   -e "s:purge debug lto:purge !debug lto:"
@@ -12,7 +17,7 @@ function prepare_aur_pkg () {
   echo "     ..... PREPARING '${PKG}' >>>>>>>>>>>"
   curl ${BASEURL}/${PKG}.tar.gz -O && sudo --user ${ASUSER} tar xzf ${PKG}.tar.gz
   rm ${PKG}.tar.gz && cd ${PKG}
-  if grep '^arch=' PKGBUILD | grep -q -i 'any' ; then
+  if grep -q '^arch.*any' PKGBUILD ; then
     echo "FOUND 'any' architecture. Do nothing."
   else
     if ! grep '^arch=' PKGBUILD | grep -q -i ${ARCH} ; then
@@ -31,13 +36,13 @@ function create_aur_pkg () {
   echo "     ..... BUILDING '${PKG}' >>>>>>>>>>>"
   sudo --user ${ASUSER} makepkg
   if grep -q '^arch.*any' PKGBUILD ; then
-    if pacman -U --needed --noconfirm ${PKG}-*any.pkg.tar.* ; then
+    if pacman -U --needed --noconfirm ${PKG}-*any.${SUFFIX} ; then
       echo "     ..... PACKAGE '${PKG}' INSTALLED >>>>>>>>>>>>"
     else
       echo "     ..... PACKAGE INSTALLATION FAILED '${PKG}' >>>>>>>>>>>>"
     fi
   else
-    if pacman -U --needed --noconfirm ${PKG}-*${ARCH}.pkg.tar.* ; then
+    if pacman -U --needed --noconfirm ${PKG}-*${ARCH}.${SUFFIX} ; then
       echo "     ..... PACKAGE '${PKG}' INSTALLED >>>>>>>>>>>>"
     else
       echo "     ..... PACKAGE INSTALLATION FAILED '${PKG}' >>>>>>>>>>>>"

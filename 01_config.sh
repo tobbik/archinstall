@@ -44,7 +44,7 @@ if ! grep -q ${USERNAME} /etc/passwd ; then
     --shell /bin/bash \
     ${USERNAME}
 fi
-mkdir -p /home${USERNAME}/{.config,.local,.cache}
+mkdir -p /home/${USERNAME}/{.config,.local,.cache}
 
 # reset the password to be sure
 echo -e "${USERPASS}\n${USERPASS}" | (passwd -q ${USERNAME})
@@ -56,15 +56,10 @@ usermod -a -G wheel,network,input,video,audio,storage,power,users ${USERNAME}
 echo -e "${ROOTPASS}\n${ROOTPASS}" | (passwd -q root)
 
 # set up .bashrc with some aliases
-if ! grep -q 'alias ls=' /home/${USERNAME}/.bashrc ; then
-  echo "alias ls='ls --color=auto'"         >> /home/${USERNAME}/.bashrc
-fi
-if ! grep -q 'alias ll=' /home/${USERNAME}/.bashrc ; then
-  echo "alias ll='ls --color=auto -l'"         >> /home/${USERNAME}/.bashrc
-fi
-if ! grep -q 'alias lla=' /home/${USERNAME}/.bashrc ; then
-  echo "alias lla='ls --color=auto -l -a'"         >> /home/${USERNAME}/.bashrc
-fi
+add_alias "ls"  "ls --color=auto"
+add_alias "ll"  "ls --color=auto -l"
+add_alias "la"  "ls --color=auto -a"
+add_alias "lla" "ls --color=auto -l -a"
 
 chown -R ${USERNAME}:users /home/${USERNAME}
 

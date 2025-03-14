@@ -1,0 +1,47 @@
+#!/bin/bash
+# wp-vol
+FORMAT="--format %artist%\n%title%\n%file%"
+
+notify_screen() {
+  # Arbitrary but unique message tag
+  local msgTag="myMpdControl"
+  local SONG_INFO=$1
+
+  echo "$SONG_INFO"
+
+  # Split the song details into artist, title, and file path.
+  local ARTIST=$(echo "${SONG_INFO}" | sed -n '1p')
+  local TITLE=$(echo "${SONG_INFO}" | sed -n '2p')
+  local FILE=$(echo "${SONG_INFO}" | sed -n '3p')
+  local STATE=$(echo "${SONG_INFO}" | sed -n '4p' | cut -d" " -f1 | tr -d "\[\]")
+
+  notify-send --app-name "mpdNowPlaying" \
+      --expire-time 2000 --urgency low  --transient \
+      --hint string:x-dunst-stack-tag:$msgTag \
+      "MPD ${STATE}:" "${ARTIST} - ${TITLE}"
+}
+
+function usage() {
+  printf "mpd-control <command>\n"
+  printf "         next \n"
+  printf "         prev\n"
+  printf "         toggle\n"
+}
+
+main() {
+  case "$1" in
+    next)
+      notify_screen "$(mpc $FORMAT next)"
+      ;;
+    prev)
+      notify_screen "$(mpc $FORMAT prev)"
+      ;;
+    toggle)
+      notify_screen "$(mpc $FORMAT toggle)"
+      ;;
+   *)
+     usage
+  esac
+}
+
+main "$@"

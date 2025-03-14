@@ -1,0 +1,54 @@
+#!/bin/bash
+# wp-vol
+
+notify_screen() {
+  # Arbitrary but unique message tag
+  local msgTag="myvolume"
+
+  local VOLUME=$(wpctl get-volume @DEFAULT_AUDIO_SINK@)
+  local MUTED=$(echo "${VOLUME}" | grep -o "MUTED")
+  local VOLUME=$(echo "${VOLUME}" | cut -d" " -f2)
+  local VOLUME=$(echo "( ${VOLUME} * 100 ) / 1" | bc)
+
+  if [[ x${MUTED} == x"MUTED" || ${VOLUME} == 0 ]]; then
+    # Show the sound muted notification
+    notify-send --app-name "changeVolume" --icon audio-volume-muted \
+      --expire-time 2000 --urgency low --transient \
+      --hint string:x-dunst-stack-tag:$msgTag \
+      --hint int:value:"${VOLUME}" "Volume: ${VOLUME}%" "[MUTED]"
+  else
+    # Show the volume notification
+    notify-send -a "changeVolume" --icon audio-volume-high \
+      --expire-time 2000 --urgency low --transient \
+      --hint string:x-dunst-stack-tag:$msgTag \
+      --hint int:value:"${VOLUME}" "Volume: ${VOLUME}%"
+  fi
+}
+
+function usage() {
+  printf "wayland-volume-adjust <command>\n"
+  printf "         up \n"
+  printf "         down\n"
+  printf "         toggle\n"
+}
+
+main() {
+  case "$1" in
+    up)
+      amixer sset Master 5%+
+      notify_screen
+      ;;
+    down)
+      amixer sset Master 5%-
+      notify_screen
+      ;;
+    toggle)
+      amixer sset Master toggle
+      notify_screen
+      ;;
+   *)
+     usage
+  esac
+}
+
+main "$@"

@@ -36,9 +36,5 @@ enable_service docker.service
 update-ca-trust
 
 # set up .bashrc with some aliases
-if ! grep -q 'alias dockerps=' /home/${USERNAME}/.bashrc ; then
-  echo -e \
-    "alias dockerps='docker ps --format \"table {{.Names}}\\t{{.Image}}\\t{{.Ports}}\\t{{.Status}}\"\n'" \
-    >> /home/${USERNAME}/.bashrc
-fi
+add_alias "dockerps"  "docker ps --format \"table {{.Names}}\\t{{.Image}}\\t{{.Ports}}\\t{{.Status}}\""
 
