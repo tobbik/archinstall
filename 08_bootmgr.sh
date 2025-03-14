@@ -25,7 +25,7 @@ EOUBOOTLOAD
   cat > ${BOOTPATH}/loader/entries/arch.conf << EOARCHCONF
 title   Arch Linux
 linux   /vmlinuz-linux
-initrd  /{MICROCODE}-ucode.img
+initrd  /${MICROCODE}-ucode.img
 initrd  /initramfs-linux.img
 options root=UUID=${UUIDROOT} ro
 EOARCHCONF
@@ -33,7 +33,7 @@ EOARCHCONF
   cat > ${BOOTPATH}/loader/entries/arch-fallback.conf << EOARCHFBCONF
 title   Arch Linux (fallback initramfs)
 linux   /vmlinuz-linux
-initrd  /{MICROCODE}-ucode.img
+initrd  /${MICROCODE}-ucode.img
 initrd  /initramfs-linux-fallback.img
 options root=UUID=${UUIDROOT} single ro
 EOARCHFBCONF

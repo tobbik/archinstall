@@ -52,8 +52,8 @@ w
 EOGDISK
 
 mkfs.vfat     -F32 -n EFI      "${DISKBOOTDEVPATH}"
-y | mkfs.ext4      -L ARCHROOT "${DISKROOTDEVPATH}"
-y | mkfs.ext4      -L ARCHHOME "${DISKHOMEDEVPATH}"
+yes | mkfs.ext4      -L ARCHROOT "${DISKROOTDEVPATH}"
+yes | mkfs.ext4      -L ARCHHOME "${DISKHOMEDEVPATH}"
 mkswap             -L ARCHSWAP "${DISKSWAPDEVPATH}"
 
 mount  "${DISKROOTDEVPATH}" /mnt

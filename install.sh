@@ -3,6 +3,11 @@
 # source partitions.sh
 source config.sh
 
+if [[ ! -z ${PACMANPRIMARYPKGSERVER} ]]; then
+  sed -i /etc/pacman.d/mirrorlist \
+  -e "0,/^Server.*$/ s|^Server.*$|${PACMANPRIMARYPKGSERVER}\n\n\0|"
+fi
+
 pacstrap /mnt base base-devel
 genfstab -p /mnt >> /mnt/etc/fstab
 

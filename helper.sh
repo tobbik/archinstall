@@ -19,10 +19,12 @@ function add_dotfiles() {
     local E_PATH=$(dirname  ${ELEM})
     if test -d dotfiles/${E_PATH}/${E_ITEM} ; then
       if ! test -d ${HOME_DIR}/${E_PATH}/${E_ITEM} ; then
+        [ -d ${HOME_DIR}/${E_PATH} ] || mkdir ${HOME_DIR}/${E_PATH}
         cp -avr dotfiles/${E_PATH}/${E_ITEM} ${HOME_DIR}/${E_PATH}/
       fi
     elif test -f dotfiles/${E_PATH}/${E_ITEM} ; then
       if ! test -f ${HOME_DIR}/${E_PATH}/${E_ITEM} ; then
+        [ -d ${HOME_DIR}/${E_PATH} ] || mkdir ${HOME_DIR}/${E_PATH}
         cp -av dotfiles/${E_PATH}/${E_ITEM} ${HOME_DIR}/${E_PATH}/
       fi
     else

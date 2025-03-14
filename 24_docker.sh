@@ -14,7 +14,7 @@ pacman -S --needed --noconfirm \
 
 usermod -a -G docker ${USERNAME}
 
-if [ -z ${DOCKERSTORAGEPATH+x} ]; then
+if [[ -z ${DOCKERSTORAGEPATH} ]]; then
   DOCKERSTORAGEPATH=/home/${USERNAME}/docker
   sudo --user ${USERNAME} mkdir -p ${DOCKERSTORAGEPATH}
 fi
