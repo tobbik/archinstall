@@ -19,7 +19,7 @@ pacman -S --needed --noconfirm \
   smartmontools nfs-utils cifs-utils \
   wol dmidecode rng-tools mc \
   pwgen mlocate linux-firmware \
-  sudo tmux \
+  sudo tmux fakeroot \
   efibootmgr efivar pacman-contrib
 
 enable_service sshd

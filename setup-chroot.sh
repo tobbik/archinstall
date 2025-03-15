@@ -10,7 +10,6 @@ if [ -n "$SETTIMESTAMP" ]; then
 fi
 
 mkdir -p /root/installer/logs
-chown -R ${USERNAME}:users /root/installer
 
 MBYTES_AVAILABLE_ROOT=$(( $(df ${DISKROOTDEVPATH} | tail -n1 | awk '{print $2}') / 1024 ))
 MBYTES_AVAILABLE_BOOT=$(( $(df ${DISKBOOTDEVPATH} | tail -n1 | awk '{print $2}') / 1024 ))
@@ -39,7 +38,7 @@ for moduleName in ${MODULES[@]}; do
 done
 
 # flatten all permissions
-chown -R ${USERNAME}:users /home/${USERNAME}
+chown -R ${USERNAME}:users /home/${USERNAME}  /root/installer
 
 # boot managers
 if [ x"${BOOTMNGR}" == x"grub" ]; then
