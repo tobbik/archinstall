@@ -4,9 +4,9 @@
 # just comment out modules you don't want
 # eg. exclude 30_graphics and 31_office etc for a developer VM
 MODULES=(
-   01_config.sh
-   02_base.sh
-   03_network.sh
+   01_network.sh
+   02_config.sh
+   03_base.sh
    04_bluetooth.sh
 
    07_dev_base.sh

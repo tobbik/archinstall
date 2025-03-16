@@ -7,7 +7,7 @@ pacman -S --needed --noconfirm \
   chromium firefox glfw \
   gvfs-smb gvfs-nfs gvfs-mtp \
   ttf-bitstream-vera ttf-ubuntu-font-family \
-  zathura-pdf-mupdf mupdf-gl \
+  zathura-pdf-mupdf mupdf-gl tesseract-eng tesseract-data-osd\
   alsa-tools alsa-utils alsa-plugins pamixer \
   pipewire wireplumber pipewire-audio \
   pipewire-alsa pipewire-pulse pipewire-jack \
