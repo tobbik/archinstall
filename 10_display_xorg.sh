@@ -63,4 +63,4 @@ if ! grep -q 'xset -b' /home/${USERNAME}/.bashrc ; then
   echo -e "# keep term silent (no beeps)\nxset -b" >> /home/${USERNAME}/.bashrc
 fi
 
-add_dotfile ".Xresources"
+add_dotfiles ".Xresources"

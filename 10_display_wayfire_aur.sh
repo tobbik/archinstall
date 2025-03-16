@@ -58,5 +58,5 @@ for PACKAGE in ${PACKAGES[@]}; do
   handle_aur_pkg ${USERNAME} ${AURBUILDDIR} ${PACKAGE}
 done
 
-add_dotfile ".config/wayfire.ini" ".config/wf-shell.ini"
+add_dotfiles ".config/wayfire.ini" ".config/wf-shell.ini"
 

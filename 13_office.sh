@@ -12,9 +12,3 @@ pacman -S --needed --noconfirm \
 if [ $(uname -m) = 'x86_64' ]; then
   pacman -S --noconfirm --needed signal-desktop ghostty
 fi
-
-# setupuser audio
-cp -avr /usr/share/pipewire /home/${USERNAME}/.config/
-
-enable_service pipewire-pulse.service ${USERNAME}
-enable_service wireplumber.service ${USERNAME}
