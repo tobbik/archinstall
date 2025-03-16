@@ -34,6 +34,7 @@ MODULES=(
    23_kvm.sh
    24_docker.sh
    25_datatools.sh
+   28_dev_aur.sh
    29_aurstuff.sh
 
    30_graphics.sh

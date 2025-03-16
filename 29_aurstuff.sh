@@ -9,9 +9,8 @@ pacman -S --needed --noconfirm \
   intltool \
   patchelf \
   fltk \
-  meson scdoc qrencode vte4 \
   seatd tllist xcb-util xcb-util-cursor ddcutil \
-  rust xdg-utils libnotify jdk-openjdk
+  xdg-utils libnotify jdk-openjdk
 
 if [ ! -d ${AURBUILDDIR}/osmconvert ]; then
   prepare_aur_pkg       ${USERNAME} ${AURBUILDDIR} osmconvert
@@ -28,12 +27,8 @@ PACKAGES=(
   #osmconvert
   splitter
   mkgmap
-  nvm
-  wrk
   visual-studio-code-bin
   xdiskusage
-  iwgtk
-  neovim-gtk-git           # non-git currently broken
 )
 
 # ... no ARM packages :-(
@@ -57,14 +52,3 @@ fi
 for PACKAGE in ${PACKAGES[@]}; do
   handle_aur_pkg ${USERNAME} ${AURBUILDDIR} ${PACKAGE}
 done
-
-# set up .bashrc to invoke nvm properly
-if ! grep -q 'init-nvm' /home/${USERNAME}/.bashrc ; then
-  cat >> /home/${USERNAME}/.bashrc << EOBASHRC
-
-# initialize node version manager if present
-if [ -f  /usr/share/nvm/init-nvm.sh ]; then
-  source /usr/share/nvm/init-nvm.sh
-fi
-EOBASHRC
-fi
