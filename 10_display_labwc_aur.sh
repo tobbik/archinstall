@@ -2,15 +2,8 @@ source config.sh
 source helper.sh
 source build_aur_pkg.sh
 
-if [ x"${USERNAME}" == "x" ]; then
-  USERNAME=tobias
-fi
-if [ x"${AURBUILDDIR}" == "x" ]; then
-  AURBUILDDIR=/home/${USERNAME}/pkgs
-fi
-
 pacman -S --needed --noconfirm \
-  scour ddcutil tllist glib2-devel boost \
+  scour ddcutil glib2-devel scdoc \
   ttf-font gtk4 libyaml qt6-base qt6-tools \
   gobject-introspection
 

@@ -6,9 +6,6 @@ if [ x"$ARCH" == x"aarch64" ]; then
   SUFFIX=pkg.tar.xz
 fi
 
-sed -i /etc/makepkg.conf \
-  -e "s:purge debug lto:purge !debug lto:"
-
 function prepare_aur_pkg () {
   local ASUSER="$1"
   local OLDDIR=$(pwd)

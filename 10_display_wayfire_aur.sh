@@ -2,14 +2,6 @@ source config.sh
 source helper.sh
 source build_aur_pkg.sh
 
-if [ x"${USERNAME}" == "x" ]; then
-  USERNAME=tobias
-fi
-
-if [ x"${AURBUILDDIR}" == "x" ]; then
-  AURBUILDDIR=/home/${USERNAME}/pkgs
-fi
-
 REMOVABLES=(
   wdisplays       # part of wcm-git
 )
@@ -23,7 +15,7 @@ pacman -S --needed --noconfirm \
   wlroots extra-cmake-modules glibmm gtkmm3 \
   doctest doxygen iio-sensor-proxy \
   libdbusmenu-gtk3 nlohmann-json glm \
-  scour ddcutil tllist glib2-devel boost \
+  scour glib2-devel boost \
   ttf-font gtk4 libadwaita libyaml
 
 handle_aur_pkg        ${USERNAME} ${AURBUILDDIR} wf-config-git

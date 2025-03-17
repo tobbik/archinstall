@@ -7,7 +7,7 @@ pacman -S --needed --noconfirm \
   clang clang-analyzer lldb lld \
   tcc pkg-config cmake uasm \
   ocl-icd hyperfine \
-  nginx fcgiwrap git git-lfs tig wireshark-cli apache figlet \
+  nginx fcgiwrap git git-lfs tig wireshark-cli figlet \
   lua lua-socket lua-filesystem luajit \
   go rust meson \
   python3 ipython cython \
@@ -15,7 +15,7 @@ pacman -S --needed --noconfirm \
   neovim \
   tree-sitter-bash tree-sitter-python tree-sitter-javascript tree-sitter-rust tree-sitter-query
 
-pacman -Rc vim-runtime
+pacman -Rc --noconfirm vim-runtime
 
 if [ $(uname -m) = 'x86_64' ]; then
   pacman -S --noconfirm --needed pypy pypy3

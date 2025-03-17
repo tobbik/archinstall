@@ -9,8 +9,10 @@ MODULES=(
    03_base.sh
    04_bluetooth.sh
 
+   05_bootmgr.sh
+
    07_dev_base.sh
-   08_bootmgr.sh
+   08_dev_aur.sh
 
    10_display_wayland.sh
    10_display_labwc_aur.sh
@@ -25,17 +27,17 @@ MODULES=(
 
    12_gui.sh
    13_office.sh
-   #14_virtualbox.sh
-   #15_vmware.sh
+   14_office_aur.sh
 
    20_devtools.sh
    21_dotnet.sh
    22_jdk.sh
    23_kvm.sh
    24_docker.sh
-   25_datatools.sh
-   28_dev_aur.sh
-   29_aurstuff.sh
+   #25_virtualbox.sh
+   #26_vmware.sh
+   27_datatools.sh
+   29_osm_aur.sh
 
    30_graphics.sh
    32_media.sh

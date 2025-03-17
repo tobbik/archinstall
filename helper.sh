@@ -1,5 +1,34 @@
 source config.sh
 
+function run_module() {
+  local moduleFileName="$1"
+  local logPath="logs"
+  if [[ ! -z $2 ]] ; then
+    logPath="$2"
+  fi
+  [ ! -d ${logPath} ]  && mkdir -p ${logPath}
+  local MBYTES_AVAILABLE_ROOT=$(( $(df ${DISKROOTDEVPATH} | tail -n1 | awk '{print $2}') / 1024 ))
+  local MBYTES_AVAILABLE_BOOT=$(( $(df ${DISKBOOTDEVPATH} | tail -n1 | awk '{print $2}') / 1024 ))
+
+  echo "Now executing: ${moduleFileName}:" >> "${logPath}/progress.log"
+  BYTES_ROOT_START=$(df ${DISKROOTDEVPATH} | tail -n1 | awk '{print $3}')
+  BYTES_BOOT_START=$(df ${DISKBOOTDEVPATH} | tail -n1 | awk '{print $3}')
+  START_SECS=${SECONDS}
+  source "${moduleFileName}" 2>&1 | tee "${logPath}/${moduleFileName}.log"
+  ELAPSED_SECS=$((${SECONDS} - ${START_SECS}))
+  TIME_PASSED=$(date -u -d @"${ELAPSED_SECS}" +'%-Mm %Ss')
+  BYTES_ROOT_END=$(df ${DISKROOTDEVPATH} | tail -n1 | awk '{print $3}')
+  BYTES_BOOT_END=$(df ${DISKBOOTDEVPATH} | tail -n1 | awk '{print $3}')
+  MBYTES_ROOT_ADDED=$((  $(( ${BYTES_ROOT_END} - ${BYTES_ROOT_START} )) / 1024  ))
+  MBYTES_BOOT_ADDED=$((  $(( ${BYTES_BOOT_END} - ${BYTES_BOOT_START} )) / 1024  ))
+  echo "    Time Taken:  ${TIME_PASSED}" >> "${logPath}/progress.log"
+  echo "    MegaBytes added to /    : ${MBYTES_ROOT_ADDED}MB" >> "${logPath}/progress.log"
+  echo "    MegaBytes added to /boot: ${MBYTES_BOOT_ADDED}MB" >> "${logPath}/progress.log"
+  df -h | grep ${DISKROOTDEVPATH} >> "${logPath}/progress.log"
+  df -h | grep ${DISKBOOTDEVPATH} >> "${logPath}/progress.log"
+  echo -e "----------------\n"    >> "${logPath}/progress.log"
+}
+
 function enable_service() {
   local SERVICE=$1
   local FORUSER=$2

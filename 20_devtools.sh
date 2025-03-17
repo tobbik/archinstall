@@ -6,7 +6,7 @@ fi
 
 pacman -S --needed --noconfirm \
   wireshark-qt qt6-multimedia-ffmpeg \
-  neovim-qt gvim neovide \
+  neovim-qt neovide \
   graphicsmagick imagemagick ghostscript \
   geany geany-plugins scite \
   openconnect openvpn

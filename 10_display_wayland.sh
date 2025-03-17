@@ -20,7 +20,7 @@ pacman -S --needed --noconfirm \
   swaylock swayidle swaybg wlsunset gammastep \
   polkit-gnome brightnessctl kanshi \
   foot foot-terminfo libadwaita \
-  ${JACKPACKAGES} mpv libmpdclient scdoc playerctl \
+  ${JACKPACKAGES} playerctl \
   xorg-xwayland wlroots wayland-protocols gtk-layer-shell \
   labwc fuzzel waybar \
   gnu-free-fonts
@@ -58,7 +58,6 @@ usermod -a -G seat ${USERNAME}
 add_dotfiles ".config/labwc" ".config/foot" ".config/dunst" ".config/waybar" ".config/fuzzel" \
             ".local/bin/mpd-control" ".local/bin/wayland-screen-shooter" \
             ".local/bin/wayland-volume-adjust" ".local/bin/wayland-window-switcher"
-
 
 if ! grep -q 'GTK_THEME=' /home/${USERNAME}/.bash_profile; then
   echo "export GTK_THEME=Adwaita:dark" >> /home/${USERNAME}/.bash_profile

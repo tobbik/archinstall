@@ -22,7 +22,7 @@ pacman -S --needed --noconfirm \
   tesseract-data-eng tesseract-data-osd \
   alsa-tools alsa-utils alsa-plugins pamixer \
   ${AUDIOPACKAGES} pavucontrol \
-  mpd ario
+  mpd ario mpv
 
 # setup user audio
 if [ x"$AUDIOSYSTEM" == x"pipewire" ]; then
@@ -32,7 +32,7 @@ if [ x"$AUDIOSYSTEM" == x"pulseaudio" ]; then
   cp -avr /etc/pulse /home/${USERNAME}/.config/
 fi
 
-add_dotfiles ".config/mpd"
+add_dotfiles ".config/mpd" ".config/mpv"
 mkdir -p /home/${USERNAME}/.config/mpd/playlists
 
 enable_service pipewire-pulse.service ${USERNAME}

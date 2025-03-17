@@ -4,6 +4,7 @@ cd "$(dirname "$0")"
 RUNDIR=$(pwd)
 
 source config.sh
+source helper.sh
 
 if [ -n "$SETTIMESTAMP" ]; then
   date -s "$SETTIMESTAMP"
@@ -11,30 +12,11 @@ fi
 
 mkdir -p /root/installer/logs
 
-MBYTES_AVAILABLE_ROOT=$(( $(df ${DISKROOTDEVPATH} | tail -n1 | awk '{print $2}') / 1024 ))
-MBYTES_AVAILABLE_BOOT=$(( $(df ${DISKBOOTDEVPATH} | tail -n1 | awk '{print $2}') / 1024 ))
 
 for moduleName in ${MODULES[@]}; do
   echo "Executing ${moduleName}"
-  echo "Now executing: ${moduleName}:" >> "/root/installer/logs/progress.log"
   cd ${RUNDIR}
-  BYTES_ROOT_START=$(df ${DISKROOTDEVPATH} | tail -n1 | awk '{print $3}')
-  BYTES_BOOT_START=$(df ${DISKBOOTDEVPATH} | tail -n1 | awk '{print $3}')
-  START_SECS=${SECONDS}
-  source "${moduleName}" 2>&1 | tee "/root/installer/logs/${moduleName}.log"
-  ELAPSED_SECS=$((${SECONDS} - ${START_SECS}))
-  TIME_PASSED=$(date -u -d @"${ELAPSED_SECS}" +'%-Mm %Ss')
-  BYTES_ROOT_END=$(df ${DISKROOTDEVPATH} | tail -n1 | awk '{print $3}')
-  BYTES_BOOT_END=$(df ${DISKBOOTDEVPATH} | tail -n1 | awk '{print $3}')
-  MBYTES_ROOT_ADDED=$((  $(( ${BYTES_ROOT_END} - ${BYTES_ROOT_START} )) / 1024  ))
-  MBYTES_BOOT_ADDED=$((  $(( ${BYTES_BOOT_END} - ${BYTES_BOOT_START} )) / 1024  ))
-  echo -e "\n\n\nLatest diskusage after installing module:\n\t\t$(df -h | grep ${DISKBASEDEVPATH})"
-  echo "    Time Taken:  ${TIME_PASSED}" >> "/root/installer/logs/progress.log"
-  echo "    MegaBytes added to /    : ${MBYTES_ROOT_ADDED}MB" >> "/root/installer/logs/progress.log"
-  echo "    MegaBytes added to /boot: ${MBYTES_BOOT_ADDED}MB" >> "/root/installer/logs/progress.log"
-  df -h | grep ${DISKROOTDEVPATH} >> "/root/installer/logs/progress.log"
-  df -h | grep ${DISKBOOTDEVPATH} >> "/root/installer/logs/progress.log"
-  echo -e "--------------  \n" >> "/root/installer/logs/progress.log"
+  run_module "${moduleName}" "/root/installer/logs"
 done
 
 # flatten all permissions
