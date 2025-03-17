@@ -10,8 +10,9 @@ if [ x"${AURBUILDDIR}" == "x" ]; then
 fi
 
 pacman -S --needed --noconfirm \
-  pipewire-pulse scour ddcutil tllist glib2-devel boost \
-  ttf-font gtk4 libyaml qt6-base qt6-tools gobject-introspection
+  scour ddcutil tllist glib2-devel boost \
+  ttf-font gtk4 libyaml qt6-base qt6-tools \
+  gobject-introspection
 
 # needed for wlr-randr
 sudo --user ${USERNAME} gpg --keyserver keys.gnupg.net --recv-keys 0FDE7BE0E88F5E48

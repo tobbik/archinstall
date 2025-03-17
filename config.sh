@@ -66,6 +66,8 @@ LOCALECOLLATE="C.UTF-8"
 LOCALEFALLBACK="en_CA:en_GB:en"
 TIMEZONE="America/Vancouver"
 TIMESTAMP=$(date -Iseconds)
+# pipewire has some trouble on smaller SBCs such as Orange Pi
+AUDIOSYSTEM="pipewire"   # pipewire | pulseaudio
 NETWORKTYPE="wlan"   # wlan | ether | both
 
 # microcode selection

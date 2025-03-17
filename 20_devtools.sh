@@ -8,6 +8,7 @@ pacman -S --needed --noconfirm \
   wireshark-qt qt6-multimedia-ffmpeg \
   neovim-qt gvim neovide \
   graphicsmagick imagemagick ghostscript \
-  gvim geany geany-plugins scite \
+  geany geany-plugins scite \
   openconnect openvpn
 
+add_alias "gvim" "neovide"

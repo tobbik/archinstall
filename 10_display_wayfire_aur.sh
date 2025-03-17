@@ -23,7 +23,7 @@ pacman -S --needed --noconfirm \
   wlroots extra-cmake-modules glibmm gtkmm3 \
   doctest doxygen iio-sensor-proxy \
   libdbusmenu-gtk3 nlohmann-json glm \
-  pipewire-pulse scour ddcutil tllist glib2-devel boost \
+  scour ddcutil tllist glib2-devel boost \
   ttf-font gtk4 libadwaita libyaml
 
 handle_aur_pkg        ${USERNAME} ${AURBUILDDIR} wf-config-git

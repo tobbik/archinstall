@@ -7,6 +7,7 @@ pacman -S --needed --noconfirm \
   dnsmasq qemu-desktop qemu-tools
 
 if [ $(uname -m) = 'x86_64' ]; then
+  # libgestfs forces vim back into the fold
   pacman -S --needed --noconfirm \
     virtualbox libguestfs edk2-ovmf
 fi

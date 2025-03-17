@@ -1,6 +1,17 @@
 source config.sh
 source helper.sh
 
+if [ x"$AUDIOSYSTEM" == x"pipewire" ]; then
+  AUDIOPACKAGES="pipewire wireplumber pipewire-audio \
+  pipewire-alsa pipewire-pulse pipewire-jack \
+  helvum"
+fi
+
+if [ x"$AUDIOSYSTEM" == x"pulseaudio" ]; then
+  AUDIOPACKAGES="pulseaudio pulseaudio-alsa \
+    pulseaudio-bluetooth pulseaudio-jack"
+fi
+
 # Everyday GUI tools
 pacman -S --needed --noconfirm \
   file-roller fbset pcmanfm-gtk3 alacritty \
@@ -10,13 +21,16 @@ pacman -S --needed --noconfirm \
   zathura-pdf-mupdf mupdf-gl \
   tesseract-data-eng tesseract-data-osd \
   alsa-tools alsa-utils alsa-plugins pamixer \
-  pipewire wireplumber pipewire-audio \
-  pipewire-alsa pipewire-pulse pipewire-jack \
-  helvum pavucontrol \
+  ${AUDIOPACKAGES} pavucontrol \
   mpd ario
 
 # setup user audio
-cp -avr /usr/share/pipewire /home/${USERNAME}/.config/
+if [ x"$AUDIOSYSTEM" == x"pipewire" ]; then
+  cp -avr /usr/share/pipewire /home/${USERNAME}/.config/
+fi
+if [ x"$AUDIOSYSTEM" == x"pulseaudio" ]; then
+  cp -avr /etc/pulse /home/${USERNAME}/.config/
+fi
 
 add_dotfiles ".config/mpd"
 mkdir -p /home/${USERNAME}/.config/mpd/playlists

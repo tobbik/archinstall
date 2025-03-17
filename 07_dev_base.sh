@@ -12,9 +12,10 @@ pacman -S --needed --noconfirm \
   go rust meson \
   python3 ipython cython \
   nodejs npm js115 php \
-  neovim vim \
+  neovim \
   tree-sitter-bash tree-sitter-python tree-sitter-javascript tree-sitter-rust tree-sitter-query
 
+pacman -Rc vim-runtime
 
 if [ $(uname -m) = 'x86_64' ]; then
   pacman -S --noconfirm --needed pypy pypy3
@@ -35,5 +36,9 @@ cd ${INSTALLERDIR}
 add_alias "nv"     "nvim"
 add_alias "nvd"    "nvim -d"
 add_alias "nvdiff" "nvim -d"
+
+# after removing vim provide aliases
+add_alias "vi"     "nvim"
+add_alias "vim"    "nvim"
 
 add_dotfiles ".config/nvim" ".vim" ".vimrc"
