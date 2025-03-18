@@ -34,6 +34,7 @@ vim.opt.cursorline = true  -- highlight line of cursor position
 
 if vim.g.neovide then
   vim.g.neovide_input_use_logo = 1 -- enable use of the logo (cmd) key
+  vim.g.neovide_transparency = 0.92
   vim.keymap.set('n', '<D-s>', ':w<CR>') -- Save
   vim.keymap.set('v', '<D-c>', '"+y') -- Copy
   vim.keymap.set('n', '<D-v>', '"+P') -- Paste normal mode

@@ -13,3 +13,6 @@ if [ $(uname -m) = 'x86_64' ]; then
   pacman -S ${PACMANFLAGS} \
     signal-desktop ghostty
 fi
+
+
+add_dotfiles ".config/ghostty" ".config/gtk-4.0"

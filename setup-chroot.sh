@@ -13,7 +13,8 @@ fi
 mkdir -p /root/installer/logs
 
 
-for moduleName in ${MODULES[@]}; do
+for moduleName in ${MODULES[@]}
+do
   echo "Executing ${moduleName}"
   cd ${RUNDIR}
   run_module "${moduleName}" "/root/installer/logs"

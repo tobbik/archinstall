@@ -27,18 +27,22 @@ pacman -S ${PACMANFLAGS} \
   python-websockets python-brotli python-brotlicffi \
   python-xattr python-pyxattr python-secretstorage
 
-# setup user audio
-if [ x"$AUDIOSYSTEM" == x"pipewire" ]; then
-  cp -avr /usr/share/pipewire /home/${USERNAME}/.config/
-fi
-if [ x"$AUDIOSYSTEM" == x"pulseaudio" ]; then
-  cp -avr /etc/pulse /home/${USERNAME}/.config/
-fi
-
 add_dotfiles ".config/mpd" ".config/mpv"
 mkdir -p /home/${USERNAME}/.config/mpd/playlists
 
-enable_service pipewire-pulse.service ${USERNAME}
-enable_service wireplumber.service ${USERNAME}
-enable_service mpd.service ${USERNAME}
+# setup user audio bas configs
+if [ x"$AUDIOSYSTEM" == x"pipewire" ]; then
+  cp -avr /usr/share/pipewire /home/${USERNAME}/.config/
+  sed -i /home/${USERNAME}/.config/mpv/mpv.conf \
+      -e "s:^ao=.*$:ao=pipewire:"
+  enable_service pipewire-pulse.service ${USERNAME}
+  enable_service wireplumber.service ${USERNAME}
+fi
 
+if [ x"$AUDIOSYSTEM" == x"pulseaudio" ]; then
+  cp -avr /etc/pulse /home/${USERNAME}/.config/
+  sed -i /home/${USERNAME}/.config/mpv/mpv.conf \
+      -e "s:^ao=.*$:ao=pulse:"
+fi
+
+enable_service mpd.service ${USERNAME}
