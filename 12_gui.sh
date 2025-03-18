@@ -22,7 +22,10 @@ pacman -S ${PACMANFLAGS} \
   tesseract-data-eng tesseract-data-osd \
   alsa-tools alsa-utils alsa-plugins pamixer \
   ${AUDIOPACKAGES} pavucontrol \
-  mpd ario mpv
+  mpd ario mpv yt-dlp aria2 atomicparsley python-mutagen \
+  python-pycryptodome python-pycryptodomex \
+  python-websockets python-brotli python-brotlicffi \
+  python-xattr python-pyxattr python-secretstorage
 
 # setup user audio
 if [ x"$AUDIOSYSTEM" == x"pipewire" ]; then
