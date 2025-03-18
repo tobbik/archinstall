@@ -1,6 +1,6 @@
 source config.sh
 
-pacman -S --needed --noconfirm \
+pacman -S ${PACMANFLAGS} \
   postgresql sqlite redis minio-client
 #  mongodb elasticsearch rabbitmq
 

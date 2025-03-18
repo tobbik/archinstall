@@ -2,7 +2,7 @@ source config.sh
 source helper.sh
 
 # Everyday GUI tools
-pacman -S --needed --noconfirm \
+pacman -S ${PACMANFLAGS} \
   libreoffice-fresh libreoffice-fresh-en-gb libreoffice-fresh-de \
   hunspell-en_ca hunspell-en_us hunspell-de \
   ttf-dejavu ttf-droid ttf-hack ttf-inconsolata ttf-roboto \
@@ -10,5 +10,6 @@ pacman -S --needed --noconfirm \
   tesseract-data-eng mupdf-tools cups
 
 if [ $(uname -m) = 'x86_64' ]; then
-  pacman -S --noconfirm --needed signal-desktop ghostty
+  pacman -S ${PACMANFLAGS} \
+    signal-desktop ghostty
 fi

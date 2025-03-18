@@ -4,7 +4,7 @@ source build_aur_pkg.sh
 OLDDIR=$(pwd)
 BASEURL="https://aur.archlinux.org/cgit/aur.git/snapshot"
 
-pacman -S --needed --noconfirm \
+pacman -S ${PACMANFLAGS} \
   meson scdoc qrencode vte4 rust
 
 PACKAGES=(

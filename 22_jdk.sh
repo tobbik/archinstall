@@ -1,4 +1,4 @@
 source config.sh
 
-pacman -S --needed --noconfirm \
+pacman -S ${PACMANFLAGS} \
   jdk-openjdk java-environment-common java-runtime-common

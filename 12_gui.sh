@@ -13,7 +13,7 @@ if [ x"$AUDIOSYSTEM" == x"pulseaudio" ]; then
 fi
 
 # Everyday GUI tools
-pacman -S --needed --noconfirm \
+pacman -S ${PACMANFLAGS} \
   file-roller fbset pcmanfm-gtk3 alacritty \
   chromium firefox glfw \
   gvfs-smb gvfs-nfs gvfs-mtp \

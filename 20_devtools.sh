@@ -4,7 +4,7 @@ if pacman -Q vim ; then
   pacman -Rdd vim --noconfirm
 fi
 
-pacman -S --needed --noconfirm \
+pacman -S ${PACMANFLAGS} \
   wireshark-qt qt6-multimedia-ffmpeg \
   neovim-qt neovide \
   graphicsmagick imagemagick ghostscript \

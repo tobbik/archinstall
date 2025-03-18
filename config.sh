@@ -52,6 +52,8 @@ DISKROOTDEVPATH=${DISKBASEDEVPATH}${DISKPARTNAME}2
 DISKHOMEDEVPATH=${DISKBASEDEVPATH}${DISKPARTNAME}3
 DISKSWAPDEVPATH=${DISKBASEDEVPATH}${DISKPARTNAME}4
 
+PACMANFLAGS="--noconfirm --needed"
+
 # if set, it will attempt to put that on top of the /etc/pacman.d/mirrorlist file
 # PACMANPRIMARYPKGSERVER="Server = http://mylocalcache:8765/pkg"
 

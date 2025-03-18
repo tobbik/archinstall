@@ -2,7 +2,7 @@ source config.sh
 source helper.sh
 source build_aur_pkg.sh
 
-pacman -S --needed --noconfirm \
+pacman -S ${PACMANFLAGS} \
   scour ddcutil glib2-devel scdoc \
   ttf-font gtk4 libyaml qt6-base qt6-tools \
   gobject-introspection

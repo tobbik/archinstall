@@ -13,7 +13,7 @@ if [ x"$AUDIOSYSTEM" == x"pulseaudio" ]; then
 fi
 
 # everything Xorg and Terminals and command line
-pacman -S --needed --noconfirm \
+pacman -S ${PACMANFLAGS} \
   mesa libva-mesa-driver mesa-vdpau mesa-demos libvdpau-va-gl \
   wayland ly wl-clipboard dunst jq wlr-randr \
   wf-recorder wayvnc grim slurp satty \

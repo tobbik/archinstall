@@ -6,7 +6,7 @@ if pacman -Q iptables ; then
   pacman -Rdd --noconfirm iptables
 fi
 
-pacman -S --needed --noconfirm \
+pacman -S ${PACMANFLAGS} \
   docker arch-install-scripts lxc haveged \
   "bind" docker-compose docker-buildx \
   bridge-utils lua-alt-getopt ca-certificates \

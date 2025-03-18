@@ -3,7 +3,7 @@ source helper.sh
 
 # everything Xorg and Terminals
 # XFCE Desktop
-pacman -S --needed --noconfirm \
+pacman -S ${PACMANFLAGS} \
   mesa libva-mesa-driver mesa-vdpau mesa-demos libvdpau-va-gl \
   xorg-server xorg-apps xorg-xinit \
   xorg-xclipboard xclip xsel xdg-utils \

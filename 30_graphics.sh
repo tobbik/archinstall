@@ -1,6 +1,6 @@
 source config.sh
 
-pacman -S --needed --noconfirm \
+pacman -S ${PACMANFLAGS} \
   gimp graphviz \
   inkscape hugin enblend-enfuse geeqie \
   darktable
@@ -8,6 +8,7 @@ pacman -S --needed --noconfirm \
 
 # blender is currently missing a dependency on aarch64 :-(
 if [ x$(uname -m) == x"x86_64" ]; then
-  pacman -S --needed --noconfirm blender
+  pacman -S ${PACMANFLAGS} \
+    blender
 fi
 
