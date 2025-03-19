@@ -6,7 +6,7 @@ function run_module() {
   if [[ ! -z $2 ]] ; then
     logPath="$2"
   fi
-  [ ! -d ${logPath} ]  && mkdir -p ${logPath}
+  [ -d ${logPath} ] || mkdir -p ${logPath}
   local MBYTES_AVAILABLE_ROOT=$(( $(df ${DISKROOTDEVPATH} | tail -n1 | awk '{print $2}') / 1024 ))
   local MBYTES_AVAILABLE_BOOT=$(( $(df ${DISKBOOTDEVPATH} | tail -n1 | awk '{print $2}') / 1024 ))
 
@@ -65,8 +65,15 @@ function add_dotfiles() {
 function add_alias() {
   ALIAS=$1
   COMMAND=$2
-  BASHRC=/home/$USERNAME/.bashrc
-  if ! grep -q "alias ${ALIAS}=" ${BASHRC} ; then
-    echo -e "alias ${ALIAS}='${COMMAND}'" >> ${BASHRC}
+  if ! grep -q "alias ${ALIAS}=" /home/${USERNAME}/.bashrc ; then
+    echo -e "alias ${ALIAS}='${COMMAND}'" >> /home/${USERNAME}/.bashrc
+  fi
+}
+
+function add_export() {
+  VARNAME="$1"
+  VARVALUE="$2"
+  if ! grep -q "export ${VARNAME}=" /home/${USERNAME}/.bash_profile ; then
+    echo "export ${VARNAME}=${VARVALUE}" >> /home/${USERNAME}/.bash_profile
   fi
 }

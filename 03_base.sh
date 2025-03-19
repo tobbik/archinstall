@@ -36,9 +36,7 @@ enable_service rngd
 sed -i /etc/makepkg.conf \
   -e "s:purge debug lto:purge !debug lto:"
 
-if ! grep -q 'SSH_AUTH_SOCK=' /home/${USERNAME}/.bash_profile; then
-  echo "export SSH_AUTH_SOCK=\${XDG_RUNTIME_DIR}/ssh-agent.socket" >> /home/${USERNAME}/.bash_profile
-fi
+add_export "SSH_AUTH_SOCK" '${XDG_RUNTIME_DIR}/ssh-agent.socket'
 enable_service ssh-agent.service ${USERNAME}
 
 if [ ! -f /etc/sudoers.d/${USERNAME} ]; then

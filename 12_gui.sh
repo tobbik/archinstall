@@ -27,7 +27,7 @@ pacman -S ${PACMANFLAGS} \
   python-websockets python-brotli python-brotlicffi \
   python-xattr python-pyxattr python-secretstorage
 
-add_dotfiles ".config/mpd" ".config/mpv"
+add_dotfiles ".config/mpd" ".config/mpv" ".config/libfm" ".config/pcmanfm"
 mkdir -p /home/${USERNAME}/.config/mpd/playlists
 
 # setup user audio bas configs
@@ -46,3 +46,5 @@ if [ x"$AUDIOSYSTEM" == x"pulseaudio" ]; then
 fi
 
 enable_service mpd.service ${USERNAME}
+
+add_export "GTK_THEME" "Adwaita:dark"

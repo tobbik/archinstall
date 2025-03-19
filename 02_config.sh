@@ -47,9 +47,7 @@ if ! grep -q ${USERNAME} /etc/passwd ; then
 fi
 
 mkdir -p /home/${USERNAME}/{.config,.local/bin,.cache}
-if ! grep -q 'PATH=' /home/${USERNAME}/.bash_profile; then
-  echo "export PATH=\${PATH}:\${HOME}/.local/bin" >> /home/${USERNAME}/.bash_profile
-fi
+add_export "PATH" '${PATH}:${HOME}/.local/bin'
 
 # reset the password to be sure
 echo -e "${USERPASS}\n${USERPASS}" | (passwd -q ${USERNAME})

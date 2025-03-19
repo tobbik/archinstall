@@ -1,0 +1,36 @@
+{
+    "label" : "lock",
+    "action" : "swaylock -f -c 2d4f36",
+    "text" : "Lock",
+    "keybind" : "l"
+}
+{
+    "label" : "logout",
+    "action" : "labwc --exit",
+    "text" : "Log Out",
+    "keybind" : "e"
+}
+{
+    "label" : "suspend",
+    "action" : "systemctl suspend",
+    "text" : "Suspend",
+    "keybind" : "u"
+}
+{
+    "label" : "hibernate",
+    "action" : "systemctl hibernate",
+    "text" : "Hibernate",
+    "keybind" : "h"
+}
+{
+    "label" : "reboot",
+    "action" : "systemctl reboot",
+    "text" : "Restart",
+    "keybind" : "r"
+}
+{
+    "label" : "shutdown",
+    "action" : "systemctl poweroff",
+    "text" : "Power Off",
+    "keybind" : "s"
+}

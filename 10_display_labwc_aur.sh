@@ -28,4 +28,4 @@ for PACKAGE in ${PACKAGES[@]}; do
   handle_aur_pkg ${USERNAME} ${AURBUILDDIR} ${PACKAGE}
 done
 
-add_dotfiles ".config/sfwbar" ".config/wlr-which-key"
+add_dotfiles ".config/sfwbar" ".config/wlr-which-key" ".config/wlogout"

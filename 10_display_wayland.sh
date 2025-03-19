@@ -33,21 +33,6 @@ sed -i /etc/ly/config.ini \
   -e "s:^#clock = .*:clock = %c:" \
   -e "s:^#blank_box = .*:blank_box = true:"
 
-mkdir -p "/home/${USERNAME}/.config/gammastep"
-cat > "/home/${USERNAME}/.config/gammastep/config.ini" << EOGAMMACONFIG
-[general]
-temp-day=5700
-temp-night=3600
-fade=1
-gamma=1.0
-adjustment-method=wayland
-location-provider=manual
-
-[manual]
-lat=48.48
-lon=-123.53
-EOGAMMACONFIG
-
 enable_service ly.service
 enable_service foot-server.service ${USERNAME}
 enable_service gammastep.service ${USERNAME}
@@ -55,10 +40,10 @@ enable_service gammastep.service ${USERNAME}
 # seatd is installed as a dependency of labwc
 usermod -a -G seat ${USERNAME}
 
-add_dotfiles ".config/labwc" ".config/foot" ".config/dunst" ".config/waybar" ".config/fuzzel" \
+add_dotfiles ".config/labwc" ".config/foot" ".config/dunst" ".config/waybar" \
+            ".config/fuzzel" ".config/swaylock" ".config/gammastep" \
             ".local/bin/mpd-control" ".local/bin/wayland-screen-shooter" \
             ".local/bin/wayland-volume-adjust" ".local/bin/wayland-window-switcher"
 
-if ! grep -q 'GTK_THEME=' /home/${USERNAME}/.bash_profile; then
-  echo "export GTK_THEME=Adwaita:dark" >> /home/${USERNAME}/.bash_profile
-fi
+sed -i /home/${USERNAME}/.config/gammastep/config.ini \
+      -e "s:^adjustment-method=.*$:adjustment-method=wayland:"
