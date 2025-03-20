@@ -7,11 +7,11 @@ pacman -S ${PACMANFLAGS} \
   clang clang-analyzer lldb lld \
   tcc pkg-config cmake uasm \
   ocl-icd hyperfine \
-  nginx fcgiwrap git git-lfs tig wireshark-cli figlet \
+  git git-lfs tig wireshark-cli figlet \
   lua lua-socket lua-filesystem luajit \
   go rust meson \
   python3 ipython cython \
-  nodejs npm js115 php \
+  nodejs npm nvm js115 php \
   neovim \
   tree-sitter-bash tree-sitter-python tree-sitter-javascript tree-sitter-rust tree-sitter-query
 
@@ -23,6 +23,16 @@ if [ $(uname -m) = 'x86_64' ]; then
 fi
 
 usermod -a -G git,http,wireshark       ${USERNAME}
+
+# set up .bashrc to invoke nvm properly
+if ! grep -q 'init-nvm' /home/${USERNAME}/.bashrc ; then
+  cat >> /home/${USERNAME}/.bashrc << EOBASHRC
+
+# initialize node version manager if present
+[ -f /usr/share/nvm/init-nvm.sh ] && source /usr/share/nvm/init-nvm.sh
+
+EOBASHRC
+fi
 
 #set up git
 INSTALLERDIR=$(pwd)

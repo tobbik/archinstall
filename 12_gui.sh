@@ -27,7 +27,13 @@ pacman -S ${PACMANFLAGS} \
   python-websockets python-brotli python-brotlicffi \
   python-xattr python-pyxattr python-secretstorage
 
-add_dotfiles ".config/mpd" ".config/mpv" ".config/libfm" ".config/pcmanfm"
+if [ $(uname -m) = 'x86_64' ]; then
+  pacman -S ${PACMANFLAGS} \
+    ghostty
+  add_dotfiles ".config/ghostty" ".config/gtk-4.0"
+fi
+
+add_dotfiles ".config/mpd" ".config/mpv" ".config/libfm" ".config/pcmanfm" ".config/chromium-flags.conf"
 mkdir -p /home/${USERNAME}/.config/mpd/playlists
 
 # setup user audio bas configs

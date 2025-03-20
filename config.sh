@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#installation modules
+# installation modules
 # just comment out modules you don't want
 # eg. exclude 30_graphics and 31_office etc for a developer VM
 MODULES=(
@@ -11,25 +11,28 @@ MODULES=(
 
    05_bootmgr.sh
 
-   07_dev_base.sh
-   08_dev_aur.sh
+   07_dev.sh
+   07_dev_aur.sh
+
+   09_amd.sh
+   #09_intel.sh
+   #09_x13s.sh
+   #09_rpi4.sh
+   #09_opi5.sh
 
    10_display_wayland.sh
-   10_display_labwc_aur.sh
-   #10_display_wayfire_aur.sh
    #10_display_xorg.sh
-
-   11_amd.sh
-   #11_intel.sh
-   #11_x13s.sh
-   #11_rpi4.sh
-   #11_opi5.sh
+   11_desktop_labwc_aur.sh
+   #11_desktop_wayfire_aur.sh
 
    12_gui.sh
-   13_office.sh
-   14_office_aur.sh
+   12_gui_aur.sh
 
-   20_devtools.sh
+   13_office.sh
+   13_office_aur.sh
+
+   20_dev_gui.sh
+   20_dev_gui_aur.sh
    21_dotnet.sh
    22_jdk.sh
    23_kvm.sh

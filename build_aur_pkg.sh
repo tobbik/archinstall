@@ -34,15 +34,15 @@ function create_aur_pkg () {
   sudo --user ${ASUSER} makepkg
   if grep -q '^arch.*any' PKGBUILD ; then
     if pacman -U --needed --noconfirm ${PKG}-*any.${SUFFIX} ; then
-      echo "     ..... PACKAGE '${PKG}' INSTALLED >>>>>>>>>>>>"
+      echo "     ..... PACKAGE INSTALLATION SUCCESS: '${PKG}' >>>>>>>>>>>>"
     else
-      echo "     ..... PACKAGE INSTALLATION FAILED '${PKG}' >>>>>>>>>>>>"
+      echo "     ..... PACKAGE INSTALLATION FAILED: '${PKG}' >>>>>>>>>>>>"
     fi
   else
     if pacman -U --needed --noconfirm ${PKG}-*${ARCH}.${SUFFIX} ; then
-      echo "     ..... PACKAGE '${PKG}' INSTALLED >>>>>>>>>>>>"
+      echo "     ..... PACKAGE INSTALLATION SUCCESS: '${PKG}' >>>>>>>>>>>>"
     else
-      echo "     ..... PACKAGE INSTALLATION FAILED '${PKG}' >>>>>>>>>>>>"
+      echo "     ..... PACKAGE INSTALLATION FAILED: '${PKG}' >>>>>>>>>>>>"
     fi
   fi
   rm -rf src pkg

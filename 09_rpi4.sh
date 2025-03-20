@@ -18,11 +18,10 @@ dtoverlay=disable-bt
 EOBOOTCFG
 fi
 
-sed -i 's: rw : ro :' /boot/cmdline.txt
+sed -e 's: rw : ro :' -i /boot/cmdline.txt
 if ! grep -q 'cgroup_' /boot/cmdline.txt ; then
-  sed \
+  sed -i /boot/cmdline.txt \
     -e 's:^\(root.*\)$:\1 cgroup_enable=cpuset cgroup_memory=1 cgroup_enable=memory swapaccount=1 :' \
-    -i /boot/cmdline.txt
 fi
 
 sed -e 's/mmcblk1/mmcblk0/g' -i /etc/fstab
