@@ -2,7 +2,7 @@ source config.sh
 source helper.sh
 
 # base-devel covers automake autoconf flex bison make sudo etc.
-pacman -S ${PACMANFLAGS} \
+pacman -S --needed --noconfirm ${PACMANEXTRAFLAGS} \
   base-devel bc elfutils gdb valgrind \
   clang clang-analyzer lldb lld \
   tcc pkg-config cmake uasm \
@@ -18,7 +18,7 @@ pacman -S ${PACMANFLAGS} \
 pacman -Rc --noconfirm vim-runtime
 
 if [ $(uname -m) = 'x86_64' ]; then
-  pacman -S ${PACMANFLAGS} \
+  pacman -S --needed --noconfirm ${PACMANEXTRAFLAGS} \
     pypy pypy3
 fi
 

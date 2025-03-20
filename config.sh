@@ -55,7 +55,7 @@ DISKROOTDEVPATH=${DISKBASEDEVPATH}${DISKPARTNAME}2
 DISKHOMEDEVPATH=${DISKBASEDEVPATH}${DISKPARTNAME}3
 DISKSWAPDEVPATH=${DISKBASEDEVPATH}${DISKPARTNAME}4
 
-PACMANFLAGS="--noconfirm --needed"
+PACMANEXTRAFLAGS=""    # --disable-download-timeout for bad connections
 
 # if set, it will attempt to put that on top of the /etc/pacman.d/mirrorlist file
 # PACMANPRIMARYPKGSERVER="Server = http://mylocalcache:8765/pkg"

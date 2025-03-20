@@ -2,16 +2,16 @@ source config.sh
 source helper.sh
 
 if [ x$(uname -m) == x"aarch64" ]; then
-  pacman -S ${PACMANFLAGS} \
+  pacman -S --needed --noconfirm ${PACMANEXTRAFLAGS} \
     archlinuxarm-keyring mkinitcpio
 fi
 if [ x$(uname -m) == x"x86_64" ]; then
-  pacman -S ${PACMANFLAGS} \
+  pacman -S --needed --noconfirm ${PACMANEXTRAFLAGS} \
     archlinux-keyring mkinitcpio vbetool 7zip
 fi
 
 # packers, helpers etc ...
-pacman -S ${PACMANFLAGS} \
+pacman -S --needed --noconfirm ${PACMANEXTRAFLAGS} \
   wpa_supplicant wireless_tools net-tools openssh \
   dosfstools exfatprogs e2fsprogs ntfs-3g \
   rsync whois nmap wget curl traceroute iperf \

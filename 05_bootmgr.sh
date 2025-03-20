@@ -43,13 +43,13 @@ fi
 
 # ------------------------------------------------ grub
 if [ x"${BOOTMNGR}" == x"grub" ]; then
-  pacman -S ${PACMANFLAGS} \
+  pacman -S --needed --noconfirm ${PACMANEXTRAFLAGS} \
     grub
 fi
 
 # ------------------------------------------------ refind
 if [ x"${BOOTMNGR}" == x"refind" ]; then
-  pacman -S ${PACMANFLAGS} \
+  pacman -S --needed --noconfirm ${PACMANEXTRAFLAGS} \
     refind
 fi
 

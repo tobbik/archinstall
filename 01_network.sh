@@ -5,7 +5,7 @@ if pacman -Q openresolv ; then
   pacman -Rdd openresolv
 fi
 
-pacman -S ${PACMANFLAGS} \
+pacman -S --needed --noconfirm ${PACMANEXTRAFLAGS} \
   iwd systemd-resolvconf wireless-regdb
 
 if test x${NETWORKTYPE} = x"ether" || test x${NETWORKTYPE} = x"both"; then

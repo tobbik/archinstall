@@ -12,10 +12,9 @@ fi
 
 mkdir -p /root/installer/logs
 
-
 for moduleName in ${MODULES[@]}
 do
-  echo "Executing ${moduleName}"
+  echo -e "\n\n      >>>>>>>>>>>   EXECUTING ${moduleName} <<<<<<<<<<<<\n"
   cd ${RUNDIR}
   run_module "${moduleName}" "/root/installer/logs"
 done

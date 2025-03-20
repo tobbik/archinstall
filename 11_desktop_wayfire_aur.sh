@@ -11,7 +11,7 @@ for PACKAGE in ${REMOVABLES[@]}; do
   rm -rf ${AURBUILDDIR}/${PACKAGE}
 done
 
-pacman -S ${PACMANFLAGS} \
+pacman -S --needed -noconfirm ${PACMANEXTRAFLAGS} \
   wlroots extra-cmake-modules glibmm gtkmm3 \
   doctest doxygen iio-sensor-proxy \
   libdbusmenu-gtk3 nlohmann-json glm \

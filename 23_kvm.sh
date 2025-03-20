@@ -1,14 +1,14 @@
 source config.sh
 source helper.sh
 
-pacman -S ${PACMANFLAGS} \
+pacman -S --needed -noconfirm ${PACMANEXTRAFLAGS} \
   qemu-base virt-manager qemu-guest-agent \
   virt-viewer libvirt \
   dnsmasq qemu-desktop qemu-tools
 
 if [ $(uname -m) = 'x86_64' ]; then
   # libgestfs forces vim back into the fold
-  pacman -S ${PACMANFLAGS} \
+  pacman -S --needed -noconfirm ${PACMANEXTRAFLAGS} \
     virtualbox libguestfs edk2-ovmf
 fi
 
