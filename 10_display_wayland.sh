@@ -2,7 +2,6 @@ source config.sh
 source helper.sh
 
 # mpv and mpd need ffmpeg which needs a jack server
-
 if [ x"$AUDIOSYSTEM" == x"pipewire" ]; then
   # portals require pipewire ...
   JACKPACKAGES="pipewire-jack ffmpeg xdg-desktop-portal xdg-desktop-portal-gtk xdg-desktop-portal-wlr"
