@@ -22,7 +22,7 @@ pacman -S --needed -noconfirm ${PACMANEXTRAFLAGS} \
   ${JACKPACKAGES} playerctl \
   xorg-xwayland wlroots wayland-protocols gtk-layer-shell \
   labwc fuzzel waybar \
-  gnu-free-fonts
+  ttf-dejavu ttf-dejavu-nerd
 
 sed -i /etc/ly/config.ini \
   -e "s:^#save =.*:save = true:" \

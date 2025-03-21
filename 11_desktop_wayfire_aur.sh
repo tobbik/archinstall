@@ -15,8 +15,8 @@ pacman -S --needed -noconfirm ${PACMANEXTRAFLAGS} \
   wlroots extra-cmake-modules glibmm gtkmm3 \
   doctest doxygen iio-sensor-proxy \
   libdbusmenu-gtk3 nlohmann-json glm \
-  scour glib2-devel boost \
-  ttf-font gtk4 libadwaita libyaml
+  scour glib2-devel boost libyaml \
+  ttf-dejavu ttf-dejavu-nerd gtk4 libadwaita
 
 handle_aur_pkg        ${USERNAME} ${AURBUILDDIR} wf-config-git
 

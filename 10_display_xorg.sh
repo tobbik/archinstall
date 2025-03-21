@@ -8,7 +8,7 @@ pacman -S --needed -noconfirm ${PACMANEXTRAFLAGS} \
   xorg-server xorg-apps xorg-xinit \
   xorg-xclipboard xclip xsel xdg-utils \
   xterm rxvt-unicode rxvt-unicode-terminfo \
-  xfce4 xfce4-goodies \
+  xfce4 xfce4-goodies ttf-dejavu ttf-dejavu-nerd \
   thunar thunar-archive-plugin thunar-media-tags-plugin thunar-volman tumbler \
   gammastep
 
