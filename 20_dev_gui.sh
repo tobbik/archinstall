@@ -12,3 +12,4 @@ pacman -S --needed -noconfirm ${PACMANEXTRAFLAGS} \
   openconnect openvpn
 
 add_alias "gvim" "neovide"
+add_dotfiles ".config/neovide"
