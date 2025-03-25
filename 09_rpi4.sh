@@ -2,7 +2,7 @@ source config.sh
 
 pacman -Rdd --noconfirm linux-aarch64 uboot-raspberrypi
 
-pacman -S --needed -noconfirm ${PACMANEXTRAFLAGS} \
+pacman -S --needed --noconfirm ${PACMANEXTRAFLAGS} \
   linux-rpi linux-rpi-headers
 
 # this moves things back to the RaspberryPi way instead of the generic

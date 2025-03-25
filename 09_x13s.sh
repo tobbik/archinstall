@@ -1,7 +1,7 @@
 source config.sh
 source build_aur_pkg.sh
 
-pacman -S --needed -noconfirm ${PACMANEXTRAFLAGS} \
+pacman -S --needed --noconfirm ${PACMANEXTRAFLAGS} \
   xmlto docbook-xsl inetutils uboot-tools vboot-utils dtc rmtfs
 
 cat >> /etc/pacman.conf << EOF
@@ -17,7 +17,7 @@ pacman-key  --lsign 9FD0B48BBBD974B80A3310AB6462EE0B8E382F3F
 
 pacman -Sy
 pacman -Rdd --noconfirm linux-firmware linux-aarch64
-pacman -S   --needed -noconfirm ${PACMANEXTRAFLAGS} x13s-firmware linux-x13s linux-x13s-headers
+pacman -S   --needed --noconfirm ${PACMANEXTRAFLAGS} x13s-firmware linux-x13s linux-x13s-headers
 
 # .. used on the Thinkpad X13s
 AUR_PACKAGES=(

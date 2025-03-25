@@ -1,6 +1,10 @@
 source config.sh
 source helper.sh
 
+if pacman -Q vim ; then
+  pacman -Rdd vim-runtime --noconfirm
+fi
+
 # base-devel covers automake autoconf flex bison make sudo etc.
 pacman -S --needed --noconfirm ${PACMANEXTRAFLAGS} \
   base-devel bc elfutils gdb valgrind \

@@ -34,7 +34,7 @@ pacman -S --needed --noconfirm ${PACMANEXTRAFLAGS} \
   pwgen mlocate linux-firmware \
   sudo tmux fakeroot \
   efibootmgr efivar pacman-contrib \
-  ${AUDIOPACKAGES} mpd mpd yt-dlp aria2 atomicparsley python-mutagen \
+  ${AUDIOPACKAGES} mpd yt-dlp aria2 atomicparsley python-mutagen \
   alsa-tools alsa-utils alsa-plugins pamixer \
   python-pycryptodome python-pycryptodomex \
   python-websockets python-brotli python-brotlicffi \

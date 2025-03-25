@@ -1,7 +1,7 @@
 source config.sh
 source build_aur_pkg.sh
 
-pacman -S --needed -noconfirm ${PACMANEXTRAFLAGS} \
+pacman -S --needed --noconfirm ${PACMANEXTRAFLAGS} \
   jdk-openjdk
 
 if [ ! -d ${AURBUILDDIR}/osmconvert ]; then
