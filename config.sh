@@ -14,6 +14,8 @@ MODULES=(
    07_dev.sh
    07_dev_aur.sh
 
+   08_media.sh
+
    09_amd.sh
    #09_intel.sh
    #09_x13s.sh
@@ -43,7 +45,7 @@ MODULES=(
    29_osm_aur.sh
 
    30_graphics.sh
-   32_media.sh
+   32_media_extra.sh
    33_audio.sh
 )
 
