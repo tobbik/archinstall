@@ -4,8 +4,7 @@ source helper.sh
 # everything Xorg and Terminals
 # XFCE Desktop
 pacman -S --needed --noconfirm ${PACMANEXTRAFLAGS} \
-  mesa libva-mesa-driver mesa-vdpau mesa-demos libvdpau-va-gl \
-  xorg-server xorg-apps xorg-xinit \
+  xorg-server xorg-apps xorg-xinit xf86-video-vesa \
   xorg-xclipboard xclip xsel xdg-utils \
   xterm rxvt-unicode rxvt-unicode-terminfo \
   xfce4 xfce4-goodies ttf-dejavu ttf-dejavu-nerd \

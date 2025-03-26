@@ -66,28 +66,28 @@
     <keybind key="C-S-W-Left">
       <action name="SendToDesktop" to="left" wrap="yes"/>
     </keybind>
-    <keybind key="XF86_AudioLowerVolume">
+    <keybind key="XF86AudioLowerVolume">
       <action name="Execute" command="wayland-volume-adjust down" />
     </keybind>
-    <keybind key="XF86_AudioRaiseVolume">
+    <keybind key="XF86AudioRaiseVolume">
       <action name="Execute" command="wayland-volume-adjust up" />
     </keybind>
-    <keybind key="XF86_AudioMute">
+    <keybind key="XF86AudioMute">
       <action name="Execute" command="wayland-volume-adjust toggle" />
     </keybind>
-    <keybind key="XF86_AudioPrev">
+    <keybind key="XF86AudioPrev">
       <action name="Execute" command="mpd-control prev" />
     </keybind>
-    <keybind key="XF86_AudioNext">
+    <keybind key="XF86AudioNext">
       <action name="Execute" command="mpd-control next" />
     </keybind>
-    <keybind key="XF86_AudioPlay">
+    <keybind key="XF86AudioPlay">
       <action name="Execute" command="mpd-control toggle" />
     </keybind>
-    <keybind key="XF86_MonBrightnessUp">
+    <keybind key="XF86MonBrightnessUp">
       <action name="Execute" command="brightnessctl set +5%"/>
     </keybind>
-    <keybind key="XF86_MonBrightnessDown">
+    <keybind key="XF86MonBrightnessDown">
       <action name="Execute" command="brightnessctl set 5%-"/>
     </keybind>
     <!--

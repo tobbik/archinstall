@@ -26,10 +26,10 @@ notify_screen() {
 }
 
 function usage() {
-  printf "wayland-volume-adjust <command>\n"
-  printf "         up \n"
-  printf "         down\n"
-  printf "         toggle\n"
+  printf "wayland-volume-adjust <up|down|toggle>\n"
+  printf "   up      -> Volume up   5%\n"
+  printf "   down    -> Volume down 5%\n"
+  printf "   toggle  -> Toggle volume mute on/off\n"
 }
 
 main() {

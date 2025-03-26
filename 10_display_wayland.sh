@@ -1,25 +1,23 @@
 source config.sh
 source helper.sh
 
-# mpv and mpd need ffmpeg which needs a jack server
 if [ x"$AUDIOSYSTEM" == x"pipewire" ]; then
   # portals require pipewire ...
-  JACKPACKAGES="pipewire-jack ffmpeg xdg-desktop-portal xdg-desktop-portal-gtk xdg-desktop-portal-wlr"
+  PORTALPACKAGES="xdg-desktop-portal xdg-desktop-portal-gtk xdg-desktop-portal-wlr"
 fi
 
 if [ x"$AUDIOSYSTEM" == x"pulseaudio" ]; then
-  JACKPACKAGES="jack2 ffmpeg"
+  PORTALPACKAGES=""
 fi
 
 # everything Xorg and Terminals and command line
 pacman -S --needed --noconfirm ${PACMANEXTRAFLAGS} \
-  mesa libva-mesa-driver mesa-vdpau mesa-demos libvdpau-va-gl \
   wayland ly wl-clipboard dunst jq wlr-randr \
   wf-recorder wayvnc grim slurp satty \
   swaylock swayidle swaybg wlsunset gammastep \
   polkit-gnome brightnessctl kanshi \
   foot foot-terminfo libadwaita \
-  ${JACKPACKAGES} playerctl \
+  ${PORTALPACKAGES} playerctl \
   xorg-xwayland wlroots wayland-protocols gtk-layer-shell \
   labwc fuzzel waybar \
   ttf-dejavu ttf-dejavu-nerd

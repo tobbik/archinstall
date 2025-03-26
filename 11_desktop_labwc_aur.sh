@@ -4,7 +4,7 @@ source build_aur_pkg.sh
 
 pacman -S --needed --noconfirm ${PACMANEXTRAFLAGS} \
   scour ddcutil glib2-devel scdoc \
-  ttf-dejavu gtk4 libyaml qt6-base qt6-tools \
+  gtk4 libyaml qt6-base qt6-tools \
   gobject-introspection
 
 # needed for wlr-randr

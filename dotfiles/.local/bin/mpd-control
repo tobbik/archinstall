@@ -6,6 +6,7 @@ notify_screen() {
   # Arbitrary but unique message tag
   local msgTag="myMpdControl"
   local SONG_INFO=$1
+  local COMMAND=$2
 
   echo "$SONG_INFO"
 
@@ -14,6 +15,10 @@ notify_screen() {
   local TITLE=$(echo "${SONG_INFO}" | sed -n '2p')
   local FILE=$(echo "${SONG_INFO}" | sed -n '3p')
   local STATE=$(echo "${SONG_INFO}" | sed -n '4p' | cut -d" " -f1 | tr -d "\[\]")
+  if [ x"${TITLE}" == x"" ]; then
+    TITLE="UNKNOWN"
+    ARTIST="$COMMAND"
+  fi
 
   notify-send --app-name "mpdNowPlaying" \
       --expire-time 2000 --urgency low  --transient \
@@ -22,22 +27,22 @@ notify_screen() {
 }
 
 function usage() {
-  printf "mpd-control <command>\n"
-  printf "         next \n"
-  printf "         prev\n"
-  printf "         toggle\n"
+  printf "USAGE: mpd-control <next|prev|toggle>\n"
+  printf "   next    -> Next song in playlist\n"
+  printf "   prev    -> Previous song in playlist\n"
+  printf "   toggle  -> Toggle between pause and play\n"
 }
 
 main() {
   case "$1" in
     next)
-      notify_screen "$(mpc $FORMAT next)"
+      notify_screen "$(mpc $FORMAT next)" "NEXT"
       ;;
     prev)
-      notify_screen "$(mpc $FORMAT prev)"
+      notify_screen "$(mpc $FORMAT prev)" "PREVIOUS"
       ;;
     toggle)
-      notify_screen "$(mpc $FORMAT toggle)"
+      notify_screen "$(mpc $FORMAT toggle)" "TOGGLE"
       ;;
    *)
      usage
