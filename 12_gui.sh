@@ -6,7 +6,7 @@ pacman -S --needed --noconfirm ${PACMANEXTRAFLAGS} \
   file-roller fbset pcmanfm-gtk3 alacritty \
   chromium firefox glfw \
   gvfs-smb gvfs-nfs gvfs-mtp \
-  ttf-dejavu-nerd ttf-jetbrains-mono-nerd \
+  ttf-jetbrains-mono-nerd adobe-source-code-pro-fonts \
   ttf-ubuntu-font-family ttf-ubuntu-nerd ttf-ubuntu-mono-nerd \
   awesome-terminal-fonts ttf-font-awesome \
   zathura-pdf-mupdf mupdf-gl \

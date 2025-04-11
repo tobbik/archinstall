@@ -2,7 +2,7 @@ source config.sh
 source helper.sh
 
 if pacman -Q vim ; then
-  pacman -Rdd vim-runtime --noconfirm
+  pacman -Rdd --noconfirm vim-runtime
 fi
 
 # base-devel covers automake autoconf flex bison make sudo etc.
@@ -15,7 +15,7 @@ pacman -S --needed --noconfirm ${PACMANEXTRAFLAGS} \
   lua lua-socket lua-filesystem luajit \
   go rust meson \
   python3 ipython cython \
-  nodejs npm nvm js115 php \
+  nodejs npm nvm js128 php \
   neovim \
   tree-sitter-bash tree-sitter-python tree-sitter-javascript tree-sitter-rust tree-sitter-query
 

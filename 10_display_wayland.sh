@@ -20,7 +20,7 @@ pacman -S --needed --noconfirm ${PACMANEXTRAFLAGS} \
   ${PORTALPACKAGES} playerctl \
   xorg-xwayland wlroots wayland-protocols gtk-layer-shell \
   labwc fuzzel waybar \
-  ttf-dejavu ttf-dejavu-nerd
+  ttf-dejavu ttf-dejavu-nerd ttf-droid
 
 sed -i /etc/ly/config.ini \
   -e "s:^#save =.*:save = true:" \
@@ -38,9 +38,9 @@ enable_service gammastep.service ${USERNAME}
 usermod -a -G seat ${USERNAME}
 
 add_dotfiles ".config/labwc" ".config/foot" ".config/dunst" ".config/waybar" \
-            ".config/fuzzel" ".config/swaylock" ".config/gammastep" \
-            ".local/bin/mpd-control" ".local/bin/wayland-screen-shooter" \
-            ".local/bin/wayland-volume-adjust" ".local/bin/wayland-window-switcher"
+  ".config/fuzzel" ".config/swaylock" ".config/gammastep" \
+  ".local/bin/mpd-control" ".local/bin/wayland-screen-shooter" \
+  ".local/bin/wayland-volume-adjust" ".local/bin/wayland-window-switcher"
 
 sed -i /home/${USERNAME}/.config/gammastep/config.ini \
       -e "s:^adjustment-method=.*$:adjustment-method=wayland:"

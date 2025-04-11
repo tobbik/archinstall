@@ -496,6 +496,11 @@
     history_ignore = yes
     set_stack_tag = "volume"
 
+[display-brightness]
+    appname = "changeBrightness"
+    history_ignore = yes
+    set_stack_tag = "volume"
+
 [mpd-notifications]
     appname = "mpdNowPlaying"
     history_ignore = yes

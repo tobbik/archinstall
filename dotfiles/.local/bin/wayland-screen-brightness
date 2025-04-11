@@ -1,0 +1,39 @@
+#!/bin/bash
+# wp-vola
+#
+CURRENT=$(brightnessctl -m)
+
+notify_brightness() {
+  # Arbitrary but unique message tag
+  local msgTag="mybrightness"
+
+  local BRIGHTNESS=$(brightnessctl -c backlight -m | cut -d, -f4 | sed "s/%//")
+
+  notify-send --app-name "changeBrightness" --icon display-brightness-symbolic \
+    --expire-time 2000 --urgency low --transient \
+    --hint string:x-dunst-stack-tag:$msgTag \
+    --hint int:value:"${BRIGHTNESS}" "Display Brightness: ${BRIGHTNESS}%"
+}
+
+function usage() {
+  printf "wayland-screen-brighness <up|down>\n"
+  printf "   up      -> Increase brightness   5%\n"
+  printf "   down    -> Decrease brightness 5%\n"
+}
+
+main() {
+  case "$1" in
+    up)
+      brightnessctl -c backlight 5%+
+      notify_brightness
+      ;;
+    down)
+      brightnessctl -c backlight 5%-
+      notify_brightness
+      ;;
+   *)
+     usage
+  esac
+}
+
+main "$@"

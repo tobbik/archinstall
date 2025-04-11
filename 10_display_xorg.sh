@@ -7,9 +7,9 @@ pacman -S --needed --noconfirm ${PACMANEXTRAFLAGS} \
   xorg-server xorg-apps xorg-xinit xf86-video-vesa \
   xorg-xclipboard xclip xsel xdg-utils \
   xterm rxvt-unicode rxvt-unicode-terminfo \
-  xfce4 xfce4-goodies ttf-dejavu ttf-dejavu-nerd \
+  xfce4 xfce4-goodies gammastep \
   thunar thunar-archive-plugin thunar-media-tags-plugin thunar-volman tumbler \
-  gammastep
+  ttf-dejavu ttf-dejavu-nerd ttf-droid
 
 # set xfce4 as standard X desktop for non graphical login
 cp /etc/X11/xinit/xinitrc                /home/${USERNAME}/.xinitrc
