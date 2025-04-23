@@ -1,8 +1,10 @@
 # this creates 4 partitions on ${DISKBASEDEVPATH}
 # #1. is ESP    /boot   512MB
-# #2. is ROOT   /       32GB
-# #3. is HOME   /home   444GB
-# #4. is SWAP   <swap>  remainder
+# #2. is ROOT   /       32GB             8304
+# #3. is HOME   /home   444GB            8302
+# #4. is SWAP   <swap>  remainder        8200
+#
+#        EFI   /efi     1GB              EA00
 
 source config.sh
 
@@ -58,6 +60,10 @@ mkswap             -L ARCHSWAP "${DISKSWAPDEVPATH}"
 
 mount  "${DISKROOTDEVPATH}" /mnt
 mkdir  /mnt/{boot,home}
+if [ x"${BOOTMNGR}" == x"xbootldr" ]; then
+  mkdir  /mnt/efi
+  mount  "${DISKESPDEVPATH}" /mnt/efi
+fi
 mount  "${DISKBOOTDEVPATH}" /mnt/boot
 mount  "${DISKHOMEDEVPATH}" /mnt/home
 swapon "${DISKSWAPDEVPATH}"

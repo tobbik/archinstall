@@ -92,7 +92,7 @@ function aur_prepare_pkg () {
   cd "$2"
   local PKG="$3"
   echo "     ..... PREPARING '${PKG}' >>>>>>>>>>>"
-  curl ${BASEURL}/${PKG}.tar.gz -O && sudo --user ${ASUSER} tar xzf ${PKG}.tar.gz
+  curl ${AURBASEURL}/${PKG}.tar.gz -O && sudo --user ${ASUSER} tar xzf ${PKG}.tar.gz
   rm ${PKG}.tar.gz && cd ${PKG}
   if grep -q '^arch.*any' PKGBUILD ; then
     echo "FOUND 'any' architecture. Do nothing."

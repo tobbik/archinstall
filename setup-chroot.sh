@@ -12,6 +12,24 @@ fi
 
 mkdir -p /root/installer/logs
 
+# these re-locations are useful, if you like to set-up an RO-mounted root (/) directory
+if [[ ! -z ${SYSTEMDSERVICEDIR} ]]; then
+  mkdir -p $(dirname ${SYSTEMDSERVICEDIR})
+  mv       /var/lib/systemd ${SYSTEMDSERVICEDIR}
+  ln    -s ${SYSTEMDSERVICEDIR} /var/lib/systemd
+fi
+
+if [[ ! -z ${PACMANSERVICEDIR} ]]; then
+  mkdir -p ${PACMANSERVICEDIR}/cache
+  mv /var/log/pacman.log ${PACMANSERVICEDIR}/
+  mv /etc/pacman.d/gnupg ${PACMANSERVICEDIR}/
+  sed -i /etc/pacman.conf \
+      -e "s:^#\(CacheDir *\).*:\1 = ${PACMANSERVICEDIR}/cache:" \
+      -e "s:^#\(LogFile *\).*:\1 = ${PACMANSERVICEDIR}/pacman.log:" \
+      -e "s:^#\(GPGDir *\).*:\1 = ${PACMANSERVICEDIR}/gnupg:"
+fi
+
+# installing the
 for moduleName in ${MODULES[@]}
 do
   echo -e "\n\n      >>>>>>>>>>>   EXECUTING ${moduleName} <<<<<<<<<<<<\n"

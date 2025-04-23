@@ -1,6 +1,8 @@
 source config.sh
 source helper.sh
 
+pacman -Rc --noconfirm vim-runtime
+
 # base-devel covers automake autoconf flex bison make sudo etc.
 pacman -S --needed --noconfirm ${PACMANEXTRAFLAGS} \
   base-devel bc elfutils gdb valgrind \
@@ -15,9 +17,7 @@ pacman -S --needed --noconfirm ${PACMANEXTRAFLAGS} \
   neovim \
   tree-sitter-bash tree-sitter-python tree-sitter-javascript tree-sitter-rust tree-sitter-query
 
-pacman -Rc --noconfirm vim-runtime
-
-if [ $(uname -m) = 'x86_64' ]; then
+if [ $(uname -m) == 'x86_64' ]; then
   pacman -S --needed --noconfirm ${PACMANEXTRAFLAGS} \
     pypy pypy3
 fi

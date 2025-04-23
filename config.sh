@@ -7,11 +7,8 @@ MODULES=(
    02_config.sh
    03_base.sh
    04_bluetooth.sh
-
    05_bootmgr.sh
-
    07_dev.sh
-
    08_media.sh
 
    09_amd.sh
@@ -27,7 +24,6 @@ MODULES=(
    #11_desktop_wayfire.sh
 
    12_gui.sh
-
    13_office.sh
 
    20_dev_gui.sh
@@ -52,11 +48,17 @@ DISKBOOTDEVPATH=${DISKBASEDEVPATH}${DISKPARTNAME}1
 DISKROOTDEVPATH=${DISKBASEDEVPATH}${DISKPARTNAME}2
 DISKHOMEDEVPATH=${DISKBASEDEVPATH}${DISKPARTNAME}3
 DISKSWAPDEVPATH=${DISKBASEDEVPATH}${DISKPARTNAME}4
+# if using xbootldr partition
+#DISKBOOTDEVPATH=${DISKBASEDEVPATH}${DISKPARTNAME}5
+#DISKESPDEVPATH=${DISKBASEDEVPATH}${DISKPARTNAME}1
 
 PACMANEXTRAFLAGS=""    # --disable-download-timeout for bad connections
-
 # if set, it will attempt to put that on top of the /etc/pacman.d/mirrorlist file
 # PACMANPRIMARYPKGSERVER="Server = http://mylocalcache:8765/pkg"
+# if set, it will re-locate pacmans cache, gnupg and pacman.log into the directory
+# PACMANSERVICEDIR=/home/pacman
+# if set, it will re-locate /var/lib/systemd, which will usally have to be writeable for timesyncd to work
+# SYSTEMDSERVICEDIR=/home/systemd
 
 # ----------- CONFIG Variables
 HOSTNAME=machinename
