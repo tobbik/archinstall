@@ -18,10 +18,10 @@
   <!-- window-switcher  -->
   <windowSwitcher show="yes" preview="yes" outlines="yes" allWorkspaces="no">
     <fields>
-      <field content="type" width="25%" />
-      <field content="trimmed_identifier" width="25%" />
+      <field content="type" width="25%"/>
+      <field content="trimmed_identifier" width="25%"/>
       <!-- <field content="identifier" width="25%" /> -->
-      <field content="title" width="50%" />
+      <field content="title" width="50%"/>
     </fields>
   </windowSwitcher>
   <!-- mouse  -->
@@ -67,22 +67,22 @@
       <action name="SendToDesktop" to="left" wrap="yes"/>
     </keybind>
     <keybind key="XF86AudioLowerVolume">
-      <action name="Execute" command="wayland-volume-adjust down" />
+      <action name="Execute" command="wayland-volume-adjust down"/>
     </keybind>
     <keybind key="XF86AudioRaiseVolume">
-      <action name="Execute" command="wayland-volume-adjust up" />
+      <action name="Execute" command="wayland-volume-adjust up"/>
     </keybind>
     <keybind key="XF86AudioMute">
-      <action name="Execute" command="wayland-volume-adjust toggle" />
+      <action name="Execute" command="wayland-volume-adjust toggle"/>
     </keybind>
     <keybind key="XF86AudioPrev">
-      <action name="Execute" command="mpd-control prev" />
+      <action name="Execute" command="mpd-control prev"/>
     </keybind>
     <keybind key="XF86AudioNext">
-      <action name="Execute" command="mpd-control next" />
+      <action name="Execute" command="mpd-control next"/>
     </keybind>
     <keybind key="XF86AudioPlay">
-      <action name="Execute" command="mpd-control toggle" />
+      <action name="Execute" command="mpd-control toggle"/>
     </keybind>
     <keybind key="XF86MonBrightnessUp">
       <action name="Execute" command="wayland-screen-brightness up"/>
@@ -104,6 +104,9 @@
     <!--  Helper scripts and shortcuts -->
     <keybind key="W-Tab">
       <action name="Execute" command="wayland-window-switcher"/>
+    </keybind>
+    <keybind key="W-S-Tab">
+      <action name="Execute" command="killall -SIGUSR1 sfwbar"/>
     </keybind>
     <keybind key="Print">
       <action name="Execute" command="wayland-screen-shooter"/>

@@ -9,7 +9,7 @@ no-multigrid = false
 srgb = false
 tabs = true
 theme = "auto"
-title-hidden = true
+title-hidden = false
 vsync = true
 wsl = false
 
@@ -19,17 +19,17 @@ hinting = "full"
 edging = "antialias"
 
 [[font.normal]]
-family = "JetBrainsMono Nerd Font Mono" # Will use the bundled Fira Code Nerd Font by default
-style = "ExtraLight"
+family = "JetBrainsMono NF Thin" # Will use the bundled Fira Code Nerd Font by default
+style = "Thin"
 
 [[font.bold]]
-family = "JetBrainsMono Nerd Font Mono" # Will use the bundled Fira Code Nerd Font by default
-style = "Bold"
+family = "JetBrainsMono NF SemiBold" # Will use the bundled Fira Code Nerd Font by default
+style = "SemiBold"
 
 [[font.italic]]
-family = "JetBrainsMono Nerd Font Mono" # Will use the bundled Fira Code Nerd Font by default
-style = "ExtraLight Italic"
+family = "JetBrainsMono NF Thin" # Will use the bundled Fira Code Nerd Font by default
+style = "Thin Italic"
 
 [[font.bold_italic]]
-family = "JetBrainsMono Nerd Font Mono" # Will use the bundled Fira Code Nerd Font by default
-style = "Bold Italic"
+family = "JetBrainsMono NF SemiBold" # Will use the bundled Fira Code Nerd Font by default
+style = "SemiBold Italic"

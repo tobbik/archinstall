@@ -3,7 +3,7 @@
 
 notify_screen() {
   # Arbitrary but unique message tag
-  local msgTag="myvolume"
+  local msgTag="volume"
 
   local VOLUME=$(wpctl get-volume @DEFAULT_AUDIO_SINK@)
   local MUTED=$(echo "${VOLUME}" | grep -o "MUTED")
@@ -18,7 +18,7 @@ notify_screen() {
       --hint int:value:"${VOLUME}" "Volume: ${VOLUME}%" "[MUTED]"
   else
     # Show the volume notification
-    notify-send -a "changeVolume" --icon audio-volume-high \
+    notify-send --app-name "changeVolume" --icon audio-volume-high \
       --expire-time 2000 --urgency low --transient \
       --hint string:x-dunst-stack-tag:$msgTag \
       --hint int:value:"${VOLUME}" "Volume: ${VOLUME}%"

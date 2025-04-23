@@ -1,7 +1,7 @@
 font-size=40
 scaling=fill
-indicator-x-position=965
-indicator-y-position=540
+#indicator-x-position=965
+#indicator-y-position=540
 indicator-radius=200
 indicator-thickness=30
 bs-hl-color=ffa066

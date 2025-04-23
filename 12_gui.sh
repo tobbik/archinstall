@@ -11,7 +11,8 @@ pacman -S --needed --noconfirm ${PACMANEXTRAFLAGS} \
   awesome-terminal-fonts ttf-font-awesome \
   zathura-pdf-mupdf mupdf-gl \
   tesseract-data-eng tesseract-data-osd \
-  pavucontrol ario
+  pavucontrol ario \
+  qrencode vte4 gtk4
 
 if [ $(uname -m) = 'x86_64' ]; then
   pacman -S --needed --noconfirm ${PACMANEXTRAFLAGS} \
@@ -22,3 +23,10 @@ fi
 add_dotfiles ".config/libfm" ".config/pcmanfm" ".config/chromium-flags.conf"
 
 add_export "GTK_THEME" "Adwaita:dark"
+
+AUR_PACKAGES=(
+  iwgtk
+  neovim-gtk-git           # non-git currently broken
+)
+
+aur_install_packages "${AUR_PACKAGES[@]}"

@@ -10,12 +10,12 @@ vim.cmd( 'set list!' )
 
 --vim.cmd [[ map <S-Insert> <MiddleMouse> ]]
 vim.cmd [[ map! <S-Insert> <C-R>+ ]]
---vim.g.colors_name = "wombat256my"
-vim.cmd [[ colorscheme wombat256my ]]
+vim.cmd( 'colorscheme wombat256my' )
 --vim.opt.guifont = { "Ubuntu Mono", ":h14" }
-vim.opt.guifont = { "Ubuntu Mono:h14" }
+--vim.opt.guifont = { "DejaVu Sans Mono", ":h15" }
+--vim.opt.guifont = {"DejaVu Sans Mono", ":h20"}
 --vim.g.guifont = "DejaVu Sans Mono:h16"
-vim.opt.guifont = "JetBrainsMono Nerd Font:h14"
+--vim.opt.guifont = "JetBrainsMono Nerd Font:h14"
 
 vim.opt.expandtab = true
 vim.opt.smarttab = true
@@ -36,7 +36,7 @@ vim.opt.cursorline = true  -- highlight line of cursor position
 
 if vim.g.neovide then
   vim.g.neovide_input_use_logo = 1 -- enable use of the logo (cmd) key
-  vim.g.neovide_transparency = 0.95 -- just a little ...
+  vim.g.neovide_opacity = 0.95
   vim.keymap.set('n', '<D-s>', ':w<CR>') -- Save
   vim.keymap.set('v', '<D-c>', '"+y') -- Copy
   vim.keymap.set('n', '<D-v>', '"+P') -- Paste normal mode
@@ -46,7 +46,7 @@ if vim.g.neovide then
 end
 
 if vim.g.GtkGuiLoaded == 1 then
-  vim.opt.guifont = "JetBrainsMono NFM Light 14"
+  vim.opt.guifont = "JetBrainsMono NF Thin 14"
   vim.keymap.set('n', '<D-s>', ':w<CR>') -- Save
   vim.keymap.set('v', '<D-c>', '"+y') -- Copy
   vim.keymap.set('n', '<D-v>', '"+P') -- Paste normal mode
@@ -55,15 +55,11 @@ if vim.g.GtkGuiLoaded == 1 then
   vim.keymap.set('i', '<D-v>', '<ESC>l"+Pli') -- Paste insert mode
 end
 
-
 -- Allow clipboard copy paste in neovim
 vim.api.nvim_set_keymap('', '<D-v>', '+p<CR>',  { noremap = true, silent = true})
 vim.api.nvim_set_keymap('!', '<D-v>', '<C-R>+', { noremap = true, silent = true})
 vim.api.nvim_set_keymap('t', '<D-v>', '<C-R>+', { noremap = true, silent = true})
 vim.api.nvim_set_keymap('v', '<D-v>', '<C-R>+', { noremap = true, silent = true})
 
-
 -- Disable zig auto-format
 vim.g.zig_fmt_autosave = 0
-
-

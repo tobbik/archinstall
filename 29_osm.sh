@@ -1,26 +1,24 @@
 source config.sh
-source build_aur_pkg.sh
+source helper.sh
 
 pacman -S --needed --noconfirm ${PACMANEXTRAFLAGS} \
   jdk-openjdk
 
 if [ ! -d ${AURBUILDDIR}/osmconvert ]; then
-  prepare_aur_pkg       ${USERNAME} ${AURBUILDDIR} osmconvert
+  aur_prepare_pkg       ${USERNAME} ${AURBUILDDIR} osmconvert
   local OLDDIR=$(pwd)
   cd ${AURBUILDDIR}/osmconvert
   OSMCONVSHASUM=$(makepkg -g)
   cd ${OLDDIR}
   sed -i ${AURBUILDDIR}/osmconvert/PKGBUILD \
       -e "s|^sha256sum.*$|${OSMCONVSHASUM}|"
-  create_aur_pkg        ${USERNAME} ${AURBUILDDIR} osmconvert
+  aur_create_pkg        ${USERNAME} ${AURBUILDDIR} osmconvert
 fi
 
-PACKAGES=(
+AUR_PACKAGES=(
   #osmconvert
   splitter
   mkgmap
 )
 
-for PACKAGE in ${PACKAGES[@]}; do
-  handle_aur_pkg ${USERNAME} ${AURBUILDDIR} ${PACKAGE}
-done
+aur_install_packages "${AUR_PACKAGES[@]}"

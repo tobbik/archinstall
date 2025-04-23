@@ -1,10 +1,6 @@
 source config.sh
 source helper.sh
 
-if pacman -Q vim ; then
-  pacman -Rdd --noconfirm vim-runtime
-fi
-
 # base-devel covers automake autoconf flex bison make sudo etc.
 pacman -S --needed --noconfirm ${PACMANEXTRAFLAGS} \
   base-devel bc elfutils gdb valgrind \
@@ -13,7 +9,7 @@ pacman -S --needed --noconfirm ${PACMANEXTRAFLAGS} \
   ocl-icd hyperfine \
   git git-lfs tig wireshark-cli figlet \
   lua lua-socket lua-filesystem luajit \
-  go rust meson \
+  go rust meson scdoc \
   python3 ipython cython \
   nodejs npm nvm js128 php \
   neovim \
@@ -57,3 +53,10 @@ add_alias "vi"     "nvim"
 add_alias "vim"    "nvim"
 
 add_dotfiles ".config/nvim" ".vim" ".vimrc"
+
+AUR_PACKAGES=(
+  wrk
+)
+
+aur_install_packages "${AUR_PACKAGES[@]}"
+

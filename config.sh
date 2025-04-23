@@ -2,7 +2,6 @@
 
 # installation modules
 # just comment out modules you don't want
-# eg. exclude 30_graphics and 31_office etc for a developer VM
 MODULES=(
    01_network.sh
    02_config.sh
@@ -12,7 +11,6 @@ MODULES=(
    05_bootmgr.sh
 
    07_dev.sh
-   07_dev_aur.sh
 
    08_media.sh
 
@@ -24,17 +22,15 @@ MODULES=(
 
    10_display_wayland.sh
    #10_display_xorg.sh
-   11_desktop_labwc_aur.sh
-   #11_desktop_wayfire_aur.sh
+   11_desktop_labwc.sh
+   11_desktop_hyprland.sh
+   #11_desktop_wayfire.sh
 
    12_gui.sh
-   12_gui_aur.sh
 
    13_office.sh
-   13_office_aur.sh
 
    20_dev_gui.sh
-   20_dev_gui_aur.sh
    21_dotnet.sh
    22_jdk.sh
    23_kvm.sh
@@ -42,7 +38,7 @@ MODULES=(
    #25_virtualbox.sh
    #26_vmware.sh
    27_datatools.sh
-   29_osm_aur.sh
+   29_osm.sh
 
    30_graphics.sh
    32_media_extra.sh
@@ -91,4 +87,5 @@ BOOTMNGR=systemd     # systemd | xbootldr | efistub | refind | grub
 #DOCKERSTORAGEPATH=/mnt/whatever
 #
 AURBUILDDIR="/home/${USERNAME}/pkgs"
+AURBASEURL="https://aur.archlinux.org/cgit/aur.git/snapshot"
 

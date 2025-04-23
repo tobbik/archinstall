@@ -5,10 +5,10 @@ source helper.sh
 # XFCE Desktop
 pacman -S --needed --noconfirm ${PACMANEXTRAFLAGS} \
   xorg-server xorg-apps xorg-xinit xf86-video-vesa \
-  xorg-xclipboard xclip xsel xdg-utils \
+  xorg-xclipboard xclip xsel xdg-utils gammastep \
   xterm rxvt-unicode rxvt-unicode-terminfo \
-  xfce4 xfce4-goodies gammastep \
-  thunar thunar-archive-plugin thunar-media-tags-plugin thunar-volman tumbler \
+  xfce4 xfce4-goodies tumbler \
+  thunar thunar-volman tumbler \
   ttf-dejavu ttf-dejavu-nerd ttf-droid
 
 # set xfce4 as standard X desktop for non graphical login

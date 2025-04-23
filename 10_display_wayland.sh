@@ -14,12 +14,10 @@ fi
 pacman -S --needed --noconfirm ${PACMANEXTRAFLAGS} \
   wayland ly wl-clipboard dunst jq wlr-randr \
   wf-recorder wayvnc grim slurp satty \
-  swaylock swayidle swaybg wlsunset gammastep \
   polkit-gnome brightnessctl kanshi \
   foot foot-terminfo libadwaita \
-  ${PORTALPACKAGES} playerctl \
+  ${PORTALPACKAGES} playerctl fuzzel \
   xorg-xwayland wlroots wayland-protocols gtk-layer-shell \
-  labwc fuzzel waybar \
   ttf-dejavu ttf-dejavu-nerd ttf-droid
 
 sed -i /etc/ly/config.ini \
@@ -32,15 +30,13 @@ sed -i /etc/ly/config.ini \
 
 enable_service ly.service
 enable_service foot-server.service ${USERNAME}
-enable_service gammastep.service ${USERNAME}
 
 # seatd is installed as a dependency of labwc
 usermod -a -G seat ${USERNAME}
 
-add_dotfiles ".config/labwc" ".config/foot" ".config/dunst" ".config/waybar" \
-  ".config/fuzzel" ".config/swaylock" ".config/gammastep" \
+add_dotfiles  ".config/foot" ".config/dunst" ".config/fuzzel" \
   ".local/bin/mpd-control" ".local/bin/wayland-screen-shooter" \
-  ".local/bin/wayland-volume-adjust" ".local/bin/wayland-window-switcher"
+  ".local/bin/wayland-screen-brightness" \
+  ".local/bin/wayland-volume-adjust" \
+  ".local/bin/wayland-window-switcher"
 
-sed -i /home/${USERNAME}/.config/gammastep/config.ini \
-      -e "s:^adjustment-method=.*$:adjustment-method=wayland:"
