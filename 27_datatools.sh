@@ -1,7 +1,7 @@
 source config.sh
 
 pacman -S --needed --noconfirm ${PACMANEXTRAFLAGS} \
-  postgresql sqlite redis minio-client
+  postgresql sqlite valkey minio-client
 #  mongodb elasticsearch rabbitmq
 
 usermod -a -G postgres ${USERNAME}
