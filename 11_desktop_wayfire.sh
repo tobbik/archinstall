@@ -17,7 +17,7 @@ pacman -S --needed --noconfirm ${PACMANEXTRAFLAGS} \
   scour glib2-devel boost libyaml \
   gtk4 libadwaita vulkan-headers
 
-aur_handle_pkg        ${USERNAME} ${AURBUILDDIR} wf-config-git
+aur_handle_pkg          ${USERNAME} ${AURBUILDDIR} wf-config-git
 
 if [ ! -d ${AURBUILDDIR}/wayfire-git ]; then
   aur_prepare_pkg       ${USERNAME} ${AURBUILDDIR} wayfire-git
@@ -26,6 +26,7 @@ if [ ! -d ${AURBUILDDIR}/wayfire-git ]; then
       -e "s: 'wlroots-git'): 'wlroots'\0:"
   pacman -Rdd --noconfirm wlroots
   aur_create_pkg        ${USERNAME} ${AURBUILDDIR} wayfire-git
+  aur_install_pkg                   ${AURBUILDDIR} wayfire-git
 fi
 
 if [ ! -d ${AURBUILDDIR}/wf-shell-git ]; then
@@ -35,6 +36,7 @@ if [ ! -d ${AURBUILDDIR}/wf-shell-git ]; then
       -e "s:^\(conflicts=.*\)):\1 wdisplays):" \
       -e "s:^\(provides=.*\)):\1 wdisplays):"
   aur_create_pkg        ${USERNAME} ${AURBUILDDIR} wf-shell-git
+  aur_install_pkg                   ${AURBUILDDIR} wf-shell-git
 fi
 
 AUR_PACKAGES=(

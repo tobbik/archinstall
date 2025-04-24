@@ -53,6 +53,7 @@ function aur_install_pkg() {
       echo "     ..... PACKAGE INSTALLATION FAILED: '${PKGFILE}' >>>>>>>>>>>>"
     fi
   done
+  unset pkgname
   cd ${OLDDIR}
 }
 
