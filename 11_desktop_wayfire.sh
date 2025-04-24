@@ -15,7 +15,7 @@ pacman -S --needed --noconfirm ${PACMANEXTRAFLAGS} \
   doctest doxygen iio-sensor-proxy yyjson \
   libdbusmenu-gtk3 nlohmann-json glm \
   scour glib2-devel boost libyaml \
-  gtk4 libadwaita
+  gtk4 libadwaita vulkan-headers
 
 aur_handle_pkg        ${USERNAME} ${AURBUILDDIR} wf-config-git
 
@@ -45,7 +45,7 @@ AUR_PACKAGES=(
   wcm-git
 )
 
-aur_install_packages "${AUR_PACKAGES[@]}"
+install_aur_packages "${AUR_PACKAGES[@]}"
 
 add_dotfiles ".config/wayfire.ini" ".config/wf-shell.ini"
 

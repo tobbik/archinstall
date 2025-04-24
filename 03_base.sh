@@ -27,6 +27,7 @@ pacman -S --needed --noconfirm ${PACMANEXTRAFLAGS} \
 
 enable_service sshd
 enable_service systemd-timesyncd
+enable_service tlp
 usermod -a -G locate ${USERNAME}
 
 echo "Setup hardware random number generator"

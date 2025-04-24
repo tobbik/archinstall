@@ -25,7 +25,7 @@ AUR_PACKAGES=(
   wlrctl
 )
 
-aur_install_packages "${AUR_PACKAGES[@]}"
+install_aur_packages "${AUR_PACKAGES[@]}"
 
 add_dotfiles ".config/labwc" ".config/sfwbar" ".config/wlr-which-key" \
   ".config/wlogout" ".config/swaylock" ".config/gammastep" \

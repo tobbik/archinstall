@@ -29,4 +29,4 @@ AUR_PACKAGES=(
   neovim-gtk-git           # non-git currently broken
 )
 
-aur_install_packages "${AUR_PACKAGES[@]}"
+install_aur_packages "${AUR_PACKAGES[@]}"

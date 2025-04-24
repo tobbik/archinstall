@@ -12,6 +12,8 @@ fi
 
 mkdir -p /root/installer/logs
 
+pacman -Syu --noconfirm
+
 # these re-locations are useful, if you like to set-up an RO-mounted root (/) directory
 if [[ ! -z ${SYSTEMDSERVICEDIR} ]]; then
   mkdir -p $(dirname ${SYSTEMDSERVICEDIR})

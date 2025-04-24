@@ -58,5 +58,5 @@ AUR_PACKAGES=(
   wrk
 )
 
-aur_install_packages "${AUR_PACKAGES[@]}"
+install_aur_packages "${AUR_PACKAGES[@]}"
 
