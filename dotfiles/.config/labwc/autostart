@@ -38,13 +38,12 @@ dunst > /dev/null 2>&1 &
 #
 # timeout 305  'wlopm --off \*' \
 # resume       'wlopm --on \*' >/dev/null 2>&1 &
-hypridle &
-#swayidle -w \
-#  timeout 300  'hyprlock -q' \
-#  timeout 305  'wlopm --off \*' \
-#  resume       'wlopm --on \*' \
-#  before-sleep 'hyprlock -q' > /dev/null 2>&1 &
-
+#
+swayidle -w \
+  timeout 300  'gtklock -d' \
+  timeout 305  'wlopm --off \*' \
+  resume       'wlopm --on \*' \
+  before-sleep 'gtklock -d' > /dev/null 2>&1 &
 
 #swayidle -w \
 #  timeout 300  'swaylock -f -c 000000' \
@@ -52,9 +51,9 @@ hypridle &
 #  resume       'wlopm --on \*' \
 #  before-sleep 'swaylock -f -c 000000' > /dev/null 2>&1 &
 
-
   #timeout 320  'systemctl suspend' \
 
+#hypridle &
 
 # desktop services
 #/usr/bin/foot --server &

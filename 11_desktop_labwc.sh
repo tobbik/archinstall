@@ -6,6 +6,7 @@ pacman -S --needed --noconfirm ${PACMANEXTRAFLAGS} \
   gtk4 libyaml qt6-base qt6-tools \
   gobject-introspection labwc \
   swaylock swayidle swaybg \
+  gtklock gtklock-playerctl-module gtklock-powerbar-module gtklock-userinfo-module \
   wlsunset gammastep
 
 # needed for wlr-randr
@@ -29,6 +30,7 @@ install_aur_packages "${AUR_PACKAGES[@]}"
 
 add_dotfiles ".config/labwc" ".config/sfwbar" ".config/wlr-which-key" \
   ".config/wlogout" ".config/swaylock" ".config/gammastep" \
+  ".config/gtklock"
 
 sed -i /home/${USERNAME}/.config/gammastep/config.ini \
       -e "s:^adjustment-method=.*$:adjustment-method=wayland:"
