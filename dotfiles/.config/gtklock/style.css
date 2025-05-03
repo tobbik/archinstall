@@ -1,0 +1,25 @@
+window#DP-1 {
+   background-image: url("/tmp/screen-DP-1.png");
+   background-size: cover;
+   background-repeat: no-repeat;
+   background-position: center;
+   background-color: #476870;
+}
+
+window#DP-2 {
+   background-image: url("/tmp/screen-DP-2.png");
+   background-size: cover;
+   background-repeat: no-repeat;
+   background-position: center;
+   background-color: #476870;
+}
+
+#window-box {
+  padding: 70px 200px;
+  border: 1px solid black;
+  border-radius: 18px;
+  box-shadow: rgba(0, 0, 0, 0.8) 16px 16px 22px,
+              rgba(204, 204, 204, 0.4) -16px -16px 22px;
+  text-shadow: 4px 4px 5px #0c1924;
+}
+

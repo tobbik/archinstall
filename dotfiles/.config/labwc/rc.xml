@@ -109,7 +109,10 @@
       <action name="Execute" command="killall -SIGUSR1 sfwbar"/>
     </keybind>
     <keybind key="Print">
-      <action name="Execute" command="wayland-screen-shooter"/>
+      <action name="Execute" command="wayland-screen-shooter selectedit"/>
+    </keybind>
+    <keybind key="S-Print">
+      <action name="Execute" command="wayland-screen-shooter select"/>
     </keybind>
     <keybind key="C-S-`">
       <action name="Execute" command="dunstctl history-pop"/>

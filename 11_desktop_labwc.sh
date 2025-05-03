@@ -2,17 +2,15 @@ source config.sh
 source helper.sh
 
 pacman -S --needed --noconfirm ${PACMANEXTRAFLAGS} \
+  labwc swaylock swayidle swaybg wlsunset gammastep \
+  gtklock gtklock-playerctl-module \
+  gtklock-powerbar-module gtklock-userinfo-module \
   scour ddcutil glib2-devel gtk4 \
   gtk4 libyaml qt6-base qt6-tools \
-  gobject-introspection labwc \
-  swaylock swayidle swaybg \
-  gtklock gtklock-playerctl-module gtklock-powerbar-module gtklock-userinfo-module \
-  wlsunset gammastep
+  gobject-introspection
 
-# needed for wlr-randr
-sudo --user ${USERNAME} gpg --keyserver keys.gnupg.net --recv-keys 0FDE7BE0E88F5E48
 # wlogout
-sudo --user ${USERNAME} gpg --keyserver keyserver.ubuntu.com  --recv-keys F4FDB18A9937358364B276E9E25D679AF73C6D2F
+sudo --user ${USERNAME} gpg --keyserver keyserver.ubuntu.com --recv-keys F4FDB18A9937358364B276E9E25D679AF73C6D2F
 
 AUR_PACKAGES=(
   labwc-menu-generator-git
@@ -29,8 +27,8 @@ AUR_PACKAGES=(
 install_aur_packages "${AUR_PACKAGES[@]}"
 
 add_dotfiles ".config/labwc" ".config/sfwbar" ".config/wlr-which-key" \
-  ".config/wlogout" ".config/swaylock" ".config/gammastep" \
-  ".config/gtklock"
+  ".config/wlogout" ".config/gammastep" \
+  ".config/swayidle" ".config/swaylock" ".config/gtklock"
 
 sed -i /home/${USERNAME}/.config/gammastep/config.ini \
       -e "s:^adjustment-method=.*$:adjustment-method=wayland:"

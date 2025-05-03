@@ -36,22 +36,24 @@ dunst > /dev/null 2>&1 &
 # resume      'wlr-randr --output eDP-1 --on' \
 # before-sleep 'swaylock -f -c 000000' >/dev/null 2>&1 &
 #
-# timeout 305  'wlopm --off \*' \
-# resume       'wlopm --on \*' >/dev/null 2>&1 &
 #
-swayidle -w \
-  timeout 300  'gtklock -d' \
-  timeout 305  'wlopm --off \*' \
-  resume       'wlopm --on \*' \
-  before-sleep 'gtklock -d' > /dev/null 2>&1 &
+# using ~/.config/swayidle/config
+swayidle -w  > /dev/null 2>&1 &
 
+# .. or using direct parameters
 #swayidle -w \
-#  timeout 300  'swaylock -f -c 000000' \
-#  timeout 305  'wlopm --off \*' \
-#  resume       'wlopm --on \*' \
-#  before-sleep 'swaylock -f -c 000000' > /dev/null 2>&1 &
-
-  #timeout 320  'systemctl suspend' \
+#   timeout 293  'wayland-screen-shooter multiblur /tmp/screen-' \
+#        resume  'rm /tmp/screen-*' \
+#   timeout 295  'n-send "Going to idle in 5 seconds" 4' \
+#        resume  'n-send "Welcome back!" 4' \
+#   timeout 300  'gtklock -d -s ~/.config/gtklock/style.css'   \
+#   timeout 420  'wlopm --off \*' \
+#        resume  'wlopm --on \*' \
+#  before-sleep  'gtklock -d -s ~/.config/gtklock/style.css'   \
+#   timeout 600  'systemctl suspend' \
+#        resume  'wlopm --on \*' \
+#  after-resume  'wlopm --on \*' \
+#               > /dev/null 2>&1 &
 
 #hypridle &
 

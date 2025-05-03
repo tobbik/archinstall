@@ -1,9 +1,12 @@
 #!/bin/bash
 # wp-vol
 
-notify_screen() {
+function send_notification() {
   # Arbitrary but unique message tag
-  local msgTag="volume"
+  local msgTag="myvolume"
+  local msgIconExtension="high"
+  local msgMuted=""
+  local timeOut=5000
 
   local VOLUME=$(wpctl get-volume @DEFAULT_AUDIO_SINK@)
   local MUTED=$(echo "${VOLUME}" | grep -o "MUTED")
@@ -11,40 +14,35 @@ notify_screen() {
   local VOLUME=$(echo "( ${VOLUME} * 100 ) / 1" | bc)
 
   if [[ x${MUTED} == x"MUTED" || ${VOLUME} == 0 ]]; then
-    # Show the sound muted notification
-    notify-send --app-name "changeVolume" --icon audio-volume-muted \
-      --expire-time 2000 --urgency low --transient \
-      --hint string:x-dunst-stack-tag:$msgTag \
-      --hint int:value:"${VOLUME}" "Volume: ${VOLUME}%" "[MUTED]"
-  else
-    # Show the volume notification
-    notify-send --app-name "changeVolume" --icon audio-volume-high \
-      --expire-time 2000 --urgency low --transient \
-      --hint string:x-dunst-stack-tag:$msgTag \
-      --hint int:value:"${VOLUME}" "Volume: ${VOLUME}%"
+    msgMuted="[MUTED]"
+    msgIconExtension="muted"
   fi
+  notify-send --app-name "changeVolume" --icon audio-volume-${msgIconExtension} \
+    --expire-time ${timeOut} --urgency low --transient \
+    --hint string:x-dunst-stack-tag:$msgTag \
+    --hint int:value:"${VOLUME}" "Volume: ${VOLUME}%" "${MUTED}"
 }
 
 function usage() {
-  printf "wayland-volume-adjust <up|down|toggle>\n"
-  printf "   up      -> Volume up   5%\n"
-  printf "   down    -> Volume down 5%\n"
-  printf "   toggle  -> Toggle volume mute on/off\n"
+  printf "wayland-volume-adjust <command>\n"
+  printf "  up     -> Volume up 5%\n"
+  printf "  down   -> Volume down 5%\n"
+  printf "  toggle -> Togle volume mute on/off\n"
 }
 
-main() {
+function main() {
   case "$1" in
     up)
       amixer sset Master 5%+
-      notify_screen
+      send_notification
       ;;
     down)
       amixer sset Master 5%-
-      notify_screen
+      send_notification
       ;;
     toggle)
       amixer sset Master toggle
-      notify_screen
+      send_notification
       ;;
    *)
      usage

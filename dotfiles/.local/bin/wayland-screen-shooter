@@ -1,3 +1,67 @@
 #!/bin/bash
+#
+#
+function send_notification() {
+  local CONDITION="$1"
+  local SUBJECT="$2"
+  local LOCATION="$3"
+  notify-send --expire-time 5000 --urgency low --transient \
+    "${CONDITION} screen shot of ${SUBJECT} stored in ${LOCATION}"
+}
 
-grim -g "$(slurp)" - | satty -f -
+function multishot() {
+  local OUTPUTS=$(wlr-randr | grep -v "^[ ]" | cut -d" " -f1)
+  local PFX="/tmp/screen-"
+  if [ x"$1" != x"" ]; then
+    PFX="$1"
+  fi
+  for OUTPUT in ${OUTPUTS}; do
+    if [ x"$2" == x"" ]; then
+      grim -o ${OUTPUT} "${PFX}${OUTPUT}.png"
+      send_notification "Full" "output <${OUTPUT}>" "${PFX}${OUTPUT}.png"
+    else
+      grim -o ${OUTPUT} - | magick - ${2} "${PFX}${OUTPUT}.png"
+      send_notification "Blurred" "output <${OUTPUT}>" "${PFX}${OUTPUT}.png"
+    fi
+  done
+}
+
+function usage() {
+  printf "wayland-screen-shooter <select|multi|multiblur|full>\n"
+  printf "  <select>     - select a section of the screen, store in clipboard \n"
+  printf "  <selectedit> - select a section of the screen, edit in satty \n"
+  printf "  <full>       - take a full screenshot, store in clipboard\n"
+  printf "  <edit>       - take a full screenshot, edit in satty\n"
+  printf "  <multi>      - take a shot for each output, store in\n"
+  printf "                 /tmp/screen-<outputname>.png\n"
+  printf "  <multiblur>  - same as <multi>, blurrs image\n"
+}
+
+function main() {
+  case "$1" in
+    selectedit)
+      grim -g "$(slurp)" - | satty -f -
+      ;;
+    select)
+      grim -g "$(slurp)" - | wl-copy
+      send_notification "Cropped" "selection" "clipboard"
+      ;;
+    edit)
+      grim - | satty -f -
+      ;;
+    full)
+      grim - | wl-copy
+      send_notification "Full" "complete screen" "clipboard"
+      ;;
+    multi)
+      multishot "$2"
+      ;;
+    multiblur)
+      multishot "$2" "-scale 20% +level 0%,50%,0.5 -blur 0x4 -resize 500%"
+      ;;
+   *)
+     usage
+  esac
+}
+
+main "$@"

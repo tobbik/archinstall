@@ -1,9 +1,9 @@
 #!/bin/bash
-# wp-vola
-#
+# 
+
 CURRENT=$(brightnessctl -m)
 
-notify_brightness() {
+function screen_notification() {
   # Arbitrary but unique message tag
   local msgTag="brightness"
 
@@ -25,11 +25,11 @@ main() {
   case "$1" in
     up)
       brightnessctl -c backlight set 5%+
-      notify_brightness
+      screen_notification
       ;;
     down)
       brightnessctl -c backlight set 5%-
-      notify_brightness
+      screen_notification
       ;;
    *)
      usage

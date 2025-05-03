@@ -1,0 +1,14 @@
+#!/bin/bash
+#
+
+function main() {
+  local MSG="$1"
+  local TIME_OUT=4
+  if [ x"$2" != x"" ]; then
+    TIME_OUT=$2
+  fi
+  TIME_OUT=$(( ${TIME_OUT} * 1000 ))
+  notify-send --expire-time ${TIME_OUT} --urgency low --transient "${MSG}"
+}
+
+main "$@"
