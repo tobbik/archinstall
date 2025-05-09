@@ -68,6 +68,7 @@ PACMANEXTRAFLAGS=""    # --disable-download-timeout for bad connections
 HOSTNAME=machinename
 USERNAME=arch
 USERPASS="arch"
+USERHOME="/home/${USERNAME}"     # overwrite if desired
 GITNAME="Your Fullname"
 GITEMAIL="email.address@for.git.commits"
 ROOTPASS="PassForRoot"
@@ -89,9 +90,9 @@ MICROCODE="intel"    # amd | intel
 BOOTMNGR=systemd     # systemd | xbootldr | efistub | refind | grub
 
 # docker container directory - if you choose the docker package and not set
-# DOCKERSTORAGEPATH the installer will create /home/${USERNAME}/docker instead
+# DOCKERSTORAGEPATH the installer will create ${USERHOME}/docker instead
 #DOCKERSTORAGEPATH=/mnt/whatever
 #
-AURBUILDDIR="/home/${USERNAME}/pkgs"
+AURBUILDDIR="${USERHOME}/pkgs"
 AURBASEURL="https://aur.archlinux.org/cgit/aur.git/snapshot"
 

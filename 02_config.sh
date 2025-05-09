@@ -39,14 +39,19 @@ fi
 
 if ! grep -q ${USERNAME} /etc/passwd ; then
   useradd --gid users \
-    --create-home \
-    --skel /etc/skel \
+    --no-create-home \
     --password ${USERPASS} \
     --shell /bin/bash \
     ${USERNAME}
 fi
 
-mkdir -p /home/${USERNAME}/{.config,.local/bin,.cache}
+[ -d ${USERHOME} ] || mkdir ${USERHOME}
+for C_FILE in /etc/skel/.* /etc/skel/* ; do
+  C_FILE_NAME=$(basename ${C_FILE})
+  [ -f ${USERHOME}/${C_FILE_NAME} ] || cp -v /etc/skel/${C_FILE_NAME} ${USERHOME}/${C_FILE_NAME}
+done
+
+mkdir -p ${USERHOME}/{.config,.local/bin,.cache}
 add_export "PATH" '${PATH}:${HOME}/.local/bin'
 
 # reset the password to be sure
@@ -64,7 +69,7 @@ add_alias "ll"  "ls --color=auto -l"
 add_alias "la"  "ls --color=auto -a"
 add_alias "lla" "ls --color=auto -l -a"
 
-cp -avr ${RUNDIR}/pkgbuilds ${AURBUILDDIR}
+[ -d ${AURBUILDDIR} ] || cp -avr ${RUNDIR}/pkgbuilds ${AURBUILDDIR}
 
-chown -R ${USERNAME}:users /home/${USERNAME}
+chown -R ${USERNAME}:users ${USERHOME}
 

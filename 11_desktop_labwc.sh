@@ -29,7 +29,7 @@ add_dotfiles ".config/labwc" ".config/sfwbar" ".config/wlr-which-key" \
   ".config/wlogout" ".config/gammastep" \
   ".config/swayidle" ".config/swaylock" ".config/gtklock"
 
-sed -i /home/${USERNAME}/.config/gammastep/config.ini \
-      -e "s:^adjustment-method=.*$:adjustment-method=wayland:"
+sed -i ${USERHOME}/.config/gammastep/config.ini \
+  -e "s:^\(adjustment-method\)=.*$:\1=wayland:"
 
 enable_service gammastep.service ${USERNAME}

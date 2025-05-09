@@ -23,22 +23,22 @@ pacman -S --needed --noconfirm ${PACMANEXTRAFLAGS} \
   python-xattr python-pyxattr python-secretstorage
 
 add_dotfiles ".config/mpd" ".config/mpv"
-mkdir -p /home/${USERNAME}/.config/mpd/playlists
+mkdir -p ${USERHOME}/.config/mpd/playlists
 
 # setup user audio base configs
 if [ x"$AUDIOSYSTEM" == x"pipewire" ]; then
-  cp -avr /usr/share/pipewire /home/${USERNAME}/.config/
+  cp -avr /usr/share/pipewire ${USERHOME}/.config/
   enable_service pipewire-pulse.service ${USERNAME}
   enable_service wireplumber.service ${USERNAME}
-  sed -i /home/${USERNAME}/.config/mpd/mpd.conf \
+  sed -i ${USERHOME}/.config/mpd/mpd.conf \
       -e "s:^# pipewire$:\0\naudio_output {\n  type    \"pipewire\"\n  name    \"PipeWire Sound Server\"\n}\n:"
-  sed -i /home/${USERNAME}/.config/mpv/mpv.conf \
+  sed -i ${USERHOME}/.config/mpv/mpv.conf \
       -e "s:^ao=.*$:ao=pipewire:"
 fi
 
 if [ x"$AUDIOSYSTEM" == x"pulseaudio" ]; then
-  cp -avr /etc/pulse /home/${USERNAME}/.config/
-  sed -i /home/${USERNAME}/.config/mpv/mpv.conf \
+  cp -avr /etc/pulse ${USERHOME}/.config/
+  sed -i ${USERHOME}/.config/mpv/mpv.conf \
       -e "s:^ao=.*$:ao=pulse:"
 fi
 

@@ -37,7 +37,7 @@ do
 done
 
 # flatten all permissions
-chown -R ${USERNAME}:users /home/${USERNAME}  /root/installer
+chown -R ${USERNAME}:users ${USERHOME}  /root/installer
 
 # boot managers
 if [ x"${BOOTMNGR}" == x"grub" ]; then

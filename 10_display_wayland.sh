@@ -35,7 +35,7 @@ enable_service foot-server.service ${USERNAME}
 # seatd is installed as a dependency of labwc
 usermod -a -G seat ${USERNAME}
 
-add_dotfiles  ".config/foot" ".config/dunst" ".config/fuzzel" \
+add_dotfiles  ".config/foot" ".config/dunst" ".config/fuzzel" ".config/kanshi" \
   ".local/bin/mpd-control" ".local/bin/wayland-screen-shooter" \
   ".local/bin/wayland-screen-brightness" \
   ".local/bin/wayland-volume-adjust" \

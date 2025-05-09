@@ -50,20 +50,19 @@ function enable_service() {
 }
 
 function add_dotfiles() {
-  local HOME_DIR=/home/${USERNAME}
   for ELEM in $@
   do
     local E_ITEM=$(basename ${ELEM})
     local E_PATH=$(dirname  ${ELEM})
     if test -d dotfiles/${E_PATH}/${E_ITEM} ; then
-      if ! test -d ${HOME_DIR}/${E_PATH}/${E_ITEM} ; then
-        [ -d ${HOME_DIR}/${E_PATH} ] || mkdir ${HOME_DIR}/${E_PATH}
-        cp -avr dotfiles/${E_PATH}/${E_ITEM} ${HOME_DIR}/${E_PATH}/
+      if ! test -d ${USERHOME}/${E_PATH}/${E_ITEM} ; then
+        [ -d ${USERHOME}/${E_PATH} ] || mkdir ${USERHOME}/${E_PATH}
+        cp -avr dotfiles/${E_PATH}/${E_ITEM} ${USERHOME}/${E_PATH}/
       fi
     elif test -f dotfiles/${E_PATH}/${E_ITEM} ; then
-      if ! test -f ${HOME_DIR}/${E_PATH}/${E_ITEM} ; then
-        [ -d ${HOME_DIR}/${E_PATH} ] || mkdir ${HOME_DIR}/${E_PATH}
-        cp -av dotfiles/${E_PATH}/${E_ITEM} ${HOME_DIR}/${E_PATH}/
+      if ! test -f ${USERHOME}/${E_PATH}/${E_ITEM} ; then
+        [ -d ${USERHOME}/${E_PATH} ] || mkdir ${USERHOME}/${E_PATH}
+        cp -av dotfiles/${E_PATH}/${E_ITEM} ${USERHOME}/${E_PATH}/
       fi
     else
       echo "Couldn't find CONFIGFILE dotfiles/${E_PATH}/${E_ITEM}"
@@ -74,16 +73,16 @@ function add_dotfiles() {
 function add_alias() {
   ALIAS=$1
   COMMAND=$2
-  if ! grep -q "alias ${ALIAS}=" /home/${USERNAME}/.bashrc ; then
-    echo -e "alias ${ALIAS}='${COMMAND}'" >> /home/${USERNAME}/.bashrc
+  if ! grep -q "alias ${ALIAS}=" ${USERHOME}/.bashrc ; then
+    echo -e "alias ${ALIAS}='${COMMAND}'" >> ${USERHOME}/.bashrc
   fi
 }
 
 function add_export() {
   VARNAME="$1"
   VARVALUE="$2"
-  if ! grep -q "export ${VARNAME}=" /home/${USERNAME}/.bash_profile ; then
-    echo "export ${VARNAME}=${VARVALUE}" >> /home/${USERNAME}/.bash_profile
+  if ! grep -q "export ${VARNAME}=" ${USERHOME}/.bash_profile ; then
+    echo "export ${VARNAME}=${VARVALUE}" >> ${USERHOME}/.bash_profile
   fi
 }
 

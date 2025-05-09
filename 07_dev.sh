@@ -25,8 +25,8 @@ fi
 usermod -a -G git,http,wireshark       ${USERNAME}
 
 # set up .bashrc to invoke nvm properly
-if ! grep -q 'init-nvm' /home/${USERNAME}/.bashrc ; then
-  cat >> /home/${USERNAME}/.bashrc << EOBASHRC
+if ! grep -q 'init-nvm' ${USERHOME}/.bashrc ; then
+  cat >> ${USERHOME}/.bashrc << EOBASHRC
 
 # initialize node version manager if present
 [ -f /usr/share/nvm/init-nvm.sh ] && source /usr/share/nvm/init-nvm.sh
@@ -39,7 +39,7 @@ sed -i /etc/php/php.ini \
 
 #set up git
 INSTALLERDIR=$(pwd)
-cd /home/${USERNAME}
+cd ${USERHOME}
 sudo --user ${USERNAME} git config --global user.name   "${GITNAME}"
 sudo --user ${USERNAME} git config --global user.email  "${GITEMAIL}"
 sudo --user ${USERNAME} git config --global core.editor "/usr/bin/nvim"

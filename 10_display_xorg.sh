@@ -12,9 +12,9 @@ pacman -S --needed --noconfirm ${PACMANEXTRAFLAGS} \
   ttf-dejavu ttf-dejavu-nerd ttf-droid
 
 # set xfce4 as standard X desktop for non graphical login
-cp /etc/X11/xinit/xinitrc                /home/${USERNAME}/.xinitrc
-sed  -i "/twm/d;/xclock/d;/xterm/d"      /home/${USERNAME}/.xinitrc
-echo -e "\nxset -b\nexec startxfce4" >>  /home/${USERNAME}/.xinitrc
+cp /etc/X11/xinit/xinitrc                ${USERHOME}/.xinitrc
+sed  -i "/twm/d;/xclock/d;/xterm/d"      ${USERHOME}/.xinitrc
+echo -e "\nxset -b\nexec startxfce4" >>  ${USERHOME}/.xinitrc
 
 cat >> /etc/polkit-1/rules.d/85-suspend.rules << EORULES
 polkit.addRule(function(action, subject) {
@@ -25,12 +25,12 @@ polkit.addRule(function(action, subject) {
 });
 EORULES
 
-if ! grep -q 'xset -b' /home/${USERNAME}/.bashrc ; then
-  echo -e "# keep term silent (no beeps)\nxset -b" >> /home/${USERNAME}/.bashrc
+if ! grep -q 'xset -b' ${USERHOME}/.bashrc ; then
+  echo -e "# keep term silent (no beeps)\nxset -b" >> ${USERHOME}/.bashrc
 fi
 
 add_dotfiles ".Xresources" ".config/gammastep" ".config/autostart/URXvt deamon.desktop"
-sed -i /home/${USERNAME}/.config/gammastep/config.ini \
-      -e "s:^adjustment-method=.*$:adjustment-method=randr:"
+sed -i ${USERHOME}/.config/gammastep/config.ini \
+    -e "s:^\(adjustment-method\)=.*$:\1=randr:"
 
 enable_service gammastep.service ${USERNAME}
