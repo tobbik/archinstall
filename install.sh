@@ -1,6 +1,7 @@
 #!/bin/bash
 
 # source partitions.sh
+timedatctl set-ntp true
 source config.sh
 
 if [[ ! -z ${PACMANPRIMARYPKGSERVER} ]]; then

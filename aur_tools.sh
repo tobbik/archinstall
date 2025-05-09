@@ -1,11 +1,12 @@
 AURBASEURL="https://aur.archlinux.org/cgit/aur.git/snapshot"
 
 ARCH=$(uname -m)
-PKGSUFFIX=pkg.tar.zst
-if [ x"$ARCH" == x"aarch64" ]; then
-  PKGSUFFIX=pkg.tar.xz
-fi
+case "${ARCH}" in
+  'aarch64') _pkgsuffix='pkg.tar.xz' ;;
+  *)         _pkgsuffix='pkg.ta.zst' ;;
+esac
 
+# $1 -> USER; $2 -> BUILDDIR; $3 -> PKG
 function aur_prepare_pkg () {
   local ASUSER="$1"
   local OLDDIR=$(pwd)
@@ -25,6 +26,7 @@ function aur_prepare_pkg () {
   cd ${OLDDIR}
 }
 
+# $1 -> USER; $2 -> BUILDDIR; $3 -> PKG
 function aur_create_pkg () {
   local ASUSER="$1"
   local OLDDIR=$(pwd)
@@ -36,6 +38,7 @@ function aur_create_pkg () {
   cd ${OLDDIR}
 }
 
+# $1 -> BUILDDIR; $2 -> PKG
 function aur_install_pkg() {
   local OLDDIR=$(pwd)
   cd "$1/$2"
@@ -45,8 +48,8 @@ function aur_install_pkg() {
   fi
   source PKGBUILD
   for PKG in ${pkgname[@]}; do
-    local PKGFILE=${PKG}-${pkgver}-${pkgrel}-${PKGARCH}.${PKGSUFFIX}
-    echo "     ..... BUILDING '${PKGFILE}' >>>>>>>>>>>"
+    local PKGFILE=${PKG}-${pkgver}-${pkgrel}-${PKGARCH}.${_pkgsuffix}
+    echo "     ..... INSTALLING '${PKGFILE}' >>>>>>>>>>>"
     if pacman -U --needed --noconfirm ${PKGFILE} ; then
       echo "     ..... PACKAGE INSTALLATION SUCCESS: '${PKGFILE}' >>>>>>>>>>>>"
     else
@@ -69,6 +72,4 @@ function aur_handle_pkg() {
     aur_install_pkg           ${BUILDDIR} ${PKG}
   fi
 }
-
-
 

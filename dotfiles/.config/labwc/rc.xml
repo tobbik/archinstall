@@ -54,6 +54,9 @@
     <keybind key="W-Space">
       <action name="Execute" command="fuzzel"/>
     </keybind>
+    <keybind key="W-A-Space">
+      <action name="Execute" command="fuzzel --list-executables-in-path"/>
+    </keybind>
     <keybind key="C-W-Right">
       <action name="GoToDesktop" to="right" wrap="yes"/>
     </keybind>

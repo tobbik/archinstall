@@ -1,37 +1,34 @@
 #!/bin/bash
 
 cd "$(dirname "$0")"
-RUNDIR=$(pwd)
 
 source config.sh
 source helper.sh
 
-if [ -n "$SETTIMESTAMP" ]; then
-  date -s "$SETTIMESTAMP"
-fi
-
 mkdir -p /root/installer/logs
 
-pacman -Syu --noconfirm
-
 # these re-locations are useful, if you like to set-up an RO-mounted root (/) directory
-if [[ ! -z ${SYSTEMDSERVICEDIR} ]]; then
-  mkdir -p $(dirname ${SYSTEMDSERVICEDIR})
-  mv       /var/lib/systemd ${SYSTEMDSERVICEDIR}
-  ln    -s ${SYSTEMDSERVICEDIR} /var/lib/systemd
-fi
-
 if [[ ! -z ${PACMANSERVICEDIR} ]]; then
   mkdir -p ${PACMANSERVICEDIR}/cache
   mv /var/log/pacman.log ${PACMANSERVICEDIR}/
   mv /etc/pacman.d/gnupg ${PACMANSERVICEDIR}/
+  mv /var/cache/pacman/pkg/*  ${PACMANSERVICEDIR}/cache/
   sed -i /etc/pacman.conf \
       -e "s:^#\(CacheDir *\).*:\1 = ${PACMANSERVICEDIR}/cache:" \
       -e "s:^#\(LogFile *\).*:\1 = ${PACMANSERVICEDIR}/pacman.log:" \
       -e "s:^#\(GPGDir *\).*:\1 = ${PACMANSERVICEDIR}/gnupg:"
 fi
 
-# installing the
+pacman -Sy --noconfirm ${PACMANEXTRAFLAGS}
+
+if [[ -z ${REMOVABLES} ]]; then
+  pacman -Rdd --needed --noconfirm ${REMOVABLES}
+  pacman -U   --needed --noconfirm ${RUNDIR}/*.pkg.tar.*
+fi
+
+pacman -Su --noconfirm ${PACMANEXTRAFLAGS}
+
+# installing the individual modules
 for moduleName in ${MODULES[@]}
 do
   echo -e "\n\n      >>>>>>>>>>>   EXECUTING ${moduleName} <<<<<<<<<<<<\n"
@@ -60,11 +57,15 @@ if [ x"${BOOTMNGR}" == x"efistub" ]; then
 
   efibootmgr --create --unicode \
     --disk ${DISKBASEDEVPATH} --part 1 \
-    --label 'Arch Linux' \
+    --label 'Arch Linux EFIstub' \
     --loader '\EFI\Linux\arch-linux.efi'
 fi
 
 if [ x"${BOOTMNGR}" == x"xbootldr" ] || [ x"${BOOTMNGR}" == x"systemd" ]; then
+  case "$(uname -m)" in
+      'aarch64') _efifile='systemd-bootaa64.efi' ;;
+      *)         _efifile='systemd-bootx64.efi' ;;
+  esac
   echo "Installing systemd bootloader:"
   if [ x"${BOOTMNGR}" == x"xbootldr" ]; then
     echo '  `bootctl --esp-path=/efi --boot-path=/boot install`'
@@ -75,7 +76,7 @@ if [ x"${BOOTMNGR}" == x"xbootldr" ] || [ x"${BOOTMNGR}" == x"systemd" ]; then
   fi
   efibootmgr --create --unicode \
     --disk   ${DISKBASEDEVPATH} --part 1 \
-    --label  'Systemd Boot Manager' \
-    --loader '\EFI\systemd\systemd-bootx64.efi'
+    --label  'Gummiboot' \
+    --loader '\EFI\systemd\'${_efifile}
 fi
 

@@ -1,5 +1,7 @@
 #!/bin/bash
 
+RUNDIR=$(pwd)
+
 # installation modules
 # just comment out modules you don't want
 MODULES=(
@@ -57,8 +59,10 @@ PACMANEXTRAFLAGS=""    # --disable-download-timeout for bad connections
 # PACMANPRIMARYPKGSERVER="Server = http://mylocalcache:8765/pkg"
 # if set, it will re-locate pacmans cache, gnupg and pacman.log into the directory
 # PACMANSERVICEDIR=/home/pacman
-# if set, it will re-locate /var/lib/systemd, which will usally have to be writeable for timesyncd to work
-# SYSTEMDSERVICEDIR=/home/systemd
+
+# if REMOVABLES is defined the installer runs `pacman -Rdd $REMOVABLES` followed
+# by a `pacman -U *.pkg.tar.*`
+#REMOVABLES=""
 
 # ----------- CONFIG Variables
 HOSTNAME=machinename
@@ -72,12 +76,12 @@ LOCALELC="en_CA.UTF-8"
 LOCALECOLLATE="C.UTF-8"
 LOCALEFALLBACK="en_CA:en_GB:en"
 TIMEZONE="America/Vancouver"
-TIMESTAMP=$(date -Iseconds)
 # pipewire has some trouble on smaller SBCs such as Orange Pi
 AUDIOSYSTEM="pipewire"   # pipewire | pulseaudio
 NETWORKTYPE="wlan"   # wlan | ether | both
 
 # microcode selection
+# comment out for no microcode
 MICROCODE="intel"    # amd | intel
 
 # this needs intervention; refind and grub work proper

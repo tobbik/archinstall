@@ -6,8 +6,7 @@ pacman -S --needed --noconfirm ${PACMANEXTRAFLAGS} \
   gtklock gtklock-playerctl-module \
   gtklock-powerbar-module gtklock-userinfo-module \
   scour ddcutil glib2-devel gtk4 \
-  gtk4 libyaml qt6-base qt6-tools \
-  gobject-introspection
+  libyaml qt6-base qt6-tools gobject-introspection
 
 # wlogout
 sudo --user ${USERNAME} gpg --keyserver keyserver.ubuntu.com --recv-keys F4FDB18A9937358364B276E9E25D679AF73C6D2F

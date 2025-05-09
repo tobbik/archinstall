@@ -13,6 +13,10 @@ if [ x"${BOOTMNGR}" == x"xbootldr" ] || [ x"${BOOTMNGR}" == x"systemd" ]; then
     BOOTPATH="/boot"
     ESPPATH=${BOOTPATH}
   fi
+  case "$(uname -m)" in
+      'aarch64') _kernelname='vmlinux' ;;
+      *)         _kernelname='vmlinuz-linux' ;;
+  esac
 
   mkdir -p ${ESPPATH}/loader ${BOOTPATH}/loader/entries
   cat > ${ESPPATH}/loader/loader.conf << EOUBOOTLOAD
@@ -24,7 +28,7 @@ EOUBOOTLOAD
 
   cat > ${BOOTPATH}/loader/entries/arch.conf << EOARCHCONF
 title   Arch Linux
-linux   /vmlinuz-linux
+linux   /${_kernelname}
 initrd  /${MICROCODE}-ucode.img
 initrd  /initramfs-linux.img
 options root=UUID=${UUIDROOT} ro
@@ -32,12 +36,16 @@ EOARCHCONF
 
   cat > ${BOOTPATH}/loader/entries/arch-fallback.conf << EOARCHFBCONF
 title   Arch Linux (fallback initramfs)
-linux   /vmlinuz-linux
+linux   /${_kernelname}
 initrd  /${MICROCODE}-ucode.img
 initrd  /initramfs-linux-fallback.img
 options root=UUID=${UUIDROOT} single ro
 EOARCHFBCONF
 
+  if [[ -z ${MICROCODE} ]]; then
+    sed -i ${BOOTPATH}/loader/entries/arch.conf -e "/ucode/d"
+    sed -i ${BOOTPATH}/loader/entries/arch-fallback.conf -e "/ucode/d"
+  fi
 fi
 #----------------------------------------------------------------
 

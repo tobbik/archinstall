@@ -34,6 +34,9 @@ if ! grep -q 'init-nvm' /home/${USERNAME}/.bashrc ; then
 EOBASHRC
 fi
 
+sed -i /etc/php/php.ini \
+  -e "s:^.*\(zend_extension=opcache\).*$:\1:"
+
 #set up git
 INSTALLERDIR=$(pwd)
 cd /home/${USERNAME}
@@ -44,6 +47,7 @@ sudo --user ${USERNAME} git config --global merge.tool  "/usr/bin/nvim -d"
 sudo --user ${USERNAME} git lfs install
 cd ${INSTALLERDIR}
 
+add_alias "v"      "nvim"
 add_alias "nv"     "nvim"
 add_alias "nvd"    "nvim -d"
 add_alias "nvdiff" "nvim -d"

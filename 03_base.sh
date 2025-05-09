@@ -20,10 +20,8 @@ pacman -S --needed --noconfirm ${PACMANEXTRAFLAGS} \
   cpupower acpi tlp acpi_call \
   smartmontools nfs-utils cifs-utils \
   wol dmidecode rng-tools mc \
-  pwgen mlocate linux-firmware \
-  sudo tmux fakeroot \
+  pwgen mlocate sudo tmux fakeroot \
   efibootmgr efivar pacman-contrib
-
 
 enable_service sshd
 enable_service systemd-timesyncd
@@ -47,3 +45,4 @@ if [ ! -f /etc/sudoers.d/${USERNAME} ]; then
 fi
 
 add_alias "s" "sudo"
+add_alias "g" "grep --color=auto"

@@ -9,7 +9,7 @@ pacman -S --needed --noconfirm ${PACMANEXTRAFLAGS} \
   openconnect openvpn \
   xcb-util xcb-util-cursor
 
-add_alias "gvim" "neovide"
+add_alias    "gvim" "neovide"
 add_dotfiles ".config/neovide"
 
 

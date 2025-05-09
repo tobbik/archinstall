@@ -14,7 +14,8 @@ pacman -S --needed --noconfirm ${PACMANEXTRAFLAGS} \
   hyprland hyprland-protocols hyprpaper hyprlock hypridle \
   hyprsunset hyprpolkitagent hyprpicker \
   nwg-dock-hyprland nwg-panel nwg-displays \
-  ${PORTALPACKAGES}
+  swaync ${PORTALPACKAGES}
 
 add_dotfiles \
-  ".config/hypr/hyprlock.conf" ".config/hypr/hypridle.conf"
+  ".config/hypr/hyprlock.conf" ".config/hypr/hypridle.conf" \
+  ".config/hypr/hyprland.conf"

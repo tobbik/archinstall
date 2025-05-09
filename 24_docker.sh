@@ -36,5 +36,11 @@ enable_service docker.service
 update-ca-trust
 
 # set up .bashrc with some aliases
+add_alias "k"         "kubectl"
+
+add_alias "d"         "docker"
+add_alias "di"        "docker image"
+add_alias "dils"      "docker image ls"
+add_alias "dps"       "docker ps --format \"table {{.Names}}\\t{{.Image}}\\t{{.Ports}}\\t{{.Status}}\""
 add_alias "dockerps"  "docker ps --format \"table {{.Names}}\\t{{.Image}}\\t{{.Ports}}\\t{{.Status}}\""
 

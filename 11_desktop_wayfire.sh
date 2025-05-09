@@ -12,7 +12,7 @@ done
 
 pacman -S --needed --noconfirm ${PACMANEXTRAFLAGS} \
   wlroots extra-cmake-modules glibmm gtkmm3 \
-  doctest doxygen iio-sensor-proxy yyjson \
+  doctest doxygen iio-sensor-proxy yyjson boost \
   libdbusmenu-gtk3 nlohmann-json glm \
   scour glib2-devel boost libyaml \
   gtk4 libadwaita vulkan-headers
