@@ -29,6 +29,13 @@ sed -i /etc/ly/config.ini \
   -e "s:^#clock = .*:clock = %c:" \
   -e "s:^#blank_box = .*:blank_box = true:"
 
+cat > /etc/udev/rules.d/90-brightnessctl.rules << EOUDEVRULES
+ACTION=="add", SUBSYSTEM=="backlight", RUN+="/bin/chgrp video /sys/class/backlight/%k/brightness"
+ACTION=="add", SUBSYSTEM=="backlight", RUN+="/bin/chmod g+w /sys/class/backlight/%k/brightness"
+ACTION=="add", SUBSYSTEM=="leds", RUN+="/bin/chgrp input /sys/class/leds/%k/brightness"
+ACTION=="add", SUBSYSTEM=="leds", RUN+="/bin/chmod g+w /sys/class/leds/%k/brightness"
+EOUDEVRULES
+
 enable_service ly.service
 enable_service foot-server.service ${USERNAME}
 

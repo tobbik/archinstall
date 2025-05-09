@@ -42,6 +42,10 @@ swayidle -w  > /dev/null 2>&1 &
 
 # .. or using direct parameters
 #swayidle -w \
+#   timeout 240  'brightnessctl -d tpacpi::kbd_backlight -s  && brightnessctl -d tpacpi::kbd_backlight set 0' \
+#        resume  'brightnessctl -d tpacpi::kbd_backlight -r' \
+#   timeout 240  'brightnessctl -d amdgpu_bl1 -s  && brightnessctl -d amdgpu_bl1 set 0' \
+#        resume  'brightnessctl -d amdgpu_bl1 -r' \
 #   timeout 293  'wayland-screen-shooter multiblur /tmp/screen-' \
 #        resume  'rm /tmp/screen-*' \
 #   timeout 295  'notify-send --expire-time 4000 --urgency low --transient "Going to idle in 5 seconds!"' \

@@ -16,7 +16,7 @@ function screen_notification() {
 }
 
 function usage() {
-  printf "wayland-screen-brighness <up|down>\n"
+  printf "wayland-screen-brightness <up|down>\n"
   printf "   up      -> Increase brightness   5%\n"
   printf "   down    -> Decrease brightness 5%\n"
 }

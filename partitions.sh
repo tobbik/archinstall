@@ -53,10 +53,10 @@ p
 w
 EOGDISK
 
-mkfs.vfat     -F32 -n EFI      "${DISKBOOTDEVPATH}"
+mkfs.vfat       -F32 -n XBOOTLDR "${DISKBOOTDEVPATH}"
 yes | mkfs.ext4      -L ARCHROOT "${DISKROOTDEVPATH}"
 yes | mkfs.ext4      -L ARCHHOME "${DISKHOMEDEVPATH}"
-mkswap             -L ARCHSWAP "${DISKSWAPDEVPATH}"
+mkswap               -L ARCHSWAP "${DISKSWAPDEVPATH}"
 
 mount  "${DISKROOTDEVPATH}" /mnt
 mkdir  /mnt/{boot,home}

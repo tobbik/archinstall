@@ -45,7 +45,7 @@ MODULES=(
 
 # installer variables
 DISKBASEDEVPATH=/dev/nvme0n1
-DISKPARTNAME="p"                       # so it composes /dev/nvme0n1p2; for /dev/sda2 set PARTNAME=""
+DISKPARTNAME="p"                       # composes /dev/nvme0n1p2; for /dev/sda2 set PARTNAME=""
 DISKBOOTDEVPATH=${DISKBASEDEVPATH}${DISKPARTNAME}1
 DISKROOTDEVPATH=${DISKBASEDEVPATH}${DISKPARTNAME}2
 DISKHOMEDEVPATH=${DISKBASEDEVPATH}${DISKPARTNAME}3
