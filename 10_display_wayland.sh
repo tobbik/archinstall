@@ -25,6 +25,7 @@ sed -i /etc/ly/config.ini \
   -e "s:^#save_file =.*:save_file = /etc/ly/save:" \
   -e "s:^#load =.*:load = true:" \
   -e "s:^#blank_password =.*:blank_password = true:" \
+  -e "s:^\(border_fg\).*$:\1 = 3:" \
   -e "s:^#clock = .*:clock = %c:" \
   -e "s:^#blank_box = .*:blank_box = true:"
 

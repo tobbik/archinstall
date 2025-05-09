@@ -1,15 +1,6 @@
 source config.sh
 source helper.sh
 
-REMOVABLES=(
-  wdisplays       # part of wcm-git
-)
-
-for PACKAGE in ${REMOVABLES[@]}; do
-  yes | pacman -Rc ${PACKAGE}
-  rm -rf ${AURBUILDDIR}/${PACKAGE}
-done
-
 pacman -S --needed --noconfirm ${PACMANEXTRAFLAGS} \
   wlroots extra-cmake-modules glibmm gtkmm3 \
   doctest doxygen iio-sensor-proxy yyjson boost \

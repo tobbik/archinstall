@@ -64,5 +64,7 @@ add_alias "ll"  "ls --color=auto -l"
 add_alias "la"  "ls --color=auto -a"
 add_alias "lla" "ls --color=auto -l -a"
 
+cp -avr ${RUNDIR}/pkgbuilds ${AURBUILDDIR}
+
 chown -R ${USERNAME}:users /home/${USERNAME}
 

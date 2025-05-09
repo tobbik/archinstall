@@ -76,7 +76,7 @@ if [ x"${BOOTMNGR}" == x"xbootldr" ] || [ x"${BOOTMNGR}" == x"systemd" ]; then
   fi
   efibootmgr --create --unicode \
     --disk   ${DISKBASEDEVPATH} --part 1 \
-    --label  'Gummiboot' \
+    --label  'Das Gummiboot' \
     --loader '\EFI\systemd\'${_efifile}
 fi
 

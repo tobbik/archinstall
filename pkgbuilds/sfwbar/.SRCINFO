@@ -1,0 +1,21 @@
+pkgbase = sfwbar
+	pkgdesc = S* Floating Window taskBar
+	pkgver = 1.0_beta16
+	pkgrel = 1
+	url = https://github.com/LBCrion/sfwbar
+	arch = x86_64
+	license = GPL3
+	makedepends = meson
+	depends = wayland
+	depends = gtk3
+	depends = json-c
+	depends = gtk-layer-shell
+	depends = wayland-protocols
+	optdepends = alsa-lib: ALSA audio volume control,
+	optdepends = libpulse: pulse audio volume control,
+	optdepends = libmpdclient: music player daemon control,
+	optdepends = libxkbcommon: xkb layout conversion support
+	source = sfwbar-1.0_beta16.tar.gz::https://github.com/LBCrion/sfwbar/archive/refs/tags/v1.0_beta16.tar.gz
+	sha256sums = 238d6394650dfdfc2f36374ec25702bbef57e2cff1d9a149ecb9a52f887c3cdf
+
+pkgname = sfwbar

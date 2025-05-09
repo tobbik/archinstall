@@ -3,16 +3,16 @@ AURBASEURL="https://aur.archlinux.org/cgit/aur.git/snapshot"
 ARCH=$(uname -m)
 case "${ARCH}" in
   'aarch64') _pkgsuffix='pkg.tar.xz' ;;
-  *)         _pkgsuffix='pkg.ta.zst' ;;
+  *)         _pkgsuffix='pkg.tar.zst' ;;
 esac
 
 # $1 -> USER; $2 -> BUILDDIR; $3 -> PKG
-function aur_prepare_pkg () {
+function aur_extract_pkg () {
   local ASUSER="$1"
   local OLDDIR=$(pwd)
   cd "$2"
   local PKG="$3"
-  echo "     ..... PREPARING '${PKG}' >>>>>>>>>>>"
+  echo "     ..... DOWNLOADING and EXTRACTING '${PKG}' >>>>>>>>>>>"
   curl ${AURBASEURL}/${PKG}.tar.gz -O && sudo --user ${ASUSER} tar xzf ${PKG}.tar.gz
   rm ${PKG}.tar.gz && cd ${PKG}
   if grep -q '^arch.*any' PKGBUILD ; then
@@ -27,7 +27,7 @@ function aur_prepare_pkg () {
 }
 
 # $1 -> USER; $2 -> BUILDDIR; $3 -> PKG
-function aur_create_pkg () {
+function aur_build_pkg () {
   local ASUSER="$1"
   local OLDDIR=$(pwd)
   cd "$2/$3"
@@ -38,10 +38,10 @@ function aur_create_pkg () {
   cd ${OLDDIR}
 }
 
-# $1 -> BUILDDIR; $2 -> PKG
+# $1 -> USER; $2 -> BUILDDIR; $3 -> PKG
 function aur_install_pkg() {
   local OLDDIR=$(pwd)
-  cd "$1/$2"
+  cd "$2/$3"
   local PKGARCH=${ARCH}
   if grep -q '^arch.*any' PKGBUILD ; then
     PKGARCH='any'
@@ -49,6 +49,11 @@ function aur_install_pkg() {
   source PKGBUILD
   for PKG in ${pkgname[@]}; do
     local PKGFILE=${PKG}-${pkgver}-${pkgrel}-${PKGARCH}.${_pkgsuffix}
+    if [ ! -f "${PKGFILE}" ]; then
+      aur_build_pkg   ${ASUSER} ${BUILDDIR} ${PKG}
+      source PKGBUILD     # source again, to re-read git versioned packages
+      PKGFILE=${PKG}-${pkgver}-${pkgrel}-${PKGARCH}.${_pkgsuffix}
+    fi
     echo "     ..... INSTALLING '${PKGFILE}' >>>>>>>>>>>"
     if pacman -U --needed --noconfirm ${PKGFILE} ; then
       echo "     ..... PACKAGE INSTALLATION SUCCESS: '${PKGFILE}' >>>>>>>>>>>>"
@@ -65,11 +70,10 @@ function aur_handle_pkg() {
   local BUILDDIR="${2}"
   local PKG="$3"
   if [ ! -d ${BUILDDIR} ]; then sudo --user ${ASUSER} mkdir -p ${BUILDDIR}; fi
+
   if [ ! -d ${BUILDDIR}/${PKG} ]; then
-    echo "################# Creating ${PKG} #######################"
-    aur_prepare_pkg ${ASUSER} ${BUILDDIR} ${PKG}
-    aur_create_pkg  ${ASUSER} ${BUILDDIR} ${PKG}
-    aur_install_pkg           ${BUILDDIR} ${PKG}
+    aur_extract_pkg ${ASUSER} ${BUILDDIR} ${PKG}
   fi
+  aur_install_pkg ${ASUSER} ${BUILDDIR} ${PKG}
 }
 
