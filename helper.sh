@@ -56,12 +56,12 @@ function add_dotfiles() {
     local E_PATH=$(dirname  ${ELEM})
     if test -d dotfiles/${E_PATH}/${E_ITEM} ; then
       if ! test -d ${USERHOME}/${E_PATH}/${E_ITEM} ; then
-        [ -d ${USERHOME}/${E_PATH} ] || mkdir ${USERHOME}/${E_PATH}
+        [ -d ${USERHOME}/${E_PATH} ] || mkdir -p ${USERHOME}/${E_PATH}
         cp -avr dotfiles/${E_PATH}/${E_ITEM} ${USERHOME}/${E_PATH}/
       fi
     elif test -f dotfiles/${E_PATH}/${E_ITEM} ; then
       if ! test -f ${USERHOME}/${E_PATH}/${E_ITEM} ; then
-        [ -d ${USERHOME}/${E_PATH} ] || mkdir ${USERHOME}/${E_PATH}
+        [ -d ${USERHOME}/${E_PATH} ] || mkdir -p ${USERHOME}/${E_PATH}
         cp -av dotfiles/${E_PATH}/${E_ITEM} ${USERHOME}/${E_PATH}/
       fi
     else

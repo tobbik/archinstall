@@ -24,6 +24,7 @@ pacman -Sy --noconfirm ${PACMANEXTRAFLAGS}
 if [[ -z ${REMOVABLES} ]]; then
   pacman -Rdd --needed --noconfirm ${REMOVABLES}
   pacman -U   --needed --noconfirm ${RUNDIR}/*.pkg.tar.*
+  rm -f ${RUNDIR}/*.pkg.tar.*
 fi
 
 pacman -Su --noconfirm ${PACMANEXTRAFLAGS}

@@ -1,6 +1,9 @@
 #!/bin/bash
 
-# source partitions.sh
+#source partitions.sh
+#source format.sh
+#source mount.sh
+
 timedatectl set-ntp true
 source config.sh
 
