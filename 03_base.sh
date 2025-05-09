@@ -19,7 +19,7 @@ pacman -S --needed --noconfirm ${PACMANEXTRAFLAGS} \
   zip unzip unrar man-pages man-db lsof \
   cpupower acpi tlp acpi_call \
   smartmontools nfs-utils cifs-utils \
-  wol dmidecode rng-tools mc \
+  wol dmidecode rng-tools mc fbset \
   pwgen mlocate sudo tmux fakeroot \
   efibootmgr efivar pacman-contrib
 

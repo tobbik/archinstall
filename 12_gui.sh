@@ -3,13 +3,13 @@ source helper.sh
 
 # Everyday GUI tools
 pacman -S --needed --noconfirm ${PACMANEXTRAFLAGS} \
-  file-roller fbset pcmanfm-gtk3 alacritty \
+  file-roller pcmanfm-gtk3 \
   chromium firefox glfw \
   gvfs-smb gvfs-nfs gvfs-mtp \
   ttf-jetbrains-mono-nerd adobe-source-code-pro-fonts \
   ttf-ubuntu-font-family ttf-ubuntu-nerd ttf-ubuntu-mono-nerd \
   awesome-terminal-fonts ttf-font-awesome \
-  zathura-pdf-mupdf mupdf-gl \
+  zathura-pdf-mupdf mupdf-gl mupdf-tools \
   tesseract-data-eng tesseract-data-osd \
   pavucontrol ario \
   qrencode vte4 gtk4

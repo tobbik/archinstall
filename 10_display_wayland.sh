@@ -39,6 +39,5 @@ add_dotfiles  ".config/foot" ".config/dunst" ".config/fuzzel" \
   ".local/bin/mpd-control" ".local/bin/wayland-screen-shooter" \
   ".local/bin/wayland-screen-brightness" \
   ".local/bin/wayland-volume-adjust" \
-  ".local/bin/wayland-window-switcher" \
-  ".local/bin/n-send"
+  ".local/bin/wayland-window-switcher"
 
