@@ -5,7 +5,7 @@ pkgname=(osmconvert osmfilter osmupdate)
 pkgver=0.9
 pkgrel=2
 pkgdesc='Simple tools which are used in OpenStreetMap project'
-arch=('x86_64')
+arch=('x86_64' 'aarch64')
 url='https://gitlab.com/osm-c-tools/osmctools'
 license=('AGPL')
 depends=('zlib')
@@ -15,10 +15,13 @@ sha256sums=('SKIP')
 conflicts=('osmctools')
 
 prepare() {
-  sed -i osmtools/src/osmconvert.c -e "s/^typedef.*bool;$//"
-  sed -i osmtools/src/osmfilter.c -e "s/^typedef.*bool;$//"
-  sed -i osmtools/src/osmupdate.c -e "s/^typedef.*bool;$//"
+  if [ x"${CARCH}" != x"aarch64" ]; then
+    sed -i osmtools/src/osmconvert.c -e "s/^typedef.*bool;$//"
+    sed -i osmtools/src/osmfilter.c -e "s/^typedef.*bool;$//"
+    sed -i osmtools/src/osmupdate.c -e "s/^typedef.*bool;$//"
+  fi
 }
+
 build() {
 	cd "$pkgbase"
 	autoheader -f

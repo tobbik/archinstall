@@ -28,6 +28,8 @@ MODULES=(
    12_gui.sh
    13_office.sh
 
+   #14_arm_widevine.sh
+
    20_dev_gui.sh
    21_dotnet.sh
    22_jdk.sh
