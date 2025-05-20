@@ -13,7 +13,7 @@ fi
 # packers, helpers, sound etc ...
 pacman -S --needed --noconfirm ${PACMANEXTRAFLAGS} \
   wpa_supplicant wireless_tools net-tools openssh \
-  dosfstools exfatprogs e2fsprogs ntfs-3g \
+  dosfstools exfatprogs e2fsprogs ntfs-3g btrfs-progs \
   rsync whois nmap wget curl traceroute iperf \
   htop btop bmon iotop-c powertop \
   zip unzip unrar man-pages man-db lsof \

@@ -10,6 +10,7 @@ function send_notification() {
 }
 
 function multishot() {
+  # grab output names like eDP-1 or HDMI-A
   local OUTPUTS=$(wlr-randr | grep -v "^[ ]" | cut -d" " -f1)
   local PFX="/tmp/screen-"
   if [ x"$1" != x"" ]; then
@@ -40,10 +41,10 @@ function usage() {
 function main() {
   case "$1" in
     selectedit)
-      grim -g "$(slurp)" - | satty -f -
+      pidof slurp || grim -g "$(slurp)" - | satty -f -
       ;;
     select)
-      grim -g "$(slurp)" - | wl-copy
+      pidof slurp || grim -g "$(slurp)" - | wl-copy
       send_notification "Cropped" "selection" "clipboard"
       ;;
     edit)

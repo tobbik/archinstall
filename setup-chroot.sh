@@ -21,8 +21,8 @@ fi
 
 pacman -Sy --noconfirm ${PACMANEXTRAFLAGS}
 
-if [[ -z ${REMOVABLES} ]]; then
-  pacman -Rdd --needed --noconfirm ${REMOVABLES}
+if [[ ! -z ${REMOVABLES} ]]; then
+  pacman -Rdd --noconfirm ${REMOVABLES}
   pacman -U   --needed --noconfirm ${RUNDIR}/*.pkg.tar.*
   rm -f ${RUNDIR}/*.pkg.tar.*
 fi
@@ -39,6 +39,8 @@ done
 
 # flatten all permissions
 chown -R ${USERNAME}:users ${USERHOME}  /root/installer
+
+cp -v ${USERHOME}/.bashrc /root/
 
 # boot managers
 if [ x"${BOOTMNGR}" == x"grub" ]; then

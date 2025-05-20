@@ -21,7 +21,7 @@ notify_screen() {
   fi
 
   notify-send --app-name "mpdNowPlaying" \
-      --expire-time 2000 --urgency low  --transient \
+      --expire-time 3000 --urgency low  --transient \
       --hint string:x-dunst-stack-tag:$msgTag \
       "MPD ${STATE}:" "${ARTIST} - ${TITLE}"
 }

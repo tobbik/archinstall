@@ -1,8 +1,7 @@
 #!/bin/bash
 
+OLD_DIR=$(pwd)
 SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
-
-cd ${SCRIPT_DIR}/dotfiles
 
 function handle_item() {
   local ELEM="$1"
@@ -24,8 +23,12 @@ function handle_item() {
   fi
 }
 
-for DOT_ITEM in * .*; do
-  handle_item "${DOT_ITEM}"
-done
+function main() {
+  cd ${SCRIPT_DIR}/dotfiles
+  for DOT_ITEM in * .*; do
+    handle_item "${DOT_ITEM}"
+  done
+  cd ${OLD_DIR}
+}
 
-cd ${SCRIPT_DIR}
+main "$@"

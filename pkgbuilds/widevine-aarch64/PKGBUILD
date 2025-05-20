@@ -11,7 +11,7 @@ pkgrel=6
 arch=('aarch64')
 url='https://www.widevine.com/'
 license=('custom')
-depends=('gcc-libs' 'glib2' 'glibc-widevine' 'nspr' 'nss')
+depends=('gcc-libs' 'glib2' 'glibc>=2.39' 'nspr' 'nss')
 makedepends=('python')
 provides=('chromium-widevine')
 conflicts=('chromium-widevine')

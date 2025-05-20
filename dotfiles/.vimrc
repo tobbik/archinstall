@@ -79,7 +79,7 @@ elseif $COLORFGBG =~ 'default;default'
   set t_Co=16
   set t_AB=[%?%p1%{8}%<%t25;%p1%{40}%+%e5;%p1%{32}%+%;%dm
   set t_AF=[%?%p1%{8}%<%t22;%p1%{30}%+%e1;%p1%{22}%+%;%dm
-else 
+else
   " xterm has neither variable set ...
   set t_Co=256
 endif
@@ -108,15 +108,15 @@ set ai
 " smartindenting (clever autoindenting)
 set si
 " number of spaces the tab stands for
-set tabstop=3
+set tabstop=2
 " number of spaces used for (auto)indenting
-set shiftwidth=3
+set shiftwidth=2
 " If we find tabs we wanna preserve them and don't convert to spaces
-set noexpandtab
+set expandtab
 " a <tab> in an indent insets 'shiftwidth' spaces (not tabstop)
 set nosmarttab
 " if non-zero, number of spaces to insert for a <tab>
-set softtabstop=3
+set softtabstop=2
 " enable specific indenting for c-code and others
 set cindent
 
@@ -203,3 +203,4 @@ set secure exrc
 "  \   tab sball |
 "  \ endif
 
+let g:zig_fmt_autosave = 0
