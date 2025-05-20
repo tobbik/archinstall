@@ -15,7 +15,7 @@ fi
 # packers, helpers, sound etc ...
 pacman -S --needed --noconfirm ${PACMANEXTRAFLAGS} \
   libva-mesa-driver mesa-vdpau mesa-demos libvdpau-va-gl \
-  mesa ffmpeg ${AUDIOPACKAGES} mpd mpv \
+  mesa ffmpeg ${AUDIOPACKAGES} mpd mpc mpv \
   yt-dlp aria2 atomicparsley python-mutagen \
   alsa-tools alsa-utils alsa-plugins pamixer \
   python-pycryptodome python-pycryptodomex \

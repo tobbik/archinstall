@@ -14,7 +14,7 @@ vsync = true
 wsl = false
 
 [font]
-size = 14.0
+size = 13.5
 hinting = "full"
 edging = "antialias"
 
