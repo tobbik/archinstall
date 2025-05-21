@@ -21,7 +21,8 @@ pacman -S --needed --noconfirm ${PACMANEXTRAFLAGS} \
   smartmontools nfs-utils cifs-utils \
   wol dmidecode rng-tools mc fbset \
   pwgen mlocate sudo tmux fakeroot \
-  efibootmgr efivar pacman-contrib
+  efibootmgr efivar pacman-contrib \
+  neovim
 
 enable_service sshd
 enable_service systemd-timesyncd

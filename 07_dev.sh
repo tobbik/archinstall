@@ -14,8 +14,8 @@ pacman -S --needed --noconfirm ${PACMANEXTRAFLAGS} \
   go rust meson scdoc \
   python3 ipython cython \
   nodejs npm nvm js128 php \
-  neovim \
-  tree-sitter-bash tree-sitter-python tree-sitter-javascript tree-sitter-rust tree-sitter-query
+  tree-sitter-bash  tree-sitter-python \
+  tree-sitter-javascript tree-sitter-rust
 
 if [ $(uname -m) == 'x86_64' ]; then
   pacman -S --needed --noconfirm ${PACMANEXTRAFLAGS} \

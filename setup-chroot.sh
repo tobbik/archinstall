@@ -7,6 +7,9 @@ source helper.sh
 
 mkdir -p /root/installer/logs
 
+
+INSTALLER_START_SECS=${SECONDS}
+
 # these re-locations are useful, if you like to set-up an RO-mounted root (/) directory
 if [[ ! -z ${PACMANSERVICEDIR} ]]; then
   mkdir -p ${PACMANSERVICEDIR}/cache
@@ -83,3 +86,6 @@ if [ x"${BOOTMNGR}" == x"xbootldr" ] || [ x"${BOOTMNGR}" == x"systemd" ]; then
     --loader '\EFI\systemd\'${_efifile}
 fi
 
+INSTALLER_ELAPSED_SECS=$((${SECONDS} - ${INSTALLER_START_SECS}))
+echo "INSTALLER Time Taken:  $(date -u -d @"${INSTALLER_ELAPSED_SECS}" +'%-Mm %Ss')" >> \
+     /root/installer/logs/progress.log
