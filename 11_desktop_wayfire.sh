@@ -6,7 +6,7 @@ pacman -S --needed --noconfirm ${PACMANEXTRAFLAGS} \
   doctest doxygen iio-sensor-proxy yyjson boost \
   libdbusmenu-gtk3 nlohmann-json glm \
   scour glib2-devel boost libyaml \
-  gtk4 libadwaita vulkan-headers
+  vulkan-headers
 
 AUR_PACKAGES=(
   wf-config-git

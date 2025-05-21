@@ -10,6 +10,9 @@ if [ x"$AUDIOSYSTEM" == x"pulseaudio" ]; then
   PORTALPACKAGES=""
 fi
 
+# wlogout
+sudo --user ${USERNAME} gpg --keyserver keyserver.ubuntu.com --recv-keys F4FDB18A9937358364B276E9E25D679AF73C6D2F
+
 # everything Xorg and Terminals and command line
 pacman -S --needed --noconfirm ${PACMANEXTRAFLAGS} \
   wayland ly wl-clipboard dunst jq wlr-randr \
@@ -18,7 +21,8 @@ pacman -S --needed --noconfirm ${PACMANEXTRAFLAGS} \
   foot foot-terminfo libadwaita \
   ${PORTALPACKAGES} playerctl fuzzel \
   xorg-xwayland wlroots wayland-protocols gtk-layer-shell \
-  ttf-dejavu ttf-dejavu-nerd ttf-droid
+  ttf-dejavu ttf-dejavu-nerd ttf-droid \
+  ddcutil gtk4 gobject-introspection
 
 sed -i /etc/ly/config.ini \
   -e "s:^#save =.*:save = true:" \
@@ -40,9 +44,21 @@ enable_service ly.service
 enable_service foot-server.service ${USERNAME}
 
 # seatd is installed as a dependency of labwc
-usermod -a -G seat ${USERNAME}
+usermod -a -G seat,i2c ${USERNAME}
 
-add_dotfiles  ".config/foot" ".config/dunst" ".config/fuzzel" ".config/kanshi" \
+AUR_PACKAGES=(
+  luminance
+  wdisplays
+  wlopm
+  wlogout
+  wlr-which-key
+  wlrctl
+)
+
+install_aur_packages "${AUR_PACKAGES[@]}"
+
+add_dotfiles  ".config/foot" ".config/dunst" ".config/fuzzel" \
+  ".config/kanshi" ".config/wlr-which-key" \
   ".local/bin/mpd-control" ".local/bin/wayland-screen-shooter" \
   ".local/bin/wayland-screen-brightness" \
   ".local/bin/wayland-volume-adjust" \

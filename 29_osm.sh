@@ -2,7 +2,7 @@ source config.sh
 source helper.sh
 
 pacman -S --needed --noconfirm ${PACMANEXTRAFLAGS} \
-  jdk-openjdk
+  jdk-openjdk scour
 
 AUR_PACKAGES=(
   osmtools

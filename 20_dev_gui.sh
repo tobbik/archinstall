@@ -7,7 +7,7 @@ pacman -S --needed --noconfirm ${PACMANEXTRAFLAGS} \
   graphicsmagick imagemagick ghostscript \
   geany geany-plugins scite \
   openconnect openvpn \
-  xcb-util xcb-util-cursor
+  xcb-util xcb-util-cursor scour
 
 add_alias    "gvim" "neovide"
 add_dotfiles ".config/neovide"

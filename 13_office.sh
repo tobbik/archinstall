@@ -7,9 +7,7 @@ pacman -S --needed --noconfirm ${PACMANEXTRAFLAGS} \
   hunspell-en_ca hunspell-en_us hunspell-de \
   tesseract-data-eng cups \
   qt5-webengine qt5-remoteobjects \
-  patchelf \
-  fltk \
-  xcb-util xcb-util-cursor
+  patchelf xcb-util xcb-util-cursor scour fltk
 
 if [ $(uname -m) = 'x86_64' ]; then
   pacman -S --needed --noconfirm ${PACMANEXTRAFLAGS} \

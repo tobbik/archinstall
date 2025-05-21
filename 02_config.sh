@@ -55,13 +55,13 @@ mkdir -p ${USERHOME}/{.config,.local/bin,.cache}
 add_export "PATH" '${PATH}:${HOME}/.local/bin'
 
 # reset the password to be sure
-echo -e "${USERPASS}\n${USERPASS}" | (passwd -q ${USERNAME})
+echo "${USERNAME}:${USERPASS}" | chpasswd
 
 # Add useful groups for main user
 usermod -a -G wheel,network,input,video,audio,storage,power,users ${USERNAME}
 
 # reset root password
-echo -e "${ROOTPASS}\n${ROOTPASS}" | (passwd -q root)
+echo "root:${ROOTPASS}" | chpasswd
 
 # set up .bashrc with some aliases
 add_alias "ls"  "ls --color=auto"
