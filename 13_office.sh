@@ -5,7 +5,7 @@ source helper.sh
 pacman -S --needed --noconfirm ${PACMANEXTRAFLAGS} \
   libreoffice-fresh libreoffice-fresh-en-gb libreoffice-fresh-de \
   hunspell-en_ca hunspell-en_us hunspell-de \
-  tesseract-data-eng cups \
+  cups \
   qt5-webengine qt5-remoteobjects \
   patchelf xcb-util xcb-util-cursor scour fltk
 

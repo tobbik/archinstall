@@ -21,7 +21,7 @@ function multishot() {
       grim -o ${OUTPUT} "${PFX}${OUTPUT}.png"
       send_notification "Full" "output <${OUTPUT}>" "${PFX}${OUTPUT}.png"
     else
-      grim -o ${OUTPUT} - | magick - ${2} "${PFX}${OUTPUT}.png"
+      grim -o ${OUTPUT} - | gm convert - ${2} "${PFX}${OUTPUT}.png"
       send_notification "Blurred" "output <${OUTPUT}>" "${PFX}${OUTPUT}.png"
     fi
   done
@@ -58,7 +58,7 @@ function main() {
       multishot "$2"
       ;;
     multiblur)
-      multishot "$2" "-scale 20% +level 0%,50%,0.5 -blur 0x4 -resize 500%"
+      multishot "$2" "-scale 25% -level 5%,2,60% -fill black -colorize 60% -blur 0x4 -resize 400%"
       ;;
    *)
      usage
