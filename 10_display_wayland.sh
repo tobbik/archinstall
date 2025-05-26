@@ -15,7 +15,7 @@ sudo --user ${USERNAME} gpg --keyserver keyserver.ubuntu.com --recv-keys F4FDB18
 
 # everything Xorg and Terminals and command line
 pacman -S --needed --noconfirm ${PACMANEXTRAFLAGS} \
-  wayland ly wl-clipboard dunst jq wlr-randr \
+  wayland ly wl-clipboard wl-clip-persist dunst jq wlr-randr \
   wf-recorder wayvnc grim slurp satty graphicsmagick \
   polkit-gnome brightnessctl kanshi \
   foot foot-terminfo libadwaita \

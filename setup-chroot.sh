@@ -2,11 +2,12 @@
 
 cd "$(dirname "$0")"
 
+echo $$ > /tmp/archinstall.pid
+
 source config.sh
 source helper.sh
 
 mkdir -p /root/installer/logs
-
 
 INSTALLER_START_SECS=${SECONDS}
 
