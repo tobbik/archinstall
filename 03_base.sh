@@ -7,18 +7,18 @@ if [ x$(uname -m) == x"aarch64" ]; then
 fi
 if [ x$(uname -m) == x"x86_64" ]; then
   pacman -S --needed --noconfirm ${PACMANEXTRAFLAGS} \
-    archlinux-keyring mkinitcpio vbetool 7zip
+    archlinux-keyring mkinitcpio vbetool
 fi
 
 # packers, helpers, sound etc ...
 pacman -S --needed --noconfirm ${PACMANEXTRAFLAGS} \
   wpa_supplicant wireless_tools net-tools openssh \
   dosfstools exfatprogs e2fsprogs ntfs-3g btrfs-progs \
+  smartmontools nfs-utils cifs-utils \
   rsync whois nmap wget curl traceroute iperf \
   htop btop bmon iotop-c powertop \
-  zip unzip unrar man-pages man-db lsof \
+  zip unzip unrar 7zip man-pages man-db lsof \
   cpupower acpi tlp acpi_call \
-  smartmontools nfs-utils cifs-utils \
   wol dmidecode rng-tools mc fbset \
   pwgen mlocate sudo tmux fakeroot \
   efibootmgr efivar pacman-contrib \
@@ -33,7 +33,7 @@ echo "Setup hardware random number generator"
 sed -i 's:^.*\(RNGD_OPTS=\).*:\1"-o /dev/random -r /dev/hwrng":' /etc/conf.d/rngd
 enable_service rngd
 
-# fix a slightly overzealous preset
+# don't have makepkg build *-debug packages by default
 sed -i /etc/makepkg.conf \
   -e "s:purge debug lto:purge !debug lto:"
 
