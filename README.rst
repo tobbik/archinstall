@@ -22,7 +22,7 @@ After booting the ISO follow these steps:
  - cd archinstall-master
  - review partions.sh, then execute it. It should create partitions and mount a full system into /mnt
  - review config.sh for names, passswords and modules to install
- - run install.sh
+ - run prepare-chroot.sh
  - reboot
 
 Running from another computer

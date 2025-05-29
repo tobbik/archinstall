@@ -25,7 +25,7 @@ cp -vr ./. /mnt/root/installer/
 mkdir -p /mnt/var/lib/iwd
 cp -av /var/lib/iwd/*.psk /mnt/var/lib/iwd/
 
-arch-chroot /mnt /root/installer/setup-chroot.sh
+arch-chroot /mnt /root/installer/archinstall.sh
 
 # must be done after the arch-chroot installation because this will release
 # the bind-mount of /etc/resolv.conf

@@ -47,3 +47,5 @@ fi
 
 add_alias "s" "sudo"
 add_alias "g" "grep --color=auto"
+
+setcap 'cap_net_admin+eip' /usr/bin/iotop
