@@ -30,7 +30,7 @@ MODULES=(
 
    #14_arm_widevine.sh
 
-   20_dev_gui.sh
+   20_dev_extra.sh
    21_dotnet.sh
    22_jdk.sh
    23_kvm.sh
@@ -38,6 +38,7 @@ MODULES=(
    #25_virtualbox.sh
    #26_vmware.sh
    27_datatools.sh
+   28_network_extra.sh
    29_osm.sh
 
    30_graphics.sh

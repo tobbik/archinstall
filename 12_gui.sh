@@ -11,8 +11,11 @@ pacman -S --needed --noconfirm ${PACMANEXTRAFLAGS} \
   awesome-terminal-fonts ttf-font-awesome \
   zathura-pdf-mupdf mupdf-gl mupdf-tools \
   tesseract-data-eng tesseract-data-osd \
-  pavucontrol ario \
-  qrencode vte4 gtk4
+  hunspell-en_ca hunspell-en_us hunspell-de \
+  cups \
+  neovide \
+  pavucontrol ario guvcview \
+  qrencode vte4 gtk4 fltk
 
 if [ $(uname -m) = 'x86_64' ]; then
   pacman -S --needed --noconfirm ${PACMANEXTRAFLAGS} \
@@ -20,13 +23,18 @@ if [ $(uname -m) = 'x86_64' ]; then
   add_dotfiles ".config/ghostty" ".config/gtk-4.0"
 fi
 
-add_dotfiles ".config/libfm" ".config/pcmanfm" ".config/chromium-flags.conf"
+add_dotfiles ".config/libfm" ".config/pcmanfm" ".config/chromium-flags.conf" ".config/neovide"
 
 add_export "GTK_THEME" "Adwaita:dark"
 
 AUR_PACKAGES=(
   iwgtk
-  neovim-gtk-git           # non-git currently broken
+  gnvim-git
+  xdiskusage
 )
 
 install_aur_packages "${AUR_PACKAGES[@]}"
+
+install -D --mode=644 --user=${USERNAME} --group=users \
+  /usr/share/gnvim/runtime/lua/gnvim/init.lua \
+  "${USERHOME}/.config/nvim/lua/gnvim/init.lua"

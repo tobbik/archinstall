@@ -20,7 +20,8 @@ pacman -S --needed --noconfirm ${PACMANEXTRAFLAGS} \
   alsa-tools alsa-utils alsa-plugins pamixer \
   python-pycryptodome python-pycryptodomex \
   python-websockets python-brotli python-brotlicffi \
-  python-xattr python-pyxattr python-secretstorage
+  python-xattr python-pyxattr python-secretstorage \
+  avidemux-cli live-media libmatroska faac libfdk-aac libmtp
 
 add_dotfiles ".config/mpd" ".config/mpv"
 mkdir -p ${USERHOME}/.config/mpd/playlists

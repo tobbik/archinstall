@@ -1,8 +1,7 @@
 source config.sh
 
 pacman -S --needed --noconfirm ${PACMANEXTRAFLAGS} \
-  avidemux-cli avidemux-qt guvcview \
+  avidemux-qt \
   xine-ui smplayer mplayer \
-  live-media mpg123 libmtp libdvdcss twolame libnfs \
-  kid3-qt libmatroska easytag
-
+  libdvdcss \
+  kid3-qt easytag

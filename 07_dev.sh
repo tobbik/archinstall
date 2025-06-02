@@ -47,16 +47,11 @@ sudo --user ${USERNAME} git config --global merge.tool  "/usr/bin/nvim -d"
 sudo --user ${USERNAME} git lfs install
 cd ${INSTALLERDIR}
 
-add_alias "v"      "nvim"
-add_alias "nv"     "nvim"
-add_alias "nvd"    "nvim -d"
-add_alias "nvdiff" "nvim -d"
 
 # after removing vim provide aliases
-add_alias "vi"     "nvim"
-add_alias "vim"    "nvim"
-
-add_dotfiles ".config/nvim" ".vim" ".vimrc"
+add_alias "vi"       "nvim"
+add_alias "vim"      "nvim"
+add_alias "vimdiff"  "nvim -d"
 
 AUR_PACKAGES=(
   wrk

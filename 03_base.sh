@@ -45,7 +45,14 @@ if [ ! -f /etc/sudoers.d/${USERNAME} ]; then
   echo "${USERNAME} ALL=(ALL:ALL) ALL" > /etc/sudoers.d/${USERNAME}
 fi
 
-add_alias "s" "sudo"
-add_alias "g" "grep --color=auto"
+add_alias "s"      "sudo"
+add_alias "g"      "grep --color=auto"
+
+add_alias "v"      "nvim"
+add_alias "nv"     "nvim"
+add_alias "nvd"    "nvim -d"
+add_alias "nvdiff" "nvim -d"
+
+add_dotfiles ".config/nvim" ".vim" ".vimrc"
 
 setcap 'cap_net_admin+eip' /usr/bin/iotop
