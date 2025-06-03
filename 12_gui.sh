@@ -15,7 +15,7 @@ pacman -S --needed --noconfirm ${PACMANEXTRAFLAGS} \
   cups \
   neovide \
   pavucontrol ario guvcview \
-  qrencode vte4 gtk4 fltk
+  qrencode vte4 gtk4 fltk xorg-server-xvfb
 
 if [ $(uname -m) = 'x86_64' ]; then
   pacman -S --needed --noconfirm ${PACMANEXTRAFLAGS} \
@@ -35,6 +35,6 @@ AUR_PACKAGES=(
 
 install_aur_packages "${AUR_PACKAGES[@]}"
 
-install -D --mode=644 --user=${USERNAME} --group=users \
+install -D --mode=644 --owner=${USERNAME} --group=users \
   /usr/share/gnvim/runtime/lua/gnvim/init.lua \
   "${USERHOME}/.config/nvim/lua/gnvim/init.lua"

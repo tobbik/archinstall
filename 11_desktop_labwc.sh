@@ -16,7 +16,7 @@ AUR_PACKAGES=(
 install_aur_packages "${AUR_PACKAGES[@]}"
 
 add_dotfiles ".config/labwc" ".config/sfwbar" \
-  ".config/wlogout" ".config/gammastep" \
+  ".config/gammastep" \
   ".config/swayidle" ".config/swaylock" ".config/gtklock"
 
 sed -i ${USERHOME}/.config/gammastep/config.ini \

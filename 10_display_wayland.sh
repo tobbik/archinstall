@@ -20,7 +20,7 @@ pacman -S --needed --noconfirm ${PACMANEXTRAFLAGS} \
   polkit-gnome brightnessctl kanshi \
   foot foot-terminfo libadwaita \
   ${PORTALPACKAGES} playerctl fuzzel \
-  xorg-xwayland wlroots wayland-protocols gtk-layer-shell \
+  xorg-xwayland wlroots0.18 wayland-protocols gtk-layer-shell \
   ttf-dejavu ttf-dejavu-nerd ttf-droid \
   ddcutil gtk4 gobject-introspection
 
@@ -58,7 +58,7 @@ AUR_PACKAGES=(
 install_aur_packages "${AUR_PACKAGES[@]}"
 
 add_dotfiles  ".config/foot" ".config/dunst" ".config/fuzzel" \
-  ".config/kanshi" ".config/wlr-which-key" \
+  ".config/kanshi" ".config/wlr-which-key" ".config/wlogout" \
   ".local/bin/mpd-control" ".local/bin/wayland-screen-shooter" \
   ".local/bin/wayland-screen-brightness" \
   ".local/bin/wayland-volume-adjust" \

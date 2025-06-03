@@ -10,7 +10,7 @@ pacman -S --needed --noconfirm ${PACMANEXTRAFLAGS} \
 if [ $(uname -m) = 'x86_64' ]; then
   pacman -S --needed --noconfirm ${PACMANEXTRAFLAGS} \
     signal-desktop
-  install -D --mode=644 --user=${USERNAME} --group=users /usr/share/applications/signal-desktop.desktop \
+  install -D --mode=644 --owner=${USERNAME} --group=users /usr/share/applications/signal-desktop.desktop \
     "${USERHOME}/.local/share/applications/signal-desktop.desktop"
   sed -i "${USERHOME/}.local/share/applications/signal-desktop-wayland.desktop" \
       -e "s/^Name=Signal/\0 (Wayland)" \
