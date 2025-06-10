@@ -34,10 +34,7 @@ if ! grep -q 'init-nvm' ${USERHOME}/.bashrc ; then
 EOBASHRC
 fi
 
-sed -i /etc/php/php.ini \
-  -e "s:^.*\(zend_extension=opcache\).*$:\1:"
-
-#set up git
+# set up git
 INSTALLERDIR=$(pwd)
 cd ${USERHOME}
 sudo --user ${USERNAME} git config --global user.name   "${GITNAME}"
@@ -47,6 +44,12 @@ sudo --user ${USERNAME} git config --global merge.tool  "/usr/bin/nvim -d"
 sudo --user ${USERNAME} git lfs install
 cd ${INSTALLERDIR}
 
+# enable php jit by default
+sed -i /etc/php/php.ini \
+    -e "s/^.*zend_extension.*opcache.*$/zend_extension=opcache/" \
+    -e "s/^.*opcache.enable.*$/opcache.enable=1/" \
+    -e "s/^.*opcache.enable_cli.*$/opcache.enable_cli=1/" \
+    -e "s/^.*opcache.lockfile_path.*$/\0\nopcache.jit_buffer_size=128M\nopcache.jit=tracing\n/"
 
 # after removing vim provide aliases
 add_alias "vi"       "nvim"

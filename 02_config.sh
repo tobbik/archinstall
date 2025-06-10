@@ -48,7 +48,7 @@ fi
 [ -d ${USERHOME} ] || mkdir ${USERHOME}
 for C_FILE in /etc/skel/.* /etc/skel/* ; do
   C_FILE_NAME=$(basename ${C_FILE})
-  echo "Testing for file: ${USERHOME}/${C_FILE_NAME}"
+  echo "Testing for file: ${USERHOME}/${C_FILE_NAME}  (${C_FILE})"
   [ -f "${USERHOME}/${C_FILE_NAME}" ] || cp -v "/etc/skel/${C_FILE_NAME}" "${USERHOME}/${C_FILE_NAME}"
 done
 
