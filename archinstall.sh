@@ -46,47 +46,6 @@ chown -R ${USERNAME}:users ${USERHOME}  /root/installer
 
 cp -v ${USERHOME}/.bashrc /root/
 
-# boot managers
-if [ x"${BOOTMNGR}" == x"grub" ]; then
-  grub-install --recheck ${DISKBASEDEVPATH}
-  # hack for misnamed devices -> grub bug?
-  grub-mkconfig -o /boot/grub/grub.cfg.mkc
-  mv /boot/grub/grub.cfg.mkc /boot/grub/grub.cfg
-fi
-
-if [ x"${BOOTMNGR}" == x"refind" ]; then
-  refind-install
-fi
-
-if [ x"${BOOTMNGR}" == x"efistub" ]; then
-  # generate unified kernels
-  mkinitcpio -p linux
-
-  efibootmgr --create --unicode \
-    --disk ${DISKBASEDEVPATH} --part 1 \
-    --label 'Arch Linux EFIstub' \
-    --loader '\EFI\Linux\arch-linux.efi'
-fi
-
-if [ x"${BOOTMNGR}" == x"xbootldr" ] || [ x"${BOOTMNGR}" == x"systemd" ]; then
-  case "$(uname -m)" in
-      'aarch64') _efifile='systemd-bootaa64.efi' ;;
-      *)         _efifile='systemd-bootx64.efi' ;;
-  esac
-  echo "Installing systemd bootloader:"
-  if [ x"${BOOTMNGR}" == x"xbootldr" ]; then
-    echo '  `bootctl --esp-path=/efi --boot-path=/boot install`'
-    bootctl --esp-path=/efi --boot-path=/boot install
-  else
-    echo '  `bootctl install`'
-    bootctl install
-  fi
-  efibootmgr --create --unicode \
-    --disk   ${DISKBASEDEVPATH} --part 1 \
-    --label  'Das Gummiboot' \
-    --loader '\EFI\systemd\'${_efifile}
-fi
-
 INSTALLER_ELAPSED_SECS=$((${SECONDS} - ${INSTALLER_START_SECS}))
 echo "INSTALLER Time Taken:  $(date -u -d @"${INSTALLER_ELAPSED_SECS}" +'%-Mm %Ss')" >> \
      /root/installer/logs/progress.log

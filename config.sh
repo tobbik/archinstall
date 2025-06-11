@@ -9,7 +9,6 @@ MODULES=(
    02_config.sh
    03_base.sh
    04_bluetooth.sh
-   05_bootmgr.sh
    07_dev.sh
    08_media.sh
 
@@ -44,6 +43,9 @@ MODULES=(
    30_graphics.sh
    32_media_extra.sh
    33_audio.sh
+
+   # boot manager setup
+   99_bootmgr.sh
 )
 
 # installer variables
