@@ -3,7 +3,7 @@
 
 function send_notification() {
   # Arbitrary but unique message tag
-  local msgTag="myvolume"
+  local msgTag="volumesetting"
   local msgIconExtension="high"
   local msgMuted=""
   local timeOut=5000

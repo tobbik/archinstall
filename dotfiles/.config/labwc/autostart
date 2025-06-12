@@ -19,8 +19,8 @@ sfwbar > /dev/null 2>&1 &
 # Enable notifications. Typically GNOME/KDE application notifications go
 # through the org.freedesktop.Notifications D-Bus API and require a client such
 # as mako to function correctly. Thunderbird is an example of this.
-#mako >/dev/null 2>&1 &
-dunst > /dev/null 2>&1 &
+mako >/dev/null 2>&1 &
+#dunst > /dev/null 2>&1 &
 
 # change color depending on daylight # using gamastep for now
 #wlsunset -l 48.48 -L -123.53 -t 3500 -T 5700 &
@@ -49,11 +49,11 @@ swayidle -w  > /dev/null 2>&1 &
 #   timeout 293  'wayland-screen-shooter multiblur /tmp/screen-' \
 #        resume  'rm /tmp/screen-*' \
 #   timeout 295  'notify-send --expire-time 4000 --urgency low --transient "Going to idle in 5 seconds!"' \
-#        resume  'notify-send  --expire-time 4000 --urgency low --transient "Welcome back!"' \
-#   timeout 300  'gtklock -d -s ~/.config/gtklock/style.css'   \
+#        resume  'notify-send --expire-time 4000 --urgency low --transient "Welcome back!"' \
+#   timeout 300  'gtklock --daemonize --style ~/.config/gtklock/style.css'   \
 #   timeout 420  'wlopm --off \*' \
 #        resume  'wlopm --on \*' \
-#  before-sleep  'gtklock -d -s ~/.config/gtklock/style.css'   \
+#  before-sleep  'gtklock --daemonize --style ~/.config/gtklock/style.css'   \
 #   timeout 600  'systemctl suspend' \
 #        resume  'wlopm --on \*' \
 #  after-resume  'wlopm --on \*' \

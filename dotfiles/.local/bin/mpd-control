@@ -4,7 +4,7 @@ FORMAT="--format %artist%\n%title%\n%file%"
 
 notify_screen() {
   # Arbitrary but unique message tag
-  local msgTag="myMpdControl"
+  local msgTag="mpdplaying"
   local SONG_INFO=$1
   local COMMAND=$2
 
@@ -19,9 +19,14 @@ notify_screen() {
     TITLE="UNKNOWN"
     ARTIST="$COMMAND"
   fi
+  if [ x"${COMMAND}" == x"TOGGLE" ]; then
+    STATE=${STATE}
+  else
+    STATE="${STATE} (${COMMAND})"
+  fi
 
   notify-send --app-name "mpdNowPlaying" \
-      --expire-time 3000 --urgency low  --transient \
+      --expire-time 5000 --urgency low  --transient \
       --hint string:x-dunst-stack-tag:$msgTag \
       "MPD ${STATE}:" "${ARTIST} - ${TITLE}"
 }
@@ -36,13 +41,13 @@ function usage() {
 main() {
   case "$1" in
     next)
-      notify_screen "$(mpc $FORMAT next)" "NEXT"
+      notify_screen "$(mpc $FORMAT next)" "Next"
       ;;
     prev)
-      notify_screen "$(mpc $FORMAT prev)" "PREVIOUS"
+      notify_screen "$(mpc $FORMAT prev)" "Previous"
       ;;
     toggle)
-      notify_screen "$(mpc $FORMAT toggle)" "TOGGLE"
+      notify_screen "$(mpc $FORMAT toggle)" "Toggle"
       ;;
    *)
      usage

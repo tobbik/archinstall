@@ -5,7 +5,7 @@ CURRENT=$(brightnessctl -m)
 
 function screen_notification() {
   # Arbitrary but unique message tag
-  local msgTag="brightness"
+  local msgTag="brightnesssetting"
 
   local BRIGHTNESS=$(brightnessctl -c backlight -m | cut -d, -f4 | sed "s/%//")
 

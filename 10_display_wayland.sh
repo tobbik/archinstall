@@ -15,7 +15,7 @@ sudo --user ${USERNAME} gpg --keyserver keyserver.ubuntu.com --recv-keys F4FDB18
 
 # everything Xorg and Terminals and command line
 pacman -S --needed --noconfirm ${PACMANEXTRAFLAGS} \
-  wayland ly wl-clipboard wl-clip-persist dunst jq wlr-randr \
+  wayland ly wl-clipboard wl-clip-persist mako jq wlr-randr \
   wf-recorder wayvnc grim slurp satty graphicsmagick \
   polkit-gnome brightnessctl kanshi \
   foot foot-terminfo libadwaita \
@@ -57,7 +57,7 @@ AUR_PACKAGES=(
 
 install_aur_packages "${AUR_PACKAGES[@]}"
 
-add_dotfiles  ".config/foot" ".config/dunst" ".config/fuzzel" \
+add_dotfiles  ".config/foot" ".config/mako" ".config/fuzzel" \
   ".config/kanshi" ".config/wlr-which-key" ".config/wlogout" \
   ".local/bin/mpd-control" ".local/bin/wayland-screen-shooter" \
   ".local/bin/wayland-screen-brightness" \

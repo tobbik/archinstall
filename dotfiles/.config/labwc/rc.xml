@@ -118,10 +118,12 @@
       <action name="Execute" command="wayland-screen-shooter select"/>
     </keybind>
     <keybind key="C-S-`">
-      <action name="Execute" command="dunstctl history-pop"/>
+      <action name="Execute" command="makoctl restore"/>
+      <!-- <action name="Execute" command="dunstctl history-pop"/> -->
     </keybind>
     <keybind key="C-`">
-      <action name="Execute" command="dunstctl context"/>
+      <action name="Execute" command="makoctl menu -- fuzzel --dmenu --width 60 --prompt 'Notification action:'"/>
+      <!-- <action name="Execute" command="dunstctl context"/> -->
     </keybind>
     <keybind key="W-w">
       <action name="Execute" command="wlr-which-key"/>

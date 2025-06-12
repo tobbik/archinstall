@@ -9,7 +9,7 @@ pacman -S --needed --noconfirm ${PACMANEXTRAFLAGS} \
   clang clang-analyzer lldb lld \
   tcc pkg-config cmake uasm \
   ocl-icd hyperfine \
-  git git-lfs tig wireshark-cli figlet \
+  git git-lfs tig lazygit wireshark-cli figlet \
   lua lua-socket lua-filesystem luajit \
   go rust meson scdoc \
   python3 ipython cython \
