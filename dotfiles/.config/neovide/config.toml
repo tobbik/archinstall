@@ -23,13 +23,13 @@ family = "JetBrainsMono NF Thin" # Will use the bundled Fira Code Nerd Font by d
 style = "Thin"
 
 [[font.bold]]
-family = "JetBrainsMono NF SemiBold" # Will use the bundled Fira Code Nerd Font by default
-style = "SemiBold"
+family = "JetBrainsMono NF Medium" # Will use the bundled Fira Code Nerd Font by default
+style = "Medium"
 
 [[font.italic]]
 family = "JetBrainsMono NF Thin" # Will use the bundled Fira Code Nerd Font by default
 style = "Thin Italic"
 
 [[font.bold_italic]]
-family = "JetBrainsMono NF SemiBold" # Will use the bundled Fira Code Nerd Font by default
-style = "SemiBold Italic"
+family = "JetBrainsMono NF Medium" # Will use the bundled Fira Code Nerd Font by default
+style = "Medium Italic"

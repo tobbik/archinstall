@@ -17,21 +17,24 @@ sudo --user ${USERNAME} gpg --keyserver keyserver.ubuntu.com --recv-keys F4FDB18
 pacman -S --needed --noconfirm ${PACMANEXTRAFLAGS} \
   wayland ly wl-clipboard wl-clip-persist mako jq wlr-randr \
   wf-recorder wayvnc grim slurp satty graphicsmagick \
-  polkit-gnome brightnessctl kanshi \
+  brightnessctl kanshi fuzzel \
   foot foot-terminfo libadwaita \
-  ${PORTALPACKAGES} playerctl fuzzel \
-  xorg-xwayland wlroots0.18 wayland-protocols gtk-layer-shell \
+  swaylock swayidle swaybg wlsunset gammastep \
+  gtklock gtklock-playerctl-module \
+  gtklock-powerbar-module gtklock-userinfo-module \
+  ${PORTALPACKAGES} playerctl \
+  xwayland-satellite wlroots0.18 wayland-protocols \
+  gtk-layer-shell gnome-keyring polkit-gnome \
   ttf-dejavu ttf-dejavu-nerd ttf-droid \
   ddcutil gtk4 gobject-introspection
 
 sed -i /etc/ly/config.ini \
   -e "s:^#save =.*:save = true:" \
-  -e "s:^#save_file =.*:save_file = /etc/ly/save:" \
   -e "s:^#load =.*:load = true:" \
-  -e "s:^#blank_password =.*:blank_password = true:" \
-  -e "s:^\(border_fg\).*$:\1 = 3:" \
+  -e "s:^#allow_empty_password =.*:allow_empty_password = false:" \
+  -e "s:^\(border_fg\).*$:\1 = 0x0000FF00:" \
   -e "s:^#clock = .*:clock = %c:" \
-  -e "s:^#blank_box = .*:blank_box = true:"
+  -e "s:^#bigclock = .*:bigclock = en:"
 
 cat > /etc/udev/rules.d/90-brightnessctl.rules << EOUDEVRULES
 ACTION=="add", SUBSYSTEM=="backlight", RUN+="/bin/chgrp video /sys/class/backlight/%k/brightness"
@@ -48,6 +51,7 @@ usermod -a -G seat,i2c ${USERNAME}
 
 AUR_PACKAGES=(
   luminance
+  sfwbar
   wdisplays
   wlopm
   wlogout
@@ -60,7 +64,13 @@ install_aur_packages "${AUR_PACKAGES[@]}"
 add_dotfiles  ".config/foot" ".config/mako" ".config/fuzzel" \
   ".config/kanshi" ".config/wlr-which-key" ".config/wlogout" \
   ".local/bin/mpd-control" ".local/bin/wayland-screen-shooter" \
+  ".config/gammastep" ".config/sfwbar" \
+  ".config/swayidle" ".config/swaylock" ".config/gtklock"
   ".local/bin/wayland-screen-brightness" \
   ".local/bin/wayland-volume-adjust" \
   ".local/bin/wayland-window-switcher"
 
+sed -i ${USERHOME}/.config/gammastep/config.ini \
+  -e "s:^\(adjustment-method\)=.*$:\1=wayland:"
+
+enable_service gammastep.service ${USERNAME}

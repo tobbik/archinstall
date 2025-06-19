@@ -1,4 +1,4 @@
 #!/bin/bash
 
-INPUT=$(wlrctl toplevel list | awk -F': ' '{print $2}' | fuzzel --dmenu --width 60)
+INPUT=$(wlrctl toplevel list | awk -F': ' '{print $2}' | fuzzel --dmenu --width 52)
 wlrctl toplevel activate title:"${INPUT}"

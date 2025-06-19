@@ -22,6 +22,7 @@ MODULES=(
    #10_display_xorg.sh
    11_desktop_labwc.sh
    11_desktop_hyprland.sh
+   11_desktop_niri.sh
    #11_desktop_wayfire.sh
 
    12_gui.sh
