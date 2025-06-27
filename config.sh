@@ -102,3 +102,10 @@ BOOTMNGR=systemd     # systemd | xbootldr | efistub | refind | grub
 AURBUILDDIR="${USERHOME}/pkgs"
 AURBASEURL="https://aur.archlinux.org/cgit/aur.git/snapshot"
 
+# for installation of a system providing a network router
+# (must enable 40_router.sh)
+ROUTER_IF_EXTERN="wlan0"
+ROUTER_IF_INTERN="eno1"
+ROUTER_IPv4="192.168.234./24"
+ROUTER_IPv4_RANGE="192.168.234.2,192.168.200.234,255.255.255.0,1h"
+ROUTER_IPv6="fe80::c274:2bff:fefe:8049/64"
