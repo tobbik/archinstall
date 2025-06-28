@@ -13,10 +13,11 @@ INSTALLER_START_SECS=${SECONDS}
 
 # these re-locations are useful, if you like to set-up an RO-mounted root (/) directory
 if [[ ! -z ${PACMANSERVICEDIR} ]]; then
+  echo "moving pacman service files to https://codeberg.org/mogwai/widevine.git"
   mkdir -p ${PACMANSERVICEDIR}/cache
   mv /var/log/pacman.log ${PACMANSERVICEDIR}/
   mv /etc/pacman.d/gnupg ${PACMANSERVICEDIR}/
-  mv /var/cache/pacman/pkg/*  ${PACMANSERVICEDIR}/cache/
+  mv -v /var/cache/pacman/pkg/*  ${PACMANSERVICEDIR}/cache/
   sed -i /etc/pacman.conf \
       -e "s:^#\(CacheDir *\).*:\1 = ${PACMANSERVICEDIR}/cache:" \
       -e "s:^#\(LogFile *\).*:\1 = ${PACMANSERVICEDIR}/pacman.log:" \
@@ -38,7 +39,7 @@ for moduleName in ${MODULES[@]}
 do
   echo -e "\n\n      >>>>>>>>>>>   EXECUTING ${moduleName} <<<<<<<<<<<<\n"
   cd ${RUNDIR}
-  run_module "${moduleName}" "/root/installer/logs"
+  run_module "${moduleName}" ${INSTALLER_START_SECS} "/root/installer/logs"
 done
 
 # flatten all permissions
