@@ -31,8 +31,8 @@ arch-chroot /mnt /root/installer/archinstall.sh
 # the bind-mount of /etc/resolv.conf
 if [ ! -L /mnt/etc/resolv.conf ]; then
   OLDPWD=$(pwd)
-  cd /mnt/etc
-  rm ./resolv.conf
-  ln -s /run/systemd/resolve/resolv.conf ./resolv.conf
+  rm /mnt/etc/resolv.conf
+  cd /mnt
+  ln -s ../run/systemd/resolve/resolv.conf /mnt/etc/resolv.conf
   cd ${OLDPWD}
 fi

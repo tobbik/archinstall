@@ -11,7 +11,10 @@ source aur_tools.sh
 
 function run_module() {
   local moduleFileName="$1"
-  local secsAtStart="$2"
+  local secsAtStart=${SECONDS}
+  if [[ ! -z $2 ]] ; then
+    secsAtStart="$2"
+  fi
   local logPath="logs"
   if [[ ! -z $3 ]] ; then
     logPath="$3"
@@ -21,29 +24,29 @@ function run_module() {
   local MBYTES_AVAILABLE_BOOT=$(( $(df ${DISKBOOTDEVPATH} | tail -n1 | awk '{print $2}') / 1024 ))
 
   echo "Now executing: ${moduleFileName}:" >> "${logPath}/progress.log"
-  BYTES_ROOT_START=$(df ${DISKROOTDEVPATH} | tail -n1 | awk '{print $3}')
-  BYTES_BOOT_START=$(df ${DISKBOOTDEVPATH} | tail -n1 | awk '{print $3}')
-  START_SECS=${SECONDS}
+  local BYTES_ROOT_START=$(df ${DISKROOTDEVPATH} | tail -n1 | awk '{print $3}')
+  local BYTES_BOOT_START=$(df ${DISKBOOTDEVPATH} | tail -n1 | awk '{print $3}')
+  local START_SECS=${SECONDS}
   source "${moduleFileName}" 2>&1 | tee "${logPath}/${moduleFileName}.log"
-  BYTES_ROOT_END=$(df ${DISKROOTDEVPATH} | tail -n1 | awk '{print $3}')
-  BYTES_BOOT_END=$(df ${DISKBOOTDEVPATH} | tail -n1 | awk '{print $3}')
-  MBYTES_ROOT_ADDED=$((  $(( ${BYTES_ROOT_END} - ${BYTES_ROOT_START} )) / 1024  ))
-  MBYTES_BOOT_ADDED=$((  $(( ${BYTES_BOOT_END} - ${BYTES_BOOT_START} )) / 1024  ))
-  ELAPSED_SECS=$((${SECONDS} - ${START_SECS}))
+  local BYTES_ROOT_END=$(df ${DISKROOTDEVPATH} | tail -n1 | awk '{print $3}')
+  local BYTES_BOOT_END=$(df ${DISKBOOTDEVPATH} | tail -n1 | awk '{print $3}')
+  local MBYTES_ROOT_ADDED=$((  $(( ${BYTES_ROOT_END} - ${BYTES_ROOT_START} )) / 1024  ))
+  local MBYTES_BOOT_ADDED=$((  $(( ${BYTES_BOOT_END} - ${BYTES_BOOT_START} )) / 1024  ))
+  local ELAPSED_SECS=$((${SECONDS} - ${START_SECS}))
   echo "    Time Taken:  $(date -u -d @"${ELAPSED_SECS}" +'%-Mm %Ss')" >> "${logPath}/progress.log"
   echo "    MegaBytes added to /    : ${MBYTES_ROOT_ADDED}MB" >> "${logPath}/progress.log"
   echo "    MegaBytes added to /boot: ${MBYTES_BOOT_ADDED}MB" >> "${logPath}/progress.log"
   df -h | grep ${DISKROOTDEVPATH} >> "${logPath}/progress.log"
   df -h | grep ${DISKBOOTDEVPATH} >> "${logPath}/progress.log"
-  echo -e "----------------\n"    >> "${logPath}/progress.log"
-  SECS_SINCE_START=$((${SECONDS} - ${secsAtStart}))
-  echo "Overall Time: $(date -u -d @"${SECS_SINCE_START}" +'%-Mm %Ss')" >> "${logPath}/progress.log"
+  echo -e "----------------"    >> "${logPath}/progress.log"
+  local SECS_SINCE_START=$((${SECONDS} - ${secsAtStart}))
+  echo -e "Overall Time: $(date -u -d @"${SECS_SINCE_START}" +'%-Mm %Ss')\n-----------------\n" >> "${logPath}/progress.log"
 }
 
 function enable_service() {
   local SERVICE=$1
   local FORUSER=$2
-  if [ x"${FORUSER}" == "x" ]; then
+  if [ x"${FORUSER}" == x"" ]; then
     systemctl is-enabled ${SERVICE} >/dev/null || systemctl enable ${SERVICE}
   else
     sudo --user ${FORUSER} systemctl --user is-enabled ${SERVICE} >/dev/null || \
