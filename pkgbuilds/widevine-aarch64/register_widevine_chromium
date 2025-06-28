@@ -1,3 +1,0 @@
-#!/bin/bash
-mkdir -p ${HOME}/.config/chromium/WidevineCdm
-echo '{"Path":"/opt/WidevineCdm/chromium"}' > ${HOME}/.config/chromium/WidevineCdm/latest-component-updated-widevine-cdm
