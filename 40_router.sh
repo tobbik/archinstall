@@ -6,6 +6,8 @@ systemctl disable --now systemd-resolved.service
 rm /etc/resolv.conf
 yes | pacman -S --needed ${PACMANEXTRAFLAGS} openresolv dnsmasq   # prompts for systemd-resolvconf removal
 
+mkdir -p /home/dnsmasq && chown dnsmasq:dnsmasq /home/dnsmasq
+
 # this redirects DNS requests to localhost where dnsmasq is running which will answer those requests
 cat > /etc/resolvconf.conf << EORESOLVCONDCONF
 # If you run a local name server, you should uncomment the below line and
@@ -15,12 +17,14 @@ name_servers="::1 127.0.0.1"
 resolv_conf_options="trust-ad"
 
 # Write out dnsmasq extended configuration and resolv files
-dnsmasq_conf=/etc/dnsmasq-conf.conf
-dnsmasq_resolv=/etc/dnsmasq-resolv.conf
+dnsmasq_conf=/home/dnsmasq/dnsmasq-conf.conf
+dnsmasq_resolvhome/dnsmasq/dnsmasq-resolv.conf
 EORESOLVCONDCONF
 
 # setup dnsmasq as DHCP/DNS server for the everything connected to ${ROUTER_IF_INTERN}
 cat > /etc/dnsmasq.conf << EODNSMASQCONF
+# relocate that for RO file-systems
+dhcp-leasefile=/home/dnsmasq/dnsmasq.leases
 # make dnsmasq listen for requests only on intern0 (our LAN)
 interface=${ROUTER_IF_INTERN}
 # optionally disable the DHCP functionality of dnsmasq and use systemd-networkd instead
@@ -37,8 +41,8 @@ domain=home.arpa
 # DHCP lease of 1 hour (change to your own preferences)
 dhcp-range=${ROUTER_IPv4_RANGE}
 
-conf-file=/etc/dnsmasq-conf.conf
-resolv-file=/etc/dnsmasq-resolv.conf
+conf-file=/home/dnsmasq/dnsmasq-conf.conf
+resolv-file=/home/dnsmasq/dnsmasq-resolv.conf
 EODNSMASQCONF
 
 # set up ethernet NIC to connect to switch (which connects cluster clients)
