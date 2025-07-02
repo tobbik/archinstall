@@ -29,12 +29,14 @@ pacman -S --needed --noconfirm ${PACMANEXTRAFLAGS} \
   ddcutil gtk4 gobject-introspection
 
 sed -i /etc/ly/config.ini \
-  -e "s:^#save =.*:save = true:" \
-  -e "s:^#load =.*:load = true:" \
-  -e "s:^#allow_empty_password =.*:allow_empty_password = false:" \
+  -e "s:^.*allow_empty_password =.*$:allow_empty_password = false:" \
+  -e "s:^.*animation =.*:animation = CMatrix:" \
+  -e "s:^.*animation_timeout_sec =.*:animation_timeout_sec = 20:" \
+  -e "s:^.*auth_fails =.*:auth_fails = 3:" \
   -e "s:^\(border_fg\).*$:\1 = 0x0000FF00:" \
   -e "s:^#clock = .*:clock = %c:" \
-  -e "s:^#bigclock = .*:bigclock = en:"
+  -e "s:^#save =.*:save = true:" \
+  -e "s:^#load =.*:load = true:"
 
 cat > /etc/udev/rules.d/90-brightnessctl.rules << EOUDEVRULES
 ACTION=="add", SUBSYSTEM=="backlight", RUN+="/bin/chgrp video /sys/class/backlight/%k/brightness"

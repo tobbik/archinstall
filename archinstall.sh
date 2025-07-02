@@ -11,6 +11,11 @@ mkdir -p /root/installer/logs
 
 INSTALLER_START_SECS=${SECONDS}
 
+if ! grep -q 'CacheServer' /etc/pacman.conf && [[ ! -z ${PACOLOCOCACHESERVER} ]]; then
+  sed -i /etc/pacman.conf \
+      -e "s|^Include.*/etc/pacman.d/mirrorlist$|CacheServer = ${PACOLOCOCACHESERVER}\n\0"
+fi
+
 # these re-locations are useful, if you like to set-up an RO-mounted root (/) directory
 if [[ ! -z ${PACMANSERVICEDIR} ]]; then
   echo "moving pacman service files to https://codeberg.org/mogwai/widevine.git"

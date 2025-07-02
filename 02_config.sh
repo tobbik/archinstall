@@ -13,6 +13,7 @@ sed -i /etc/locale.gen \
   -e 's/^#\(fr_CA.UTF-8 UTF-8\)/\1/' \
   -e 's/^#\(de_DE.UTF-8 UTF-8\)/\1/' \
   -e 's/^#\(en_US.UTF-8 UTF-8\)/\1/'
+
 if ! grep -q 'C.UTF8 UTF-8' /etc/locale.gen; then
   echo -e "C.UTF-8 UTF-8" >> /etc/locale.gen
 fi

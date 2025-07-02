@@ -7,9 +7,9 @@
 timedatectl set-ntp true
 source config.sh
 
-if [[ ! -z ${PACMANPRIMARYPKGSERVER} ]]; then
-  sed -i /etc/pacman.d/mirrorlist \
-  -e "0,/^Server.*$/ s|^Server.*$|${PACMANPRIMARYPKGSERVER}\n\n\0|"
+if [[ ! -z ${PACOLOCOCACHESERVER} ]]; then
+  sed -i /etc/pacman.conf \
+      -e "s|^Include.*/etc/pacman.d/mirrorlist$|CacheServer = ${PACOLOCOCACHESERVER}\n\0"
 fi
 
 pacstrap /mnt base base-devel

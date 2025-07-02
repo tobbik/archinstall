@@ -45,6 +45,9 @@ MODULES=(
    32_media_extra.sh
    33_audio.sh
 
+   #40_router.sh
+   #41_pacoloco.sh
+
    # boot manager setup
    99_bootmgr.sh
 )
@@ -61,10 +64,10 @@ DISKSWAPDEVPATH=${DISKBASEDEVPATH}${DISKPARTNAME}4
 #DISKESPDEVPATH=${DISKBASEDEVPATH}${DISKPARTNAME}1
 
 PACMANEXTRAFLAGS=""    # --disable-download-timeout for bad connections
-# if set, it will attempt to put that on top of the /etc/pacman.d/mirrorlist file
-# PACMANPRIMARYPKGSERVER="Server = http://mylocalcache:8765/pkg"
+# if set, it will use a pacoloco server to fetch cached packages
+#PACOLOCOCACHESERVER='http://localhost:9129/repo/archlinux/$repo/os/$arch'
 # if set, it will re-locate pacmans cache, gnupg and pacman.log into the directory
-# PACMANSERVICEDIR=/home/pacman
+#PACMANSERVICEDIR=/home/pacman
 
 # if REMOVABLES is defined the installer runs `pacman -Rdd $REMOVABLES` followed
 # by a `pacman -U *.pkg.tar.*`
@@ -98,7 +101,7 @@ BOOTMNGR=systemd     # systemd | xbootldr | efistub | refind | grub
 # docker container directory - if you choose the docker package and not set
 # DOCKERSTORAGEPATH the installer will create ${USERHOME}/docker instead
 #DOCKERSTORAGEPATH=/mnt/whatever
-#
+
 AURBUILDDIR="${USERHOME}/pkgs"
 AURBASEURL="https://aur.archlinux.org/cgit/aur.git/snapshot"
 
@@ -106,6 +109,10 @@ AURBASEURL="https://aur.archlinux.org/cgit/aur.git/snapshot"
 # (must enable 40_router.sh)
 ROUTER_IF_EXTERN="wlan0"
 ROUTER_IF_INTERN="eno1"
-ROUTER_IPv4="192.168.234./24"
-ROUTER_IPv4_RANGE="192.168.234.2,192.168.200.234,255.255.255.0,1h"
+ROUTER_IPv4="192.168.200.1./24"
+ROUTER_IPv4_RANGE="192.168.200.10,192.168.200.50,255.255.255.0,1h"
 ROUTER_IPv6="fe80::c274:2bff:fefe:8049/64"
+
+# for installation of a pacoloco server
+# (must enable 41_pacoloco.sh)
+PACOLOCODATADIR=/var/cache/pacoloco
