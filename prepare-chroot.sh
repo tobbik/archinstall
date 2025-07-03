@@ -21,6 +21,7 @@ cp /etc/vconsole.conf /mnt/etc/vconsole.conf
 
 # copy over files into chroot
 cp -vr ./. /mnt/root/installer/
+mkdir -p   /mnt/root/installer/logs
 
 mkdir -p /mnt/var/lib/iwd
 cp -av /var/lib/iwd/*.psk /mnt/var/lib/iwd/

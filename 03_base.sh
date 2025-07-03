@@ -14,14 +14,15 @@ fi
 pacman -S --needed --noconfirm ${PACMANEXTRAFLAGS} \
   wpa_supplicant wireless_tools net-tools openssh \
   dosfstools exfatprogs e2fsprogs ntfs-3g btrfs-progs \
-  smartmontools nfs-utils cifs-utils \
+  smartmontools nfs-utils cifs-utils gptfdisk \
   rsync whois nmap wget curl traceroute iperf \
-  htop btop bmon iotop-c powertop \
+  htop btop bmon iotop-c powertop libcap \
   zip unzip unrar 7zip man-pages man-db lsof \
   cpupower acpi tlp acpi_call \
   wol dmidecode rng-tools mc fbset \
   pwgen mlocate sudo tmux fakeroot \
-  efibootmgr efivar pacman-contrib \
+  efibootmgr efivar \
+  pacman-contrib arch-install-scripts \
   neovim
 
 enable_service sshd
