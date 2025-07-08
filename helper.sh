@@ -36,8 +36,8 @@ function run_module() {
   echo "    Time Taken:  $(date -u -d @"${ELAPSED_SECS}" +'%-Mm %Ss')" >> "${logPath}/progress.log"
   echo "    MegaBytes added to /    : ${MBYTES_ROOT_ADDED}MB" >> "${logPath}/progress.log"
   echo "    MegaBytes added to /boot: ${MBYTES_BOOT_ADDED}MB" >> "${logPath}/progress.log"
-  df -h | grep ${DISKROOTDEVPATH} >> "${logPath}/progress.log"
-  df -h | grep ${DISKBOOTDEVPATH} >> "${logPath}/progress.log"
+  df -h ${DISKROOTDEVPATH} >> "${logPath}/progress.log"
+  df -h ${DISKBOOTDEVPATH} | tail -n1 >> "${logPath}/progress.log"
   echo -e "----------------"    >> "${logPath}/progress.log"
   local SECS_SINCE_START=$((${SECONDS} - ${secsAtStart}))
   echo -e "Overall Time: $(date -u -d @"${SECS_SINCE_START}" +'%-Mm %Ss')\n-----------------\n" >> "${logPath}/progress.log"

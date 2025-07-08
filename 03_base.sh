@@ -18,7 +18,7 @@ pacman -S --needed --noconfirm ${PACMANEXTRAFLAGS} \
   rsync whois nmap wget curl traceroute iperf \
   htop btop bmon iotop-c powertop libcap \
   zip unzip unrar 7zip man-pages man-db lsof \
-  cpupower acpi tlp acpi_call \
+  cpupower acpi tlp acpi_call upower \
   wol dmidecode rng-tools mc fbset \
   pwgen mlocate sudo tmux fakeroot \
   efibootmgr efivar \
@@ -36,7 +36,8 @@ enable_service rngd
 
 # don't have makepkg build *-debug packages by default
 sed -i /etc/makepkg.conf \
-  -e "s:purge debug lto:purge !debug lto:"
+  -e "s|purge debug lto|purge !debug lto|" \
+  -e 's|^.*MAKEFLAGS.*$|MAKEFLAGS="--jobs=$(nproc)"|'
 
 add_export "SSH_AUTH_SOCK" '${XDG_RUNTIME_DIR}/ssh-agent.socket'
 enable_service ssh-agent.service ${USERNAME}

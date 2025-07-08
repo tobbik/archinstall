@@ -42,7 +42,7 @@ if ! grep -q ${USERNAME} /etc/passwd ; then
   useradd --gid users \
     --no-create-home \
     --password ${USERPASS} \
-    --shell /bin/bash \
+    --shell /usr/bin/bash \
     ${USERNAME}
 fi
 
