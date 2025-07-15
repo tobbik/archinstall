@@ -30,8 +30,8 @@ pacman -S --needed --noconfirm ${PACMANEXTRAFLAGS} \
 
 sed -i /etc/ly/config.ini \
   -e "s:^.*allow_empty_password =.*$:allow_empty_password = false:" \
-  -e "s:^.*animation =.*:animation = CMatrix:" \
-  -e "s:^.*animation_timeout_sec =.*:animation_timeout_sec = 20:" \
+  -e "s:^.*animation =.*:animation = matrix:" \
+  -e "s:^.*animation_timeout_sec =.*:animation_timeout_sec = 60:" \
   -e "s:^.*auth_fails =.*:auth_fails = 3:" \
   -e "s:^\(border_fg\).*$:\1 = 0x0000FF00:" \
   -e "s:^#clock = .*:clock = %c:" \

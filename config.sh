@@ -107,6 +107,8 @@ AURBASEURL="https://aur.archlinux.org/cgit/aur.git/snapshot"
 
 # for installation of a system providing a network router
 # (must enable 40_router.sh)
+ROUTER_DNS=systemd-resolved            # can be "systemd-resolved" or "openresolv"
+ROUTER_DOMAIN=subdomain
 ROUTER_IF_EXTERN="wlan0"
 ROUTER_IF_INTERN="eno1"
 ROUTER_IPv4="192.168.200.1./24"

@@ -1,14 +1,18 @@
 source config.sh
 source helper.sh
 
-# install dnsmasq and openresolv (which conflicts with systemd-resolvconf)
-systemctl disable --now systemd-resolved.service
-rm /etc/resolv.conf
-yes | pacman -S --needed ${PACMANEXTRAFLAGS} openresolv dnsmasq   # prompts for systemd-resolvconf removal
+if [ x"${ROUTER_DNS}" == x"openresolv" ]; then
+  # install dnsmasq and openresolv (which conflicts with systemd-resolvconf)
+  systemctl disable --now systemd-resolved.service
+  rm /etc/resolv.conf
+  yes | pacman -S --needed ${PACMANEXTRAFLAGS} openresolv dnsmasq   # prompts for systemd-resolvconf removal
 
-mkdir -p /home/dnsmasq && chown dnsmasq:dnsmasq /home/dnsmasq
+  # since the external interface here is assumingly wlan0 which is (as per 01_network.sh) configured
+  # by iwd let iwd tell openresolv about the DNS Server it has picked up from it's external requests
+  sed -i /etc/iwd/main.conf \
+      -e "s/^\(NameResolvingService\)=.*$/\1=resolvconf/"
 
-# this redirects DNS requests to localhost where dnsmasq is running which will answer those requests
+  # this redirects DNS requests to localhost where dnsmasq is running which will answer those requests
 cat > /etc/resolvconf.conf << EORESOLVCONDCONF
 # If you run a local name server, you should uncomment the below line and
 # configure your subscribers configuration files below.
@@ -18,8 +22,23 @@ resolv_conf_options="trust-ad"
 
 # Write out dnsmasq extended configuration and resolv files
 dnsmasq_conf=/home/dnsmasq/dnsmasq-conf.conf
-dnsmasq_resolvhome/dnsmasq/dnsmasq-resolv.conf
+dnsmasq_resolv=/home/dnsmasq/dnsmasq-resolv.conf
 EORESOLVCONDCONF
+
+  LOCAL_DNSMASQ_FILE_CONFIG="conf-file=/home/dnsmasq/dnsmasq-conf.conf"
+  LOCAL_RESOLVE_FILE_CONFIG="resolv-file=/home/dnsmasq/dnsmasq-resolv.conf"
+
+  resolvconf -u
+fi
+
+if [ x"${ROUTER_DNS}" == x"systemd-resolved" ]; then
+  pacman -S --needed --noconfirm ${PACMANEXTRAFLAGS} dnsmasq
+  LOCAL_DNSMASQ_FILE_CONFIG=
+  LOCAL_RESOLVE_FILE_CONFIG="resolv-file=/run/systemd/resolve/resolv.conf"
+
+  sed -i /etc/systemd/resolved.conf \
+      -e "s/^.*#.*DNSStubListener.*=.*$/DNSStubListener=no/"
+fi
 
 # setup dnsmasq as DHCP/DNS server for the everything connected to ${ROUTER_IF_INTERN}
 cat > /etc/dnsmasq.conf << EODNSMASQCONF
@@ -33,17 +52,19 @@ interface=${ROUTER_IF_INTERN}
 # add a domain to simple hostnames in /etc/hosts
 expand-hosts
 # allow fully qualified domain names for DHCP hosts (needed when "expand-hosts" is used)
-local=/home.arpa/
-domain=home.arpa
+local=/${ROUTER_DOMAIN}/
+domain=${ROUTER_DOMAIN}
 
 # defines a DHCP-range for the LAN:
 # from 10.0.0.2 to .255 with a subnet mask of 255.255.255.0 and a
 # DHCP lease of 1 hour (change to your own preferences)
 dhcp-range=${ROUTER_IPv4_RANGE}
 
-conf-file=/home/dnsmasq/dnsmasq-conf.conf
-resolv-file=/home/dnsmasq/dnsmasq-resolv.conf
+${LOCAL_DNSMASQ_FILE_CONFIG}
+${LOCAL_RESOLVE_FILE_CONFIG}
 EODNSMASQCONF
+
+mkdir -p /home/dnsmasq && chown dnsmasq:dnsmasq /home/dnsmasq
 
 # set up ethernet NIC to connect to switch (which connects cluster clients)
 cat > /etc/systemd/network/ether.network << EONEWEITER
@@ -88,11 +109,5 @@ else
   enable_service iptables
 fi
 
-resolvconf -u
 systemctl enable dnsmasq.service
-
-# since the external interface here is assumingly wlan0 which is (as per 01_network.sh) configured
-# by iwd let iwd tell openresolf about the DNS Server it has picked up from it's external requests
-sed -i /etc/iwd/main.conf \
-    -e "s/^\(NameResolvingService\)=.*$/\1=resolvconf/"
 
