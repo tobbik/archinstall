@@ -1,7 +1,7 @@
 source config.sh
 source helper.sh
 
-if ! grep -q 'CacheServer' /etc/pacman.conf && [[ ! -z ${PACOLOCOCACHESERVER} ]]; then
+if ! grep -Pzoq "CacheServer.*\nInclude.*mirrorlist" /etc/pacman.conf && [[ ! -z ${PACOLOCOCACHESERVER} ]]; then
   sed -i /etc/pacman.conf \
       -e "s|^Include.*/etc/pacman.d/mirrorlist$|CacheServer = ${PACOLOCOCACHESERVER}\n\0|"
 fi

@@ -16,8 +16,8 @@ pacman -S --needed --noconfirm ${PACMANEXTRAFLAGS} \
   dosfstools exfatprogs e2fsprogs ntfs-3g btrfs-progs \
   smartmontools nfs-utils cifs-utils gptfdisk \
   rsync whois nmap wget curl traceroute iperf \
-  htop btop bmon iotop-c powertop libcap \
-  zip unzip unrar 7zip man-pages man-db lsof \
+  htop btop bmon iotop-c powertop libcap sysstat \
+  zip unzip unrar 7zip man-pages man-db lsof pv \
   cpupower acpi tlp acpi_call upower \
   wol dmidecode rng-tools mc fbset \
   pwgen mlocate sudo tmux fakeroot \

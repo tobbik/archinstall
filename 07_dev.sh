@@ -6,7 +6,7 @@ pacman -Rc --noconfirm vim-runtime
 # base-devel covers automake autoconf flex bison make sudo etc.
 pacman -S --needed --noconfirm ${PACMANEXTRAFLAGS} \
   base-devel bc elfutils gdb valgrind \
-  clang clang-analyzer lldb lld \
+  clang clang-analyzer lldb lld llvm openmp \
   tcc pkg-config cmake uasm \
   ocl-icd hyperfine \
   git git-lfs tig lazygit wireshark-cli figlet \

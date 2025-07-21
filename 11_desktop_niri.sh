@@ -6,8 +6,6 @@ pacman -S --needed --noconfirm ${PACMANEXTRAFLAGS} \
   fuzzel swaybg swaylock
 
 AUR_PACKAGES=(
-  labwc-menu-generator-git
-  labwc-tweaks-git
   sfwbar
 )
 
