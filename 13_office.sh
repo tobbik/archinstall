@@ -19,11 +19,11 @@ fi
 
 # ... no ARM packages :-(
 if [ x$(uname -m) == x"x86_64" ]; then
-AUR_PACKAGES+=(
-  masterpdfeditor
-  zoom
-  slack-desktop-wayland
-)
+  AUR_PACKAGES+=(
+    masterpdfeditor
+    zoom
+    slack-desktop-wayland
+  )
   install_aur_packages "${AUR_PACKAGES[@]}"
 fi
 
