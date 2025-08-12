@@ -11,7 +11,7 @@ scanner {
   file("/sys/class/power_supply/BAT0/capacity") {
     BatteryLevel = Grab(Sum)
   }
-  file("/sys/class/power_supply/BAT0/status") {?page=2
+  file("/sys/class/power_supply/BAT0/status") {
     BatteryStatus = RegEx("^(.*)$")
   }
 }

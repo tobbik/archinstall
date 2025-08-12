@@ -13,7 +13,7 @@ pacman -S --needed --noconfirm ${PACMANEXTRAFLAGS} \
   lua lua-socket lua-filesystem luajit \
   go rust meson scdoc \
   python3 ipython cython \
-  nodejs npm nvm js128 php \
+  nodejs npm nvm js140 php \
   tree-sitter-bash  tree-sitter-python \
   tree-sitter-javascript tree-sitter-rust
 

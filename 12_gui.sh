@@ -15,7 +15,7 @@ pacman -S --needed --noconfirm ${PACMANEXTRAFLAGS} \
   cups \
   neovide \
   pavucontrol ario guvcview \
-  qrencode vte4 gtk4 fltk xorg-server-xvfb
+  qrencode vte4 gtk4 fltk xorg-server-xvfb blueprint-compiler
 
 if [ $(uname -m) = 'x86_64' ]; then
   pacman -S --needed --noconfirm ${PACMANEXTRAFLAGS} \
@@ -31,6 +31,7 @@ AUR_PACKAGES=(
   iwgtk
   gnvim-git
   xdiskusage
+  overskride
 )
 
 install_aur_packages "${AUR_PACKAGES[@]}"
