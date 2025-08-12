@@ -117,6 +117,9 @@
     <keybind key="S-Print">
       <action name="Execute" command="wayland-screen-shooter select"/>
     </keybind>
+    <keybind key="W-A-l">
+      <action name="Execute" command="wayland-lock-now sway"/>
+    </keybind>
     <keybind key="C-S-`">
       <action name="Execute" command="makoctl restore"/>
       <!-- <action name="Execute" command="dunstctl history-pop"/> -->

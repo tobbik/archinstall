@@ -70,7 +70,8 @@ add_dotfiles  ".config/foot" ".config/mako" ".config/fuzzel" \
   ".config/swayidle" ".config/swaylock" ".config/gtklock"
   ".local/bin/wayland-screen-brightness" \
   ".local/bin/wayland-volume-adjust" \
-  ".local/bin/wayland-window-switcher"
+  ".local/bin/wayland-window-switcher" \
+  ".local/bin/wayland-lock-now"
 
 sed -i ${USERHOME}/.config/gammastep/config.ini \
   -e "s:^\(adjustment-method\)=.*$:\1=wayland:"

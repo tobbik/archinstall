@@ -2,7 +2,7 @@ source config.sh
 source helper.sh
 
 pacman -S --needed --noconfirm ${PACMANEXTRAFLAGS} \
-  wlroots extra-cmake-modules glibmm gtkmm3 \
+  wlroots0.19 extra-cmake-modules glibmm gtkmm3 \
   doctest doxygen iio-sensor-proxy yyjson boost \
   libdbusmenu-gtk3 nlohmann-json glm \
   scour glib2-devel boost libyaml \

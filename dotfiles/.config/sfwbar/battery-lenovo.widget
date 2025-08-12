@@ -34,7 +34,7 @@ layout {
     interval = 60000
     value = if(XBatteryDischarging,
               Lookup(BatteryLevel,80,"",60,"",40,"",20,"",""),
-              "") +
+              '') +
             "\n" + Str(BatteryLevel) + '%'
 
   }
