@@ -1,6 +1,7 @@
 max-history=40
 default-timeout=4000
-on-button-middle=exec makoctl menu -n "$id" -- fuzzel --dmenu --width 60 --prompt 'Notification action:'
+on-button-left=exec makoctl menu -n "$id" -- fuzzel --dmenu --width 60 --prompt 'Notification action:'
+on-button-middle=invoke-default-action
 on-notify=exec mpv /usr/share/sounds/freedesktop/stereo/message.oga
 
 background-color=#285577

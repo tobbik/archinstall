@@ -16,6 +16,7 @@ fi
 pacman -S --needed --noconfirm ${PACMANEXTRAFLAGS} \
   libva-mesa-driver mesa-vdpau mesa-demos libvdpau-va-gl \
   mesa ffmpeg ${AUDIOPACKAGES} mpd mpc mpv \
+  mpd-mpris mpv-mpris \
   yt-dlp aria2 atomicparsley python-mutagen \
   alsa-tools alsa-utils alsa-plugins pamixer \
   python-pycryptodome python-pycryptodomex \
@@ -44,3 +45,4 @@ if [ x"$AUDIOSYSTEM" == x"pulseaudio" ]; then
 fi
 
 enable_service mpd.service ${USERNAME}
+enable_service mpd-mpris.service ${USERNAME}

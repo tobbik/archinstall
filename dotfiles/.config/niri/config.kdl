@@ -353,7 +353,7 @@ binds {
     Mod+Return       hotkey-overlay-title="Open a Terminal: footclient" { spawn "footclient"; }
     Mod+Space        hotkey-overlay-title="Run an Application: fuzzel"  { spawn "fuzzel"; }
     Mod+Alt+Space    hotkey-overlay-title="Run any Application in $PATH: fuzzel" { spawn "fuzzel" "--list-executables-in-path"; }
-    Super+Alt+L      hotkey-overlay-title="Lock the Screen: swaylock"   { spawn "wayland-lock-now" "sway"; }
+    Super+Alt+L      hotkey-overlay-title="Lock the Screen: swaylock"   { spawn "loginctl" "lock-session"; }
     Shift+Print                                                         { spawn "wayland-screen-shooter" "selectedit"; }
     Control+Grave { spawn "makoctl" "menu" "--" "fuzzel" "--dmenu" "--width" "45" "--prompt" "'Notification action:'"; }
     Shift+Control+Grave                                                 { spawn "makoctl" "restore"; }
