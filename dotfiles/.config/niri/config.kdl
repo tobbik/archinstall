@@ -60,6 +60,7 @@ input {
 
     // Focus windows and outputs automatically when moving the mouse into them.
     // Setting max-scroll-amount="0%" makes it work only on windows already fully on screen.
+    focus-follows-mouse
     // focus-follows-mouse max-scroll-amount="0%"
 }
 
@@ -259,9 +260,9 @@ spawn-at-startup "sfwbar"
 spawn-at-startup "mako"
 spawn-at-startup "xwayland-satellite"
 spawn-at-startup "swayidle" "-w" "-C" "~/.config/niri/swayidle.config"
-spawn-at-startup "systemctl" "--user" "is-active" "foot-server.service" "||" "systemctl" "--user" "start" "foot-server.service"
-spawn-at-startup "systemctl" "--user" "is-active" "gammastep.service" "||" "systemctl" "--user" "start" "gammastep.service"
-spawn-at-startup "systemctl" "--user" "is-active" "ssh-agent.service" "||" "systemctl" "--user" "start" "ssh-agent.service"
+spawn-at-startup "systemctl" "--user" "start" "foot-server.service"
+spawn-at-startup "systemctl" "--user" "start" "gammastep.service"
+spawn-at-startup "systemctl" "--user" "start" "ssh-agent.service"
 spawn-at-startup "/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1"
 spawn-at-startup "dbus-update-activation-environment" "--systemd" "--all"
 spawn-at-startup "/usr/bin/pcmanfm" "--daemon-mode"

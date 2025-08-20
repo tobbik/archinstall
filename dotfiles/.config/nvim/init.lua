@@ -18,6 +18,12 @@ vim.cmd( 'colorscheme wombat256my' )
 --vim.g.guifont = "DejaVu Sans Mono:h16"
 --vim.opt.guifont = "JetBrainsMono Nerd Font:h14"
 
+-- Make the background on any theme used transparent
+vim.api.nvim_set_hl(0, 'Normal', { bg = 'none' })
+vim.api.nvim_set_hl(0, 'NormalFloat', { bg = 'none' })
+vim.api.nvim_set_hl(0, 'FloatBorder', { bg = 'none' })
+vim.api.nvim_set_hl(0, 'Pmenu', { bg = 'none' })
+
 vim.opt.expandtab = true
 vim.opt.smarttab = true
 vim.opt.tabstop = 2

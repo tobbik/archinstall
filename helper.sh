@@ -49,8 +49,10 @@ function enable_service() {
   if [ x"${FORUSER}" == x"" ]; then
     systemctl is-enabled ${SERVICE} >/dev/null || systemctl enable ${SERVICE}
   else
-    sudo --user ${FORUSER} systemctl --user is-enabled ${SERVICE} >/dev/null || \
-      sudo --user ${FORUSER} systemctl --user enable ${SERVICE}
+    sudo --user ${FORUSER} bash -c \
+      "XDG_RUNTIME_DIR=\"/run/user/$(id -u ${FORUSER})\" \
+       DBUS_SESSION_BUS_ADDRESS=\"unix:path=${XDG_RUNTIME_DIR}/bus\" \
+       systemctl --user enable $SERVICE"
   fi
 }
 

@@ -106,7 +106,7 @@ else
   # save these iptables.rules
   iptables-save -f /etc/iptables/iptables.rules
 
-  enable_service iptables
+  enable_service iptables.service
 fi
 
 systemctl enable dnsmasq.service

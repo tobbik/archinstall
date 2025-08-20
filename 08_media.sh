@@ -22,9 +22,18 @@ pacman -S --needed --noconfirm ${PACMANEXTRAFLAGS} \
   python-pycryptodome python-pycryptodomex \
   python-websockets python-brotli python-brotlicffi \
   python-xattr python-pyxattr python-secretstorage \
-  avidemux-cli live-media libmatroska faac libfdk-aac libmtp
+  avidemux-cli live-media libmatroska faac libfdk-aac libmtp \
+  discount
 
-add_dotfiles ".config/mpd" ".config/mpv"
+# key for mpd-notification
+gpg --recv-keys BD84DE71F493DF6814B0167254EDC91609BC9183
+AUR_PACKAGES=(
+  mpd-notification
+)
+install_aur_packages "${AUR_PACKAGES[@]}"
+
+add_dotfiles ".config/mpd" ".config/mpv" ".config/mpd-notification.conf"
+
 mkdir -p ${USERHOME}/.config/mpd/playlists
 
 # setup user audio base configs

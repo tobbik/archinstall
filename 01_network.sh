@@ -34,7 +34,7 @@ if test x${NETWORKTYPE} = x"wlan" || test x${NETWORKTYPE} = x"both"; then
       < template.network \
       > "/etc/systemd/network/wlan.network"
   fi
-  enable_service iwd
+  enable_service iwd.service
 fi
 
 if [ ! -L /etc/resolv.conf ]; then
@@ -42,6 +42,6 @@ if [ ! -L /etc/resolv.conf ]; then
   ln -s /run/systemd/resolve/stub-resolv.conf /etc/resolv.conf
 fi
 
-enable_service systemd-networkd
-enable_service systemd-resolved
+enable_service systemd-networkd.service
+enable_service systemd-resolved.service
 

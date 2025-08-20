@@ -25,14 +25,14 @@ pacman -S --needed --noconfirm ${PACMANEXTRAFLAGS} \
   pacman-contrib arch-install-scripts \
   neovim
 
-enable_service sshd
-enable_service systemd-timesyncd
-enable_service tlp
+enable_service sshd.service
+enable_service systemd-timesyncd.service
+enable_service tlp.service
 usermod -a -G locate ${USERNAME}
 
 echo "Setup hardware random number generator"
 sed -i 's:^.*\(RNGD_OPTS=\).*:\1"-o /dev/random -r /dev/hwrng":' /etc/conf.d/rngd
-enable_service rngd
+enable_service rngd.service
 
 # don't have makepkg build *-debug packages by default
 sed -i /etc/makepkg.conf \

@@ -77,14 +77,24 @@ main() {
     toggle)
       notify_screen "Toggle" "mpd" "$(mpc --format="$MPC_FORMAT" toggle)"
       ;;
+    play)
+      notify_screen "Play" "mpd" "$(mpc --format="$MPC_FORMAT" play)"
+      ;;
+    pause)
+      notify_screen "Pause" "mpd" "$(mpc --format="$MPC_FORMAT" pause)"
+      ;;
+    stop)
+      notify_screen "Stop" "mpd" "$(mpc --format="$MPC_FORMAT" stop)"
+      ;;
     allpause)
       all_pause
       ;;
     allresume)
       all_resume
       ;;
-   *)
-     usage
+    *)
+      notify_screen "Toggle" "mpd" "$(mpc --format="$MPC_FORMAT" toggle)"
+      usage
   esac
 }
 

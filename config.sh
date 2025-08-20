@@ -86,7 +86,7 @@ LOCALELC="en_CA.UTF-8"
 LOCALECOLLATE="C.UTF-8"
 LOCALEFALLBACK="en_CA:en_GB:en"
 TIMEZONE="America/Vancouver"
-# pipewire has some trouble on smaller SBCs such as Orange Pi
+# pipewire has some trouble on smaller SBCs such as Orange Pi 5
 AUDIOSYSTEM="pipewire"   # pipewire | pulseaudio
 NETWORKTYPE="wlan"   # wlan | ether | both
 

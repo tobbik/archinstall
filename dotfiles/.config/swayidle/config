@@ -8,5 +8,5 @@ timeout 410  'wlopm --off \*'                                 resume  'wlopm --o
 before-sleep 'pidof swaylock || swaylock --daemonize --config ~/.config/swaylock/config'
 timeout 600  'systemctl suspend'                              resume  'wlopm --on \*'
 after-resume 'wlopm --on \*'
-lock         'mpd-control allpause &&  pidof swaylock || swaylock --daemonize --config ~/.config/swaylock/config'
+lock         'mpd-control allpause && wayland-screen-shooter multiblur /tmp/screen- && pidof swaylock || swaylock --daemonize --config ~/.config/swaylock/config'
 unlock       'mpd-control allresume'
