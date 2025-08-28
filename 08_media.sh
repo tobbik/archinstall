@@ -23,7 +23,7 @@ pacman -S --needed --noconfirm ${PACMANEXTRAFLAGS} \
   python-websockets python-brotli python-brotlicffi \
   python-xattr python-pyxattr python-secretstorage \
   avidemux-cli live-media libmatroska faac libfdk-aac libmtp \
-  discount
+  discount libnotify iniparser
 
 # key for mpd-notification
 gpg --recv-keys BD84DE71F493DF6814B0167254EDC91609BC9183

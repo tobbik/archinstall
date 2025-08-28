@@ -25,6 +25,9 @@ mako >/dev/null 2>&1 &
 # change color depending on daylight # using gamastep for now
 #wlsunset -l 48.48 -L -123.53 -t 3500 -T 5700 &
 
+wl-paste --type image --watch cliphist store &
+wl-paste --type text --watch cliphist store &
+
 # Lock screen after 5 minutes; turn off display after another 5 minutes.
 #
 # Note that in the context of idle system power management, it is *NOT* a good

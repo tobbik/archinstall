@@ -1,0 +1,107 @@
+#!/bin/bash
+#
+PLAYER_PICKLE_DIR=~/.local/state/playerstatus
+SCREENIMGPFX="/tmp/screenlock-"
+
+function notify_screen() {
+  local msgTag="playerInfo"
+  local cmd=$1
+  local player=$2
+  local status=$(playerctl --player=${player} status)
+
+  notify-send --app-name "mpd-control" \
+      --expire-time 5000 --urgency low --transient \
+      --hint string:x-dunst-stack-tag:$msgTag \
+      "${player} ${status} (${cmd})"
+}
+
+function pickle_media_players() {
+  [ -d ${PLAYER_PICKLE_DIR} ] || mkdir -p ${PLAYER_PICKLE_DIR}
+  for PLAYER in $(playerctl --list-all); do
+    local state=$(playerctl --player=${PLAYER} status)
+    if [[ "Playing" =~ "${state}" ]]; then
+      echo "pickling ${PLAYER} ${state}"
+      echo "${state}" > "${PLAYER_PICKLE_DIR}/${PLAYER}"
+      playerctl --player=${PLAYER} pause
+      notify_screen "Pickle and Pause" "${PLAYER}"
+    fi
+  done
+}
+
+function unpickle_media_players() {
+  [ ! -d ${PLAYER_PICKLE_DIR} ] && exit 0
+  for PLAYER in $(ls ${PLAYER_PICKLE_DIR}); do
+    local state=$(cat ${PLAYER_PICKLE_DIR}/${PLAYER})
+    echo "unpickle ${PLAYER} ${STATE}"
+    if [[ "Playing" =~ "${STATE}" ]]; then
+      playerctl --player=${PLAYER} play
+      notify_screen "Resume and Play" "${PLAYER}"
+    fi
+    rm --force ${PLAYER_PICKLE_DIR}/${PLAYER}
+  done
+}
+
+function usage() {
+  printf "wayland-screen-lock <lock|unlock>\n"
+  printf "  <screenshots>      -> take blurred scrrenshots of each output\n"
+  printf "  <clearscreenshots> -> remove blurred screenshots\n"
+  printf "  <pickleplayers>    -> pickle the state of playing media players\n"
+  printf "  <resumeplayers>    -> resume previously playing media players\n"
+  printf "  <lock>             -> Lock screen using swaylock\n"
+  printf "  <locknow>          -> execute screenshots, pickleplayers and lock\n"
+  printf "  <unlock>           -> resume after lock; picks up media player state\n"
+}
+
+function take_blurred_screenshots() {
+  local OUTPUTS=$(wlr-randr | grep -o "^[^ ]*")
+  local swaylock_images=""
+  for OUTPUT in ${OUTPUTS}; do
+    wayland-screen-shooter blur ${OUTPUT} ${SCREENIMGPFX}
+    swaylock_images="${swaylock_images} --image ${OUTPUT}:${SCREENIMGPFX}${OUTPUT}.png"
+  done
+  echo ${swaylock_images} > ${SCREENIMGPFX}swayimages.txt
+}
+
+function execute_desktop_lock() {
+  case "$1" in
+    sway)
+      pidof swaylock || swaylock --daemonize --config ~/.config/swaylock/config $(cat ${SCREENIMGPFX}swayimages.txt)
+      ;;
+    gtk)
+      pidof gtklock  || gtklock  --daemonize --config ~/.config/gtklock/config.ini --style ~/.config/gtklock/style.css
+      ;;
+  esac
+}
+
+function main() {
+  case "$1" in
+    screenshots)
+      take_blurred_screenshots
+      ;;
+    clearscreenshots)
+      rm ${SCREENIMGPFX}*
+      ;;
+    pickleplayers)
+      pickle_media_players
+      ;;
+    resumeplayers)
+      unpickle_media_players
+      ;;
+    lock)
+      execute_desktop_lock sway
+      ;;
+    unlock)
+      unpickle_media_players
+      rm ${SCREENIMGPFX}*
+      ;;
+    locknow)
+      take_blurred_screenshots
+      pickle_media_players
+      execute_desktop_lock sway
+      ;;
+    *)
+      usage
+  esac
+}
+
+main "$@"

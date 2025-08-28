@@ -17,7 +17,7 @@ sudo --user ${USERNAME} gpg --keyserver keyserver.ubuntu.com --recv-keys F4FDB18
 pacman -S --needed --noconfirm ${PACMANEXTRAFLAGS} \
   wayland ly wl-clipboard wl-clip-persist mako jq wlr-randr \
   wf-recorder wayvnc grim slurp satty graphicsmagick \
-  brightnessctl kanshi fuzzel \
+  brightnessctl kanshi fuzzel cliphist \
   foot foot-terminfo libadwaita \
   swaylock swayidle swaybg wlsunset gammastep \
   gtklock gtklock-playerctl-module \
@@ -65,10 +65,11 @@ install_aur_packages "${AUR_PACKAGES[@]}"
 
 add_dotfiles  ".config/foot" ".config/mako" ".config/fuzzel" \
   ".config/kanshi" ".config/wlr-which-key" ".config/wlogout" \
-  ".local/bin/mpd-control" ".local/bin/wayland-screen-shooter" \
   ".config/gammastep" ".config/sfwbar" \
-  ".config/swayidle" ".config/swaylock" ".config/gtklock"
+  ".config/swayidle" ".config/swaylock" ".config/gtklock" \
+  ".local/bin/wayland-screen-shooter" \
   ".local/bin/wayland-screen-brightness" \
+  ".local/bin/wayland-lock-screen" \
   ".local/bin/wayland-volume-adjust" \
   ".local/bin/wayland-window-switcher"
 

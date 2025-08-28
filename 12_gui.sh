@@ -8,14 +8,14 @@ pacman -S --needed --noconfirm ${PACMANEXTRAFLAGS} \
   gvfs-smb gvfs-nfs gvfs-mtp \
   ttf-jetbrains-mono-nerd adobe-source-code-pro-fonts \
   ttf-ubuntu-font-family ttf-ubuntu-nerd ttf-ubuntu-mono-nerd \
-  awesome-terminal-fonts ttf-font-awesome \
+  awesome-terminal-fonts otf-font-awesome \
   zathura-pdf-mupdf mupdf-gl mupdf-tools \
   tesseract-data-eng tesseract-data-osd \
   hunspell-en_ca hunspell-en_us hunspell-de \
   cups baobab \
   neovide \
   pavucontrol ario guvcview \
-  qrencode vte4 gtk4 fltk xorg-server-xvfb blueprint-compiler
+  qrencode vte4 gtk4 fltk xorg-server-xvfb blueprint-compiler appstream-glib
 
 if [ $(uname -m) = 'x86_64' ]; then
   pacman -S --needed --noconfirm ${PACMANEXTRAFLAGS} \

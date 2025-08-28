@@ -79,13 +79,16 @@
       <action name="Execute" command="wayland-volume-adjust toggle"/>
     </keybind>
     <keybind key="XF86AudioPrev">
-      <action name="Execute" command="mpd-control prev"/>
+      <action name="Execute" command="mpc prev"/>
     </keybind>
     <keybind key="XF86AudioNext">
-      <action name="Execute" command="mpd-control next"/>
+      <action name="Execute" command="mpc next"/>
     </keybind>
     <keybind key="XF86AudioPlay">
-      <action name="Execute" command="mpd-control toggle"/>
+      <action name="Execute" command="mpc toggle"/>
+    </keybind>
+    <keybind key="XF86AudioPause">
+      <action name="Execute" command="mpc toggle"/>
     </keybind>
     <keybind key="XF86MonBrightnessUp">
       <action name="Execute" command="wayland-screen-brightness up"/>
@@ -130,6 +133,9 @@
     </keybind>
     <keybind key="W-w">
       <action name="Execute" command="wlr-which-key"/>
+    </keybind>
+    <keybind key="W-A-v">
+      <action name="Execute" command="cliphist list | fuzzel --dmenu | cliphist decode | wl-copy"/>
     </keybind>
   </keyboard>
   <mouse>

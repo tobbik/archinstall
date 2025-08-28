@@ -35,4 +35,14 @@ text-color=#ffffff
 border-color=#ffBBBB
 default-timeout=0
 
+[app-name=mpd-notification]
+history=0
+background-color=#222222
+border-color=#CCCCCC
+text-color=#BBBBBB
 
+[app-name=mpd-control]
+history=0
+background-color=#222222
+border-color=#CCCCCC
+text-color=#BBBBBB

@@ -154,7 +154,7 @@ layout {
         // off
 
         // How many logical pixels the ring extends out from the windows.
-        width 1
+        width 2
 
         // Colors can be set in a variety of ways:
         // - CSS named colors: "red"
@@ -266,6 +266,8 @@ spawn-at-startup "systemctl" "--user" "start" "ssh-agent.service"
 spawn-at-startup "/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1"
 spawn-at-startup "dbus-update-activation-environment" "--systemd" "--all"
 spawn-at-startup "/usr/bin/pcmanfm" "--daemon-mode"
+spawn-at-startup "wl-paste" "--type" "image" "--watch" "cliphist" "store"
+spawn-at-startup "wl-paste" "--type" "text" "--watch" "cliphist" "store"
 
 // Uncomment this line to ask the clients to omit their client-side decorations if possible.
 // If the client will specifically ask for CSD, the request will be honored.
@@ -360,6 +362,7 @@ binds {
     Shift+Control+Grave                                                 { spawn "makoctl" "restore"; }
     Mod+Shift+W                                                         { spawn "wlr-which-key"; }
     Mod+Tab                                                             { spawn "wayland-window-switcher"; }
+    Mod+Alt+V      hotkey-overlay-title="Select from clipboard history" { spawn "bash" "-c" "cliphist list | fuzzel -d | cliphist decode | wl-copy"; }
 
     // You can also use a shell. Do this if you need pipes, multiple commands, etc.
     // Note: the entire command goes as a single argument in the end.
@@ -373,10 +376,10 @@ binds {
     XF86AudioMicMute       allow-when-locked=true { spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SOURCE@" "toggle"; }
     XF86MonBrightnessUp    allow-when-locked=true { spawn "wayland-screen-brightness" "up"; }
     XF86MonBrightnessDown  allow-when-locked=true { spawn "wayland-screen-brightness" "down"; }
-    XF86AudioNext          allow-when-locked=true { spawn "mpd-control" "next"; }
-    XF86AudioPause         allow-when-locked=true { spawn "mpd-control" "toggle"; }
-    XF86AudioPlay          allow-when-locked=true { spawn "mpd-control" "toggle"; }
-    XF86AudioPrev          allow-when-locked=true { spawn "mpd-control" "prev"; }
+    XF86AudioNext          allow-when-locked=true { spawn "mpc" "next"; }
+    XF86AudioPause         allow-when-locked=true { spawn "mpc" "toggle"; }
+    XF86AudioPlay          allow-when-locked=true { spawn "mpc" "toggle"; }
+    XF86AudioPrev          allow-when-locked=true { spawn "mpc" "prev"; }
 
     // Open/close the Overview: a zoomed-out view of workspaces and windows.
     // You can also move the mouse into the top-left hot corner,

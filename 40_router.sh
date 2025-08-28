@@ -109,5 +109,5 @@ else
   enable_service iptables.service
 fi
 
-systemctl enable dnsmasq.service
+enable_service dnsmasq.service
 

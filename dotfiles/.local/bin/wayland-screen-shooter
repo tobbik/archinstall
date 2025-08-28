@@ -12,20 +12,25 @@ function send_notification() {
 
 function multishot() {
   # grab output names like eDP-1 or HDMI-A
-  local OUTPUTS=$(wlr-randr | grep -v "^[ ]" | cut -d" " -f1)
-  local PFX="/tmp/screen-"
-  if [ x"$1" != x"" ]; then
-    PFX="$1"
-  fi
+  local OUTPUTS=$(wlr-randr | grep -o "^[^ ]*")
   for OUTPUT in ${OUTPUTS}; do
-    if [ x"$2" == x"" ]; then
-      grim -o ${OUTPUT} "${PFX}${OUTPUT}.png"
-      send_notification "Full" "output <${OUTPUT}>" "${PFX}${OUTPUT}.png"
-    else
-      grim -o ${OUTPUT} - | gm convert - ${2} "${PFX}${OUTPUT}.png"
-      send_notification "Blurred" "output <${OUTPUT}>" "${PFX}${OUTPUT}.png"
-    fi
+    shot ${OUTPUT} "$1" "$2"
   done
+}
+
+function shot() {
+  local OUTPUT=$1
+  local PFX="/tmp/screen-"
+  if [ x"$2" != x"" ]; then
+    PFX="$2"
+  fi
+  if [ x"$3" == x"" ]; then
+    grim -o ${OUTPUT} "${PFX}${OUTPUT}.png"
+    send_notification "Full" "output <${OUTPUT}>" "${PFX}${OUTPUT}.png"
+  else
+    grim -o ${OUTPUT} - | gm convert - ${3} "${PFX}${OUTPUT}.png"
+    send_notification "Blurred" "output <${OUTPUT}>" "${PFX}${OUTPUT}.png"
+  fi
 }
 
 function usage() {
@@ -37,6 +42,8 @@ function usage() {
   printf "  <multi>      -> take a shot for each output, store in\n"
   printf "                  /tmp/screen-<outputname>.png\n"
   printf "  <multiblur>  -> same as <multi>, blurrs image\n"
+  printf "  <blur> <OUTPUT> -> take full screenshot of output, blurrs image\n"
+  printf "                  stores in/tmp/screen-<outputname>.png\n"
 }
 
 function main() {
@@ -60,6 +67,9 @@ function main() {
       ;;
     multiblur)
       multishot "$2" "-scale 25% -level -5%,2,60% -fill black -colorize 60% -blur 0x4 -resize 400%"
+      ;;
+    blur)
+      shot "$2" "$3" "-scale 25% -level -5%,2,60% -fill black -colorize 60% -blur 0x4 -resize 400%"
       ;;
    *)
      usage
