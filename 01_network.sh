@@ -1,7 +1,7 @@
 source config.sh
 source helper.sh
 
-if pacman -Q openresolv ; then
+if pacman -Q openresolv > /dev/null 2>&1; then
   pacman -Rdd openresolv
 fi
 

@@ -49,10 +49,7 @@ function enable_service() {
   if [ x"${FORUSER}" == x"" ]; then
     systemctl is-enabled ${SERVICE} >/dev/null || systemctl enable ${SERVICE}
   else
-    sudo --user ${FORUSER} bash -c \
-      "XDG_RUNTIME_DIR=\"/run/user/$(id -u ${FORUSER})\" \
-       DBUS_SESSION_BUS_ADDRESS=\"unix:path=${XDG_RUNTIME_DIR}/bus\" \
-       systemctl --user enable $SERVICE"
+    echo "sudo -u ${FORUSER} systemctl --user enable ${SERVICE}" >> nspawn.sh
   fi
 }
 

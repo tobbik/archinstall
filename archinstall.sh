@@ -9,6 +9,8 @@ source helper.sh
 
 INSTALLER_START_SECS=${SECONDS}
 
+rm /root/installer/nspawn.sh
+
 run_module "00_install_preparation.sh" ${INSTALLER_START_SECS} "/root/installer/logs"
 
 # installing the individual modules

@@ -1,10 +1,10 @@
 source config.sh
 source helper.sh
 
-pacman -S --needed -noconfirm ${PACMANEXTRAFLAGS} pacoloco
+pacman -S --needed --noconfirm ${PACMANEXTRAFLAGS} pacoloco
 
 echo "Backup original pacoloco.yaml config file"
-cp /etc/pacoloco.yaml /etc/pacoloco-orig.yaml
+cp -v /etc/pacoloco.yaml /etc/pacoloco-orig.yaml
 
 if [[ ! -z ${PACOLOCODATADIR} ]]; then
   echo "Define ${PACOLOCODATADIR} as cache directory and add US mirror"

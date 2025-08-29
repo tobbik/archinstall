@@ -75,5 +75,3 @@ add_alias "lla" "ls --color=auto -l -a"
 cp -avr ${RUNDIR}/pkgbuilds/* ${AURBUILDDIR}/
 
 chown -R ${USERNAME}:users ${USERHOME}
-
-loginctl enable-linger ${USERNAME}

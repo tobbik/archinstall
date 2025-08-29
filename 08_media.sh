@@ -26,7 +26,7 @@ pacman -S --needed --noconfirm ${PACMANEXTRAFLAGS} \
   discount libnotify iniparser
 
 # key for mpd-notification
-gpg --recv-keys BD84DE71F493DF6814B0167254EDC91609BC9183
+sudo --user ${USERNAME} gpg --recv-keys 4E8FCA25FDAC4855
 AUR_PACKAGES=(
   mpd-notification
 )
@@ -54,4 +54,4 @@ if [ x"$AUDIOSYSTEM" == x"pulseaudio" ]; then
 fi
 
 enable_service mpd.service ${USERNAME}
-enable_service mpd-mpris.service ${USERNAME}
+enable_service mpd-notification.service ${USERNAME}
