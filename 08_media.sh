@@ -54,4 +54,5 @@ if [ x"$AUDIOSYSTEM" == x"pulseaudio" ]; then
 fi
 
 enable_service mpd.service ${USERNAME}
+enable_service mpd-mpris.service ${USERNAME}
 enable_service mpd-notification.service ${USERNAME}

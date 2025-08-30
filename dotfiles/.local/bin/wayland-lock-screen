@@ -67,13 +67,17 @@ function execute_desktop_lock() {
     sway)
       pidof swaylock || swaylock --daemonize --config ~/.config/swaylock/config $(cat ${SCREENIMGPFX}swayimages.txt)
       ;;
-    gtk)
+    gtklock)
       pidof gtklock  || gtklock  --daemonize --config ~/.config/gtklock/config.ini --style ~/.config/gtklock/style.css
       ;;
   esac
 }
 
 function main() {
+  local locker=sway
+  if [ x"$2" == x"gtklock" ]; then
+    locker=gtklock
+  fi
   case "$1" in
     screenshots)
       take_blurred_screenshots
@@ -88,7 +92,7 @@ function main() {
       unpickle_media_players
       ;;
     lock)
-      execute_desktop_lock sway
+      execute_desktop_lock ${locker}
       ;;
     unlock)
       unpickle_media_players
@@ -97,7 +101,7 @@ function main() {
     locknow)
       take_blurred_screenshots
       pickle_media_players
-      execute_desktop_lock sway
+      execute_desktop_lock ${locker}
       ;;
     *)
       usage

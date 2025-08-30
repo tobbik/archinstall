@@ -34,6 +34,7 @@ sed -i /etc/ly/config.ini \
   -e "s:^.*animation_timeout_sec =.*:animation_timeout_sec = 60:" \
   -e "s:^.*auth_fails =.*:auth_fails = 3:" \
   -e "s:^\(border_fg\).*$:\1 = 0x0000FF00:" \
+  -e "s:^.*bigclock = .*:bigclock = true:" \
   -e "s:^#clock = .*:clock = %c:" \
   -e "s:^#save =.*:save = true:" \
   -e "s:^#load =.*:load = true:"
