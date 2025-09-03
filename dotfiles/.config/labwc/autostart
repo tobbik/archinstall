@@ -19,7 +19,7 @@ sfwbar > /dev/null 2>&1 &
 # Enable notifications. Typically GNOME/KDE application notifications go
 # through the org.freedesktop.Notifications D-Bus API and require a client such
 # as mako to function correctly. Thunderbird is an example of this.
-mako >/dev/null 2>&1 &
+#mako >/dev/null 2>&1 &
 #dunst > /dev/null 2>&1 &
 
 # change color depending on daylight # using gamastep for now

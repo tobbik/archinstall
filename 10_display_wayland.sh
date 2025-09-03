@@ -77,4 +77,5 @@ add_dotfiles  ".config/foot" ".config/mako" ".config/fuzzel" \
 sed -i ${USERHOME}/.config/gammastep/config.ini \
   -e "s:^\(adjustment-method\)=.*$:\1=wayland:"
 
+enable_service mako.service      ${USERNAME}
 enable_service gammastep.service ${USERNAME}
