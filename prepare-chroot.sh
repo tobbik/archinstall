@@ -28,8 +28,11 @@ cp -av /var/lib/iwd/*.psk /mnt/var/lib/iwd/
 
 arch-chroot /mnt /root/installer/archinstall.sh
 
-if [ -f ${target_dir}/root/installer/nspawn.sh ]; then
-  systemd-nspawn --bind ${DISKBOOTDEVPATH} --bind ${DISKROOTDEVPATH} --bind ${DISKHOMEDEVPATH} --pipe --directory /mnt /bin/bash -x << EOFSPAWN
+if [ -f /mnt/root/installer/nspawn.sh ]; then
+  systemd-nspawn --bind ${DISKBOOTDEVPATH} \
+                 --bind ${DISKROOTDEVPATH} \
+                 --bind ${DISKHOMEDEVPATH} \
+                 --pipe --directory /mnt /bin/bash -x << EOFSPAWN
 cd /root/installer
 source helper.sh
 run_module nspawn.sh
