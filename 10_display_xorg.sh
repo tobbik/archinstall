@@ -33,4 +33,4 @@ add_dotfiles ".Xresources" ".config/gammastep" ".config/autostart/URXvt deamon.d
 sed -i ${USERHOME}/.config/gammastep/config.ini \
     -e "s:^\(adjustment-method\)=.*$:\1=randr:"
 
-enable_service gammastep.service ${USERNAME}
+enable_user_service gammastep.service

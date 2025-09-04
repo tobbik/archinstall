@@ -25,14 +25,13 @@ pacman -S --needed --noconfirm ${PACMANEXTRAFLAGS} \
   pacman-contrib arch-install-scripts \
   neovim
 
-enable_service sshd.service
-enable_service systemd-timesyncd.service
-enable_service tlp.service
-usermod -a -G locate ${USERNAME}
-
 echo "Setup hardware random number generator"
 sed -i 's:^.*\(RNGD_OPTS=\).*:\1"-o /dev/random -r /dev/hwrng":' /etc/conf.d/rngd
-enable_service rngd.service
+
+echo "Allow user <${USERNAME}> to search with 'locate'"
+usermod -a -G locate ${USERNAME}
+
+enable_service sshd.service systemd-timesyncd.service tlp.service rngd.service
 
 # don't have makepkg build *-debug packages by default
 sed -i /etc/makepkg.conf \
@@ -40,7 +39,7 @@ sed -i /etc/makepkg.conf \
   -e 's|^.*MAKEFLAGS.*$|MAKEFLAGS="--jobs=$(nproc)"|'
 
 add_export "SSH_AUTH_SOCK" '${XDG_RUNTIME_DIR}/ssh-agent.socket'
-enable_service ssh-agent.service ${USERNAME}
+enable_user_service ssh-agent.service
 
 if [ ! -f /etc/sudoers.d/${USERNAME} ]; then
   # user sudo access

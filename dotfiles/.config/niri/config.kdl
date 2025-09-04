@@ -300,7 +300,7 @@ spawn-at-startup "sfwbar"
 // use systemctl --user enable mako instead
 //spawn-at-startup "mako"
 spawn-at-startup "xwayland-satellite"
-spawn-at-startup "swayidle" "-w" "-C" "~/.config/niri/swayidle.config"
+spawn-at-startup "swayidle" "-w" "-C" "__USERHOME__/.config/niri/swayidle.config"
 spawn-at-startup "systemctl" "--user" "start" "foot-server.service"
 spawn-at-startup "systemctl" "--user" "start" "gammastep.service"
 spawn-at-startup "systemctl" "--user" "start" "ssh-agent.service"
@@ -404,7 +404,7 @@ binds {
     Mod+Return    hotkey-overlay-title="Open a Terminal: footclient" { spawn "footclient"; }
     Mod+Space     hotkey-overlay-title="Run an Application: fuzzel"  { spawn "fuzzel"; }
     Mod+Alt+Space hotkey-overlay-title="Run any Application in $PATH: fuzzel" { spawn "fuzzel" "--list-executables-in-path"; }
-    Super+Alt+L   hotkey-overlay-title="Lock the Screen: swaylock"   { spawn "wlogout" "--layout" "/home/tobias/.config/niri/wlogout.layout"; }
+    Super+Alt+L   hotkey-overlay-title="Lock the Screen: swaylock"   { spawn "wlogout" "--layout" "__USERHOME__/.config/niri/wlogout.layout"; }
     Shift+Print                                                         { spawn "wayland-screen-shooter" "selectedit"; }
     Control+Grave { spawn "makoctl" "menu" "--" "fuzzel" "--dmenu" "--width" "45" "--prompt" "'Notification action:'"; }
     Shift+Control+Grave                                                 { spawn "makoctl" "restore"; }

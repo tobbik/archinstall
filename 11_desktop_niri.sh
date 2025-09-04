@@ -12,3 +12,6 @@ AUR_PACKAGES=(
 install_aur_packages "${AUR_PACKAGES[@]}"
 
 add_dotfiles ".config/niri"
+
+sed -i ${USERHOME}/.config/niri/config.kdl \
+    -e "s|__USERHOME__|${USERHOME}|"

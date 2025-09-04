@@ -47,7 +47,6 @@ ACTION=="add", SUBSYSTEM=="leds", RUN+="/bin/chmod g+w /sys/class/leds/%k/bright
 EOUDEVRULES
 
 enable_service ly.service
-enable_service foot-server.service ${USERNAME}
 
 # seatd is installed as a dependency of labwc
 usermod -a -G seat,i2c ${USERNAME}
@@ -77,5 +76,4 @@ add_dotfiles  ".config/foot" ".config/mako" ".config/fuzzel" \
 sed -i ${USERHOME}/.config/gammastep/config.ini \
   -e "s:^\(adjustment-method\)=.*$:\1=wayland:"
 
-enable_service mako.service      ${USERNAME}
-enable_service gammastep.service ${USERNAME}
+enable_user_service mako.service gammastep.service foot-server.service

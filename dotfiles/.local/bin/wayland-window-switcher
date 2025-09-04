@@ -2,3 +2,6 @@
 
 INPUT=$(wlrctl toplevel list | sed "s/^[^:]*: //" | fuzzel --dmenu --width 60)
 wlrctl toplevel activate title:"${INPUT}"
+
+INPUT2=$(wlrctl toplevel list | fuzzel --dmenu --width 80 | sed "s/^[^:]*: //" )
+wlrctl toplevel activate title:"${INPUT2}"

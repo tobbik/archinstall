@@ -1,7 +1,9 @@
 source config.sh
 source helper.sh
 
-pacman -Rc --noconfirm vim-runtime
+if pacman -Q vim-runtime > /dev/null 2>&1; then
+  pacman -Rc --noconfirm vim-runtime
+fi
 
 # base-devel covers automake autoconf flex bison make sudo etc.
 pacman -S --needed --noconfirm ${PACMANEXTRAFLAGS} \

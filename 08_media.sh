@@ -39,8 +39,7 @@ mkdir -p ${USERHOME}/.config/mpd/playlists
 # setup user audio base configs
 if [ x"$AUDIOSYSTEM" == x"pipewire" ]; then
   cp -avr /usr/share/pipewire ${USERHOME}/.config/
-  enable_service pipewire-pulse.service ${USERNAME}
-  enable_service wireplumber.service ${USERNAME}
+  enable_user_service pipewire-pulse.service  wireplumber.service
   sed -i ${USERHOME}/.config/mpd/mpd.conf \
       -e "s:^# pipewire$:\0\naudio_output {\n  type    \"pipewire\"\n  name    \"PipeWire Sound Server\"\n}\n:"
   sed -i ${USERHOME}/.config/mpv/mpv.conf \
@@ -53,6 +52,4 @@ if [ x"$AUDIOSYSTEM" == x"pulseaudio" ]; then
       -e "s:^ao=.*$:ao=pulse:"
 fi
 
-enable_service mpd.service ${USERNAME}
-enable_service mpd-mpris.service ${USERNAME}
-enable_service mpd-notification.service ${USERNAME}
+enable_user_service mpd.service mpd-mpris.service mpd-notification.service

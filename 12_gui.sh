@@ -25,7 +25,7 @@ fi
 
 add_dotfiles ".config/libfm" ".config/pcmanfm" ".config/chromium-flags.conf" ".config/neovide"
 
-add_export "GTK_THEME" "Adwaita:dark"
+prefer_dark_theme
 
 AUR_PACKAGES=(
   iwgtk

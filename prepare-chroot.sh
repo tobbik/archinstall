@@ -9,7 +9,7 @@ source config.sh
 
 if [[ ! -z ${PACOLOCOCACHESERVER} ]]; then
   sed -i /etc/pacman.conf \
-      -e "s|^Include.*/etc/pacman.d/mirrorlist$|CacheServer = ${PACOLOCOCACHESERVER}\n\0"
+      -e "s|^Include.*/etc/pacman.d/mirrorlist$|CacheServer = ${PACOLOCOCACHESERVER}\n\0|"
 fi
 
 pacstrap /mnt base base-devel

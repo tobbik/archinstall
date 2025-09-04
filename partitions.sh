@@ -8,13 +8,18 @@
 
 source config.sh
 
-# wipe entire disk
-#gdisk ${DISKBASEDEVPATH} << EOGWIPE
-#x
-#z
-#Y
-#Y
-#EOGWIPE
+ENABLE_GPT=""
+
+if [ x"$1" == x"wipe" ]; then
+  # wipe entire disk
+  gdisk ${DISKBASEDEVPATH} << EOGWIPE
+x
+z
+Y
+Y
+EOGWIPE
+  ENABLE_GPT="Y"
+fi
 
 gdisk ${DISKBASEDEVPATH} << EOGDISK
 n
@@ -51,4 +56,5 @@ c
 ARCHSWAP
 p
 w
+${ENABLE_GPT}
 EOGDISK

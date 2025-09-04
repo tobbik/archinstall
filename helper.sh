@@ -43,16 +43,6 @@ function run_module() {
   echo -e "Overall Time: $(date -u -d @"${SECS_SINCE_START}" +'%-Mm %Ss')\n-----------------\n" >> "${logPath}/progress.log"
 }
 
-function enable_service() {
-  local SERVICE=$1
-  local FORUSER=$2
-  if [ x"${FORUSER}" == x"" ]; then
-    systemctl is-enabled ${SERVICE} >/dev/null || systemctl enable ${SERVICE}
-  else
-    echo "sudo -u ${FORUSER} systemctl --user enable ${SERVICE}" >> nspawn.sh
-  fi
-}
-
 function add_dotfiles() {
   for ELEM in $@
   do
@@ -88,6 +78,32 @@ function add_export() {
   if ! grep -q "export ${VARNAME}=" ${USERHOME}/.bash_profile ; then
     echo "export ${VARNAME}=${VARVALUE}" >> ${USERHOME}/.bash_profile
   fi
+}
+
+function enable_service() {
+  for SERVICE in $@
+  do
+    # systemctl is-enabled ${SERVICE} >/dev/null || systemctl enable ${SERVICE}
+    echo "adding global service installation for '${SERVICE}' to nspawn.sh"
+    echo "systemctl is-enabled ${SERVICE} >/dev/null || systemctl enable ${SERVICE}" >> ${RUNDIR}/nspawn.sh
+  done
+  echo "Done enabling services"
+}
+
+function enable_user_service() {
+  for SERVICE in $@
+  do
+    if ! grep -q "enable ${SERVICE}" ${RUNDIR}/nspawn.sh; then
+      echo "adding user (${USERNAME}) service installation for '${SERVICE}' to nspawn.sh"
+      echo "sudo --user ${USERNAME} systemctl --user enable ${SERVICE}" >> ${RUNDIR}/nspawn.sh
+    fi
+  done
+  echo "Done enabling User services"
+}
+
+function prefer_dark_theme() {
+  add_export "GTK_THEME" "Adwaita:dark"
+  echo "sudo --user ${USERNAME} gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'" >> ${RUNDIR}/nspawn.sh
 }
 
 function install_aur_packages() {
