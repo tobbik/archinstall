@@ -30,6 +30,14 @@ ExecStart=/usr/bin/dockerd \\
          --data-root ${DOCKERSTORAGEPATH}
 EODOCKERCONF
 
+cat > /etc/systemd/network/docker-ignore.network << EODCKIGNORE
+[Match]
+Name=docker*
+
+[Link]
+Unmanaged=yes
+EODCKIGNORE
+
 #systemctl daemon-reload
 enable_service docker.service
 

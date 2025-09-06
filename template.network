@@ -1,5 +1,5 @@
 [Match]
-Type=${NW_TYPE}
+Name=${MATCH_NAME}
 
 [Network]
 DHCP=yes

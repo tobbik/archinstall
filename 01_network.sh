@@ -21,18 +21,26 @@ EOIWDCONF
 fi
 
 if test x${NETWORKTYPE} = x"ether" || test x${NETWORKTYPE} = x"both"; then
+  if [[ -z ${ETHER_INTERFACE} ]]; then
+    ETHER_INTERFACE=$(ip addr show dynamic | grep ': e[^ ]*: <' | cut -d' ' -f2 | tr -d ':')
+  fi
+  echo "configuring wired ethernet interface <${ETHER_INTERFACE}> for systemd-networkd"
   if [ ! -f /etc/systemd/network/ether.network ]; then
-    NW_TYPE=ether NW_IGN_CARR_LOSS=5s NW_ROUTEMETRIC=100 envsubst \
+    MATCH_NAME=${ETHER_INTERFACE} NW_IGN_CARR_LOSS=5s NW_ROUTEMETRIC=100 envsubst \
       < template.network  \
-      > "/etc/systemd/network/ether.network"
+      > "/etc/systemd/network/${ETHER_INTERFACE}.network"
   fi
 fi
 
 if test x${NETWORKTYPE} = x"wlan" || test x${NETWORKTYPE} = x"both"; then
+  if [[ -z ${WLAN_INTERFACE} ]]; then
+    WLAN_INTERFACE=$(ip addr show dynamic | grep ': w[^ ]*: <' | cut -d' ' -f2 | tr -d ':')
+  fi
+  echo "configuring wireless interface <${WLAN_INTERFACE}> for systemd-networkd"
   if [ ! -f /etc/systemd/network/wlan.network ]; then
-    NW_TYPE=wlan NW_IGN_CARR_LOSS=5s NW_ROUTEMETRIC=600 envsubst \
+    MATCH_NAME=${WLAN_INTERFACE} NW_IGN_CARR_LOSS=5s NW_ROUTEMETRIC=600 envsubst \
       < template.network \
-      > "/etc/systemd/network/wlan.network"
+      > "/etc/systemd/network/${WLAN_INTERFACE}.network"
   fi
   enable_service iwd.service
 fi

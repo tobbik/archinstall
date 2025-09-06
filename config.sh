@@ -89,10 +89,14 @@ TIMEZONE="America/Vancouver"
 # pipewire has some trouble on smaller SBCs such as Orange Pi 5
 AUDIOSYSTEM="pipewire"   # pipewire | pulseaudio
 NETWORKTYPE="wlan"   # wlan | ether | both
+# specify interface names as reported by `ip -c addr show dynamic` if desired
+# else, the system will try to figure them out automatically
+#ETHER_INTERFACE=enp0s25
+#WLAN_INTERFACE=wlan0
 
 # microcode selection
 # comment out for no microcode
-MICROCODE="intel"    # amd | intel
+MICROCODE="intel"    # amd | intel or comment out
 
 # this needs intervention; refind and grub work proper
 # systemd, xbootldr and efistub need work; see setup-chroot.sh
