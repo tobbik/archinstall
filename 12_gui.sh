@@ -32,6 +32,7 @@ AUR_PACKAGES=(
   gnvim-git
   xdiskusage
   overskride
+  ttf-ms-fonts
 )
 
 install_aur_packages "${AUR_PACKAGES[@]}"
