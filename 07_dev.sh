@@ -5,6 +5,11 @@ if pacman -Q vim-runtime > /dev/null 2>&1; then
   pacman -Rc --noconfirm vim-runtime
 fi
 
+EXTRAPACKAGES=""
+if [ $(uname -m) == 'x86_64' ]; then
+  EXTRAPACKAGES="pypy pypy3"
+fi
+
 # base-devel covers automake autoconf flex bison make sudo etc.
 pacman -S --needed --noconfirm ${PACMANEXTRAFLAGS} \
   base-devel bc elfutils gdb valgrind \
@@ -17,12 +22,8 @@ pacman -S --needed --noconfirm ${PACMANEXTRAFLAGS} \
   python3 ipython cython \
   nodejs npm nvm js140 php \
   tree-sitter-bash  tree-sitter-python \
-  tree-sitter-javascript tree-sitter-rust
-
-if [ $(uname -m) == 'x86_64' ]; then
-  pacman -S --needed --noconfirm ${PACMANEXTRAFLAGS} \
-    pypy pypy3
-fi
+  tree-sitter-javascript tree-sitter-rust \
+  ${EXTRAPACKAGES}
 
 usermod -a -G git,http,wireshark       ${USERNAME}
 

@@ -44,7 +44,7 @@ n
 8200
 c
 1
-EFI
+ARCHBOOT
 c
 2
 ARCHROOT

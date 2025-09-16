@@ -8,5 +8,5 @@ timeout 410  'wlopm --off \*'                                 resume  'wlopm --o
 before-sleep 'wayland-lock-screen lock gtklock'
 timeout 600  'systemctl suspend'                              resume  'wlopm --on \*'
 after-resume 'wlopm --on \*'
-lock         'wayland-screen-lock locknow gtklock'
-unlock       'wayland-screen-lock unlock'
+lock         'wayland-lock-screen locknow gtklock'
+unlock       'wayland-lock-screen unlock'

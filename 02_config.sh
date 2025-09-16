@@ -28,7 +28,8 @@ LC_COLLATE=${LOCALECOLLATE}
 EOLOCALE
 
 # DON'T do that on RaspberryPi or other SoC deivces
-if ! test -f /boot/config.txt && ! test -L /etc/localtime ; then
+if ! test -f /boot/config.txt ; then
+  [ -L /etc/localtime ] && rm /etc/localtime
   # set the timezone and make sure system uses UTC
   ln -sf /usr/share/zoneinfo/${TIMEZONE} /etc/localtime
   hwclock --systohc --utc

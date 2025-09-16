@@ -3,7 +3,7 @@ source helper.sh
 
 if [ x"$AUDIOSYSTEM" == x"pipewire" ]; then
   # portals require pipewire ...
-  PORTALPACKAGES="xdg-desktop-portal xdg-desktop-portal-gtk xdg-desktop-portal-wlr"
+  PORTALPACKAGES="xdg-desktop-portal xdg-desktop-portal-wlr"
 fi
 
 if [ x"$AUDIOSYSTEM" == x"pulseaudio" ]; then

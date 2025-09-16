@@ -12,8 +12,15 @@ if [[ ! -z ${PACOLOCOCACHESERVER} ]]; then
       -e "s|^Include.*/etc/pacman.d/mirrorlist$|CacheServer = ${PACOLOCOCACHESERVER}\n\0|"
 fi
 
-pacstrap /mnt base base-devel
-genfstab -p /mnt >> /mnt/etc/fstab
+if [ x$(uname -m) == x"aarch64" ]; then
+  EXTRAPACKAGES="archlinuxarm-keyring"
+fi
+if [ x$(uname -m) == x"x86_64" ]; then
+  EXTRAPACKAGES="archlinux-keyring vbetool"
+fi
+
+pacstrap /mnt base base-devel mkinitcpio ${EXTRAPACKAGES}
+genfstab -t PARTLABEL -p /mnt >> /mnt/etc/fstab
 
 # set the keyboard layout
 localectl set-keymap --no-convert ${KEYMAP}

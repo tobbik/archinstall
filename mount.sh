@@ -1,20 +1,19 @@
 source config.sh
 
-mount  "${DISKROOTDEVPATH}" /mnt
-mkdir  /mnt/{boot,home}
+mount  PARTLABEL=ARCHROOT /mnt
 if [ x"${BOOTMNGR}" == x"xbootldr" ]; then
   mkdir  /mnt/efi
   mount  "${DISKESPDEVPATH}" /mnt/efi
 fi
-mount  "${DISKBOOTDEVPATH}" /mnt/boot
-mount  "${DISKHOMEDEVPATH}" /mnt/home
-swapon "${DISKSWAPDEVPATH}"
+mkdir  /mnt/{boot,home}
+mount  PARTLABEL=ARCHBOOT /mnt/boot
+mount  PARTLABEL=ARCHHOME /mnt/home
+swapon -L ARCHSWAP
 
 #mkdir /mnt/mnt
-#mkdir /mnt/mnt/data1
-#mount /dev/sdc1 /mnt/mnt/data1
-#mkdir /mnt/mnt/data2
-#mount /dev/sdd1 /mnt/mnt/data2
-
-#mkdir /mnt/mnt/datafast
-#mount /dev/sda1 /mnt/mnt/datafast
+#mkdir /mnt/mnt/{storage1,storage2,data,datafast,ext001}
+#mount -L storage1 /mnt/mnt/storage1 # sdc, WD red 2TB
+#mount -L storage2 /mnt/mnt/storage2 # sdd, WD red 2TB
+#mount -L data     /mnt/mnt/data     # sdb, Seagate 2TB
+#mount -L datafast /mnt/mnt/datafast # sda, SSD, Seagate Barracuda 2TB
+#mount -L 001T7    /mnt/mnt/ext001   # sde, SSD, Samsung T7

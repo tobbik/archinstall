@@ -1,9 +1,18 @@
 source config.sh
 source helper.sh
 
+if [ x"$AUDIOSYSTEM" == x"pipewire" ]; then
+  # portals require pipewire ...
+  PORTALPACKAGES="xdg-desktop-portal-gnome"
+fi
+
+if [ x"$AUDIOSYSTEM" == x"pulseaudio" ]; then
+  PORTALPACKAGES=""
+fi
+
 pacman -S --needed --noconfirm ${PACMANEXTRAFLAGS} \
   niri mako xwayland-satellite xdg-desktop-portal-gtk \
-  fuzzel swaybg swaylock
+  fuzzel swaybg swaylock ${PORTALPACKAGES}
 
 AUR_PACKAGES=(
   sfwbar

@@ -64,7 +64,7 @@ function take_blurred_screenshots() {
 
 function execute_desktop_lock() {
   case "$1" in
-    sway)
+    swaylock)
       pidof swaylock || swaylock --daemonize --config ~/.config/swaylock/config $(cat ${SCREENIMGPFX}swayimages.txt)
       ;;
     gtklock)
@@ -74,7 +74,7 @@ function execute_desktop_lock() {
 }
 
 function main() {
-  local locker=sway
+  local locker=swaylock
   if [ x"$2" == x"gtklock" ]; then
     locker=gtklock
   fi
