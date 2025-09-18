@@ -1,12 +1,6 @@
 source config.sh
 source helper.sh
 
-EXTRAPACKAGES=""
-if [ $(uname -m) = 'x86_64' ]; then
-  EXTRAPACKAGES="ghostty"
-  add_dotfiles ".config/ghostty" ".config/gtk-4.0"
-fi
-
 # Everyday GUI tools
 pacman -S --needed --noconfirm ${PACMANEXTRAFLAGS} \
   file-roller pcmanfm-gtk3 \
@@ -19,7 +13,7 @@ pacman -S --needed --noconfirm ${PACMANEXTRAFLAGS} \
   tesseract-data-eng tesseract-data-osd \
   hunspell-en_ca hunspell-en_us hunspell-de \
   cups baobab \
-  neovide ${EXTRAPACKAGES} \
+  neovide \
   pavucontrol ario guvcview \
   qrencode vte4 gtk4 fltk xorg-server-xvfb blueprint-compiler appstream-glib
 

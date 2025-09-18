@@ -12,6 +12,7 @@ if [ ! -f /etc/iwd/main.conf ]; then
   [ ! -d /etc/iwd ] && mkdir /etc/iwd
   cat > /etc/iwd/main.conf << EOIWDCONF
 [General]
+ControlPortOverNL80211=${ControlPortOverNL80211}
 EnableNetworkConfiguration=True
 
 [Network]

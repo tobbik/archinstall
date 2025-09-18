@@ -122,3 +122,33 @@ ROUTER_IPv6="fe80::c274:2bff:fefe:8049/64"
 # for installation of a pacoloco server
 # (must enable 41_pacoloco.sh)
 PACOLOCODATADIR=/var/cache/pacoloco
+PACOLOCOREPOS=(
+"  archlinux:
+    urls: ## add or change official mirror urls as desired, see https://archlinux.org/mirrors/status/
+      - https://ziply.mm.fcix.net/archlinux
+      - http://ziply.mm.fcix.net/archlinux
+      - https://archmirror1.octyl.net
+      - http://mirrors.kernel.org/archlinux
+      - http://archmirror1.octyl.net
+      - http://ftp.osuosl.org/pub/archlinux
+      - https://mirror.cpsc.ucalgary.ca/mirror/archlinux.org
+      - https://mirrors.kernel.org/archlinux
+      - https://us.mirrors.cicku.me/archlinux
+      - https://ca.mirrors.cicku.me/archlinux
+      - http://mirrors.xmission.com/archlinux
+      - http://mirror.cpsc.ucalgary.ca/mirror/archlinux.org
+      - http://mirrors.xtom.com/archlinux
+      - http://muug.ca/mirror/archlinux
+      - https://mirrors.xtom.com/archlinux
+      - https://cdnmirror.com/archlinux
+"
+"  archlinux_aarch64:
+    urls:
+      - http://ca.us.mirror.archlinuxarm.org
+      - https://github.com/7Ji/archrepo/releases/download
+"
+)
+
+# some WiFi Drivers don't support this and dis/re-connect in a loop
+# set to false if that happens
+ControlPortOverNL80211=true
