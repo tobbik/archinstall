@@ -70,17 +70,10 @@ swayidle -w -C ~/.config/swayidle/config  > /dev/null 2>&1 &
 #hypridle &
 
 # desktop services
-#/usr/bin/foot --server &
-# use the service might be more reliable and has better logging
-# systemctl --user enable foot-server.service
-systemctl --user is-active foot-server.service || \
-  systemctl --user start foot-server.service
-
-systemctl --user is-active ssh-agent.service || \
-  systemctl --user start ssh-agent.service
-
-systemctl --user is-active gammastep.service || \
-  systemctl --user start gammastep.service
+# gammastep, foot-server and ssh-agent should be taken care of via systemd user services
+#systemctl --user is-active foot-server.service || systemctl --user start foot-server.service
+#systemctl --user is-active ssh-agent.service   || systemctl --user start ssh-agent.service
+#systemctl --user is-active gammastep.service   || systemctl --user start gammastep.service
 
 /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 
