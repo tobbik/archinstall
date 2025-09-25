@@ -11,18 +11,17 @@ if [ x"$AUDIOSYSTEM" == x"pulseaudio" ]; then
 fi
 
 pacman -S --needed --noconfirm ${PACMANEXTRAFLAGS} \
-  wlroots0.19 extra-cmake-modules glibmm gtkmm3 \
-  doctest doxygen iio-sensor-proxy yyjson boost \
-  libdbusmenu-gtk3 nlohmann-json glm \
-  scour glib2-devel boost libyaml \
+  wlroots0.19 glibmm gtkmm3  doctest doxygen \
+  iio-sensor-proxy yyjson boost libdbusmenu-gtk3 \
+  nlohmann-json glm scour glib2-devel boost libyaml \
   vulkan-headers ${PORTALPACKAGES}
 
 AUR_PACKAGES=(
-  wf-config-git
-  wayfire-git
-  wf-shell-git
-  wayfire-plugins-extra-git
-  wcm-git
+  wf-config
+  wayfire
+  wf-shell
+  wayfire-plugins-extra
+  wcm
 )
 
 install_aur_packages "${AUR_PACKAGES[@]}"

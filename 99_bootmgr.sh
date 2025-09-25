@@ -33,7 +33,7 @@ title   Arch Linux
 linux   /${_kernelname}
 initrd  /${MICROCODE}-ucode.img
 initrd  /initramfs-linux.img
-options root=UUID=${UUIDROOT} ro
+options root=UUID=${UUIDROOT} ro ${KERNELBOOTPARAMS}
 EOARCHCONF
 
   cat > ${BOOTPATH}/loader/entries/arch-fallback.conf << EOARCHFBCONF
@@ -41,7 +41,7 @@ title   Arch Linux (fallback initramfs)
 linux   /${_kernelname}
 initrd  /${MICROCODE}-ucode.img
 initrd  /initramfs-linux-fallback.img
-options root=UUID=${UUIDROOT} single ro
+options root=UUID=${UUIDROOT} single ro ${KERNELBOOTPARAMS}
 EOARCHFBCONF
 
   if [[ -z ${MICROCODE} ]]; then

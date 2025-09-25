@@ -1,14 +1,15 @@
 source config.sh
 
-mount  PARTLABEL=ARCHROOT /mnt
+mount ${DISKROOTDEVPATH} /mnt
 if [ x"${BOOTMNGR}" == x"xbootldr" ]; then
   mkdir  /mnt/efi
   mount  "${DISKESPDEVPATH}" /mnt/efi
 fi
+
 mkdir  /mnt/{boot,home}
-mount  PARTLABEL=ARCHBOOT /mnt/boot
-mount  PARTLABEL=ARCHHOME /mnt/home
-swapon -L ARCHSWAP
+mount  "${DISKBOOTDEVPATH}" /mnt/boot
+mount  "${DISKHOMEDEVPATH}" /mnt/home
+swapon "${DISKSWAPDEVPATH}"
 
 #mkdir /mnt/mnt
 #mkdir /mnt/mnt/{storage1,storage2,data,datafast,ext001}

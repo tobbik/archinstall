@@ -411,6 +411,7 @@ binds {
     Shift+Control+Grave                                                 { spawn "makoctl" "restore"; }
     Mod+Shift+W                                                         { spawn "wlr-which-key"; }
     Mod+Tab                                                             { spawn "wayland-window-switcher"; }
+    Alt+Tab                                                            { spawn  "killall" "-SIGUSR1" "sfwbar"; }
     Mod+Alt+V     hotkey-overlay-title="Select from clipboard history" { spawn "bash" "-c" "cliphist list | fuzzel -d | cliphist decode | wl-copy"; }
 
     // Use spawn-sh to run a shell command. Do this if you need pipes, multiple commands, etc.

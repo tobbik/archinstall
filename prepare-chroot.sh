@@ -8,8 +8,8 @@ timedatectl set-ntp true
 source config.sh
 
 if [[ ! -z ${PACOLOCOCACHESERVER} ]]; then
-  sed -i /etc/pacman.conf \
-      -e "s|^Include.*/etc/pacman.d/mirrorlist$|CacheServer = ${PACOLOCOCACHESERVER}\n\0|"
+  sed -E "/(options)/! s|^\[.*\]$|\0\nCacheServer = ${PACOLOCOCACHESERVER}|" \
+      -i /etc/pacman.conf
 fi
 
 if [ x$(uname -m) == x"aarch64" ]; then
@@ -20,7 +20,7 @@ if [ x$(uname -m) == x"x86_64" ]; then
 fi
 
 pacstrap /mnt base base-devel mkinitcpio ${EXTRAPACKAGES}
-genfstab -t PARTLABEL -p /mnt >> /mnt/etc/fstab
+genfstab -t PARTUUID -p /mnt >> /mnt/etc/fstab
 
 # set the keyboard layout
 localectl set-keymap --no-convert ${KEYMAP}

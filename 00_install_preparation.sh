@@ -2,8 +2,8 @@ source config.sh
 source helper.sh
 
 if ! grep -Pzoq "CacheServer.*\nInclude.*mirrorlist" /etc/pacman.conf && [[ ! -z ${PACOLOCOCACHESERVER} ]]; then
-  sed -i /etc/pacman.conf \
-      -e "s|^Include.*/etc/pacman.d/mirrorlist$|CacheServer = ${PACOLOCOCACHESERVER}\n\0|"
+  sed -E "/(options)/! s|^\[.*\]$|\0\nCacheServer = ${PACOLOCOCACHESERVER}|" \
+      -i /etc/pacman.conf
 fi
 
 # these re-locations are useful, if you like to set-up an RO-mounted root (/) directory
@@ -23,7 +23,7 @@ pacman -Sy --noconfirm ${PACMANEXTRAFLAGS}
 
 if [[ ! -z ${REMOVABLES} ]]; then
   pacman -Rdd --noconfirm ${REMOVABLES}
-  pacman -U   --needed --noconfirm ${RUNDIR}/*.pkg.tar.*
+  pacman -U   --needed --noconfirm ${RUNDIR}/packages/*.pkg.tar.*
   rm -f ${RUNDIR}/*.pkg.tar.*
 fi
 

@@ -14,6 +14,7 @@ MODULES=(
 
    09_amd.sh
    #09_intel.sh
+   #09_t14s.sh
    #09_x13s.sh
    #09_rpi4.sh
    #09_opi5.sh
@@ -97,6 +98,7 @@ NETWORKTYPE="wlan"   # wlan | ether | both
 # microcode selection
 # comment out for no microcode
 MICROCODE="intel"    # amd | intel or comment out
+#KERNELBOOTPARAMS=""
 
 # this needs intervention; refind and grub work proper
 # systemd, xbootldr and efistub need work; see setup-chroot.sh
