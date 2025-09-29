@@ -41,7 +41,7 @@ background-color=#222222
 border-color=#CCCCCC
 text-color=#BBBBBB
 
-[app-name=mpd-control]
+[app-name=idle-control]
 history=0
 background-color=#222222
 border-color=#CCCCCC

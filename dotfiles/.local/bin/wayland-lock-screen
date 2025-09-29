@@ -4,12 +4,12 @@ PLAYER_PICKLE_DIR=~/.local/state/playerstatus
 SCREENIMGPFX="/tmp/screenlock-"
 
 function notify_screen() {
-  local msgTag="playerInfo"
+  local msgTag="IdleInfo"
   local cmd=$1
   local player=$2
   local status=$(playerctl --player=${player} status)
 
-  notify-send --app-name "mpd-control" \
+  notify-send --app-name "idle-control" \
       --expire-time 5000 --urgency low --transient \
       --hint string:x-dunst-stack-tag:$msgTag \
       "${player} ${status} (${cmd})"
@@ -64,20 +64,21 @@ function take_blurred_screenshots() {
 
 function execute_desktop_lock() {
   case "$1" in
-    swaylock)
-      pidof swaylock || swaylock --daemonize --config ~/.config/swaylock/config $(cat ${SCREENIMGPFX}swayimages.txt)
-      ;;
     gtklock)
       pidof gtklock  || gtklock  --daemonize --config ~/.config/gtklock/config.ini --style ~/.config/gtklock/style.css
+      ;;
+    hyprlock)
+      pidof hyprlock || hyprlock  --grace 5 --config ~/.config/hypr/hyprlock.conf
+      ;;
+    swaylock)
+      ;&
+    *)
+      pidof swaylock || swaylock --daemonize --config ~/.config/swaylock/config $(cat ${SCREENIMGPFX}swayimages.txt)
       ;;
   esac
 }
 
 function main() {
-  local locker=swaylock
-  if [ x"$2" == x"gtklock" ]; then
-    locker=gtklock
-  fi
   case "$1" in
     screenshots)
       take_blurred_screenshots
@@ -92,16 +93,16 @@ function main() {
       unpickle_media_players
       ;;
     lock)
-      execute_desktop_lock ${locker}
+      execute_desktop_lock ${2}
       ;;
     unlock)
       unpickle_media_players
-      rm ${SCREENIMGPFX}*
+      rm -f ${SCREENIMGPFX}*
       ;;
     locknow)
       take_blurred_screenshots
       pickle_media_players
-      execute_desktop_lock ${locker}
+      execute_desktop_lock ${2}
       ;;
     *)
       usage

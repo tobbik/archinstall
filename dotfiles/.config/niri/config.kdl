@@ -403,16 +403,16 @@ binds {
 
     // Suggested binds for running programs: terminal, app launcher, screen locker.
     Mod+Return    hotkey-overlay-title="Open a Terminal: footclient" { spawn "footclient"; }
-    Mod+Space     hotkey-overlay-title="Run an Application: fuzzel"  { spawn "fuzzel"; }
-    Mod+Alt+Space hotkey-overlay-title="Run any Application in $PATH: fuzzel" { spawn "fuzzel" "--list-executables-in-path"; }
-    Super+Alt+L   hotkey-overlay-title="Lock the Screen: swaylock"   { spawn "wlogout" "--layout" "__USERHOME__/.config/niri/wlogout.layout"; }
-    Shift+Print                                                         { spawn "wayland-screen-shooter" "selectedit"; }
+    Mod+Space     hotkey-overlay-title="Run Applications: fuzzel"    { spawn "fuzzel"; }
+    Mod+Alt+Space hotkey-overlay-title="Run any Application: fuzzel" { spawn "fuzzel" "--list-executables-in-path"; }
+    Super+Alt+L   hotkey-overlay-title="Lock the Screen: logout"     { spawn "wlogout" "--layout" "__USERHOME__/.config/niri/wlogout.layout"; }
+    Shift+Print                                                      { spawn "wayland-screen-shooter" "selectedit"; }
     Control+Grave { spawn "makoctl" "menu" "--" "fuzzel" "--dmenu" "--width" "45" "--prompt" "'Notification action:'"; }
-    Shift+Control+Grave                                                 { spawn "makoctl" "restore"; }
-    Mod+Shift+W                                                         { spawn "wlr-which-key"; }
-    Mod+Tab                                                             { spawn "wayland-window-switcher"; }
-    Alt+Tab                                                            { spawn  "killall" "-SIGUSR1" "sfwbar"; }
-    Mod+Alt+V     hotkey-overlay-title="Select from clipboard history" { spawn "bash" "-c" "cliphist list | fuzzel -d | cliphist decode | wl-copy"; }
+    Shift+Control+Grave                                              { spawn "makoctl" "restore"; }
+    Mod+Shift+W                                                      { spawn "wlr-which-key"; }
+    Mod+Tab                                                          { spawn "wayland-window-switcher"; }
+    Alt+Tab                                                          { spawn  "killall" "-SIGUSR1" "sfwbar"; }
+    Mod+Alt+V     hotkey-overlay-title="Browse clipboard history"    { spawn "bash" "-c" "cliphist list | fuzzel -d | cliphist decode | wl-copy"; }
 
     // Use spawn-sh to run a shell command. Do this if you need pipes, multiple commands, etc.
     // Note: the entire command goes as a single argument. It's passed verbatim to `sh -c`.

@@ -41,7 +41,7 @@ wl-paste --type text --watch cliphist store &
 #
 #
 # using ~/.config/swayidle/config
-swayidle -w -C ~/.config/swayidle/config  > /dev/null 2>&1 &
+swayidle -w -C ~/.config/swayidle/config > /dev/null 2>&1 &
 
 # .. or using direct parameters
 #swayidle -w \
@@ -55,13 +55,13 @@ swayidle -w -C ~/.config/swayidle/config  > /dev/null 2>&1 &
 #       resume  'wayland-lock-screen resumeplayers' \
 #  timeout 295  'notify-send --expire-time 4000 --urgency low --transient "Going to idle in 5 seconds!"' \
 #       resume  'notify-send  --expire-time 4000 --urgency low --transient "Welcome back!"' \
-#  timeout 300  'wayland-lock-screen lock gtklock' \
+#  timeout 300  'wayland-lock-screen lock swaylock' \
 #       resume  'wayland-lock-screen unlock' \
 #  timeout 410  'wlopm --off \*' \
 #        resume  'wlopm --on \*' \
-#  before-sleep 'wayland-lock-screen lock gtklock' \
+#  before-sleep 'wayland-lock-screen lock swaylock' \
 #  after-resume 'wlopm --on \*' \
-#  lock         'wayland-screen-lock locknow gtklock' \
+#  lock         'wayland-screen-lock locknow swaylock' \
 #  unlock       'wayland-screen-lock unlock' \
 #       > /dev/null 2>&1 &
 #

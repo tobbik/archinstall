@@ -154,3 +154,6 @@ PACOLOCOREPOS=(
 # some WiFi Drivers don't support this and dis/re-connect in a loop
 # set to false if that happens
 ControlPortOverNL80211=true
+
+# /sys/class/power_supply/***
+BATTERY_NAME=BAT0

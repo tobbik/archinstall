@@ -76,4 +76,7 @@ add_dotfiles  ".config/foot" ".config/mako" ".config/fuzzel" \
 sed -i ${USERHOME}/.config/gammastep/config.ini \
   -e "s:^\(adjustment-method\)=.*$:\1=wayland:"
 
+sed -i ${USERHOME}/.config/sfwbar/battery-lenovo.widget \
+  -e "s:__BATTERYNAME__:${BATTERY_NAME}:"
+
 enable_user_service mako.service gammastep.service foot-server.service

@@ -1,24 +1,32 @@
 scanner {
-  file("/sys/class/power_supply/BAT0/charge_full") {
-    BatteryTotal = Grab(Sum)
+  file("/sys/class/power_supply/__BATTERYNAME__/energy_full") {
+    BatteryEnergyTotal = Grab(Sum)
   }
-  file("/sys/class/power_supply/BAT0/charge_now") {
-    BatteryChargeNow = Grab(Sum)
+  file("/sys/class/power_supply/__BATTERYNAME__/charge_full") {
+    BatteryChargeTotal = Grab(Sum)
   }
-  file("/sys/class/power_supply/BAT0/energy_now") {
+  file("/sys/class/power_supply/__BATTERYNAME__/energy_now") {
     BatteryEnergyNow = Grab(Sum)
   }
-  file("/sys/class/power_supply/BAT0/capacity") {
+  file("/sys/class/power_supply/__BATTERYNAME__/charge_now") {
+    BatteryChargeNow = Grab(Sum)
+  }
+  file("/sys/class/power_supply/__BATTERYNAME__/capacity") {
     BatteryLevel = Grab(Sum)
   }
-  file("/sys/class/power_supply/BAT0/status") {
+  file("/sys/class/power_supply/__BATTERYNAME__/status") {
     BatteryStatus = RegEx("^(.*)$")
   }
 }
 
 module("bsdctl")
 
-set BatteryLeft = If(BatteryChargeNow.count,BatteryChargeNow,BatteryEnergyNow)
+set BatteryLeft = If(BatteryChargeNow.count,
+   BatteryChargeNow,
+   BatteryEnergyNow)
+set BatteryTotal = If(BatteryChargeTotal.count,
+   BatteryChargeTotal,
+   BatteryEnergyTotal)
 set XBatteryLevel = If(!Ident(BSDCtl),
       BatteryLeft / BatteryTotal * 100,
       BSDCtl("hw.acpi.battery.level.life")
@@ -27,15 +35,18 @@ set XBatteryDischarging = If(!Ident(BSDCtl),
       $BatteryStatus="Discharging",
       BSDCtl("hw.acpi.battery.state")="1"
     )
+set BatteryCapacity = If(BatteryLevel.count,
+   BatteryLevel,
+   XBatteryLevel)
 
 layout {
   label {
     style = "battery"
     interval = 60000
     value = if(XBatteryDischarging,
-              Lookup(BatteryLevel,80,"",60,"",40,"",20,"",""),
+              Lookup(XBatteryLevel,80,"",60,"",40,"",20,"",""),
               '') +
-            "\n" + Str(BatteryLevel) + '%'
+            "\n" + Str(XBatteryLevel) + '%'
 
   }
 }
