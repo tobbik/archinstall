@@ -12,9 +12,8 @@ pacman -S --needed --noconfirm ${PACMANEXTRAFLAGS} \
   zathura-pdf-mupdf mupdf-gl mupdf-tools \
   tesseract-data-eng tesseract-data-osd \
   hunspell-en_ca hunspell-en_us hunspell-de \
-  cups baobab \
-  neovide \
-  pavucontrol ario guvcview \
+  cups baobab neovide pavucontrol ario \
+  libcamera-tools guvcview \
   qrencode vte4 gtk4 fltk xorg-server-xvfb blueprint-compiler appstream-glib
 
 add_dotfiles ".config/libfm" ".config/pcmanfm" ".config/chromium-flags.conf" ".config/neovide"

@@ -79,6 +79,10 @@ function execute_desktop_lock() {
 }
 
 function main() {
+  local locker=swaylock
+  if [ x"$2" == x"gtklock" ]; then
+    locker=gtklock
+  fi
   case "$1" in
     screenshots)
       take_blurred_screenshots
@@ -93,7 +97,7 @@ function main() {
       unpickle_media_players
       ;;
     lock)
-      execute_desktop_lock ${2}
+      execute_desktop_lock ${locker}
       ;;
     unlock)
       unpickle_media_players
@@ -102,7 +106,7 @@ function main() {
     locknow)
       take_blurred_screenshots
       pickle_media_players
-      execute_desktop_lock ${2}
+      execute_desktop_lock ${locker}
       ;;
     *)
       usage

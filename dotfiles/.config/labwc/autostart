@@ -20,13 +20,12 @@ sfwbar > /dev/null 2>&1 &
 # through the org.freedesktop.Notifications D-Bus API and require a client such
 # as mako to function correctly. Thunderbird is an example of this.
 #mako >/dev/null 2>&1 &
-#dunst > /dev/null 2>&1 &
 
 # change color depending on daylight # using gamastep for now
 #wlsunset -l 48.48 -L -123.53 -t 3500 -T 5700 &
 
 wl-paste --type image --watch cliphist store &
-wl-paste --type text --watch cliphist store &
+wl-paste --type text  --watch cliphist store &
 
 # Lock screen after 5 minutes; turn off display after another 5 minutes.
 #
@@ -54,17 +53,17 @@ swayidle -w -C ~/.config/swayidle/config > /dev/null 2>&1 &
 #  timeout 290  'wayland-lock-screen pickleplayers' \
 #       resume  'wayland-lock-screen resumeplayers' \
 #  timeout 295  'notify-send --expire-time 4000 --urgency low --transient "Going to idle in 5 seconds!"' \
-#       resume  'notify-send  --expire-time 4000 --urgency low --transient "Welcome back!"' \
+#       resume  'notify-send --expire-time 4000 --urgency low --transient "Welcome back!"' \
 #  timeout 300  'wayland-lock-screen lock swaylock' \
 #       resume  'wayland-lock-screen unlock' \
 #  timeout 410  'wlopm --off \*' \
-#        resume  'wlopm --on \*' \
+#        resume 'wlopm --on \*' \
 #  before-sleep 'wayland-lock-screen lock swaylock' \
+#   timeout 600 'systemctl suspend' \
 #  after-resume 'wlopm --on \*' \
-#  lock         'wayland-screen-lock locknow swaylock' \
-#  unlock       'wayland-screen-lock unlock' \
+#  lock         'wayland-lock-screen locknow swaylock' \
+#  unlock       'wayland-lock-screen unlock' \
 #       > /dev/null 2>&1 &
-#
 #
 
 #hypridle &

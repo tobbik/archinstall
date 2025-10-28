@@ -12,12 +12,10 @@ if [[ ! -z ${PACOLOCOCACHESERVER} ]]; then
       -i /etc/pacman.conf
 fi
 
-if [ x$(uname -m) == x"aarch64" ]; then
-  EXTRAPACKAGES="archlinuxarm-keyring"
-fi
-if [ x$(uname -m) == x"x86_64" ]; then
-  EXTRAPACKAGES="archlinux-keyring vbetool"
-fi
+case "$(uname -m)" in
+  "aarch64") EXTRAPACKAGES="archlinuxarm-keyring" ;;
+  "x86_64")  EXTRAPACKAGES="archlinux-keyring vbetool" ;;
+esac
 
 pacstrap /mnt base base-devel mkinitcpio ${EXTRAPACKAGES}
 genfstab -t PARTUUID -p /mnt >> /mnt/etc/fstab
@@ -55,3 +53,7 @@ if [ ! -L /mnt/etc/resolv.conf ]; then
   ln -s ../run/systemd/resolve/resolv.conf /mnt/etc/resolv.conf
   cd ${OLDPWD}
 fi
+
+cp -avr /mnt/root/installer /mnt/${USERHOME}/
+chown -R ${USERNAME}:users  /mnt/${USERHOME}/installer
+

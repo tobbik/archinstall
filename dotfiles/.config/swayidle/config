@@ -8,6 +8,6 @@ timeout 300  'wayland-lock-screen lock'                       resume  'wayland-l
 timeout 410  'wlopm --off \*'                                 resume  'wlopm --on \*'
 before-sleep 'wayland-lock-screen lock'
 timeout 600  'systemctl suspend'                              resume  'wlopm --on \*'
-after-resume 'wlopm --on \*'
+after-resume 'wlopm --on \* && waylock-lock-screen unlock'
 lock         'wayland-lock-screen locknow'
 unlock       'wayland-lock-screen unlock'

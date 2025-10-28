@@ -53,7 +53,7 @@ if vim.g.neovide then
 end
 
 if vim.g.GtkGuiLoaded == 1 then
-  vim.opt.guifont = "JetBrainsMono NF ExtraLight 14"
+  vim.opt.guifont = "JetBrainsMono NF ExtraLight 13"
   vim.keymap.set('n', '<D-s>', ':w<CR>') -- Save
   vim.keymap.set('v', '<D-c>', '"+y') -- Copy
   vim.keymap.set('n', '<D-v>', '"+P') -- Paste normal mode

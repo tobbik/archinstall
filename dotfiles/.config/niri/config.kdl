@@ -290,6 +290,11 @@ layout {
     }
 }
 
+overview {
+  zoom 0.4
+  backdrop-color "#777777"
+}
+
 // Add lines like this to spawn processes at startup.
 // Note that running niri as a session supports xdg-desktop-autostart,
 // which may be more convenient to use.
@@ -297,6 +302,7 @@ layout {
 
 // This line starts waybar, a commonly used bar for Wayland compositors.
 spawn-at-startup "sfwbar"
+spawn-at-startup "kanshi"
 // use systemctl --user enable mako instead
 //spawn-at-startup "mako"
 spawn-at-startup "xwayland-satellite"
@@ -344,6 +350,11 @@ animations {
     // slowdown 3.0
 }
 
+//workspace "terminal"
+//workspace "browser_f"
+//workspace "browser_c"
+workspace "chat"
+
 // Window rules let you adjust behavior for individual windows.
 // Find more information on the wiki:
 // https://yalter.github.io/niri/Configuration:-Window-Rules
@@ -357,6 +368,39 @@ window-rule {
     match app-id=r#"^org\.wezfurlong\.wezterm$"#
     default-column-width {}
 }
+
+// all the maximized apps
+window-rule {
+    // - host Firefox (app-id is "firefox")
+    // - Flatpak Firefox (app-id is "org.mozilla.firefox")
+    match app-id=r#"firefox$"#
+    exclude title="^Picture-in-Picture$"
+    open-maximized true
+    //open-on-workspace "browser_f"
+}
+
+window-rule {
+    match app-id=r#"chromium$"#
+    exclude title="^Picture-in-Picture$"
+    open-maximized true
+    //open-on-workspace "browser_c"
+}
+
+window-rule {
+    match app-id="^blender$"
+    // GIMP app ID contains the version like "gimp-2.99",
+    match app-id="^gimp"
+    open-maximized true
+}
+
+// Open allcomms on "chat" workspace.
+window-rule {
+    match app-id=r#"^slack$"#
+    match app-id=r#"^zoom$"#
+    match app-id=r#"^signal$"#
+    open-on-workspace "chat"
+}
+
 
 // Open the Firefox picture-in-picture player as floating by default.
 window-rule {
@@ -405,13 +449,13 @@ binds {
     Mod+Return    hotkey-overlay-title="Open a Terminal: footclient" { spawn "footclient"; }
     Mod+Space     hotkey-overlay-title="Run Applications: fuzzel"    { spawn "fuzzel"; }
     Mod+Alt+Space hotkey-overlay-title="Run any Application: fuzzel" { spawn "fuzzel" "--list-executables-in-path"; }
-    Super+Alt+L   hotkey-overlay-title="Lock the Screen: logout"     { spawn "wlogout" "--layout" "__USERHOME__/.config/niri/wlogout.layout"; }
+    Super+Alt+L   hotkey-overlay-title="Lock the Screen: wlogout"    { spawn "wlogout" "--layout" "__USERHOME__/.config/niri/wlogout.layout"; }
     Shift+Print                                                      { spawn "wayland-screen-shooter" "selectedit"; }
     Control+Grave { spawn "makoctl" "menu" "--" "fuzzel" "--dmenu" "--width" "45" "--prompt" "'Notification action:'"; }
     Shift+Control+Grave                                              { spawn "makoctl" "restore"; }
     Mod+Shift+W                                                      { spawn "wlr-which-key"; }
     Mod+Tab                                                          { spawn "wayland-window-switcher"; }
-    Alt+Tab                                                          { spawn  "killall" "-SIGUSR1" "sfwbar"; }
+    Alt+Tab                                                          { spawn "killall" "-SIGUSR1" "sfwbar"; }
     Mod+Alt+V     hotkey-overlay-title="Browse clipboard history"    { spawn "bash" "-c" "cliphist list | fuzzel -d | cliphist decode | wl-copy"; }
 
     // Use spawn-sh to run a shell command. Do this if you need pipes, multiple commands, etc.
@@ -422,16 +466,16 @@ binds {
     // Example volume keys mappings for PipeWire & WirePlumber.
     // The allow-when-locked=true property makes them work even when the session is locked.
     // Using spawn-sh allows to pass multiple arguments together with the command.
-    XF86AudioRaiseVolume allow-when-locked=true { spawn "wayland-volume-adjust" "up"; }
-    XF86AudioLowerVolume allow-when-locked=true { spawn "wayland-volume-adjust" "down"; }
-    XF86AudioMute        allow-when-locked=true { spawn "wayland-volume-adjust" "toggle"; }
-    XF86AudioMicMute     allow-when-locked=true { spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SOURCE@" "toggle"; }
-    XF86MonBrightnessUp    allow-when-locked=true { spawn "wayland-screen-brightness" "up"; }
-    XF86MonBrightnessDown  allow-when-locked=true { spawn "wayland-screen-brightness" "down"; }
-    XF86AudioNext          allow-when-locked=true { spawn "mpc" "next"; }
-    XF86AudioPause         allow-when-locked=true { spawn "mpc" "toggle"; }
-    XF86AudioPlay          allow-when-locked=true { spawn "mpc" "toggle"; }
-    XF86AudioPrev          allow-when-locked=true { spawn "mpc" "prev"; }
+    XF86AudioRaiseVolume  allow-when-locked=true { spawn "wayland-volume-adjust" "up"; }
+    XF86AudioLowerVolume  allow-when-locked=true { spawn "wayland-volume-adjust" "down"; }
+    XF86AudioMute         allow-when-locked=true { spawn "wayland-volume-adjust" "toggle"; }
+    XF86AudioMicMute      allow-when-locked=true { spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SOURCE@" "toggle"; }
+    XF86MonBrightnessUp   allow-when-locked=true { spawn "wayland-screen-brightness" "up"; }
+    XF86MonBrightnessDown allow-when-locked=true { spawn "wayland-screen-brightness" "down"; }
+    XF86AudioNext         allow-when-locked=true { spawn "mpc" "next"; }
+    XF86AudioPause        allow-when-locked=true { spawn "mpc" "toggle"; }
+    XF86AudioPlay         allow-when-locked=true { spawn "mpc" "toggle"; }
+    XF86AudioPrev         allow-when-locked=true { spawn "mpc" "prev"; }
 
     // Open/close the Overview: a zoomed-out view of workspaces and windows.
     // You can also move the mouse into the top-left hot corner,
