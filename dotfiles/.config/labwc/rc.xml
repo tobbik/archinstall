@@ -121,7 +121,7 @@
       <action name="Execute" command="wayland-screen-shooter select"/>
     </keybind>
     <keybind key="W-A-l">
-      <action name="Execute" command="loginctl lock-session"/>
+      <action name="Execute" command="wlogout --layout /home/tobias/.config/wlogout/layout"/>
     </keybind>
     <keybind key="C-S-`">
       <action name="Execute" command="makoctl restore"/>

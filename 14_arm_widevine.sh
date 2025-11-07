@@ -2,7 +2,7 @@ source config.sh
 source helper.sh
 
 pacman -S --needed --noconfirm ${PACMANEXTRAFLAGS} \
-  squashfs-tools
+  squashfs-tools nspr nss
 
 # the widevine package originates from
 # https://codeberg.org/mogwai/widevine

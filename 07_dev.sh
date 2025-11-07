@@ -44,6 +44,7 @@ sudo --user ${USERNAME} git config --global user.name   "${GITNAME}"
 sudo --user ${USERNAME} git config --global user.email  "${GITEMAIL}"
 sudo --user ${USERNAME} git config --global core.editor "/usr/bin/nvim"
 sudo --user ${USERNAME} git config --global merge.tool  "/usr/bin/nvim -d"
+sudo --user ${USERNAME} git config --global init.defaultBranch main
 sudo --user ${USERNAME} git lfs install
 cd ${INSTALLERDIR}
 

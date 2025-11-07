@@ -3,7 +3,7 @@ source helper.sh
 
 # Everyday GUI tools
 pacman -S --needed --noconfirm ${PACMANEXTRAFLAGS} \
-  file-roller pcmanfm-gtk3 \
+  file-roller pcmanfm \
   chromium firefox glfw \
   gvfs-smb gvfs-nfs gvfs-mtp \
   ttf-jetbrains-mono-nerd adobe-source-code-pro-fonts \
@@ -22,7 +22,7 @@ prefer_dark_theme
 
 AUR_PACKAGES=(
   iwgtk
-  gnvim-git
+  #gnvim-git
   xdiskusage
   overskride
   ttf-ms-fonts
@@ -30,6 +30,6 @@ AUR_PACKAGES=(
 
 install_aur_packages "${AUR_PACKAGES[@]}"
 
-install -D --mode=644 --owner=${USERNAME} --group=users \
-  /usr/share/gnvim/runtime/lua/gnvim/init.lua \
-  "${USERHOME}/.config/nvim/lua/gnvim/init.lua"
+#install -D --mode=644 --owner=${USERNAME} --group=users \
+  #/usr/share/gnvim/runtime/lua/gnvim/init.lua \
+  #"${USERHOME}/.config/nvim/lua/gnvim/init.lua"
