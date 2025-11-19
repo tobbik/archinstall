@@ -17,3 +17,6 @@ AUR_PACKAGES=(
 )
 
 install_aur_packages "${AUR_PACKAGES[@]}"
+
+# this is a big file that doesn't need to linger around ...
+rm ${AURBUILDDIR}/widevine/*.squashfs

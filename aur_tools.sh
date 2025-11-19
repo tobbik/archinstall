@@ -12,9 +12,20 @@ function aur_extract_pkg () {
   local OLDDIR=$(pwd)
   cd "$2"
   local PKG="$3"
+  local PKGTGZ="${3}.tar.gz"
+  local DL_TRY=5
   echo "     ..... DOWNLOADING and EXTRACTING '${PKG}' >>>>>>>>>>>"
-  curl ${AURBASEURL}/${PKG}.tar.gz -O && sudo --user ${ASUSER} tar xzf ${PKG}.tar.gz
-  rm ${PKG}.tar.gz && cd ${PKG}
+  while [ ! -f ${PKGTGZ} ] && [ ${DL_TRY}>0 ]; do
+    local DL_URL="${AURBASEURL}/${PKGTGZ}"
+    echo "${DL_TRY} ATTEMPTs left for downloading ${DL_URL}"
+    curl --fail --remote-name ${DL_URL}
+    DL_TRY=$((DL_TRY - 1))
+    if [ ! -f ${PKGTGZ} ]; then
+      sleep 3  # be nice to the server
+    fi
+  done
+  sudo --user ${ASUSER} tar xzf ${PKGTGZ}
+  rm ${PKGTGZ} && cd ${PKG}
   if grep -q '^arch.*any' PKGBUILD ; then
     echo "FOUND 'any' architecture. Do nothing."
   else
