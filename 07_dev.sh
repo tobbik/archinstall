@@ -51,8 +51,8 @@ cd ${INSTALLERDIR}
 # enable php jit by default
 sed -i /etc/php/php.ini \
     -e "s/^.*zend_extension.*opcache.*$/zend_extension=opcache/" \
-    -e "s/^.*opcache.enable.*$/opcache.enable=1/" \
-    -e "s/^.*opcache.enable_cli.*$/opcache.enable_cli=1/" \
+    -e "s/^.*opcache.enable\s*=.*$/opcache.enable=1/" \
+    -e "s/^.*opcache.enable_cli\s*=.*$/opcache.enable_cli=1/" \
     -e "s/^.*opcache.lockfile_path.*$/\0\nopcache.jit_buffer_size=128M\nopcache.jit=tracing\n/"
 
 # after removing vim provide aliases
