@@ -8,7 +8,7 @@ fi
 
 # these re-locations are useful, if you like to set-up an RO-mounted root (/) directory
 if [[ ! -z ${PACMANSERVICEDIR} ]]; then
-  echo "moving pacman service files to https://codeberg.org/mogwai/widevine.git"
+  echo "moving pacman service files to ${PACMANSERVICEDIR}"
   mkdir -p ${PACMANSERVICEDIR}/cache
   mv /var/log/pacman.log ${PACMANSERVICEDIR}/
   mv /etc/pacman.d/gnupg ${PACMANSERVICEDIR}/
