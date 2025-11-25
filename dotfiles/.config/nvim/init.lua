@@ -2,7 +2,6 @@
 -- nvim local window = vim.wo
 -- nvim local buffer = vim.bo
 vim.o.number = true        -- enable line numbers
---vim.g.gnvim_rtp_path = '/usr/share/gnvim/runtime'
 
 vim.opt.mouse     = { a = true }
 
@@ -70,35 +69,3 @@ vim.api.nvim_set_keymap('v', '<D-v>', '<C-R>+', { noremap = true, silent = true}
 
 -- Disable zig auto-format
 vim.g.zig_fmt_autosave = 0
-
--- Only setup gnvim when it attaches.
-vim.api.nvim_create_autocmd({'UIEnter'}, {
-  callback = function(event)
-    local chanid = vim.v.event['chan']
-    local chan = vim.api.nvim_get_chan_info(chanid)
-    if chan.client and chan.client.name ~= 'gnvim' then
-      return
-    end
-
-    -- Gnvim brings its own runtime files.
-    --
-    -- If you're using lazy.nvim, you can use g:gnvim_rtp_path to get the
-    -- path to gnvim's runtime files and use it with lazy's
-    -- performance.rtp.paths to include gnvim's runtime files without any
-    -- external plug.
-    local gnvim = require('gnvim')
-
-    -- Set the font
-    vim.opt.guifont = "JetBrainsMono NF Thin 13.5"
-
-    -- Increase/decrease font.
-    vim.keymap.set('n', '<c-=>', function() gnvim.font_size(0.25) end)
-    vim.keymap.set('n', '<c-->', function() gnvim.font_size(-0.25) end)
-
-    gnvim.setup({
-        cursor = {
-            blink_transition = 300
-        }
-    })
-  end
-})

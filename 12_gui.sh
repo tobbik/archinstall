@@ -22,7 +22,6 @@ prefer_dark_theme
 
 AUR_PACKAGES=(
   iwgtk
-  #gnvim-git
   xdiskusage
   overskride
   ttf-ms-fonts
@@ -30,6 +29,3 @@ AUR_PACKAGES=(
 
 install_aur_packages "${AUR_PACKAGES[@]}"
 
-#install -D --mode=644 --owner=${USERNAME} --group=users \
-  #/usr/share/gnvim/runtime/lua/gnvim/init.lua \
-  #"${USERHOME}/.config/nvim/lua/gnvim/init.lua"
