@@ -23,7 +23,7 @@ fi
 
 if test x${NETWORKTYPE} = x"ether" || test x${NETWORKTYPE} = x"both"; then
   if [[ -z ${ETHER_INTERFACE} ]]; then
-    ETHER_INTERFACE=$(ip addr show dynamic | grep ': e[^ ]*: <' | cut -d' ' -f2 | tr -d ':')
+    ETHER_INTERFACE=$(ip link show dynamic | grep ': e[^ ]*: <' | cut -d' ' -f2 | tr -d ':')
   fi
   echo "configuring wired ethernet interface <${ETHER_INTERFACE}> for systemd-networkd"
   if [ ! -f /etc/systemd/network/${ETHER_INTERFACE}.network ]; then
@@ -33,7 +33,7 @@ fi
 
 if test x${NETWORKTYPE} = x"wlan" || test x${NETWORKTYPE} = x"both"; then
   if [[ -z ${WLAN_INTERFACE} ]]; then
-    WLAN_INTERFACE=$(ip addr show dynamic | grep ': w[^ ]*: <' | cut -d' ' -f2 | tr -d ':')
+    WLAN_INTERFACE=$(ip link show dynamic | grep ': w[^ ]*: <' | cut -d' ' -f2 | tr -d ':')
   fi
   echo "configuring wireless interface <${WLAN_INTERFACE}> for systemd-networkd"
   if [ ! -f /etc/systemd/network/${WLAN_INTERFACE}.network ]; then
